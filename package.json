@@ -1,0 +1,21 @@
+{
+  "name": "housepets-search-engine",
+  "version": "0.0.1",
+  "description": "A search engine to find your favorite Housepets comic!",
+  "private": "true",
+  "workspaces": ["app/*"],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OpenFurs/housepets-search-engine.git"
+  },
+  "keywords": ["housepets", "furry"],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OpenFurs/housepets-search-engine/issues"
+  },
+  "homepage": "https://github.com/OpenFurs/housepets-search-engine#readme"
+}

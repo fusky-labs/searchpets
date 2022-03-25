@@ -1,2 +1,3 @@
-# housepets-search-engine
-a search engine to find your favorite housepets comic
+# Housepets Search Engine
+
+A search engine to find your favorite Housepets comic!
