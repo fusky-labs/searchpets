@@ -6,12 +6,12 @@ import json
 years = ['2008', "2009", "2010", "2011", "2012", "2013", "2014", 
         "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
 
-housepets_official_comics_database = {}
+housepets_db = {}
 print("Creating database...")
-print("this may take a while...")
-for year in years:
+print("This may take a while...")
 
-    housepets_official_comics_database.update({year: []})
+for year in years:
+    housepets_db.update({year: []})
     print(year)
     web = requests.get(f"https://www.housepetscomic.com/archive/?archive_year={year}")
     soup = BeautifulSoup(web.text, 'html.parser')
@@ -24,17 +24,17 @@ for year in years:
             print(f'{web_link} is a real comic by rick grifin')
 
             # get the characters from the comic
-            characters_in_comic = []
-            characters_in_comic_soup = BeautifulSoup(web_link_page.text, 'html.parser')
-            characters_in_comic_tag = characters_in_comic_soup.find_all('a', {'href': re.compile("^https://www.housepetscomic.com/character")})
-            for character in characters_in_comic_tag:
-                characters_in_comic.append(character.text)
-            housepets_official_comics_database[year].append({'comic_link': web_link, 'characters': characters_in_comic})
+            characters = []
+            characters_soup = BeautifulSoup(web_link_page.text, 'html.parser')
+            characters_tag = characters_soup.find_all('a', {'href': re.compile("^https://www.housepetscomic.com/character")})
+            for character in characters_tag:
+                characters.append(character.text)
+            housepets_db[year].append({'comic_link': web_link, 'characters': characters})
         else:
             print(f'{web_link} is a guest comics')
 
 
 # save the dictionary to a json file
 print("saving to database...")
-with open('housepets_official_comics_database.json', 'w') as housepets_official_comics_database_json:
-    json.dump(housepets_official_comics_database, housepets_official_comics_database_json)
+with open('housepets_db.json', 'w') as housepets_db_json:
+    json.dump(housepets_db, housepets_db_json)

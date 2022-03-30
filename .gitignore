@@ -36,4 +36,4 @@ yarn-error.log*
 
 # python and database
 venv
-housepets_official_comics_database.json
+housepets_db.json

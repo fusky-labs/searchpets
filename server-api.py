@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
 import json
 
-with open('housepets_official_comics_database.json', 'r') as housepets_official_comics_database_json:
-    housepets_official_comics_database = json.load(housepets_official_comics_database_json)
+with open('housepets_db.json', 'r') as housepets_db_json:
+    housepets_db = json.load(housepets_db_json)
 
 app = Flask(__name__)
 
