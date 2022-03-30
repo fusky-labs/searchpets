@@ -2,8 +2,29 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.scss";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const Home: NextPage = () => {
+  const [comics, setComics] = useState([]);
+  useEffect(() => {
+    fetch("/api/search", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "year": "2019",
+        "characters": ["Grape"]
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        setComics(res.data)
+      }
+      )
+  }, [])
   return (
     <div>
       <main className={styles.main}>
