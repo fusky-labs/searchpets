@@ -3,8 +3,8 @@ import AppFooter from "./AppFooter"
 import Head from "next/head"
 import React from "react"
 
-export default function Layout({ children }: any) {
-  return(
+export default function Layout({ children }) {
+  return (
     <>
       <Head>
         <title>Housepets Search Engine</title>
@@ -12,9 +12,7 @@ export default function Layout({ children }: any) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AppHeader />
-      <main>
-        {children}
-      </main>
+      <div>{children}</div>
       <AppFooter />
     </>
   )
