@@ -6,9 +6,16 @@ with open('housepets_db.json', 'r') as housepets_db_json:
 
 app = Flask(__name__)
 
-@app.route('/test')
+@app.route('/search', methods=['POST'])
 def test():
-    return jsonify({'message': 'Hello people, this is just a test'})
+    print(request.json)
+    year = request.json['year']
+    characters = request.json['characters']
+    comics = []
+    for comic in housepets_db[year]:
+        if all(character in comic['characters'] for character in characters):
+            comics.append(comic)
+    return jsonify({'comics': comics})
 
 if __name__ == '__main__':
     app.run(debug=True)
