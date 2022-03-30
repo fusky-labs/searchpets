@@ -1,0 +1,42 @@
+body {
+  background: hsla(0, 0%, 16%, 1);
+  color: #f5f5f5;
+}
+
+header {
+  background: linear-gradient(269.83deg, rgba(27, 55, 76, 0.57) 18.59%, rgba(27, 46, 60, 0.7) 75.28%);
+  color: #f5f5f5;
+}
+
+header #wrapper,
+footer #wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.searchBox {
+  width: clamp(4rem, 100%, 40rem);
+  padding: 2ex;
+  transition: all 250ms ease;
+
+  &:focus-within {
+    width: clamp(7rem, 100%, 70rem);
+    
+    input[type="text"] {
+      box-shadow: 0 4px 15px rgba(black, 33%);
+      color: white;
+    }
+  }
+  
+  input[type="text"] {
+    transition: all 250ms ease;
+    color: rgba(#f5f5f5, 25%);
+    border-radius: 6px;
+    background: rgba(gray, 25%);
+    padding: 2ex;
+    font-size: 125%;
+    width: 100%;
+    border: none;
+  }
+}
