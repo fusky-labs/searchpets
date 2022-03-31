@@ -4,7 +4,7 @@ import Link from 'next/link'
 function Header() {
   return (
     <header>
-      <div id="wrapper">
+      <div className="wrapper">
         <div id={styles.headerDesktop}>
           <strong id={styles.logo}>
             <Link href="/">Searchpets</Link></strong>

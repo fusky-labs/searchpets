@@ -1,13 +1,21 @@
-// import type { AppProps } from 'next/app'
-import Layout from '../components/Layout'
-import '../styles/globals.scss'
+import type { AppProps } from "next/app";
+import Layout from "../components/Layout";
+import { config, library } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+config.autoAddCss = false;
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import "../styles/globals.scss";
 
-function MyApp({ Component, pageProps }) {
+library.add(fas);
+library.add(fab);
+
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Layout>
       <Component {...pageProps} />
     </Layout>
-  ) 
+  );
 }
 
 export default MyApp;

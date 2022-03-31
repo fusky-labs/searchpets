@@ -7,11 +7,12 @@
   margin: 0 auto;
   max-width: 1400px;
   display: flex;
+  row-gap: 2rem;
   align-items: center;
   flex-direction: column;
 
   h1 {
-    margin-top: 8vh;
+    margin-top: 12vh;
     text-align: center;
     max-width: 700px;
     padding: 1rem;
@@ -20,21 +21,18 @@
 
 #pagesCount, #characterCount {
   font-weight: 900;
+  text-fill-color: transparent;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 #pagesCount {
-  background: linear-gradient(261.97deg, #3dbeda 53.17%, #3d39e8 72.83%);
+  background: linear-gradient(261.97deg, #3dbeda, #3d39e8);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent;
 }
 
 #characterCount {
-  background: linear-gradient(261.97deg, #da3d3d 53.17%, #cf39e8 72.83%);
+  background: linear-gradient(261.97deg, #da3d3d, #a431b9);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent;
 }
 
