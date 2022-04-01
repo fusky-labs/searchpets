@@ -7,9 +7,9 @@ export default function ComicItem({
   characters, link
 }: IComicItemProps) {
   return(
-    <div>
+    <sp-comic-item>
       <h4>{characters}</h4>
       <span>{link}</span>
-    </div>
+    </sp-comic-item>
   )
 }

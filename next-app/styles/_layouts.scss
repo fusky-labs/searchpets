@@ -1,5 +1,5 @@
 body {
-  background: hsla(0, 0%, 16%, 1);
+  background: hsla(0, 0%, 14%, 1);
   color: #f5f5f5;
 }
 
@@ -8,11 +8,13 @@ header {
   color: #f5f5f5;
 }
 
-header .wrapper,
-footer .wrapper {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 1.5rem;
+header,
+footer {
+  .wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.5rem;
+  }
 }
 
 $searchBoxBg: rgb(60, 60, 60);
@@ -27,6 +29,7 @@ $searchBoxBg: rgb(60, 60, 60);
   border-radius: 6px;
   background: $searchBoxBg;
   padding: 2ex;
+  padding-left: 1.5rem !important;
 
   button {
     border: none;
@@ -42,7 +45,7 @@ $searchBoxBg: rgb(60, 60, 60);
   }
   &:hover,
   &:focus-within {
-    width: clamp(7rem, 100%, 70rem);
+    width: clamp(7rem, 100%, 65rem);
     box-shadow: 0 4px 15px rgba(black, 33%);
     
     input[type="text"] {
@@ -59,4 +62,27 @@ $searchBoxBg: rgb(60, 60, 60);
     border: none;
     font-size: 125%;
   }
+}
+
+
+#results-box-container {
+  padding: 1.25rem;
+
+  h2 {
+    margin-bottom: 1rem;  
+  }
+}
+
+sp-results-box {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+sp-comic-item {
+  display: block;
+  background: rgb(28, 78, 34);
+  box-shadow: 0 0 11px rgba(rgb(12, 12, 12), 76%);
+  border-radius: 6px;
+  padding: 1rem;
 }

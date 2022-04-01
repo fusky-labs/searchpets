@@ -10,7 +10,7 @@ import "../styles/globals.scss";
 library.add(fas);
 library.add(fab);
 
-function MyApp({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Layout>
       <Component {...pageProps} />
@@ -18,4 +18,3 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default MyApp;

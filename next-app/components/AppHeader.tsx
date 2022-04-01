@@ -1,7 +1,7 @@
 import styles from '../styles/AppHeader.module.scss'
 import Link from 'next/link'
 
-function Header() {
+export default function Header() {
   return (
     <header>
       <div className="wrapper">
@@ -17,5 +17,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;

@@ -1,7 +1,7 @@
 import styles from '../styles/AppFooter.module.scss'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function Footer() {
+export default function Footer() {
   return (
     <footer>
       <div id={styles.wrapper} className="wrapper">
@@ -16,5 +16,3 @@ function Footer() {
     </footer>
   );
 }
-
-export default Footer;
