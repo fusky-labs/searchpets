@@ -28,7 +28,7 @@ for year in years:
             characters_soup = BeautifulSoup(web_link_page.text, 'html.parser')
             characters_tag = characters_soup.find_all('a', {'href': re.compile("^https://www.housepetscomic.com/character")})
             for character in characters_tag:
-                characters.append(character.text)
+                characters.append(character.text.lower())
             housepets_db[year].append({'comic_link': web_link, 'characters': characters})
         else:
             print(f'{web_link} is a guest comics')

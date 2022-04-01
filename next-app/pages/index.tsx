@@ -3,6 +3,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.scss";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ComicItem from "../components/ComicItem";
 
 const Home: NextPage = () => {
   // #region API stuff
@@ -12,7 +13,7 @@ const Home: NextPage = () => {
 
   const onchangecharacters = (e) => {
     console.log(e.target.value);
-    setCharacters(e.target.value.split(", "));
+    setCharacters(e.target.value.toLowerCase().split(", "));
   };
 
   const requestHousepetsDataUwU = () => {
@@ -30,13 +31,13 @@ const Home: NextPage = () => {
       .then((res) => res.json())
       .then((res) => {
         console.log(res);
-        setComics(res.data);
+        setComics(res.comics);
       });
   };
 
   useEffect(() => {
     console.log("welcome :3");
-  }, []);
+  }, [comics]);
   // #endregion
   
   const title = "Searchpets! - Search characters and pages from Housepets!";
@@ -78,6 +79,18 @@ const Home: NextPage = () => {
             <button id={styles.filterIcon}>
               <FontAwesomeIcon icon={["fas", "filter"]} />
             </button>
+          </div>
+          <div id="responses">
+            <h1>Results: {comics.length}</h1>
+              {comics.map((comic) => {
+                return (
+                  <ComicItem
+                    key={comic.comic_link}
+                    characters={comic.characters.join(", ")}
+                    link={comic.comic_link}
+                  />
+                );
+              })}
           </div>
         </div>
       </main>
