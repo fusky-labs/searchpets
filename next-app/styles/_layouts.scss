@@ -17,6 +17,75 @@ footer {
   }
 }
 
+#headerDesktop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+strong#logo {
+  font-size: 135%;
+}
+
+#headerNav {
+  display: flex;
+  column-gap: 1.5rem;
+}
+
+#wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#homeSearchContainer {
+  margin: 0 auto;
+  max-width: 1400px;
+  display: flex;
+  row-gap: 2rem;
+  align-items: center;
+  flex-direction: column;
+}
+
+#headerWrapper {
+  text-align: center;
+  width: 700px;
+  padding: 0.4rem;
+  margin-top: 12vh !important;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  
+  h1 {
+    text-align: center;
+    max-width: 700px;
+  }
+}
+
+#pagesCount, #characterCount {
+  font-weight: 900;
+  text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+#pagesCount {
+  background: linear-gradient(261.97deg, #3dbeda, #3d39e8);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+#characterCount {
+  background: linear-gradient(261.97deg, #da3d3d, #a431b9);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+
 $searchBoxBg: rgb(60, 60, 60);
 
 .searchBox {
@@ -86,3 +155,4 @@ sp-comic-item {
   border-radius: 6px;
   padding: 1rem;
 }
+
