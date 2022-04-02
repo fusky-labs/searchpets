@@ -5,7 +5,7 @@ export default function Layout({ children }) {
   return (
     <>
       <AppHeader />
-      <div>{children}</div>
+        <div id="searchpets-app">{children}</div>
       <AppFooter />
     </>
   )
