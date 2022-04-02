@@ -136,6 +136,8 @@ $searchBoxBg: rgb(60, 60, 60);
 
 #results-box-container {
   padding: 1.25rem;
+  max-width: 1440px;
+  margin: 0 auto;
 
   h2 {
     margin-bottom: 1rem;  
@@ -150,7 +152,7 @@ sp-results-box {
 
 sp-comic-item {
   display: block;
-  background: rgb(28, 78, 34);
+  background: rgb(28, 49, 78);
   box-shadow: 0 0 11px rgba(rgb(12, 12, 12), 76%);
   border-radius: 6px;
   padding: 1rem;
