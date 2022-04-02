@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.scss";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ComicItem from "../components/ComicItem";
@@ -58,12 +57,12 @@ export default function Home() {
         <meta name="keywords" content="housepets, furry, comics, furry comics, animals, animal comic, fursuit" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div id={styles.homeSearchContainer}>
-          <div id={styles.headerWrapper}>
+      <main className="main">
+        <div id="homeSearchContainer">
+          <div id="headerWrapper">
             <h1>
-              Search through <span id={styles.pagesCount}>pagesCount</span>{" "}
-              pages and <span id={styles.characterCount}>370</span> characters
+              Search through <span id="pagesCount">pagesCount</span>{" "}
+              pages and <span id="characterCount">370</span> characters
               from your favorite furry comic!
             </h1>
           </div>
@@ -75,7 +74,7 @@ export default function Home() {
               onChange={onChangeCharacters}
               onKeyDown={(e) => e.key === "Enter" && requestHousepetsData()}
             />
-            <button id={styles.searchIcon} onClick={requestHousepetsData}>
+            <button id="searchIcon" onClick={requestHousepetsData}>
               <FontAwesomeIcon icon={["fas", "fa-caret-right"]} />
             </button>
           </div>
