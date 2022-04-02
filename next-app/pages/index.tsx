@@ -15,7 +15,6 @@ export default function Home() {
   };
 
   const requestHousepetsData = () => {
-    // console.log("Submitted!")
     fetch("/api/search", {
       method: "POST",
       headers: {
@@ -57,31 +56,35 @@ export default function Home() {
         <meta name="keywords" content="housepets, furry, comics, furry comics, animals, animal comic, fursuit" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="main">
-        <div id="homeSearchContainer">
-          <div id="headerWrapper">
-            <h1>
-              Search through <span id="pagesCount">pagesCount</span>{" "}
-              pages and <span id="characterCount">370</span> characters
+      <main className="flex flex-col justify-between">
+        <div className="mx-auto my-0 max-w-[1400px] flex flex-col items-center gap-y-8">
+          <div className="text-center w-[700px] p-2 mt-[12vh] mx-0 flex justify-center">
+            <h1 className="text-center max-w-3xl text-3xl">
+              Search through <span id="pages-count" className="font-black bg-clip-text text-transparent">pagesCount</span>
+              &nbsp;pages and <span id="character-count" className="font-black bg-clip-text text-transparent">370</span> characters
               from your favorite furry comic!
             </h1>
           </div>
-          <div className="searchBox">
-            <FontAwesomeIcon icon={["fas", "fa-magnifying-glass"]} />
+          <div className="search-box-clamp flex items-center gap-x-4 p-[2ex] pl-6 rounded-md">
+            <FontAwesomeIcon icon={["fas", "fa-magnifying-glass"]} size="lg" />
             <input
               type="text"
+              className="w-full border-non text-xl"
               placeholder="Search for characters..."
               onChange={onChangeCharacters}
               onKeyDown={(e) => e.key === "Enter" && requestHousepetsData()}
             />
-            <button id="searchIcon" onClick={requestHousepetsData}>
-              <FontAwesomeIcon icon={["fas", "fa-caret-right"]} />
+            <button
+              className="border-none text-lg p-3 text-white"
+              onClick={requestHousepetsData}
+            >
+              <FontAwesomeIcon icon={["fas", "fa-caret-right"]} size="lg" />
             </button>
           </div>
         </div>
-        <div id="results-box-container">
-          <h2>Showing {comics.length} results</h2>
-          <sp-results-box>
+        <div id="results-box-container" className="p-5">
+          <h2 className="mb-4 text-2xl text-center">Showing <strong>{comics.length}</strong> results</h2>
+          <sp-results-box className="grid grid-cols-4 gap-4">
             {comics.map((comic) => {
               return (
                 <ComicItem
