@@ -4,12 +4,12 @@
   "description": "A search engine to find your favorite Housepets comic!",
   "scripts": {
     "dev": "concurrently -n python,next \"npm run dev:py\" \"npm run dev:next\"",
-    "dev:py": "cd python-api && py server-api.py",
-    "dev:next": "yarn --cwd ./next-app dev"
+    "dev:py": "cd server && py server-api.py",
+    "dev:next": "yarn --cwd ./app dev"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OpenFurs/housepets-comic-search.git"
+    "url": "git+https://github.com/OpenFurs/searchpets.git"
   },
   "devDependencies": {
     "concurrently": "^7.0.0"
