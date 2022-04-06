@@ -11,7 +11,9 @@ export default function Home() {
   const [totalComicCount, setTotalComicCount] = useState(0);
   const [years, setyears] = useState(["2019"]);
   const [characters, setCharacters] = useState([]);
-
+  let year_list = ["2008", "2009", "2010", "2011", "2012", "2013", 
+                  "2014", "2015", "2016", "2017", "2018", "2019",
+                  "2020", "2021", "2022"];
   const onChangeCharacters = (e) => {
     console.log(e.target.value);
     setCharacters(e.target.value.toLowerCase().split(", "));
@@ -102,21 +104,14 @@ export default function Home() {
           </div>
           <div className="year-picker grid gap-2 w-full">
             {/* TODO: MAKE A FOR LOOP FOR THIS -- THIS IS TERRIBLE */}
-            <CheckboxItem year="2022" />
-            <CheckboxItem year="2021" />
-            <CheckboxItem year="2020" />
-            <CheckboxItem year="2019" />
-            <CheckboxItem year="2018" />
-            <CheckboxItem year="2017" />
-            <CheckboxItem year="2016" />
-            <CheckboxItem year="2015" />
-            <CheckboxItem year="2014" />
-            <CheckboxItem year="2013" />
-            <CheckboxItem year="2012" />
-            <CheckboxItem year="2011" />
-            <CheckboxItem year="2010" />
-            <CheckboxItem year="2009" />
-            <CheckboxItem year="2008" />
+            {
+              year_list.map((year) => (
+                <CheckboxItem
+                  key={year}
+                  year={year}
+                />
+              ))
+            }
           </div>
         </div>
         <div id="results-box-container" className="p-5">
