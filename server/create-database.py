@@ -25,11 +25,11 @@ for year in years:
 
             # get the characters from the comic
             characters = []
-            characters_soup = BeautifulSoup(web_link_page.text, 'html.parser')
-            characters_tag = characters_soup.find_all('a', {'href': re.compile("^https://www.housepetscomic.com/character")})
+            comic_soup = BeautifulSoup(web_link_page.text, 'html.parser')
+            characters_tag = comic_soup.find_all('a', {'href': re.compile("^https://www.housepetscomic.com/character")})
             for character in characters_tag:
                 characters.append(character.text.lower())
-            housepets_db[year].append({'comic_link': web_link, 'characters': characters})
+            housepets_db[year].append({'title':comic_soup.title.text.split(' \u2013 ')[0], 'comic_link': web_link, 'characters': characters}) # the u\u2013 is the unicode for the dash
         else:
             print(f'{web_link} is a guest comics')
 
