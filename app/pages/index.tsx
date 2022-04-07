@@ -38,7 +38,12 @@ export default function Home() {
         setComics(res.comics);
       });
   };
-
+  const ClickedYears = (year) => {
+    if (years.includes(year)) {
+      setyears(years.filter((y) => y !== year));
+    } else {
+      setyears([...years, year]);
+    }
   useEffect(() => {
     // async function requestHousepetsData() {
     //   let response = await fetch("/api/search", {
@@ -126,7 +131,7 @@ export default function Home() {
           </div>
           <div className="year-picker grid gap-2 w-full">
             {year_list.map((year) => (
-              <CheckboxItem key={year} year={year} />
+              <CheckboxItem key={year} year={year}/>
             ))}
           </div>
         </div>
@@ -177,4 +182,4 @@ export default function Home() {
       </footer>
     </div>
   );
-};
+}};
