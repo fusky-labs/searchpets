@@ -1,7 +1,9 @@
 import Head from "next/head";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import ComicItem from "../components/ComicItem";
 import CheckboxItem from "../components/CheckboxItem";
 
@@ -65,7 +67,7 @@ export default function Home() {
   // #endregion
   
   const title = "Searchpets! - Search characters and pages from Housepets!";
-  const description = `Search from 370 characters and ${totalComicCount} pages from a furry comic, Housepets!`;
+  const description = `Search through ${totalComicCount} pages and 370 characters from a furry comic, Housepets!`;
   
   return (
     <div>
@@ -80,16 +82,36 @@ export default function Home() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
-        <meta name="keywords" content="housepets, furry, comics, furry comics, animals, animal comic, fursuit" />
+        <meta
+          name="keywords"
+          content="housepets, furry, comics, furry comics, animals, animal comic, fursuit"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <header>
+        <div className="content-wrapper flex justify-center text-4xl">
+          <strong className="text-2xl">Searchpets</strong>
+        </div>
+      </header>
       <main className="flex flex-col justify-between">
         <div className="mx-auto my-0 max-w-[1400px] p-5 flex flex-col items-center gap-y-8">
           <div className="text-center max-w-[700px] p-4 mt-[12vh] mx-0 flex justify-center">
             <h1 className="text-center max-w-3xl text-3xl">
-              Search through <span id="pages-count" className="font-black bg-clip-text text-transparent">{totalComicCount}</span>
-              &nbsp;pages and <span id="character-count" className="font-black bg-clip-text text-transparent">370</span> characters
-              from your favorite furry comic!
+              Search through{" "}
+              <span
+                id="pages-count"
+                className="font-black bg-clip-text text-transparent"
+              >
+                {totalComicCount}
+              </span>
+              &nbsp;pages and{" "}
+              <span
+                id="character-count"
+                className="font-black bg-clip-text text-transparent"
+              >
+                370
+              </span>{" "}
+              characters from your favorite furry comic!
             </h1>
           </div>
           <div className="search-box-clamp flex items-center gap-x-4 px-[2ex] pl-6 rounded-md duration-300 transition-all">
@@ -103,27 +125,23 @@ export default function Home() {
             />
           </div>
           <div className="year-picker grid gap-2 w-full">
-            {/* TODO: MAKE A FOR LOOP FOR THIS -- THIS IS TERRIBLE */}
-            {
-              year_list.map((year) => (
-                <CheckboxItem
-                  key={year}
-                  year={year}
-                />
-              ))
-            }
+            {year_list.map((year) => (
+              <CheckboxItem key={year} year={year} />
+            ))}
           </div>
         </div>
         <div id="results-box-container" className="p-5">
-          <h2 className="mb-4 text-2xl text-center">Showing <strong>{comics.length}</strong> results</h2>
+          <h2 className="mb-4 text-2xl text-center">
+            Showing <strong>{comics.length}</strong> results
+          </h2>
           <div className="grid gap-4 max-w-screen-md my-0 mx-auto">
             {comics.map((comic) => {
               return (
                 <>
-                <ComicItem
-                  key={comic.comic_link}
-                  characters={comic.characters.join(", ")}
-                  link={comic.comic_link}
+                  <ComicItem
+                    key={comic.comic_link}
+                    characters={comic.characters.join(", ")}
+                    link={comic.comic_link}
                   />
                 </>
               );
@@ -131,6 +149,32 @@ export default function Home() {
           </div>
         </div>
       </main>
+      <footer>
+        <div className="content-wrapper">
+          <hr className="my-5" />
+          <div className="flex justify-center text-center sm:text-inherit sm:justify-between flex-col sm:flex-row">
+            <p className="text-neutral-400 w-full sm:w-[50%] text-sm text-center sm:text-left">
+              The use of third-party content is heavily transformative, and
+              therefore, subject of Fair Use. <i>Housepets!</i> and its
+              characters is a trademark of Rick Grifin. All rights reserved.
+            </p>
+            <div>
+              <Link href="https://github.com/OpenFurs/searchpets" passHref>
+                <a
+                  rel="noreferrer"
+                  target="_blank"
+                  className="text-center sm:text-right"
+                >
+                  <FontAwesomeIcon icon={faGithub} />
+                  <span className="whitespace-nowrap">
+                    &nbsp;Source code on GitHub
+                  </span>
+                </a>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
