@@ -38,12 +38,15 @@ export default function Home() {
         setComics(res.comics);
       });
   };
+
+  
   const ClickedYears = (year) => {
     if (years.includes(year)) {
       setyears(years.filter((y) => y !== year));
     } else {
       setyears([...years, year]);
     }
+  }
   useEffect(() => {
     // async function requestHousepetsData() {
     //   let response = await fetch("/api/search", {
@@ -182,4 +185,4 @@ export default function Home() {
       </footer>
     </div>
   );
-}};
+};
