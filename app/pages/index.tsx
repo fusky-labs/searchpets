@@ -11,8 +11,8 @@ export default function Home() {
   // #region API stuff
   const [comics, setComics] = useState([]);
   const [totalComicCount, setTotalComicCount] = useState(0);
-  const [years, setyears] = useState(["2019"]);
   const [characters, setCharacters] = useState([]);
+  const [years, setYears] = useState([]);
   let year_list = ["2008", "2009", "2010", "2011", "2012", "2013", 
                   "2014", "2015", "2016", "2017", "2018", "2019",
                   "2020", "2021", "2022"];
@@ -22,6 +22,7 @@ export default function Home() {
   };
 
   const requestHousepetsData = () => {
+    console.log(`searching on year ${years}`)
     fetch("/api/search", {
       method: "POST",
       headers: {
@@ -41,12 +42,18 @@ export default function Home() {
 
   
   const ClickedYears = (year) => {
+    
     if (years.includes(year)) {
-      setyears(years.filter((y) => y !== year));
+      // delete the year from the year array
+      console.log("deleting an element")
+      setYears(years.filter((y) => y !== year));
     } else {
-      setyears([...years, year]);
+      // add the year to the years variable
+      setYears(years.concat(year));
+      console.log("adding an element")
     }
   }
+
   useEffect(() => {
     // async function requestHousepetsData() {
     //   let response = await fetch("/api/search", {
@@ -71,7 +78,8 @@ export default function Home() {
         console.log(res);
         setTotalComicCount(res.housepets_db_length);
       });
-  }, [comics]);
+    console.log(years)
+  }, [comics, years]);
   // #endregion
   
   const title = "Searchpets! - Search characters and pages from Housepets!";
@@ -134,7 +142,21 @@ export default function Home() {
           </div>
           <div className="year-picker grid gap-2 w-full">
             {year_list.map((year) => (
-              <CheckboxItem key={year} year={year}/>
+              // <CheckboxItem key={year} year={year}/>
+              <div className="relative block" key={year}>
+                <input
+                  className="absolute top-0 invisible"
+                  type="checkbox"
+                  id={"year-" + year}
+                />
+                <label
+                  className="block px-5 py-3 shadow-md font-bold rounded-md transition-all duration-300 text-xl text-center h-full w-full bg-slate-800"
+                  htmlFor={"year-" + year}
+                  onClick={() => ClickedYears(year)}
+                >
+                  {year}
+                </label>
+              </div>
             ))}
           </div>
         </div>
