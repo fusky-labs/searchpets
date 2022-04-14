@@ -30,7 +30,11 @@ for link in link_tag:
         characters_in_comic_tag = characters_in_comic_soup.find_all('a', {'href': re.compile("^https://www.housepetscomic.com/character")})
         for character in characters_in_comic_tag:
             characters_in_comic.append(character.text)
-        housepets_db[year].append({'comic_link': web_link, 'characters': characters_in_comic})
+        comic_image = characters_in_comic_soup.find('img', {'title': True, 'alt': True})
+        housepets_db[year].append({"title": characters_in_comic_soup.title.text.split(' \u2013 ')[0],
+                                   "comic_link": web_link,
+                                   "characters": characters_in_comic,
+                                   "image": comic_image.get('src')})
 
 print(housepets_db)
 with open('housepets_db.json', 'w') as housepets_db_json:
