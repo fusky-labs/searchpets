@@ -27,4 +27,4 @@ def data():
     return jsonify({'housepets_db_length': housepets_db_length})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()

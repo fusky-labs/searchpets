@@ -21,7 +21,7 @@ for year in years:
         web_link = link.get('href')
         web_link_page = requests.get(web_link)
         if "https://www.housepetscomic.com/character" in web_link_page.text:
-            print(f'{web_link} is a real comic by rick grifin')
+            print(web_link)
 
             # get the characters from the comic
             characters = []

@@ -172,6 +172,7 @@ export default function Home() {
                     key={comic.comic_link}
                     characters={comic.characters.join(", ")}
                     link={comic.comic_link}
+                    title={comic.title}
                   />
                 </>
               );

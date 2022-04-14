@@ -11,7 +11,7 @@ export default function ComicItem({
 }: IComicItemProps) {
   return (
     <div id="comic-item" className="drop-shadow-md rounded-md p-4">
-      <h3>{title}</h3>
+      <h3 className="text-lg">{title}</h3>
       <Link href={link} passHref>
         <span>{characters}</span>
       </Link>
