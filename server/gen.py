@@ -30,17 +30,15 @@ for year in years:
             for character in characters_tag:
                 characters.append(character.text.lower())
             
-            # grab the image tag for the comic that is inside an href tag
-            image_tag = comic_soup.find('a', {'href': re.compile(f"^https://www.housepetscomic.com/comic/{year}")})
-            image_link = image_tag.find('img')['src']
-            print(image_link)
+            # grab the only image with a title and an alt since the comic image is the only one with a title and alt
+            comic_image = comic_soup.find('img', {'title': True, 'alt': True})
 
-
+            print(comic_image.get('src'))
             housepets_db[year].append({
                 'title':comic_soup.title.text.split(' \u2013 ')[0], # the u\u2013 is the unicode for the dash
                 'comic_link': web_link, 
                 'characters': characters,
-                'image_link': image_link
+                'image': comic_image.get('src')
                 }) 
         else:
             print(f'{web_link} is a guest comics')
