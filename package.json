@@ -12,11 +12,7 @@
     "url": "git+https://github.com/OpenFurs/searchpets.git"
   },
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^4.1.3",
-    "autoprefixer": "^10.4.4",
-    "concurrently": "^7.0.0",
-    "postcss-flexbugs-fixes": "^5.0.2",
-    "postcss-preset-env": "^7.4.3"
+    "concurrently": "^7.0.0"
   },
   "keywords": [],
   "author": "",
