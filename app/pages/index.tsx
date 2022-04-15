@@ -14,16 +14,16 @@ export default function Home() {
   const [characters, setCharacters] = useState([]);
   const [years, setYears] = useState([]);
 
-  // Create a year_list array with for loop
+  // ! Create a year_list array with for loop
   // const year_list = [];
   // for (let year = new Date().getFullYear(); year >= 2008; year--) {
   //   year_list.push(year).toString();
   // }
 
-  // !!! I'd rather use a for loop to return the years, so we don't have to add
-  // !!! a new year to the year_list array to the state. Check the commented code above.
-  // !!!
-  // !!! - skepfusky
+  // ! I'd rather use a for loop to return the years, so we don't have to add
+  // ! a new year to the year_list array to the state. Check the commented code above.
+  // !
+  // ! - skepfusky
   let year_list = [
     "2008",
     "2009",
@@ -135,8 +135,7 @@ export default function Home() {
               characters from your favorite furry comic!
             </h1>
           </div>
-          <div className="search-box-clamp flex items-center gap-x-4 px-[2ex] pl-6 rounded-md duration-300 transition-all">
-            <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
+          <div className="search-box-clamp w-full flex items-center gap-x-4 px-[2ex] pl-6 rounded-md duration-300 transition-all">
             <input
               type="text"
               className="w-full border-non text-xl h-16"
@@ -144,6 +143,9 @@ export default function Home() {
               onChange={onChangeCharacters}
               onKeyDown={(e) => e.key === "Enter" && requestHousepetsData()}
             />
+            <button onClick={requestHousepetsData}>
+              <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
+            </button>
           </div>
           <div className="year-picker grid gap-2 w-full">
             {year_list.map((year) => (

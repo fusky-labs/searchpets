@@ -50,7 +50,6 @@ footer {
 }
 
 .search-box-clamp {
-  width: clamp(4rem, 100%, 40rem);
   background: var(--app-g);
 
   button {
@@ -70,7 +69,6 @@ footer {
 
   &:hover,
   &:focus-within {
-    width: clamp(5rem, 100%, 65rem);
     box-shadow: 0 4px 15px rgba(#000, 33%);
     
     input[type="text"] {
@@ -134,5 +132,10 @@ input:checked ~ label {
 }
 
 .btt-btn-show {
-  @apply bg-red-600 pointer-events-auto opacity-100 translate-y-0 hover:bg-red-500 active:bg-red-700;
+  background-color: var(--app-db);
+
+  &:hover {
+    background-color: #322fbf;
+  }
+  @apply pointer-events-auto opacity-100 translate-y-0 active:bg-red-700;
 }
