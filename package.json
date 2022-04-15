@@ -4,7 +4,7 @@
   "description": "A search engine to find your favorite Housepets comic!",
   "scripts": {
     "dev": "concurrently -n python,next \"npm run dev:py\" \"npm run dev:next\"",
-    "dev:py": "cd server && python server-api.py",
+    "dev:py": "cd server && python app.py",
     "dev:next": "yarn --cwd ./app dev"
   },
   "repository": {

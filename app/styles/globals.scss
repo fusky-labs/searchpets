@@ -12,6 +12,10 @@
   --app-db: #3d39e8;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -127,4 +131,8 @@ input:checked ~ label {
 
 #comic-item {
   background-color: var(--app-g-hover);
+}
+
+.btt-btn-show {
+  @apply bg-red-600 pointer-events-auto opacity-100 translate-y-0 hover:bg-red-500 active:bg-red-700;
 }

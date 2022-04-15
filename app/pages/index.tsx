@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import ComicItem from "../components/ComicItem";
-import CheckboxItem from "../components/CheckboxItem";
+import BaccToTop from "../components/BaccToTop";
 
 export default function Home() {
   // #region API stuff
@@ -13,16 +13,42 @@ export default function Home() {
   const [totalComicCount, setTotalComicCount] = useState(0);
   const [characters, setCharacters] = useState([]);
   const [years, setYears] = useState([]);
-  let year_list = ["2008", "2009", "2010", "2011", "2012", "2013", 
-                  "2014", "2015", "2016", "2017", "2018", "2019",
-                  "2020", "2021", "2022"];
+
+  // Create a year_list array with for loop
+  // const year_list = [];
+  // for (let year = new Date().getFullYear(); year >= 2008; year--) {
+  //   year_list.push(year).toString();
+  // }
+
+  // !!! I'd rather use a for loop to return the years, so we don't have to add
+  // !!! a new year to the year_list array to the state. Check the commented code above.
+  // !!!
+  // !!! - skepfusky
+  let year_list = [
+    "2008",
+    "2009",
+    "2010",
+    "2011",
+    "2012",
+    "2013",
+    "2014",
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+  ];
+
   const onChangeCharacters = (e) => {
     console.log(e.target.value);
     setCharacters(e.target.value.toLowerCase().split(", "));
   };
 
   const requestHousepetsData = () => {
-    console.log(`searching on year ${years}`)
+    console.log(`Searching on year ${years}`);
     fetch("/api/search", {
       method: "POST",
       headers: {
@@ -40,51 +66,30 @@ export default function Home() {
       });
   };
 
-  
   const ClickedYears = (year) => {
-    
     if (years.includes(year)) {
-      // delete the year from the year array
-      console.log("deleting an element")
+      console.log("deleting an element");
       setYears(years.filter((y) => y !== year));
     } else {
-      // add the year to the years variable
       setYears(years.concat(year));
-      console.log("adding an element")
+      console.log("adding an element");
     }
-  }
+  };
 
   useEffect(() => {
-    // async function requestHousepetsData() {
-    //   let response = await fetch("/api/search", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       year: "2019",
-    //       characters: characters,
-    //     }),
-    //   });
-    //   response = await response.json();
-    //   console.log(response);
-    // }
-
-    // requestHousepetsData();
-    console.log("welcome :3");
     fetch("/api/data")
       .then((res) => res.json())
       .then((res) => {
         console.log(res);
         setTotalComicCount(res.housepets_db_length);
       });
-    console.log(years)
+    console.log(years);
   }, [comics, years]);
   // #endregion
-  
+
   const title = "Searchpets! - Search characters and pages from Housepets!";
   const description = `Search through ${totalComicCount} pages and 370 characters from a furry comic, Housepets!`;
-  
+
   return (
     <div>
       <Head>
@@ -173,12 +178,14 @@ export default function Home() {
                     characters={comic.characters.join(", ")}
                     link={comic.comic_link}
                     title={comic.title}
+                    image={comic.image}
                   />
                 </>
               );
             })}
           </div>
         </div>
+        <BaccToTop />
       </main>
       <footer>
         <div className="content-wrapper">
@@ -208,4 +215,4 @@ export default function Home() {
       </footer>
     </div>
   );
-};
+}
