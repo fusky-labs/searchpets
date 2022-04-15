@@ -1,20 +1,21 @@
-# Housepets Comic Search
+<h1 align="center">Searchpets</h1>
 
-A search engine to find your favorite Housepets comic!
+A "search engine" to find characters from _Housepets!_
+  
+![sp_demo2](https://user-images.githubusercontent.com/94678583/163629497-9f5c4921-5a39-4dfe-8729-e56705efb2f7.gif)
 
-
-![Searchpets Stack](https://skillicons.dev/icons?i=nextjs,ts,js,tailwind,py,flask)
+![Searchpets Stack](https://skillicons.dev/icons?i=nextjs,ts,tailwind,py,flask)
 
 Written in Next.js with TypeScript and Tailwind.
 
 ## Installation
 
 - Fork or clone the repo locally
-- cd into the `next-app` folder and install with npm or yarn
+- cd into the `app` folder and install with npm or yarn
 
 ```sh
-# cd into the next-app
-cd next-app
+# cd into the 'app' folder
+cd app
 
 # Install with npm
 npm i
@@ -23,12 +24,12 @@ npm i
 yarn
 ```
 
-- Go back to root project directory and cd into the `python-api` and
+- Go back to root project directory and cd into the `server` folder and
 install all the Python libraries
 
 ```sh
-# cd into the next-app
-cd next-app
+# cd into the 'server' folder
+cd server
 
 # Install required Python libraries
 pip install -r requirements.txt
