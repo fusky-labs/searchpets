@@ -26,7 +26,7 @@ for year in years:
             # get the characters from the comic
             characters = []
             comic_soup = BeautifulSoup(web_link_page.text, 'html.parser')
-            characters_tag = comic_soup.find_all('a', {'href': re.compile("^https://www.housepetscomic.com/character")})
+            characters_tag = comic_soup.find_all('a', {'href': re.compile("^https://www\.housepetscomic\.com/character")})
             for character in characters_tag:
                 characters.append(character.text.lower())
             

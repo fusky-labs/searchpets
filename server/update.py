@@ -27,7 +27,7 @@ for link in link_tag:
         # get the characters from the comic
         characters_in_comic = []
         characters_in_comic_soup = BeautifulSoup(web_link_page.text, 'html.parser')
-        characters_in_comic_tag = characters_in_comic_soup.find_all('a', {'href': re.compile("^https://www.housepetscomic.com/character")})
+        characters_in_comic_tag = characters_in_comic_soup.find_all('a', {'href': re.compile("^https://www\.housepetscomic\.com/character")})
         for character in characters_in_comic_tag:
             characters_in_comic.append(character.text)
         comic_image = characters_in_comic_soup.find('img', {'title': True, 'alt': True})
