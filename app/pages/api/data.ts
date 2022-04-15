@@ -8,10 +8,11 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  // send the data to the flask server
-  fetch('http://localhost:5000/data')
-    .then(response => response.json())
-    .then(data => {
-      res.status(200).json(data)
-    })
+  // receive the data from the flask server using fetch and async/awaits
+  const receiveData = async () => {
+    const response = await fetch('http://localhost:5000/data')
+    const json = await response.json()
+    res.status(200).json(json)
+  }
+  receiveData()
 }
