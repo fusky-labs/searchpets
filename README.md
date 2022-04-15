@@ -2,6 +2,9 @@
 
 A search engine to find your favorite Housepets comic!
 
+
+![Searchpets Stack](https://skillicons.dev/icons?i=nextjs,ts,js,tailwind,py,flask)
+
 Written in Next.js with TypeScript and Tailwind.
 
 ## Installation
