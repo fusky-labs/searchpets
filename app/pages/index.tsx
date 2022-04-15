@@ -135,21 +135,23 @@ export default function Home() {
               characters from your favorite furry comic!
             </h1>
           </div>
-          <div className="search-box-clamp w-full flex items-center gap-x-4 px-[2ex] pl-6 rounded-md duration-300 transition-all">
+          <div className="search-box-clamp w-full flex items-center gap-x-4 px-[1.5ex] pl-4 rounded-md duration-300 transition-all">
             <input
               type="text"
-              className="w-full border-non text-xl h-16"
-              placeholder="Search for characters..."
+              className="w-full border-none text-xl h-16"
+              placeholder="Search for characters"
               onChange={onChangeCharacters}
               onKeyDown={(e) => e.key === "Enter" && requestHousepetsData()}
             />
-            <button onClick={requestHousepetsData}>
+            <button 
+              className="p-3 rounded-md"
+              onClick={requestHousepetsData}
+            >
               <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
             </button>
           </div>
           <div className="year-picker grid gap-2 w-full">
             {year_list.map((year) => (
-              // <CheckboxItem key={year} year={year}/>
               <div className="relative block" key={year}>
                 <input
                   className="absolute top-0 invisible"
