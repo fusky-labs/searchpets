@@ -49,6 +49,10 @@ export default function Home() {
 
   const requestHousepetsData = () => {
     console.log(`Searching on year ${years}`);
+    if (years.length === 0) {
+      console.log("No year selected");
+      return;
+    }
     fetch("/api/search", {
       method: "POST",
       headers: {
