@@ -2,16 +2,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { useEffect } from "react";
 
-export default function BaccToTop() {
+export default function BackToTop() {
 
   useEffect(() => {
-    const baccToTop = document.getElementById("btt-btn");
+    const backToTop = document.getElementById("btt-btn");
     
     window.onscroll = () => {
       if (window.pageYOffset > 311) {
-        baccToTop.classList.add("btt-btn-show");
+        backToTop.classList.add("btt-btn-show");
       } else {
-        baccToTop.classList.remove("btt-btn-show");
+        backToTop.classList.remove("btt-btn-show");
       }
     };
   }, []);

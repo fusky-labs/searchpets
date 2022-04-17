@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import ComicItem from "../components/ComicItem";
-import BaccToTop from "../components/BaccToTop";
+import BackToTop from "../components/BackToTop";
 import { ReactNotifications, Store } from 'react-notifications-component'
 
 export default function Home() {
@@ -207,7 +207,7 @@ export default function Home() {
             })}
           </div>
         </div>
-        <BaccToTop />
+        <BackToTop />
       </main>
       <footer>
         <div className="content-wrapper">
