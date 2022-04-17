@@ -6,6 +6,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import "../styles/globals.scss";
+import 'react-notifications-component/dist/theme.css'
 
 library.add(fas);
 library.add(fab);

@@ -6,6 +6,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import ComicItem from "../components/ComicItem";
 import BaccToTop from "../components/BaccToTop";
+import { ReactNotifications, Store } from 'react-notifications-component'
 
 export default function Home() {
   // #region API stuff
@@ -51,6 +52,18 @@ export default function Home() {
     console.log(`Searching on year ${years}`);
     if (years.length === 0) {
       console.log("No year selected");
+      Store.addNotification({
+        title: "No year selected",
+        message: "Please select a year",
+        type: "danger",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: {
+          duration: 1000
+        },
+      });
       return;
     }
     fetch("/api/search", {
@@ -96,6 +109,7 @@ export default function Home() {
 
   return (
     <div>
+      <ReactNotifications />
       <Head>
         <title>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
