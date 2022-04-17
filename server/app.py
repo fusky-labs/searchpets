@@ -11,7 +11,6 @@ with open('housepets_db.json', 'r') as housepets_db_json:
     housepets_db = json.load(housepets_db_json)
 
 def update_database():
-    # this function will update the database every 10 minutes
     while True:
         time.sleep(600)
         year = time.strftime("%Y")
@@ -26,7 +25,6 @@ def update_database():
                 if "https://www.housepetscomic.com/character" in web_link_page.text:
                     print(f'{web_link} is a real comic by rick grifin')
 
-                    # get the characters from the comic
                     characters_in_comic = []
                     characters_in_comic_soup = BeautifulSoup(web_link_page.text, 'html.parser')
                     characters_in_comic_tag = characters_in_comic_soup.find_all('a', {'href': re.compile("^https://www\.housepetscomic\.com/character")})
@@ -43,7 +41,6 @@ def update_database():
         else:
             print("* database is up to date")
     
-# run update_database in a thread
 threading.Thread(target=update_database).start()
 
 app = Flask(__name__)
@@ -63,7 +60,6 @@ def test():
 @app.route('/data', methods=['GET'])
 def data():
     housepets_db_length = 0
-    # send the data on how many comics are in the whole database
     for year in range(2008, 2022+1):
         housepets_db_length += len(housepets_db[str(year)])
     return jsonify({'housepets_db_length': housepets_db_length})

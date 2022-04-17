@@ -23,14 +23,12 @@ for year in years:
         if "https://www.housepetscomic.com/character" in web_link_page.text:
             print(web_link)
 
-            # get the characters from the comic
             characters = []
             comic_soup = BeautifulSoup(web_link_page.text, 'html.parser')
             characters_tag = comic_soup.find_all('a', {'href': re.compile("^https://www\.housepetscomic\.com/character")})
             for character in characters_tag:
                 characters.append(character.text.lower())
             
-            # grab the only image with a title and an alt since the comic image is the only one with a title and alt
             comic_image = comic_soup.find('img', {'title': True, 'alt': True})
 
             print(comic_image.get('src'))
@@ -43,8 +41,6 @@ for year in years:
         else:
             print(f'{web_link} is a guest comics')
 
-
-# save the dictionary to a json file
 print("saving to database...")
 with open('housepets_db.json', 'w') as housepets_db_json:
     json.dump(housepets_db, housepets_db_json)
