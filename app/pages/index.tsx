@@ -63,6 +63,22 @@ export default function Home() {
       });
       return;
     }
+    if (characters === []) {
+      console.log("No year selected");
+      Store.addNotification({
+        title: "Nothing has been outputted",
+        message: "Please select a character",
+        type: "danger",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: {
+          duration: 1000
+        },
+      });
+      return;
+    }    
     fetch("/api/search", {
       method: "POST",
       headers: {
