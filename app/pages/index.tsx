@@ -48,6 +48,7 @@ export default function Home() {
 
   const requestHousepetsData = () => {
     console.log(`Searching on year ${years}`);
+    console.log(characters)
     if (years.length === 0) {
       Store.addNotification({
         title: "No year selected",
@@ -63,7 +64,7 @@ export default function Home() {
       });
       return;
     }
-    if (characters === []) {
+    if (characters.join(", ") === "") {
       console.log("No year selected");
       Store.addNotification({
         title: "Nothing has been outputted",
