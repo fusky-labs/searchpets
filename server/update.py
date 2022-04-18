@@ -8,7 +8,6 @@ current_date_time = datetime.datetime.now()
 date = current_date_time.date()
 year = date.strftime("%Y")
 
-# open json file
 with open('housepets_db.json', 'r') as housepets_db_json:
     housepets_db = json.load(housepets_db_json)
 
@@ -24,7 +23,6 @@ for link in link_tag:
     if "https://www.housepetscomic.com/character" in web_link_page.text:
         print(f'{web_link} is a real comic by rick grifin')
 
-        # get the characters from the comic
         characters_in_comic = []
         characters_in_comic_soup = BeautifulSoup(web_link_page.text, 'html.parser')
         characters_in_comic_tag = characters_in_comic_soup.find_all('a', {'href': re.compile("^https://www\.housepetscomic\.com/character")})

@@ -15,16 +15,14 @@ export default function Home() {
   const [characters, setCharacters] = useState([]);
   const [years, setYears] = useState([]);
 
-  // ! Create a year_list array with for loop
-  // const year_list = [];
+  // ! Create a year_list array with for loop but it doesn't work for some reason
+  // let year_list = [];
   // for (let year = new Date().getFullYear(); year >= 2008; year--) {
   //   year_list.push(year).toString();
   // }
 
   // ! I'd rather use a for loop to return the years, so we don't have to add
   // ! a new year to the year_list array to the state. Check the commented code above.
-  // !
-  // ! - skepfusky
   let year_list = [
     "2008",
     "2009",
@@ -44,14 +42,13 @@ export default function Home() {
   ];
 
   const onChangeCharacters = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setCharacters(e.target.value.toLowerCase().split(", "));
   };
 
   const requestHousepetsData = () => {
     console.log(`Searching on year ${years}`);
     if (years.length === 0) {
-      console.log("No year selected");
       Store.addNotification({
         title: "No year selected",
         message: "Please select a year",
@@ -61,7 +58,7 @@ export default function Home() {
         animationIn: ["animated", "fadeIn"],
         animationOut: ["animated", "fadeOut"],
         dismiss: {
-          duration: 1000
+          duration: 2000
         },
       });
       return;
@@ -78,18 +75,15 @@ export default function Home() {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         setComics(res.comics);
       });
   };
 
   const ClickedYears = (year) => {
     if (years.includes(year)) {
-      console.log("deleting an element");
       setYears(years.filter((y) => y !== year));
     } else {
       setYears(years.concat(year));
-      console.log("adding an element");
     }
   };
 
