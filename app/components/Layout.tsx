@@ -1,3 +1,12 @@
+import Header from './Header'
+import Footer from './Footer'
+
 export default function Layout({ children }) {
-  return <div id="searchpets-app">{children}</div>
+  return (
+    <>
+      <Header />
+      <div id="searchpets-root">{children}</div>
+      <Footer />
+    </>
+  )
 }

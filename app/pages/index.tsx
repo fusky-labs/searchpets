@@ -1,15 +1,15 @@
 import Head from "next/head";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import ComicItem from "../components/ComicItem";
 import BackToTop from "../components/BackToTop";
-import { ReactNotifications, Store } from 'react-notifications-component'
+import Container from "../components/Container";
+
+import { ReactNotifications, Store } from "react-notifications-component";
 
 export default function Home() {
-  // #region API stuff
+  // #region API
   const [comics, setComics] = useState([]);
   const [totalComicCount, setTotalComicCount] = useState(0);
   const [characters, setCharacters] = useState([]);
@@ -42,13 +42,12 @@ export default function Home() {
   ];
 
   const onChangeCharacters = (e) => {
-    // console.log(e.target.value);
     setCharacters(e.target.value.toLowerCase().split(", "));
   };
 
   const requestHousepetsData = () => {
     console.log(`Searching on year ${years}`);
-    console.log(characters)
+    console.log(characters);
     if (years.length === 0) {
       Store.addNotification({
         title: "No year selected",
@@ -59,7 +58,7 @@ export default function Home() {
         animationIn: ["animated", "fadeIn"],
         animationOut: ["animated", "fadeOut"],
         dismiss: {
-          duration: 2000
+          duration: 2000,
         },
       });
       return;
@@ -75,11 +74,11 @@ export default function Home() {
         animationIn: ["animated", "fadeIn"],
         animationOut: ["animated", "fadeOut"],
         dismiss: {
-          duration: 1000
+          duration: 1000,
         },
       });
       return;
-    }    
+    }
     fetch("/api/search", {
       method: "POST",
       headers: {
@@ -116,7 +115,7 @@ export default function Home() {
   // #endregion
 
   const title = "Searchpets! - Search characters and pages from Housepets!";
-  const description = `Search through ${totalComicCount} pages and 370 characters from a furry comic, Housepets!`;
+  let description = `Search through ${totalComicCount} pages and 370 characters from a furry comic, Housepets!`;
 
   return (
     <div>
@@ -138,65 +137,55 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header>
-        <div className="content-wrapper flex justify-center text-4xl">
-          <strong className="text-2xl">Searchpets</strong>
-        </div>
-      </header>
-      <main className="flex flex-col justify-between">
-        <div className="mx-auto my-0 max-w-[1400px] p-5 flex flex-col items-center gap-y-8">
-          <div className="text-center max-w-[700px] p-4 mt-[12vh] mx-0 flex justify-center">
-            <h1 className="text-center max-w-3xl text-3xl">
-              Search through{" "}
-              <span
-                id="pages-count"
-                className="font-black bg-clip-text text-transparent"
-              >
-                {totalComicCount}
-              </span>
-              &nbsp;pages and{" "}
-              <span
-                id="character-count"
-                className="font-black bg-clip-text text-transparent"
-              >
-                370
-              </span>{" "}
-              characters from your favorite furry comic!
-            </h1>
-          </div>
-          <div className="search-box-clamp w-full flex items-center gap-x-4 px-[1.5ex] pl-4 rounded-md duration-300 transition-all">
-            <input
-              type="text"
-              className="w-full border-none text-xl h-16"
-              placeholder="Search for characters"
-              onChange={onChangeCharacters}
-              onKeyDown={(e) => e.key === "Enter" && requestHousepetsData()}
-            />
-            <button 
-              className="p-3 rounded-md"
-              onClick={requestHousepetsData}
+      <Container>
+        <div className="text-center max-w-[700px] p-4 mt-[12vh] mx-0 flex justify-center">
+          <h1 className="text-center max-w-3xl text-3xl">
+            Search through{" "}
+            <span
+              id="pages-count"
+              className="font-black bg-clip-text text-transparent"
             >
-              <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
-            </button>
-          </div>
-          <div className="year-picker grid gap-2 w-full">
-            {year_list.map((year) => (
-              <div className="relative block" key={year}>
-                <input
-                  className="absolute top-0 invisible"
-                  type="checkbox"
-                  id={"year-" + year}
-                />
-                <label
-                  className="block px-5 py-3 shadow-md font-bold rounded-md transition-all duration-300 text-xl text-center h-full w-full bg-slate-800"
-                  htmlFor={"year-" + year}
-                  onClick={() => ClickedYears(year)}
-                >
-                  {year}
-                </label>
-              </div>
-            ))}
-          </div>
+              {totalComicCount}
+            </span>
+            &nbsp;pages and{" "}
+            <span
+              id="character-count"
+              className="font-black bg-clip-text text-transparent"
+            >
+              370
+            </span>{" "}
+            characters from your favorite furry comic!
+          </h1>
+        </div>
+        <div className="search-box-clamp w-full flex items-center gap-x-4 px-[1.5ex] pl-4 rounded-md duration-300 transition-all">
+          <input
+            type="text"
+            className="w-full border-none text-xl h-16"
+            placeholder="Search for characters"
+            onChange={onChangeCharacters}
+            onKeyDown={(e) => e.key === "Enter" && requestHousepetsData()}
+          />
+          <button className="p-3 rounded-md" onClick={requestHousepetsData}>
+            <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
+          </button>
+        </div>
+        <div className="year-picker grid gap-2 w-full">
+          {year_list.map((year) => (
+            <div className="relative block" key={year}>
+              <input
+                className="absolute top-0 invisible"
+                type="checkbox"
+                id={"year-" + year}
+              />
+              <label
+                className="block px-5 py-3 shadow-md font-bold rounded-md transition-all duration-300 text-xl text-center h-full w-full bg-slate-800"
+                htmlFor={"year-" + year}
+                onClick={() => ClickedYears(year)}
+              >
+                {year}
+              </label>
+            </div>
+          ))}
         </div>
         <div id="results-box-container" className="p-5">
           <h2 className="mb-4 text-2xl text-center">
@@ -205,47 +194,19 @@ export default function Home() {
           <div className="grid gap-4 max-w-screen-md my-0 mx-auto">
             {comics.map((comic) => {
               return (
-                <>
-                  <ComicItem
-                    key={comic.comic_link}
-                    characters={comic.characters.join(", ")}
-                    link={comic.comic_link}
-                    title={comic.title}
-                    image={comic.image}
-                  />
-                </>
+                <ComicItem
+                  key={comic.comic_link}
+                  characters={comic.characters.join(", ")}
+                  link={comic.comic_link}
+                  title={comic.title}
+                  image={comic.image}
+                />
               );
             })}
           </div>
         </div>
         <BackToTop />
-      </main>
-      <footer>
-        <div className="content-wrapper">
-          <hr className="my-5" />
-          <div className="flex justify-center text-center sm:text-inherit sm:justify-between flex-col sm:flex-row">
-            <p className="text-neutral-400 w-full sm:w-[50%] text-sm text-center sm:text-left">
-              The use of third-party content is heavily transformative, and
-              therefore, subject of Fair Use. <i>Housepets!</i> and its
-              characters is a trademark of Rick Grifin. All rights reserved.
-            </p>
-            <div>
-              <Link href="https://github.com/OpenFurs/searchpets" passHref>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  className="text-center sm:text-right"
-                >
-                  <FontAwesomeIcon icon={faGithub} />
-                  <span className="whitespace-nowrap">
-                    &nbsp;Source code on GitHub
-                  </span>
-                </a>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </footer>
+      </Container>
     </div>
   );
 }
