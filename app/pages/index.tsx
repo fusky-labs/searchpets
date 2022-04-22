@@ -12,6 +12,7 @@ export default function Home() {
   // #region API
   const [comics, setComics] = useState([]);
   const [totalComicCount, setTotalComicCount] = useState(0);
+  const [totalCharacterCount, setTotalCharacterCount] = useState(0);
   const [characters, setCharacters] = useState([]);
   const [years, setYears] = useState([]);
   
@@ -101,6 +102,7 @@ export default function Home() {
       .then((res) => {
         console.log(res);
         setTotalComicCount(res.housepets_db_length);
+        setTotalCharacterCount(res.characters_db_length);
       });
     console.log(years);
 
@@ -126,7 +128,7 @@ export default function Home() {
   // #endregion
 
   const title = "Searchpets! - Search characters and pages from Housepets!";
-  let description = `Search through ${totalComicCount} pages and 370 characters from a furry comic, Housepets!`;
+  let description = `Search through ${totalComicCount} pages and ${totalCharacterCount} characters from a furry comic, Housepets!`;
 
   return (
     <div>
