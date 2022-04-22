@@ -10,6 +10,7 @@ housepets_db = {}
 print("Creating database...")
 print("This may take a while...")
 
+characters_db = set()
 for year in years:
     housepets_db.update({year: []})
     print(year)
@@ -28,6 +29,7 @@ for year in years:
             characters_tag = comic_soup.find_all('a', {'href': re.compile("^https://www\.housepetscomic\.com/character")})
             for character in characters_tag:
                 characters.append(character.text.lower())
+                characters_db.add(character.text.lower())
             
             comic_image = comic_soup.find('img', {'title': True, 'alt': True})
 
@@ -41,6 +43,7 @@ for year in years:
         else:
             print(f'{web_link} is a guest comics')
 
+housepets_db['characters_db'] = list(characters_db)
 print("saving to database...")
 with open('housepets_db.json', 'w') as housepets_db_json:
     json.dump(housepets_db, housepets_db_json)
