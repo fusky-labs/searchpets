@@ -13,6 +13,7 @@ with open('housepets_db.json', 'r') as housepets_db_json:
 def update_database():
     while True:
         time.sleep(600)
+        characters_db = set(housepets_db['characters_db'])
         year = time.strftime("%Y")
         web = req.get(f"https://www.housepetscomic.com/archive/?archive_year={year}")
         soup = BeautifulSoup(web.text, 'html.parser')
@@ -35,6 +36,7 @@ def update_database():
                                             "comic_link": web_link,
                                             "characters": characters_in_comic,
                                             "image": comic_image.get('src')})
+                    characters_db.update(characters_in_comic)
             print(housepets_db)
             with open('housepets_db.json', 'w') as housepets_db_json:
                 json.dump(housepets_db, housepets_db_json)
