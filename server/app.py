@@ -1,3 +1,4 @@
+from traceback import print_tb
 from flask import Flask, request, jsonify
 import json
 import os
@@ -64,7 +65,15 @@ def data():
     housepets_db_length = 0
     for year in range(2008, 2022+1):
         housepets_db_length += len(housepets_db[str(year)])
-    return jsonify({'housepets_db_length': housepets_db_length})
+    characters_db_length = len(housepets_db['characters_db'])
+    return jsonify({'housepets_db_length': housepets_db_length, 'characters_db_length': characters_db_length})
+
+@app.route('/characters', methods=['GET'])
+def characters():
+    return jsonify({'characters_db': housepets_db['characters_db']})
 
 if __name__ == '__main__':
-    app.run()
+    from waitress import serve
+    print("[*]starting server")
+    print("[*]server is running on port 5000")
+    serve(app, host='0.0.0.0', port=5000)

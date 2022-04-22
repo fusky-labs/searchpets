@@ -1,9 +1,9 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import ComicItem from "../components/ComicItem";
-import BackToTop from "../components/BackToTop";
 import Container from "../components/Container";
 
 import { ReactNotifications, Store } from "react-notifications-component";
@@ -12,6 +12,7 @@ export default function Home() {
   // #region API
   const [comics, setComics] = useState([]);
   const [totalComicCount, setTotalComicCount] = useState(0);
+  const [totalCharacterCount, setTotalCharacterCount] = useState(0);
   const [characters, setCharacters] = useState([]);
   const [years, setYears] = useState([]);
   
@@ -33,9 +34,7 @@ export default function Home() {
     "2022",
   ];
 
-  const onChangeCharacters = (e) => {
-    setCharacters(e.target.value.toLowerCase().split(", "));
-  };
+  const onChangeCharacters = (e) => setCharacters(e.target.value.toLowerCase().split(", "));
 
   const requestHousepetsData = () => {
     console.log(`Searching on year ${years}`);
@@ -54,7 +53,8 @@ export default function Home() {
         },
       });
       return;
-    }
+    };
+
     if (characters.join(", ") === "") {
       console.log("No year selected");
       Store.addNotification({
@@ -71,6 +71,7 @@ export default function Home() {
       });
       return;
     }
+
     fetch("/api/search", {
       method: "POST",
       headers: {
@@ -87,13 +88,9 @@ export default function Home() {
       });
   };
 
-  const ClickedYears = (year) => {
-    if (years.includes(year)) {
-      setYears(years.filter((y) => y !== year));
-    } else {
-      setYears(years.concat(year));
-    }
-  };
+  const ClickedYears = (year) => years.includes(year)
+      ? setYears(years.filter((y) => y !== year))
+      : setYears(years.concat(year));
 
   useEffect(() => {
     fetch("/api/data")
@@ -101,13 +98,28 @@ export default function Home() {
       .then((res) => {
         console.log(res);
         setTotalComicCount(res.housepets_db_length);
+        setTotalCharacterCount(res.characters_db_length);
       });
     console.log(years);
+
+    // Handle your mom
+    const searchBox = document.querySelector(".search-box-wrapper");
+    const backToTop = document.getElementById("back-to-top-btn");
+
+    window.onscroll = () => {
+      window.pageYOffset > 308 
+        ? searchBox.classList.add("lock")
+        : searchBox.classList.remove("lock");
+
+      window.pageYOffset > 320
+        ? backToTop.classList.add("lock")
+        : backToTop.classList.remove("show");
+    };
   }, [comics, years]);
   // #endregion
 
   const title = "Searchpets! - Search characters and pages from Housepets!";
-  let description = `Search through ${totalComicCount} pages and 370 characters from a furry comic, Housepets!`;
+  let description = `Search through ${totalComicCount} pages and ${totalCharacterCount} characters from a furry comic, Housepets!`;
 
   return (
     <div>
@@ -130,7 +142,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        <div className="text-center max-w-[700px] p-4 mt-[12vh] mx-0 flex justify-center">
+        <div className="fixed bottom-0 right-0 m-4"></div>
+        <div className="text-center max-w-[900px] p-4 mt-[12vh] mx-0 flex justify-center">
           <h1 className="text-center max-w-3xl text-3xl">
             Search through{" "}
             <span
@@ -144,24 +157,43 @@ export default function Home() {
               id="character-count"
               className="font-black bg-clip-text text-transparent"
             >
-              370
+              {totalCharacterCount}
             </span>{" "}
             characters from your favorite furry comic!
           </h1>
         </div>
-        <div className="search-box-clamp w-full flex items-center gap-x-4 px-[1.5ex] pl-4 rounded-md duration-300 transition-all">
-          <input
-            type="text"
-            className="w-full border-none text-xl h-16"
-            placeholder="Search for characters"
-            onChange={onChangeCharacters}
-            onKeyDown={(e) => e.key === "Enter" && requestHousepetsData()}
-          />
-          <button className="p-3 rounded-md" onClick={requestHousepetsData}>
-            <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
-          </button>
+        <div className="search-box-wrapper relative min-w-full z-10">
+          <div className="search-box-clamp flex max-w-[800px] mx-auto my-0 relative rounded-md overflow-hidden duration-300 transition-all">
+            <input
+              type="text"
+              className="w-full border-none text-xl h-16 px-[1.5ex]"
+              placeholder="Search for characters"
+              onChange={onChangeCharacters}
+              onKeyDown={(e) => e.key === "Enter" && requestHousepetsData()}
+            />
+            <div className="absolute right-4 top-[0.4rem] flex justify-end items-center">
+              <button
+                id="back-to-top-btn"
+                className="px-3 pl-4 py-3 rounded-md text-center h-max pointer-events-none opacity-0 translate-x-5 duration-700 transition-all"
+                onClick={() => window.scrollTo(0, 310)}
+              >
+                <FontAwesomeIcon
+                  icon={faCaretUp}
+                  size="lg"
+                  className="translate-y-[0.20rem]"
+                />
+                <span className="px-2 text-[1.125rem]">Back to top</span>
+              </button>
+              <button
+                className="p-3 px-5 rounded-md h-max"
+                onClick={requestHousepetsData}
+              >
+                <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
+              </button>
+            </div>
+          </div>
         </div>
-        <div className="year-picker grid gap-2 w-full">
+        <div className="year-picker grid gap-2 min-w-full">
           {year_list.map((year) => (
             <div className="relative block" key={year}>
               <input
@@ -179,7 +211,7 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <div id="results-box-container" className="p-5">
+        <div className="p-5">
           <h2 className="mb-4 text-2xl text-center">
             Showing <strong>{comics.length}</strong> results
           </h2>
@@ -197,7 +229,6 @@ export default function Home() {
             })}
           </div>
         </div>
-        <BackToTop />
       </Container>
     </div>
   );
