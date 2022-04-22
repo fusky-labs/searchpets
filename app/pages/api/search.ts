@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { resolve } from 'path'
 
 type Data = {
   name: string
@@ -18,6 +19,7 @@ export default function handler(
     })
     const json = await response.json()
     res.status(200).json(json)
+    resolve()
   }
   sendData()
 }

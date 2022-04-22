@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { resolve } from 'path'
 
 type Data = {
   name: string
@@ -11,7 +12,8 @@ export default function handler(
   const receiveData = async () => {
     const response = await fetch('http://localhost:5000/data')
     const json = await response.json()
-    res.status(200).json(json)
+    res.end(JSON.stringify(json))
+    resolve()
   }
   receiveData()
 }
