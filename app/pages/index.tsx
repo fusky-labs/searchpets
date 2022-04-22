@@ -179,7 +179,7 @@ export default function Home() {
               id="character-count"
               className="font-black bg-clip-text text-transparent"
             >
-              370
+              {totalCharacterCount}
             </span>{" "}
             characters from your favorite furry comic!
           </h1>
