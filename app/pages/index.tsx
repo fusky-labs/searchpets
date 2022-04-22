@@ -14,15 +14,7 @@ export default function Home() {
   const [totalComicCount, setTotalComicCount] = useState(0);
   const [characters, setCharacters] = useState([]);
   const [years, setYears] = useState([]);
-
-  // ! Create a year_list array with for loop but it doesn't work for some reason
-  // let year_list = [];
-  // for (let year = new Date().getFullYear(); year >= 2008; year--) {
-  //   year_list.push(year).toString();
-  // }
-
-  // ! I'd rather use a for loop to return the years, so we don't have to add
-  // ! a new year to the year_list array to the state. Check the commented code above.
+  
   let year_list = [
     "2008",
     "2009",
