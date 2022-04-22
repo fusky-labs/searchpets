@@ -16,14 +16,16 @@ export default function ComicItem({
   return (
     <div id="comic-item" className="drop-shadow-md rounded-md p-4">
       <h3 className="text-lg text-center italic">&#34;{title}&#34;</h3>
-      <Image
-        src={image}
-        alt={title}
-        objectFit="contain"
-        width={900}
-        height={700}
-        className="relative"
-      />
+      <div className="pointer-events-none">
+        <Image
+          src={image}
+          alt={title}
+          objectFit="contain"
+          width={900}
+          height={700}
+          className=""
+          />
+      </div>
       <div className="flex justify-between">
         <span>{characters}</span>
         <Link href={link} passHref>
