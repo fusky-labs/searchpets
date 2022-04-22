@@ -44,9 +44,24 @@ footer {
   -webkit-background-clip: text;
 }
 
+
 #character-count {
   background: linear-gradient(261.97deg, #da3d3d, #a431b9);
   -webkit-background-clip: text;
+}
+
+.search-box-wrapper {
+  &.lock {
+    @apply fixed top-6 max-w-[700px] mx-0 my-auto;
+
+    .search-box-clamp {
+      @apply shadow-md;
+    }
+
+    ~ .year-picker {
+      @apply mt-[87px];
+    }
+  }
 }
 
 .search-box-clamp {

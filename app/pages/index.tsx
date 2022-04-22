@@ -1,9 +1,9 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import ComicItem from "../components/ComicItem";
-import BackToTop from "../components/BackToTop";
 import Container from "../components/Container";
 
 import { ReactNotifications, Store } from "react-notifications-component";
@@ -103,6 +103,25 @@ export default function Home() {
         setTotalComicCount(res.housepets_db_length);
       });
     console.log(years);
+
+    // Handle your mom
+    const searchBox = document.querySelector(".search-box-wrapper");
+    const backToTop = document.getElementById("btt-btn");
+
+    window.onscroll = () => {
+      if (window.pageYOffset > 309) {
+        searchBox.classList.add("lock");
+      } else {
+        searchBox.classList.remove("lock");
+      }
+
+      if (window.pageYOffset > 310) {
+        backToTop.classList.add("btt-btn-show");
+      } else {
+        backToTop.classList.remove("btt-btn-show");
+      }
+    };
+
   }, [comics, years]);
   // #endregion
 
@@ -130,7 +149,21 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        <div className="text-center max-w-[700px] p-4 mt-[12vh] mx-0 flex justify-center">
+        <div className="fixed bottom-0 right-0 m-4">
+          <button
+            id="btt-btn"
+            className="px-5 py-3 pointer-events-none opacity-0 shadow-md font-bold rounded-md transition-all translate-y-5 duration-300 text-xl text-center h-full w-full"
+            onClick={() => window.scrollTo(0, 310)}
+          >
+            <FontAwesomeIcon
+              icon={faCaretUp}
+              size="lg"
+              className="translate-y-[0.20rem]"
+            />
+            <span className="px-2">Back to top</span>
+          </button>
+        </div>
+        <div className="text-center max-w-[900px] p-4 mt-[12vh] mx-0 flex justify-center">
           <h1 className="text-center max-w-3xl text-3xl">
             Search through{" "}
             <span
@@ -149,19 +182,24 @@ export default function Home() {
             characters from your favorite furry comic!
           </h1>
         </div>
-        <div className="search-box-clamp w-full flex items-center gap-x-4 px-[1.5ex] pl-4 rounded-md duration-300 transition-all">
-          <input
-            type="text"
-            className="w-full border-none text-xl h-16"
-            placeholder="Search for characters"
-            onChange={onChangeCharacters}
-            onKeyDown={(e) => e.key === "Enter" && requestHousepetsData()}
-          />
-          <button className="p-3 rounded-md" onClick={requestHousepetsData}>
-            <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
-          </button>
+        <div className="search-box-wrapper relative min-w-full z-10">
+          <div className="search-box-clamp flex pl-4 max-w-[800px] mx-auto my-0 px-[1.5ex] rounded-md duration-300 transition-all">
+            <input
+              type="text"
+              className="w-full border-none text-xl h-16"
+              placeholder="Search for characters"
+              onChange={onChangeCharacters}
+              onKeyDown={(e) => e.key === "Enter" && requestHousepetsData()}
+            />
+            <button
+              className="p-3 px-5 rounded-md"
+              onClick={requestHousepetsData}
+            >
+              <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
+            </button>
+          </div>
         </div>
-        <div className="year-picker grid gap-2 w-full">
+        <div className="year-picker grid gap-2 min-w-full">
           {year_list.map((year) => (
             <div className="relative block" key={year}>
               <input
@@ -179,7 +217,7 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <div id="results-box-container" className="p-5">
+        <div className="p-5">
           <h2 className="mb-4 text-2xl text-center">
             Showing <strong>{comics.length}</strong> results
           </h2>
@@ -197,7 +235,6 @@ export default function Home() {
             })}
           </div>
         </div>
-        <BackToTop />
       </Container>
     </div>
   );
