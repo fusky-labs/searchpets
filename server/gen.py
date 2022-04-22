@@ -14,13 +14,13 @@ characters_db = set()
 for year in years:
     housepets_db.update({year: []})
     print(year)
-    web = requests.get(f"https://www.housepetscomic.com/archive/?archive_year={year}")
+    web = requests.get(f"https://www.housepetscomic.com/archive/?archive_year={year}", timeout=None)
     soup = BeautifulSoup(web.text, 'html.parser')
     link_tag = soup.find_all('a', {'rel':"bookmark", 'href': re.compile("^https://")})
     print(len(link_tag))
     for link in link_tag:
         web_link = link.get('href')
-        web_link_page = requests.get(web_link)
+        web_link_page = requests.get(web_link, timeout=None)
         if "https://www.housepetscomic.com/character" in web_link_page.text:
             print(web_link)
 
