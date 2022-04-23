@@ -68,6 +68,10 @@ def data():
     characters_db_length = len(housepets_db['characters_db'])
     return jsonify({'housepets_db_length': housepets_db_length, 'characters_db_length': characters_db_length})
 
+@app.route('/characters', methods=['GET'])
+def characters():
+    return jsonify({'characters_db': housepets_db['characters_db']})
+
 if __name__ == '__main__':
     from waitress import serve
     print("[*]starting server")
