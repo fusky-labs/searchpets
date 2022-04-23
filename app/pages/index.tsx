@@ -1,10 +1,11 @@
-import Head from "next/head";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+
 import ComicItem from "../components/ComicItem";
 import Container from "../components/Container";
+import BaseHead from "../components/BaseHead";
 
 import { ReactNotifications, Store } from "react-notifications-component";
 
@@ -102,17 +103,16 @@ export default function Home() {
       });
     console.log(years);
 
-    // Handle your mom
     const searchBox = document.querySelector(".search-box-wrapper");
     const backToTop = document.getElementById("back-to-top-btn");
 
     window.onscroll = () => {
-      window.pageYOffset > 308 
+      window.pageYOffset > 313
         ? searchBox.classList.add("lock")
         : searchBox.classList.remove("lock");
 
-      window.pageYOffset > 320
-        ? backToTop.classList.add("lock")
+      window.pageYOffset > 675
+        ? backToTop.classList.add("show")
         : backToTop.classList.remove("show");
     };
   }, [comics, years]);
@@ -124,111 +124,99 @@ export default function Home() {
   return (
     <div>
       <ReactNotifications />
-      <Head>
-        <title>{title}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
-        <meta name="description" content={description} />
-        <meta name="og:type" content="website" />
-        <meta name="og:title" content={title} />
-        <meta name="og:description" content={description} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={description} />
-        <meta
-          name="keywords"
-          content="housepets, furry, comics, furry comics, animals, animal comic, fursuit"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <BaseHead title={title} description={description} />
       <Container>
-        <div className="fixed bottom-0 right-0 m-4"></div>
-        <div className="text-center max-w-[900px] p-4 mt-[12vh] mx-0 flex justify-center">
-          <h1 className="text-center max-w-3xl text-3xl">
-            Search through{" "}
-            <span
-              id="pages-count"
-              className="font-black bg-clip-text text-transparent"
-            >
-              {totalComicCount}
-            </span>
-            &nbsp;pages and{" "}
-            <span
-              id="character-count"
-              className="font-black bg-clip-text text-transparent"
-            >
-              {totalCharacterCount}
-            </span>{" "}
-            characters from your favorite furry comic!
-          </h1>
-        </div>
-        <div className="search-box-wrapper relative min-w-full z-10">
-          <div className="search-box-clamp flex max-w-[800px] mx-auto my-0 relative rounded-md overflow-hidden duration-300 transition-all">
-            <input
-              type="text"
-              className="w-full border-none text-xl h-16 px-[1.5ex]"
-              placeholder="Search for characters"
-              onChange={onChangeCharacters}
-              onKeyDown={(e) => e.key === "Enter" && requestHousepetsData()}
-            />
-            <div className="absolute right-4 top-[0.4rem] flex justify-end items-center">
-              <button
-                id="back-to-top-btn"
-                className="px-3 pl-4 py-3 rounded-md text-center h-max pointer-events-none opacity-0 translate-x-5 duration-700 transition-all"
-                onClick={() => window.scrollTo(0, 310)}
+          {/* main */}
+          <div className="text-center max-w-[900px] p-4 mt-[12vh] mx-0 flex justify-center">
+            <h1 className="text-center max-w-3xl text-3xl">
+              Search through{" "}
+              <span
+                id="pages-count"
+                className="font-black bg-clip-text text-transparent"
               >
-                <FontAwesomeIcon
-                  icon={faCaretUp}
-                  size="lg"
-                  className="translate-y-[0.20rem]"
-                />
-                <span className="px-2 text-[1.125rem]">Back to top</span>
-              </button>
-              <button
-                className="p-3 px-5 rounded-md h-max"
-                onClick={requestHousepetsData}
+                {totalComicCount}
+              </span>
+              &nbsp;pages and{" "}
+              <span
+                id="character-count"
+                className="font-black bg-clip-text text-transparent"
               >
-                <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
-              </button>
-            </div>
+                {totalCharacterCount}
+              </span>{" "}
+              characters from your favorite furry comic!
+            </h1>
           </div>
-        </div>
-        <div className="year-picker grid gap-2 min-w-full">
-          {year_list.map((year) => (
-            <div className="relative block" key={year}>
+          {/* Search box */}
+          <div className="search-box-wrapper px-4 relative min-w-full z-10 transition-colors duration-300">
+            <div className="search-box-clamp flex max-w-[800px] mx-auto my-0 relative rounded-md overflow-hidden">
               <input
-                className="absolute top-0 invisible"
-                type="checkbox"
-                id={"year-" + year}
+                type="text"
+                className="w-full border-none text-xl h-16 px-[1.5ex]"
+                placeholder="Search for characters"
+                onChange={onChangeCharacters}
+                onKeyDown={(e) => e.key === "Enter" && requestHousepetsData()}
               />
-              <label
-                className="block px-5 py-3 shadow-md font-bold rounded-md transition-all duration-300 text-xl text-center h-full w-full bg-slate-800"
-                htmlFor={"year-" + year}
-                onClick={() => ClickedYears(year)}
-              >
-                {year}
-              </label>
+              <div className="absolute right-4 top-[0.4rem] flex justify-end items-center">
+                <button
+                  id="back-to-top-btn"
+                  className="px-3 pl-4 py-3 rounded-md text-center h-max pointer-events-none opacity-0 translate-x-5 transition-all"
+                  onClick={() => window.scrollTo(0, 314)}
+                >
+                  <FontAwesomeIcon
+                    icon={faCaretUp}
+                    size="lg"
+                    className="translate-y-[0.20rem]"
+                  />
+                  <span className="px-2 text-[1.125rem]">Back to top</span>
+                </button>
+                <button
+                  id="search-btn"
+                  className="p-3 px-5 rounded-md h-max"
+                  onClick={requestHousepetsData}
+                >
+                  <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
+                </button>
+              </div>
             </div>
-          ))}
-        </div>
-        <div className="p-5">
-          <h2 className="mb-4 text-2xl text-center">
-            Showing <strong>{comics.length}</strong> results
-          </h2>
-          <div className="grid gap-4 max-w-screen-md my-0 mx-auto">
-            {comics.map((comic) => {
-              return (
-                <ComicItem
-                  key={comic.comic_link}
-                  characters={comic.characters.join(", ")}
-                  link={comic.comic_link}
-                  title={comic.title}
-                  image={comic.image}
-                />
-              );
-            })}
           </div>
-        </div>
+          {/* Year picker */}
+          <div className="year-picker grid gap-2 md:min-w-[50rem] min-w-full">
+            {year_list.map((year) => (
+              <div className="relative block" key={year}>
+                <input
+                  className="absolute top-0 invisible"
+                  type="checkbox"
+                  id={"year-" + year}
+                />
+                <label
+                  className="block px-5 py-3 shadow-md font-bold rounded-md transition-all duration-300 text-xl text-center h-full w-full bg-slate-800"
+                  htmlFor={"year-" + year}
+                  onClick={() => ClickedYears(year)}
+                >
+                  {year}
+                </label>
+              </div>
+            ))}
+          </div>
+          {/* Search results */}
+          <div className="p-5 max-w-screen-2xl md:max-w-screen-lg">
+            <h2 className="mb-4 text-2xl text-center">
+              Showing <strong>{comics.length}</strong> results
+            </h2>
+            <div id="result-grid" className="grid gap-4 max-w-screen-md md:max-w-screen-2xl my-0 mx-auto">
+              {comics.map((comic) => {
+                return (
+                  <ComicItem
+                    key={comic.comic_link}
+                    characters={comic.characters.join(", ")}
+                    link={comic.comic_link}
+                    title={comic.title}
+                    image={comic.image}
+                  />
+                );
+              })}
+            </div>
+          </div>
       </Container>
     </div>
   );

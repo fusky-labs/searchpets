@@ -44,7 +44,6 @@ footer {
   -webkit-background-clip: text;
 }
 
-
 #character-count {
   background: linear-gradient(261.97deg, #da3d3d, #a431b9);
   -webkit-background-clip: text;
@@ -52,15 +51,15 @@ footer {
 
 .search-box-wrapper {
   &.lock {
-    @apply fixed top-6 max-w-[700px] mx-0 my-auto z-10 pt-14 pb-4 -translate-y-[2.1em] transition-colors duration-300;
-    background-color: rgba(27, 55, 76, 0.57);
+    @apply fixed top-6 max-w-[700px] mx-0 my-auto z-10 pt-8 pb-4 -translate-y-[2.1em];
+    background-color: rgba(0, 0, 0, 0.22);
 
     .search-box-clamp {
       @apply shadow-md;
     }
 
     ~ .year-picker {
-      @apply mt-[105px];
+      @apply mt-[95px];
     }
   }
 }
@@ -68,13 +67,14 @@ footer {
 @supports (backdrop-filter: blur(10px)) {
 .search-box-wrapper.lock {
     backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.22);
   }
 }
 
 .search-box-clamp {
   background: var(--app-g);
 
-  button {
+  > button {
     background: var(--app-g);
     transition: background 250ms ease;
 
@@ -96,6 +96,20 @@ footer {
     input[type="text"] {
       color: var(--app-w);
     }
+  }
+}
+
+.show {
+  @apply pointer-events-auto opacity-100 translate-x-0;
+}
+
+#search-btn {
+  @apply transition-colors duration-150;
+}
+
+#back-to-top-btn, #search-btn {
+  &:hover {
+    background-color: var(--app-g-hover);
   }
 }
 
@@ -153,11 +167,7 @@ input:checked ~ label {
   background-color: var(--app-g-hover);
 }
 
-.show {
-  background-color: var(--app-db);
-
-  &:hover {
-    background-color: #322fbf;
-  }
-  @apply pointer-events-auto opacity-100 translate-x-0 active:bg-red-700;
+#result-grid {
+  grid-template-rows: masonry;
+  @apply grid-cols-1 md:grid-cols-2;
 }
