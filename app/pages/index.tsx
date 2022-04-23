@@ -34,9 +34,7 @@ export default function Home() {
     "2022",
   ];
 
-  const onChangeCharacters = (e) => {
-    setCharacters(e.target.value.toLowerCase().split(", "));
-  };
+  const onChangeCharacters = (e) => setCharacters(e.target.value.toLowerCase().split(", "));
 
   const requestHousepetsData = () => {
     console.log(`Searching on year ${years}`);
@@ -55,7 +53,8 @@ export default function Home() {
         },
       });
       return;
-    }
+    };
+
     if (characters.join(", ") === "") {
       console.log("No year selected");
       Store.addNotification({
@@ -72,6 +71,7 @@ export default function Home() {
       });
       return;
     }
+
     fetch("/api/search", {
       method: "POST",
       headers: {
@@ -88,13 +88,9 @@ export default function Home() {
       });
   };
 
-  const ClickedYears = (year) => {
-    if (years.includes(year)) {
-      setYears(years.filter((y) => y !== year));
-    } else {
-      setYears(years.concat(year));
-    }
-  };
+  const ClickedYears = (year) => years.includes(year)
+      ? setYears(years.filter((y) => y !== year))
+      : setYears(years.concat(year));
 
   useEffect(() => {
     fetch("/api/data")
@@ -108,22 +104,17 @@ export default function Home() {
 
     // Handle your mom
     const searchBox = document.querySelector(".search-box-wrapper");
-    const backToTop = document.getElementById("btt-btn");
+    const backToTop = document.getElementById("back-to-top-btn");
 
     window.onscroll = () => {
-      if (window.pageYOffset > 309) {
-        searchBox.classList.add("lock");
-      } else {
-        searchBox.classList.remove("lock");
-      }
+      window.pageYOffset > 308 
+        ? searchBox.classList.add("lock")
+        : searchBox.classList.remove("lock");
 
-      if (window.pageYOffset > 310) {
-        backToTop.classList.add("btt-btn-show");
-      } else {
-        backToTop.classList.remove("btt-btn-show");
-      }
+      window.pageYOffset > 320
+        ? backToTop.classList.add("lock")
+        : backToTop.classList.remove("show");
     };
-
   }, [comics, years]);
   // #endregion
 
@@ -151,20 +142,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        <div className="fixed bottom-0 right-0 m-4">
-          <button
-            id="btt-btn"
-            className="px-5 py-3 pointer-events-none opacity-0 shadow-md font-bold rounded-md transition-all translate-y-5 duration-300 text-xl text-center h-full w-full"
-            onClick={() => window.scrollTo(0, 310)}
-          >
-            <FontAwesomeIcon
-              icon={faCaretUp}
-              size="lg"
-              className="translate-y-[0.20rem]"
-            />
-            <span className="px-2">Back to top</span>
-          </button>
-        </div>
+        <div className="fixed bottom-0 right-0 m-4"></div>
         <div className="text-center max-w-[900px] p-4 mt-[12vh] mx-0 flex justify-center">
           <h1 className="text-center max-w-3xl text-3xl">
             Search through{" "}
@@ -185,20 +163,34 @@ export default function Home() {
           </h1>
         </div>
         <div className="search-box-wrapper relative min-w-full z-10">
-          <div className="search-box-clamp flex pl-4 max-w-[800px] mx-auto my-0 px-[1.5ex] rounded-md duration-300 transition-all">
+          <div className="search-box-clamp flex max-w-[800px] mx-auto my-0 relative rounded-md overflow-hidden duration-300 transition-all">
             <input
               type="text"
-              className="w-full border-none text-xl h-16"
+              className="w-full border-none text-xl h-16 px-[1.5ex]"
               placeholder="Search for characters"
               onChange={onChangeCharacters}
               onKeyDown={(e) => e.key === "Enter" && requestHousepetsData()}
             />
-            <button
-              className="p-3 px-5 rounded-md"
-              onClick={requestHousepetsData}
-            >
-              <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
-            </button>
+            <div className="absolute right-4 top-[0.4rem] flex justify-end items-center">
+              <button
+                id="back-to-top-btn"
+                className="px-3 pl-4 py-3 rounded-md text-center h-max pointer-events-none opacity-0 translate-x-5 duration-700 transition-all"
+                onClick={() => window.scrollTo(0, 310)}
+              >
+                <FontAwesomeIcon
+                  icon={faCaretUp}
+                  size="lg"
+                  className="translate-y-[0.20rem]"
+                />
+                <span className="px-2 text-[1.125rem]">Back to top</span>
+              </button>
+              <button
+                className="p-3 px-5 rounded-md h-max"
+                onClick={requestHousepetsData}
+              >
+                <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
+              </button>
+            </div>
           </div>
         </div>
         <div className="year-picker grid gap-2 min-w-full">
