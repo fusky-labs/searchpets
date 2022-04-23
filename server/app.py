@@ -66,7 +66,7 @@ def data():
     for year in range(2008, 2022+1):
         housepets_db_length += len(housepets_db[str(year)])
     characters_db_leangth = len(housepets_db['characters_db'])
-    return jsonify({'housepets_db_length': housepets_db_length, 'characters_db_leangth': characters_db_leangth})
+    return jsonify({'housepets_db_length': housepets_db_length, 'characters_db_length': characters_db_leangth})
 
 if __name__ == '__main__':
     from waitress import serve
