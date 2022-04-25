@@ -11,7 +11,7 @@ export default function Layout({ children }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-        <div id="searchpets-root">{children}</div>
+      {children}
       <Footer />
     </>
   );

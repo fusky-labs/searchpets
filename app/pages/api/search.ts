@@ -1,15 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { resolve } from 'path'
 
-type Data = {
-  name: string
-}
-
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<string>
 ) {
-  const sendData = async () => {
+  const sendData = (async () => {
     const response = await fetch('http://localhost:5000/search', {
       method: 'POST',
       headers: {
@@ -20,6 +16,5 @@ export default function handler(
     const json = await response.json()
     res.status(200).json(json)
     resolve()
-  }
-  sendData()
+  })()
 }

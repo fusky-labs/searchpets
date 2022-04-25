@@ -1,4 +1,3 @@
-import { faLink } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -14,8 +13,8 @@ export default function ComicItem({
   title, characters, link, image
 }: IComicItemProps) {
   return (
-    <div id="comic-item" className="drop-shadow-md rounded-md p-4">
-      <h3 className="text-lg text-center italic">&#34;{title}&#34;</h3>
+    <div className="comic-item">
+      <h3 className="comic-item__title">&#34;{title}&#34;</h3>
       <div className="pointer-events-none">
         <Image
           src={image}
@@ -25,14 +24,29 @@ export default function ComicItem({
           height={700}
           />
       </div>
-      <div className="flex justify-between">
-        <span>{characters}</span>
+      <div className="comic-item__lower">
+        <div className="comic-item__characters">
+          <span className="uppercase text-sm">Characters</span>
+          <span>{characters}</span>
+        </div>
         <Link href={link} passHref>
-          <a target="_blank" className="py-[0.25ex] font-bold px-1 underline decoration-2 transition-colors duration-150 decoration-blue-500  hover:decoration-blue-300">
-            Original Link
+          <a target="_blank" className="comic-item__link">
+            Original Link{" "}
+            <FontAwesomeIcon icon={['fas', 'external-link-alt']} size="sm" />
           </a>
         </Link>
       </div>
     </div>
   );
+}
+
+export function ComicItemLoading() {
+  return(
+    <div id="comic-item">
+      <h3 className="text-lg text-center italic">Loading...</h3>
+      <div className="flex justify-between">
+        <span>Loading...</span>
+      </div>
+    </div>
+  )
 }

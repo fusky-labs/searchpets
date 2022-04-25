@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react"
+import dynamic from "next/dynamic"
 import Container from "../components/Container"
-import CharacterItem from "../components/CharacterItem"
 import BaseHead from "../components/BaseHead"
+
+const CharacterItem = dynamic(() => import("../components/CharacterItem"))
 
 export default function Characters() {
   const [characters, setCharacters] = useState([])
@@ -15,17 +17,19 @@ export default function Characters() {
       })
   }, [])
 
+  
+
   return (
     <>
       <BaseHead
         title="Housepets! Character List"
         description="Browse through the entire catalog of Housepets! characters"
       />
-      <Container mainClassName="" classNames="select-none mx-auto my-0 p-5 ">
+      <Container mainClassName="" classNames="page_searchChars-wrapper">
         <div
           className="grid my-0 mx-auto gap-4 max-w-[1440px]"
           style={{
-            gridTemplateColumns: "repeat(auto-fill, minmax(360px, 1fr))"
+            gridTemplateColumns: "repeat(auto-fill, minmax(360px, 1fr))",
           }}
         >
           {characters.sort().map((character) => {

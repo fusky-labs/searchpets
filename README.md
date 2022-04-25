@@ -4,9 +4,14 @@ A "search engine" to find characters from _Housepets!_
   
 ![sp_demo2](https://user-images.githubusercontent.com/94678583/163629497-9f5c4921-5a39-4dfe-8729-e56705efb2f7.gif)
 
-![Searchpets Stack](https://skillicons.dev/icons?i=nextjs,ts,tailwind,py,flask)
+![Searchpets Stack](https://skillicons.dev/icons?i=nextjs,ts,sass,tailwind,py,flask)
 
-Written in Next.js with TypeScript and Tailwind.
+Written in Next.js with TypeScript, Tailwind, and Flask.
+
+## Disclaimer
+
+The use of third-party content is heavily transformative, and therefore, subject
+of Fair Use. _Housepets!_ and its story and characters is a trademark of Rick Griffin.
 
 ## Installation
 

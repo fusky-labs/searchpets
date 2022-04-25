@@ -2,8 +2,14 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import dynamic from "next/dynamic";
+import { ComicItemLoading } from "../components/ComicItem";
 
-import ComicItem from "../components/ComicItem";
+const ComicItem = dynamic(
+  () => import("../components/ComicItem"),
+  { loading: () => <ComicItemLoading />, ssr: false },
+);
+
 import Container from "../components/Container";
 import BaseHead from "../components/BaseHead";
 
@@ -20,21 +26,8 @@ export default function Home() {
   const [years, setYears] = useState([]);
   
   let year_list = [
-    "2008",
-    "2009",
-    "2010",
-    "2011",
-    "2012",
-    "2013",
-    "2014",
-    "2015",
-    "2016",
-    "2017",
-    "2018",
-    "2019",
-    "2020",
-    "2021",
-    "2022",
+    "2008","2009","2010","2011","2012","2013","2014","2015",
+    "2016","2017","2018","2019","2020","2021","2022",
   ];
 
   const onChangeCharacters = (e) => setCharacters(e.target.value.toLowerCase().split(", "));
@@ -104,21 +97,21 @@ export default function Home() {
         setTotalCharacterCount(res.characters_db_length);
       });
     console.log(years);
+    // #endregion
 
     const searchBox = document.querySelector(".search-box-wrapper");
-    const backToTop = document.getElementById("back-to-top-btn");
+    const backToTop = document.querySelector(".back-to-top-btn");
 
     window.onscroll = () => {
-      window.pageYOffset > 313
+      window.pageYOffset > 321
         ? searchBox.classList.add("lock")
         : searchBox.classList.remove("lock");
 
-      window.pageYOffset > 675
-        ? backToTop.classList.add("show")
-        : backToTop.classList.remove("show");
+      window.pageYOffset > 675 
+        ? backToTop.classList.add("expand")
+        : backToTop.classList.remove("expand");
     };
   }, [comics, years]);
-  // #endregion
 
   const title = "Searchpets! - Search characters and pages from Housepets!";
   let description = `Search through ${totalComicCount} pages and ${totalCharacterCount} characters from a furry comic, Housepets!`;
@@ -129,21 +122,23 @@ export default function Home() {
       <BaseHead title={title} description={description} />
       <Container>
         {/* main */}
-        <HeaderHero characterCount={totalCharacterCount} comicCount={totalComicCount} />
+        <HeaderHero
+          characterCount={totalCharacterCount}
+          comicCount={totalComicCount}
+        />
         {/* Search box */}
-        <div className="search-box-wrapper px-4 relative min-w-full z-10 transition-colors duration-300">
-          <div className="search-box-clamp flex max-w-[800px] mx-auto my-0 relative rounded-md overflow-hidden">
+        <div className="search-box-wrapper">
+          <div className="search-box">
             <input
               type="text"
-              className="w-full border-none text-xl h-16 px-[1.5ex]"
+              className="search-box__input"
               placeholder="Search for characters"
               onChange={onChangeCharacters}
               onKeyDown={(e) => e.key === "Enter" && requestHousepetsData()}
             />
-            <div className="absolute right-4 top-[0.4rem] flex justify-end items-center">
+            <div className="search-actions">
               <button
-                id="back-to-top-btn"
-                className="px-3 pl-4 py-3 rounded-md text-center h-max pointer-events-none opacity-0 translate-x-5 transition-all"
+                className="back-to-top-btn"
                 onClick={() => window.scrollTo(0, 314)}
               >
                 <FontAwesomeIcon
@@ -151,11 +146,10 @@ export default function Home() {
                   size="lg"
                   className="translate-y-[0.20rem]"
                 />
-                <span className="px-2 text-[1.125rem]">Back to top</span>
+                <span className="px-1 text-[1.125rem]">Back to top</span>
               </button>
               <button
-                id="search-btn"
-                className="p-3 px-5 rounded-md h-max"
+                className="search-btn"
                 onClick={requestHousepetsData}
               >
                 <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
@@ -164,20 +158,21 @@ export default function Home() {
           </div>
         </div>
         {/* Year picker */}
-        <div className="year-picker grid gap-2 md:min-w-[50rem] min-w-full">
+        <div className="year-picker">
           {year_list.map((year) => (
-            <YearPickerItem key={year} years={year} onClick={() => ClickedYears(year)} />
+            <YearPickerItem
+              key={year}
+              years={year}
+              onClick={() => ClickedYears(year)}
+            />
           ))}
         </div>
         {/* Search results */}
-        <div className="p-5 max-w-screen-2xl md:max-w-screen-lg">
-          <h2 className="mb-4 text-2xl text-center">
+        <div className="result-container">
+          <h2 className="result-text">
             Showing <strong>{comics.length}</strong> results
           </h2>
-          <div
-            id="result-grid"
-            className="grid gap-4 max-w-screen-md md:max-w-screen-2xl my-0 mx-auto"
-          >
+          <div className="result-grid">
             {comics.map((comic) => {
               return (
                 <ComicItem

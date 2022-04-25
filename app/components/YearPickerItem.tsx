@@ -1,18 +1,14 @@
-interface IYearPickerProps {
-  years: string;
-}
-
-export default function YearPickerItem({ years, ...props }: IYearPickerProps) {
+export default function YearPickerItem({ years, ...props }: any) {
   return (
-    <div className="relative block">
+    <div className="year-picker__item">
       <input
-        className="absolute top-0 invisible"
+        className="year-picker__input"
         type="checkbox"
         id={"year-" + years}
         {...props}
       />
       <label
-        className="block px-5 py-3 shadow-md font-bold rounded-md transition-all duration-300 text-xl text-center h-full w-full bg-slate-800"
+        className="year-picker__label"
         htmlFor={"year-" + years}
       >
         {years}

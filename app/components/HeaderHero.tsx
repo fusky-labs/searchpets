@@ -5,8 +5,8 @@ interface IHeaderHeroProps {
 
 export default function HeaderHero({ characterCount, comicCount}: IHeaderHeroProps) {
   return (
-    <div className="text-center max-w-[900px] p-4 mt-[12vh] mx-0 flex justify-center">
-      <h1 className="text-center max-w-3xl text-3xl">
+    <div className="hero-header-container">
+      <h1 className="hero-header">
         Search through{" "}
         <span
           id="pages-count"

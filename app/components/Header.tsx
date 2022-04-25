@@ -12,7 +12,7 @@ export default function Header() {
         <Link href="/" passHref>
           <a className="text-2xl font-bold">Searchpets</a>
         </Link>
-        <nav className="absolute p-[1.5rem] top-0 right-2 text-lg flex gap-x-4">
+        <nav className="absolute p-[1.5rem] top-0 right-2 text-lg gap-x-4 hidden md:flex">
           <Link href="/">
             <a className={(router.pathname == "/" ? "text-blue-400 font-bold" : "")}>Home</a>
           </Link>

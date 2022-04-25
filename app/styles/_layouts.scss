@@ -1,0 +1,194 @@
+@use 'variables' as *;
+
+body {
+  background: hsla(0, 0%, 14%, 1);
+  color: var(--app-w);
+}
+
+header {
+  background: rgba(27, 55, 76, 0.57);
+  color: var(--app-w);
+}
+
+header,
+footer {
+  .content-wrapper {
+    @apply max-w-[1400px] my-0 mx-auto p-6;
+  }
+}
+
+.styled-link {
+  @apply underline decoration-2 transition-colors duration-150 decoration-blue-500 hover:decoration-blue-300;
+}
+
+.hero-header {
+  &-container {
+    @apply text-center max-w-[900px] p-4 mt-[12vh] mx-0 flex justify-center;
+  }
+
+  @apply text-center max-w-3xl text-3xl;
+}
+
+#pages-count {
+  background: linear-gradient(261.97deg, var(--app-lb), var(--app-db));
+  -webkit-background-clip: text;
+}
+
+#character-count {
+  background: linear-gradient(261.97deg, #da3d3d, #a431b9);
+  -webkit-background-clip: text;
+}
+
+.page {
+
+  &_searchComic-wrapper {
+    @apply select-none mx-auto my-0 max-w-[1400px] p-5 flex flex-col items-center gap-y-8;
+  }
+
+  &_searchChars-wrapper {
+    @apply select-none mx-auto my-0 p-5;
+  }
+}
+
+.search-box-wrapper {
+  @apply px-4 relative min-w-full z-10 transition-colors duration-300;
+
+  &.lock {
+    @apply fixed top-6 max-w-[700px] mx-0 my-auto z-10 pt-8 pb-4 -translate-y-[2.1em];
+    background-color: rgba(14, 14, 14, 0.54);
+
+    .search-box {
+      @apply shadow-md;
+    }
+
+    ~ .year-picker {
+      @apply mt-[95px];
+    }
+  }
+}
+
+.search-box {
+  @apply flex max-w-[800px] mx-auto my-0 relative rounded-md overflow-hidden;
+}
+
+@supports (backdrop-filter: blur(10px)) {
+.search-box-wrapper.lock {
+    backdrop-filter: blur(10px);
+    background-color: rgba(60, 60, 60, 0.44);
+  }
+}
+
+.search-box {
+  background: var(--app-g);
+  > button {
+    background: var(--app-g);
+    transition: background 250ms ease;
+
+    &:hover {
+      background: var(--app-g-hover);
+    }
+  }
+
+  input[type="text"] {
+    transition: all 250ms ease;
+    background: var(--app-g);
+    color: var(--app-w);
+  }
+
+  &:hover,
+  &:focus-within {
+    box-shadow: 0 4px 15px rgba(#000, 33%);
+    
+    input[type="text"] {
+      color: var(--app-w);
+    }
+  }
+
+  &__input {
+    @apply w-full border-none text-xl h-16 px-[1.5ex];
+  }
+}
+
+.back-to-top-btn {
+  @apply px-3 pl-4 py-3 rounded-md text-center h-max pointer-events-none opacity-0 translate-x-5 transition-all;
+
+  &.expand {
+    @apply pointer-events-auto opacity-100 translate-x-0;
+  }
+}
+
+.search-actions {
+  @apply absolute right-4 top-[0.4rem] flex justify-end items-center;
+}
+
+.search-btn {
+  @apply transition-colors duration-150 p-3 px-5 rounded-md h-max;
+}
+
+.back-to-top-btn,
+.search-btn {
+  &:hover {
+    background-color: var(--app-g-hover);
+  }
+}
+
+.year-picker {
+  @apply grid gap-2 md:min-w-[50rem] min-w-full;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+
+  @media only screen and (max-width: 480px) {
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  }
+
+  &__item {
+    @apply relative block;
+  }
+
+  &__input {
+    @apply absolute top-0 invisible;
+  }
+
+  &__label {
+    @apply block px-5 py-3 shadow-md font-bold rounded-md transition-all duration-300  text-xl text-center h-full w-full bg-slate-800 border-none;
+  }
+}
+
+input:checked ~ label {
+  @apply bg-slate-500 relative -translate-y-[0.22rem];
+  box-shadow: 0 0 6px rgba(var(--app-lb), 11%);
+  background-clip: padding-box;
+}
+
+.comic-item {
+  @apply drop-shadow-md rounded-md p-4;
+  background-color: var(--app-g-hover);
+
+  &__title {
+    @apply text-lg text-center italic;
+  }
+
+  &__lower {
+    @apply flex justify-between items-center;
+  }
+
+  &__characters {
+    @apply flex flex-col;
+  }
+
+  &__link {
+    @apply py-[0.25ex] min-w-max font-bold px-1 underline decoration-2 transition-colors duration-150 decoration-blue-500  hover:decoration-blue-300;
+  }
+}
+
+.result-container {
+  @apply p-5 max-w-screen-lg md:max-w-max;
+}
+
+.result-text {
+  @apply mb-4 text-2xl text-center;
+}
+
+.result-grid {
+  @apply grid-cols-1 lg:grid-cols-2 grid gap-4 max-w-screen-md md:max-w-screen-2xl my-0 mx-auto;
+  grid-template-rows: masonry;
+}

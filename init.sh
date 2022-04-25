@@ -13,5 +13,7 @@ pip install -r requirements.txt
 # Generate database
 python3 gen.py
 
-# Start the server
-yarn dev
+# Install Sharp for image loading for production, build, and start the server
+yarn add sharp
+yarn build
+yarn start
