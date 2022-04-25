@@ -15,7 +15,6 @@ export default function Characters() {
       })
   }, [])
 
-
   return (
     <>
       <BaseHead

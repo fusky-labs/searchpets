@@ -23,13 +23,12 @@ export default function ComicItem({
           objectFit="contain"
           width={900}
           height={700}
-          className=""
           />
       </div>
       <div className="flex justify-between">
         <span>{characters}</span>
         <Link href={link} passHref>
-          <a target="_blank" className="py-[0.25ex] px-1 underline decoration-2 transition-colors duration-150 decoration-blue-500  hover:decoration-blue-300">
+          <a target="_blank" className="py-[0.25ex] font-bold px-1 underline decoration-2 transition-colors duration-150 decoration-blue-500  hover:decoration-blue-300">
             Original Link
           </a>
         </Link>
