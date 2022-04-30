@@ -5,9 +5,10 @@ interface ICharacterItemProps {
 }
 
 export default function CharacterItem({ character, appearance, ...props }: ICharacterItemProps) {
+  const characterName = character.replace(/\s+/g, "-").toLowerCase();
   return (
     <div className="bg-white text-black p-4 rounded-md">
-      <span className="text-md md:text-xl">{character}</span>
+      <span id={characterName} className="text-md md:text-xl">{character}</span>
     </div>
   );
 };
