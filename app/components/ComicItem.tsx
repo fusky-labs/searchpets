@@ -27,7 +27,16 @@ export default function ComicItem({
       <div className="comic-item__lower">
         <div className="comic-item__characters">
           <span className="uppercase text-sm">Characters</span>
-          <span>{characters}</span>
+          {
+            characters.split(', ').map((character, index) => {
+              const characterName = character.replace(/\s+/g, '-').toLowerCase();
+              return (
+                <div id={characterName}>
+                  <span>{character}</span>
+                </div>
+              );
+            }
+          )}
         </div>
         <Link href={link} passHref>
           <a target="_blank" className="comic-item__link">
