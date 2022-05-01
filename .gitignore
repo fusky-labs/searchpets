@@ -36,7 +36,6 @@ node_modules
 
 # python and database
 venv
-housepets_db.json
 
 # ssl certs
 *.key

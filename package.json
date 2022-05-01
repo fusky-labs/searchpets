@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A search engine to find your favorite Housepets comic!",
   "scripts": {
-    "dev": "concurrently -n python,next \"npm run dev:next\" \"npm run server\"",
+    "dev": "concurrently -n next,python \"npm run dev:next\" \"npm run server\"",
     "start": "concurrently -n next,python \"npm run start:next\" \"npm run server\"",
     "server": "cd server && python3 app.py",
     "dev:next": "yarn --cwd ./app dev",
@@ -17,9 +17,6 @@
   "devDependencies": {
     "concurrently": "^7.0.0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "sharp": "^0.30.4"
   }
