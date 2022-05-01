@@ -9,15 +9,12 @@ export default function Header() {
   return (
     <header>
       <div className="content-wrapper flex justify-center text-4xl">
-        <Link href="/" passHref>
-          <a className="text-2xl font-bold">Searchpets</a>
-        </Link>
-        <nav className="absolute p-[1.5rem] top-0 right-2 text-lg gap-x-4 hidden md:flex">
+        <nav className="flex text-xl gap-x-4 flex-col md:flex-row">
           <Link href="/">
-            <a className={(router.pathname == "/" ? "text-blue-400 font-bold" : "")}>Home</a>
+            <a className={(router.pathname == "/" ? "text-blue-400 font-bold" : "")}>Searchpets</a>
           </Link>
           <Link href="/characters">
-            <a className={(router.pathname == "/characters" ? "text-blue-400 font-bold" : "")}>Characters</a>
+            <a className={(router.pathname == "/characters" ? "text-blue-400 font-bold" : "")}>Character List</a>
           </Link>
         </nav>
       </div>

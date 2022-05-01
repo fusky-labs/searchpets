@@ -4,7 +4,11 @@
 
 .video-store-clerk,
 .random-people,
-.reporter {
+.reporter,
+.crazy-old-man-who-only-speaks-in-limericks,
+.uncle-reuben,
+.mr\.-dna,
+.news-anchor {
   background: var(--char-person);
 }
 
@@ -12,8 +16,10 @@
   background: var(--char-inanimate);
 }
 
+.\?\?\?,
 .source-of-unspeakable-power {
   background: var(--char-unknown);
+  color: #000;
 }
 
 /************/
@@ -125,3 +131,14 @@
   background: #d1ceee;
   color: #000;
 }
+
+.rufus {
+  background: #a5bbd1;
+  color: #9a4f09;
+}
+
+.coyote {
+  background: #a19491;
+}
+
+.crow { background: #666364;}

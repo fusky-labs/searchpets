@@ -23,10 +23,11 @@ export default function ComicItem({
           height={700}
         />
       </div>
+      <hr className="border-dashed my-3"/>
       <div className="comic-item__lower">
         <div className="comic-item__characters">
-          <span className="uppercase text-sm">Characters</span>
-          <div className="flex gap-x-2 flex-wrap">
+          <span className="uppercase text-sm font-bold text-gray-200">Characters</span>
+          <div className="flex gap-x-1 flex-wrap">
             {characters.split(", ").map((character, i) => {
               const characterName = character
                 .replace(/\s+/g, "-")

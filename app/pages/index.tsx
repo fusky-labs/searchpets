@@ -3,34 +3,47 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import dynamic from "next/dynamic";
-import { ComicItemLoading } from "../components/ComicItem";
+import { ReactNotifications, Store } from "react-notifications-component";
 
+import { ComicItemLoading } from "../components/ComicItem";
 const ComicItem = dynamic(
   () => import("../components/ComicItem"),
   { loading: () => <ComicItemLoading />, ssr: false },
 );
 
-import Container from "../components/Container";
 import BaseHead from "../components/BaseHead";
-
-import { ReactNotifications, Store } from "react-notifications-component";
-import YearPickerItem from "../components/YearPickerItem";
+import Container from "../components/Container";
 import HeaderHero from "../components/HeaderHero";
+import YearPickerItem from "../components/YearPickerItem";
 
 export default function Home() {
-  // #region API
+  // #region Communicating with the Flask server and some UI stuff
   const [comics, setComics] = useState([]);
   const [totalComicCount, setTotalComicCount] = useState(0);
   const [totalCharacterCount, setTotalCharacterCount] = useState(0);
   const [characters, setCharacters] = useState([]);
   const [years, setYears] = useState([]);
-  
+
   let year_list = [
-    "2008","2009","2010","2011","2012","2013","2014","2015",
-    "2016","2017","2018","2019","2020","2021","2022",
+    "2008",
+    "2009",
+    "2010",
+    "2011",
+    "2012",
+    "2013",
+    "2014",
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
   ];
 
-  const onChangeCharacters = (e) => setCharacters(e.target.value.toLowerCase().split(", "));
+  const onChangeCharacters = (e) =>
+    setCharacters(e.target.value.toLowerCase().split(", "));
 
   const requestHousepetsData = () => {
     console.log(`Searching on year ${years}`);
@@ -49,7 +62,7 @@ export default function Home() {
         },
       });
       return;
-    };
+    }
 
     if (characters.join(", ") === "") {
       console.log("No year selected");
@@ -84,7 +97,8 @@ export default function Home() {
       });
   };
 
-  const ClickedYears = (year) => years.includes(year)
+  const ClickedYears = (year) =>
+    years.includes(year)
       ? setYears(years.filter((y) => y !== year))
       : setYears(years.concat(year));
 
@@ -97,7 +111,6 @@ export default function Home() {
         setTotalCharacterCount(res.characters_db_length);
       });
     console.log(years);
-    // #endregion
 
     const searchBox = document.querySelector(".search-box-wrapper");
     const backToTop = document.querySelector(".back-to-top-btn");
@@ -107,7 +120,7 @@ export default function Home() {
         ? searchBox.classList.add("lock")
         : searchBox.classList.remove("lock");
 
-      window.pageYOffset > 675 
+      window.pageYOffset > 675
         ? backToTop.classList.add("expand")
         : backToTop.classList.remove("expand");
     };
@@ -116,8 +129,10 @@ export default function Home() {
   const title = "Searchpets! - Search characters and pages from Housepets!";
   let description = `Search through ${totalComicCount} pages and ${totalCharacterCount} characters from a furry comic, Housepets!`;
 
+  // #endregion
+
   return (
-    <div>
+    <>
       <ReactNotifications />
       <BaseHead title={title} description={description} />
       <Container>
@@ -148,10 +163,7 @@ export default function Home() {
                 />
                 <span className="px-1 text-[1.125rem]">Back to top</span>
               </button>
-              <button
-                className="search-btn"
-                onClick={requestHousepetsData}
-              >
+              <button className="search-btn" onClick={requestHousepetsData}>
                 <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
               </button>
             </div>
@@ -187,6 +199,6 @@ export default function Home() {
           </div>
         </div>
       </Container>
-    </div>
+    </>
   );
 }
