@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import dynamic from "next/dynamic"
 import Container from "../components/Container"
 import BaseHead from "../components/BaseHead"
@@ -17,7 +17,6 @@ export default function Characters() {
       })
   }, [])
 
-  
 
   return (
     <>
@@ -25,6 +24,40 @@ export default function Characters() {
         title="Housepets! Character List"
         description="Browse through the entire catalog of Housepets! characters"
       />
+      <div className="my-0 mx-auto gap-4 max-w-[1440px] px-4 py-1">
+        <h1 className="text-2xl font-bold">Character List</h1>
+        <p>
+          <div className="flex flex-wrap gap-4">
+            <span>Legend:</span>
+            <span
+              id="legend-item"
+              style={
+                { "--legend-clr": "var(--char-person)" } as React.CSSProperties
+              }
+            >
+              People/Non-Anthro characters
+            </span>
+            <span
+              id="legend-item"
+              style={
+                { "--legend-clr": "var(--char-unknown)" } as React.CSSProperties
+              }
+            >
+              Unknown/Unidentified
+            </span>
+            <span
+              id="legend-item"
+              style={
+                {
+                  "--legend-clr": "var(--char-inanimate)",
+                } as React.CSSProperties
+              }
+            >
+              Inanimate objects
+            </span>
+          </div>
+        </p>
+      </div>
       <Container mainClassName="" classNames="page_searchChars-wrapper">
         <div
           className="grid my-0 mx-auto gap-4 max-w-[1440px]"

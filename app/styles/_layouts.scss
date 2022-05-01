@@ -192,3 +192,13 @@ input:checked ~ label {
   @apply grid-cols-1 lg:grid-cols-2 grid gap-4 max-w-screen-md md:max-w-screen-2xl my-0 mx-auto;
   grid-template-rows: masonry;
 }
+
+#legend-item {
+  @apply flex items-center gap-x-1;
+  &::before {
+    content: '';
+    @apply block h-4 w-4 translate-y-[0.1rem];
+    background: var(--legend-clr);
+    border-radius: 50%;
+  }
+}

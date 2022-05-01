@@ -1,9 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
-
 interface IComicItemProps {
-  title?: string;
+  title: string;
   characters: string;
   link: string;
   image: string;
@@ -22,26 +21,28 @@ export default function ComicItem({
           objectFit="contain"
           width={900}
           height={700}
-          />
+        />
       </div>
       <div className="comic-item__lower">
         <div className="comic-item__characters">
           <span className="uppercase text-sm">Characters</span>
-          {
-            characters.split(', ').map((character, index) => {
-              const characterName = character.replace(/\s+/g, '-').toLowerCase();
+          <div className="flex gap-x-2 flex-wrap">
+            {characters.split(", ").map((character, i) => {
+              const characterName = character
+                .replace(/\s+/g, "-")
+                .toLowerCase();
               return (
-                <div id={characterName}>
-                  <span>{character}</span>
-                </div>
+                <span className={`char-inline ${characterName}`} key={i}>
+                  {character}
+                </span>
               );
-            }
-          )}
+            })}
+          </div>
         </div>
         <Link href={link} passHref>
           <a target="_blank" className="comic-item__link">
             Original Link{" "}
-            <FontAwesomeIcon icon={['fas', 'external-link-alt']} size="sm" />
+            <FontAwesomeIcon icon={["fas", "external-link-alt"]} size="sm" />
           </a>
         </Link>
       </div>
