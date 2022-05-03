@@ -14,11 +14,15 @@ with open('housepets_db.json', 'r') as housepets_db_json:
 def update_database():
     while True:
         time.sleep(600)
+        # print the latest comic in the database
+        print(housepets_db[time.strftime("%Y")][-1])
         characters_db = set(housepets_db['characters_db'])
         year = time.strftime("%Y")
         web = req.get(f"https://www.housepetscomic.com/archive/?archive_year={year}")
         soup = BeautifulSoup(web.text, 'html.parser')
         link_tag = soup.find_all('a', {'rel':"bookmark", 'href': re.compile("^https://")})
+
+        comics_db = [] # this will be a list of the comics at this year
         if len(link_tag) > len(housepets_db[year]):
             print("[*]updating database")
             for link in link_tag:
@@ -32,12 +36,15 @@ def update_database():
                     characters_in_comic_tag = characters_in_comic_soup.find_all('a', {'href': re.compile("^https://www\.housepetscomic\.com/character")})
                     for character in characters_in_comic_tag:
                         characters_in_comic.append(character.text)
+                    # the code under this will find the image where there is a tittle and alt
                     comic_image = characters_in_comic_soup.find('img', {'title': True, 'alt': True})
-                    housepets_db[year].append({"title": characters_in_comic_soup.title.text.split(' \u2013 ')[0],
+                    comics_db.append({"title": characters_in_comic_soup.title.text.split(' \u2013 ')[0],
                                             "comic_link": web_link,
                                             "characters": characters_in_comic,
                                             "image": comic_image.get('src')})
                     characters_db.update(characters_in_comic)
+            housepets_db['characters_db'] = list(characters_db) # update the characters db
+            housepets_db[year] = comics_db # update the comics db
             print(housepets_db)
             with open('housepets_db.json', 'w') as housepets_db_json:
                 json.dump(housepets_db, housepets_db_json)
