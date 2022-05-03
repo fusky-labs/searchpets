@@ -8,7 +8,7 @@
     "server": "cd server && python3 app.py",
     "dev:next": "yarn --cwd ./app dev",
     "build": "yarn --cwd ./app lint && yarn --cwd ./app build",
-    "start:next": "yarn --cwd ./app start"
+    "start:next": "yarn --cwd ./app start -p 80"
   },
   "repository": {
     "type": "git",
