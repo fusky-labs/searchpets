@@ -35,7 +35,7 @@ def update_database():
                     characters_in_comic_soup = BeautifulSoup(web_link_page.text, 'html.parser')
                     characters_in_comic_tag = characters_in_comic_soup.find_all('a', {'href': re.compile("^https://www\.housepetscomic\.com/character")})
                     for character in characters_in_comic_tag:
-                        characters_in_comic.append(character.text)
+                        characters_in_comic.append(character.text.lower())
                     # the code under this will find the image where there is a tittle and alt
                     comic_image = characters_in_comic_soup.find('img', {'title': True, 'alt': True})
                     comics_db.append({"title": characters_in_comic_soup.title.text.split(' \u2013 ')[0],
@@ -65,6 +65,8 @@ def test():
         for comic in housepets_db[year]:
             if all(character in comic['characters'] for character in characters):
                 comics.append(comic)
+    print(housepets_db[year])
+    print(comics)
     return jsonify({'comics': comics})
 
 @app.route('/data', methods=['GET'])
