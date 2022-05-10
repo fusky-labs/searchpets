@@ -13,13 +13,13 @@ export default function ComicItem({
 }: IComicItemProps) {
   return (
     <div className="comic-item">
-      <h3 className="comic-item__title">&#34;{title}&#34;</h3>
+      <h3 className="comic-item__title">"{title}"</h3>
       <div className="pointer-events-none">
         <Image
           src={image}
           alt={title}
           objectFit="contain"
-          width={900}
+          width={1000}
           height={700}
         />
       </div>

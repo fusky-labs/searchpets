@@ -13,7 +13,6 @@ export default function Characters() {
       .then((res) => res.json())
       .then((data) => {
         setCharacters(data.characters_db)
-        console.log(data)
       })
   }, [])
 

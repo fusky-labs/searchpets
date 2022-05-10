@@ -6,10 +6,10 @@ import dynamic from "next/dynamic";
 import { ReactNotifications, Store } from "react-notifications-component";
 
 import { ComicItemLoading } from "../components/ComicItem";
-const ComicItem = dynamic(
-  () => import("../components/ComicItem"),
-  { loading: () => <ComicItemLoading />, ssr: false },
-);
+const ComicItem = dynamic(() => import("../components/ComicItem"), {
+  loading: () => <ComicItemLoading />,
+  ssr: false,
+});
 
 import BaseHead from "../components/BaseHead";
 import Container from "../components/Container";
@@ -46,8 +46,8 @@ export default function Home() {
     setCharacters(e.target.value.toLowerCase().split(", "));
 
   const requestHousepetsData = () => {
-    console.log(`Searching on year ${years}`);
-    console.log(characters);
+    console.log(`🚧 DEBUG: Searching on year ${years}`);
+    console.log(`🚧 DEBUG: ${characters}`);
     if (years.length === 0) {
       Store.addNotification({
         title: "No year selected",
@@ -65,7 +65,7 @@ export default function Home() {
     }
 
     if (characters.join(", ") === "") {
-      console.log("No year selected");
+      console.log("🚧 DEBUG: No year selected");
       Store.addNotification({
         title: "Nothing has been outputted",
         message: "Please select a character",
@@ -110,24 +110,36 @@ export default function Home() {
         setTotalComicCount(res.housepets_db_length);
         setTotalCharacterCount(res.characters_db_length);
       });
-    console.log(years);
 
+    console.log(`🚧 DEBUG: ${years}`);
+
+    const heroText = document.querySelector(".hero-header");
     const searchBox = document.querySelector(".search-box-wrapper");
-    const backToTop = document.querySelector(".back-to-top-btn");
 
     window.onscroll = () => {
-      window.pageYOffset > 321
-        ? searchBox.classList.add("lock")
-        : searchBox.classList.remove("lock");
+      // TODO: Write a better if else statement
+      if (heroText.clientHeight == 72) {
+        window.pageYOffset > 327
+          ? searchBox.classList.add("lock")
+          : searchBox.classList.remove("lock")
+      }
 
-      window.pageYOffset > 675
-        ? backToTop.classList.add("expand")
-        : backToTop.classList.remove("expand");
+      if (heroText.clientHeight == 108) {
+        window.pageYOffset > 390
+          ? searchBox.classList.add("lock")
+          : searchBox.classList.remove("lock")
+      }
+
+      if (heroText.clientHeight == 144) {
+        window.pageYOffset > 408
+          ? searchBox.classList.add("lock")
+          : searchBox.classList.remove("lock")
+      }
     };
   }, [comics, years]);
 
   const title = "Searchpets! - Search characters and pages from Housepets!";
-  let description = `Search through ${totalComicCount} pages and ${totalCharacterCount} characters from a furry comic, Housepets!`;
+  let description = `Search through 1900+ pages and 370+ characters from a furry comic, Housepets!`;
 
   // #endregion
 

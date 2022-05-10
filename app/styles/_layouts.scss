@@ -51,10 +51,10 @@ footer {
 }
 
 .search-box-wrapper {
-  @apply px-4 relative min-w-full z-10 transition-colors duration-300;
+  @apply relative min-w-full z-10 transition-colors duration-300;
 
   &.lock {
-    @apply fixed top-6 max-w-[700px] mx-0 my-auto z-10 pt-8 pb-4 -translate-y-[2.1em];
+    @apply fixed top-6 left-0 px-4 max-w-[700px] mx-0 my-auto z-10 pt-8 pb-4 -translate-y-[2.1em];
     background-color: rgba(14, 14, 14, 0.54);
 
     .search-box {
@@ -133,11 +133,11 @@ footer {
 }
 
 .year-picker {
-  @apply grid gap-2 md:min-w-[50rem] min-w-full;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  @apply grid gap-2 sm:max-w-[50rem] min-w-full;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
 
   @media only screen and (max-width: 480px) {
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    grid-template-columns: repeat(auto-fill minmax(180px, 1fr));
   }
 
   &__item {
