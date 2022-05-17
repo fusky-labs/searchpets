@@ -1,17 +1,21 @@
 <h1 align="center">Searchpets</h1>
 
 A "search engine" to find characters from _Housepets!_
-  
-![sp_demo2](https://user-images.githubusercontent.com/94678583/163629497-9f5c4921-5a39-4dfe-8729-e56705efb2f7.gif)
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/94678583/163629497-9f5c4921-5a39-4dfe-8729-e56705efb2f7.gif" alt="Searchpets Dev Demo">
+</p>
 
 ![Searchpets Stack](https://skillicons.dev/icons?i=nextjs,ts,sass,tailwind,py,flask)
 
 Written in Next.js with TypeScript, Tailwind, and Flask.
 
-## Disclaimer
+## Structure
 
-The use of third-party content is heavily transformative, and therefore, subject
-of Fair Use. _Housepets!_ and its story and characters is a trademark of Rick Griffin.
+- `app` - The Next.js app, bootstrapped with Tailwind CSS and Sass
+- `server` - The Python backend, mostly responsible with auto-updaters and stuff
+- `scripts` - For bulk install Pyhton and Node packages and for code formatting
+and linting across Python and JavaScript codebases
 
 ## Installation
 
@@ -53,3 +57,10 @@ npm run dev
 # or yarn
 yarn dev
 ```
+
+## Disclaimer
+
+The use of third-party content is heavily transformative, and therefore, subject
+of Fair Use. _Housepets!_ and its story and characters is a trademark of Rick Griffin.
+
+Licensed under GPT-2.0
