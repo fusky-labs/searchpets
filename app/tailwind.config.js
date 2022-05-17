@@ -6,13 +6,12 @@ module.exports = {
   theme: {
     fontFamily: {
       lato: ['Lato', 'sans-serif'],
-      'noto-sans': ['Noto Sans KR', 'sans-serif'],
-    },
-    borderRadius: {
-      none: '0',
-      full: '50%',
+      'noto-sans': ['Noto Sans', 'sans-serif'],
     },
     extend: {
+      borderRadius: {
+        full: '50%',
+      },
       colors: {
         // Colors for Housepets! characters
         'sp-grape': '#c694c7',

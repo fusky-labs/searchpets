@@ -9,8 +9,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-@for $i from 1 through 5 {
-  h#{$i} {
-    @apply font-noto-sans;
+@layer base {
+  @for $i from 1 through 5 {
+    h#{$i} {
+      @apply font-noto-sans;
+    }
   }
 }
