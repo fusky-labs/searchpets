@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd ..
+
 # Install concurrently lib
 yarn install
 

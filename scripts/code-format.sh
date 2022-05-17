@@ -1,5 +1,6 @@
 #!/bin/bash
 
+cd ..
 # This Bash script keeps the code base clean and consistent
 # by code formatting and linting with our JavaScript and
 # Python codebases.
