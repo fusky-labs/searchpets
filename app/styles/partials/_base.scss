@@ -1,0 +1,16 @@
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  @apply font-lato;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+@for $i from 1 through 5 {
+  h#{$i} {
+    @apply font-noto-sans;
+  }
+}

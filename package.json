@@ -1,6 +1,5 @@
 {
-  "name": "housepets-search-engine",
-  "version": "1.0.0",
+  "name": "searchpets",
   "description": "A search engine to find your favorite Housepets comic!",
   "scripts": {
     "dev": "concurrently -n next,python \"npm run dev:next\" \"npm run server\"",

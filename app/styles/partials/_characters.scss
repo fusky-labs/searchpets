@@ -1,3 +1,5 @@
+// TODO: Needs clean up and refactoring and let Tailwind do the heavy lifting
+
 .char-inline {
   @apply px-[0.55rem] py-[4px] rounded-md text-sm;
 }
@@ -25,11 +27,11 @@
 /************/
 
 .grape {
-  background: hsl(299, 31%, 68%);
+  background: #c694c7;
 }
 
 .peanut {
-  background: hsl(40, 62%, 26%);
+  background: #6b5019;
 }
 
 .king {
@@ -86,7 +88,6 @@
   background: #585e6e;
 }
 
-
 .fox {
   background: var(--char-fox);
 }
@@ -97,13 +98,13 @@
 }
 
 .fido {
-  background: #ddad74;
-  color: #4a3223;
+  background: #ddad74; // sp-pale
+  color: #4a3223; // sp-brown
 }
 
 .kevin {
-  background: #4a3223;
-  color: #ddad74;
+  background: #4a3223; // sp-brown
+  color: #ddad74; // sp-pale
 }
 
 .marion {
