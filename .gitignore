@@ -40,3 +40,5 @@ venv
 # ssl certs
 *.key
 *.crt
+
+housepets_db.json
