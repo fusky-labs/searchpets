@@ -17,7 +17,7 @@ import HeaderHero from "../components/HeaderHero";
 import YearPickerItem from "../components/YearPickerItem";
 
 export const getStaticProps = async () => {
-  const res = await fetch("http://localhost:3000/api/data");
+  const res = await fetch("http://localhost:5000/data");
   const data = await res.json();
   console.log(data)
   return {
