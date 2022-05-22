@@ -15,11 +15,13 @@ import BaseHead from "../components/BaseHead";
 import Container from "../components/Container";
 import HeaderHero from "../components/HeaderHero";
 import YearPickerItem from "../components/YearPickerItem";
+import { GetStaticProps } from "next";
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch("http://localhost:5000/data");
   const data = await res.json();
-  console.log(data)
+  console.log(data);
+
   return {
     props: data
   };
