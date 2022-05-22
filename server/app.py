@@ -85,4 +85,4 @@ if __name__ == '__main__':
     from waitress import serve
     print("[*]starting server")
     print("[*]server is running on port 5000")
-    serve(app, host='0.0.0.0', port=5000)
+    serve(app, host='localhost', port=5000)
