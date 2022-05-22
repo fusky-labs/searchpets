@@ -16,7 +16,16 @@ import Container from "../components/Container";
 import HeaderHero from "../components/HeaderHero";
 import YearPickerItem from "../components/YearPickerItem";
 
-export default function Home() {
+export const getStaticProps = async () => {
+  const res = await fetch("http://localhost:3000/api/data");
+  const data = await res.json();
+  console.log(data)
+  return {
+    props: data
+  };
+}
+
+export default function Home({ housepets_db_length, characters_db_length }) {
   // #region Communicating with the Flask server and some UI stuff
   const [comics, setComics] = useState([]);
   const [totalComicCount, setTotalComicCount] = useState(0);
@@ -103,14 +112,6 @@ export default function Home() {
       : setYears(years.concat(year));
 
   useEffect(() => {
-    fetch("/api/data")
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-        setTotalComicCount(res.housepets_db_length);
-        setTotalCharacterCount(res.characters_db_length);
-      });
-
     console.log(`🚧 DEBUG: ${years}`);
 
     const heroText = document.querySelector(".hero-header");
@@ -150,8 +151,8 @@ export default function Home() {
       <Container>
         {/* main */}
         <HeaderHero
-          characterCount={totalCharacterCount}
-          comicCount={totalComicCount}
+          characterCount={characters_db_length}
+          comicCount={housepets_db_length}
         />
         {/* Search box */}
         <div className="search-box-wrapper">
