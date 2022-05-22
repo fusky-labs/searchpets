@@ -138,7 +138,7 @@ export default function Home({ housepets_db_length, characters_db_length }) {
   }, [comics, years]);
 
   const title = "Searchpets! - Search characters and pages from Housepets!";
-  let description = `Search through 1900+ pages and 370+ characters from a furry comic, Housepets!`;
+  let description = `Search through ${housepets_db_length} pages and ${characters_db_length} characters from a furry comic, Housepets!`;
 
   // #endregion
 
