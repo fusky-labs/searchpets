@@ -28,8 +28,6 @@ export const getStaticProps = async () => {
 export default function Home({ housepets_db_length, characters_db_length }) {
   // #region Communicating with the Flask server and some UI stuff
   const [comics, setComics] = useState([]);
-  const [totalComicCount, setTotalComicCount] = useState(0);
-  const [totalCharacterCount, setTotalCharacterCount] = useState(0);
   const [characters, setCharacters] = useState([]);
   const [years, setYears] = useState([]);
 
