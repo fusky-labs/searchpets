@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # update the repo
 git pull
 
