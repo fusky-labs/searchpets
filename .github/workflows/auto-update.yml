@@ -1,0 +1,31 @@
+name: Auto-updater
+on:
+  push:
+    branches: [main]
+
+  pull_request:
+    branches: [main]
+
+env:
+  FOO: "BAR"
+  BAR: "FOO"
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Execute update script
+        uses: ./
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.NAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /root/searchpets/scripts
+            bash update.sh
