@@ -1,11 +1,12 @@
-import Head from "next/head";
+import Head from "next/head"
 
-interface IBaseHeadProps {
-  title: string;
-  description: string;
-}
-
-export default function BaseHead({ title, description}: IBaseHeadProps) {
+export default function BaseHead({
+  title,
+  description,
+}: {
+  title: string
+  description: string
+}) {
   return (
     <>
       <Head>
@@ -19,9 +20,9 @@ export default function BaseHead({ title, description}: IBaseHeadProps) {
         <meta name="twitter:description" content={description} />
         <meta
           name="keywords"
-          content="housepets, furry, comics, furry comics, animals, animal comic, fursuit"
+          content="housepets, furry, searchpets, cartoon, comics, furry comics, animals, animal comic, fursuit"
         />
       </Head>
     </>
-  );
-};
+  )
+}

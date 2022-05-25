@@ -1,37 +1,36 @@
-import { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import dynamic from "next/dynamic";
-import { ReactNotifications, Store } from "react-notifications-component";
+import { useEffect, useState } from "react"
+import { GetStaticProps } from "next"
+import dynamic from "next/dynamic"
+import { ReactNotifications, Store } from "react-notifications-component"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCaretUp } from "@fortawesome/free-solid-svg-icons"
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
+import { ComicItemLoading } from "../components/ComicItem"
+import BaseHead from "../components/BaseHead"
+import Container from "../components/Container"
+import HeaderHero from "../components/HeaderHero"
+import YearPickerItem from "../components/YearPickerItem"
 
-import { ComicItemLoading } from "../components/ComicItem";
 const ComicItem = dynamic(() => import("../components/ComicItem"), {
   loading: () => <ComicItemLoading />,
   ssr: false,
-});
-
-import BaseHead from "../components/BaseHead";
-import Container from "../components/Container";
-import HeaderHero from "../components/HeaderHero";
-import YearPickerItem from "../components/YearPickerItem";
-import { GetStaticProps } from "next";
+})
 
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch("http://localhost:5000/data");
-  const data = await res.json();
-  console.log(data);
+  const res = await fetch("http://localhost:5000/data")
+  const data = await res.json()
+  console.log(data)
 
   return {
-    props: data
-  };
+    props: data,
+  }
 }
 
 export default function Home({ housepets_db_length, characters_db_length }) {
   // #region Communicating with the Flask server and some UI stuff
-  const [comics, setComics] = useState([]);
-  const [characters, setCharacters] = useState([]);
-  const [years, setYears] = useState([]);
+  const [comics, setComics] = useState([])
+  const [characters, setCharacters] = useState([])
+  const [years, setYears] = useState([])
 
   let year_list = [
     "2008",
@@ -49,14 +48,14 @@ export default function Home({ housepets_db_length, characters_db_length }) {
     "2020",
     "2021",
     "2022",
-  ];
+  ]
 
-  const onChangeCharacters = (e) =>
-    setCharacters(e.target.value.toLowerCase().split(", "));
+  const onChangeCharacters = (e: any) =>
+    setCharacters(e.target.value.toLowerCase().split(", "))
 
   const requestHousepetsData = () => {
-    console.log(`🚧 DEBUG: Searching on year ${years}`);
-    console.log(`🚧 DEBUG: ${characters}`);
+    console.log(`🚧 DEBUG: Searching on year ${years}`)
+    console.log(`🚧 DEBUG: ${characters}`)
     if (years.length === 0) {
       Store.addNotification({
         title: "No year selected",
@@ -69,12 +68,12 @@ export default function Home({ housepets_db_length, characters_db_length }) {
         dismiss: {
           duration: 2000,
         },
-      });
-      return;
+      })
+      return
     }
 
     if (characters.join(", ") === "") {
-      console.log("🚧 DEBUG: No year selected");
+      console.log("🚧 DEBUG: No year selected")
       Store.addNotification({
         title: "Nothing has been outputted",
         message: "Please select a character",
@@ -86,8 +85,8 @@ export default function Home({ housepets_db_length, characters_db_length }) {
         dismiss: {
           duration: 1000,
         },
-      });
-      return;
+      })
+      return
     }
 
     fetch("/api/search", {
@@ -102,23 +101,22 @@ export default function Home({ housepets_db_length, characters_db_length }) {
     })
       .then((res) => res.json())
       .then((res) => {
-        setComics(res.comics);
-      });
-  };
+        setComics(res.comics)
+      })
+  }
 
   const ClickedYears = (year) =>
     years.includes(year)
       ? setYears(years.filter((y) => y !== year))
-      : setYears(years.concat(year));
+      : setYears(years.concat(year))
 
   useEffect(() => {
-    console.log(`🚧 DEBUG: ${years}`);
+    console.log(`🚧 DEBUG: ${years}`)
 
-    const heroText = document.querySelector(".hero-header");
-    const searchBox = document.querySelector(".search-box-wrapper");
+    const heroText = document.querySelector(".hero-header")
+    const searchBox = document.querySelector(".search-box-wrapper")
 
     window.onscroll = () => {
-      // TODO: Write a better if else statement
       if (heroText.clientHeight == 72) {
         window.pageYOffset > 327
           ? searchBox.classList.add("lock")
@@ -136,11 +134,11 @@ export default function Home({ housepets_db_length, characters_db_length }) {
           ? searchBox.classList.add("lock")
           : searchBox.classList.remove("lock")
       }
-    };
-  }, [comics, years]);
+    }
+  }, [comics, years])
 
-  const title = "Searchpets! - Search characters and pages from Housepets!";
-  let description = `Search through ${housepets_db_length} pages and ${characters_db_length} characters from a furry comic, Housepets!`;
+  const title = "Searchpets! - Search characters and pages from Housepets!"
+  let description = `Search through ${housepets_db_length} pages and ${characters_db_length} characters from a furry comic, Housepets!`
 
   // #endregion
 
@@ -183,14 +181,16 @@ export default function Home({ housepets_db_length, characters_db_length }) {
           </div>
         </div>
         {/* Year picker */}
-        <div className="year-picker">
-          {year_list.map((year) => (
-            <YearPickerItem
-              key={year}
-              years={year}
-              onClick={() => ClickedYears(year)}
-            />
-          ))}
+        <div className="year-picker-wrapper">
+          <div className="year-picker">
+            {year_list.map((year) => (
+              <YearPickerItem
+                key={year}
+                years={year}
+                onClick={() => ClickedYears(year)}
+              />
+            ))}
+          </div>
         </div>
         {/* Search results */}
         <div className="result-container">
@@ -207,11 +207,11 @@ export default function Home({ housepets_db_length, characters_db_length }) {
                   title={comic.title}
                   image={comic.image}
                 />
-              );
+              )
             })}
           </div>
         </div>
       </Container>
     </>
-  );
+  )
 }

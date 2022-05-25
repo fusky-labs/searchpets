@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "concurrently -n next,python \"npm run dev:next\" \"npm run server\"",
     "start": "concurrently -n next,python \"npm run start:next\" \"npm run server\"",
+    "generate": "cd server && python3 gen.py",
     "server": "cd server && python3 app.py",
     "dev:next": "yarn --cwd ./app dev",
     "build": "yarn --cwd ./app lint && yarn --cwd ./app build",
