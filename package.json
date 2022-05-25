@@ -16,5 +16,8 @@
   },
   "devDependencies": {
     "concurrently": "^7.0.0"
+  },
+  "dependencies": {
+    "sharp": "^0.30.5"
   }
 }
