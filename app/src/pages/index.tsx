@@ -32,23 +32,17 @@ export default function Home({ housepets_db_length, characters_db_length }) {
   const [characters, setCharacters] = useState([])
   const [years, setYears] = useState([])
 
-  let year_list = [
-    "2008",
-    "2009",
-    "2010",
-    "2011",
-    "2012",
-    "2013",
-    "2014",
-    "2015",
-    "2016",
-    "2017",
-    "2018",
-    "2019",
-    "2020",
-    "2021",
-    "2022",
-  ]
+  // generate a list of years from 2008 to the current year in strings
+  const generateYears = () => {
+    const currentYear = new Date().getFullYear()
+    const years = []
+    for (let i = 2008; i <= currentYear; i++) {
+      years.push(i.toString())
+    }
+    return years
+  }
+
+  const year_list = generateYears()
 
   const onChangeCharacters = (e: any) =>
     setCharacters(e.target.value.toLowerCase().split(", "))
