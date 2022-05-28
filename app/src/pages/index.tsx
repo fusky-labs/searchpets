@@ -110,10 +110,10 @@ export default function Home({ housepets_db_length, characters_db_length }) {
   }, [comics, years])
 
   useEffect(() => {
-    const heroText = document.querySelector(".hero-header")
-    const searchBox = document.querySelector(".search-box-wrapper")
-
     window.onscroll = () => {
+      const heroText = document.querySelector(".hero-header")
+      const searchBox = document.querySelector(".search-box-wrapper")
+
       if (heroText.clientHeight === 72) {
         window.pageYOffset > 327
           ? searchBox.classList.add("lock")
