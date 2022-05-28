@@ -62,10 +62,12 @@ def test():
     characters = request.json['characters']
     comics = []
     for year in years:
-        for comic in housepets_db[year]:
-            if all(character in comic['characters'] for character in characters):
-                comics.append(comic)
-    print(housepets_db[year])
+        # check if the year is a key in the database
+        if year in housepets_db:
+            print(f'[*]{year} is a valid year')
+            for comic in housepets_db[year]:
+                if all(character in comic['characters'] for character in characters):
+                    comics.append(comic)
     print(comics)
     return jsonify({'comics': comics})
 
