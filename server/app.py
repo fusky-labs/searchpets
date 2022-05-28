@@ -45,10 +45,10 @@ def update_database():
             housepets_db[year] = comics_db # update the comics db
             with open('housepets_db.json', 'w') as housepets_db_json:
                 json.dump(housepets_db, housepets_db_json)
-            print("[*]database updated")
+            print("[*] Database updated!")
         else:
-            print("[*]database is up to date")
-    
+            print("[*] Database is currently up to date!")
+
 threading.Thread(target=update_database).start()
 
 app = Flask(__name__)
@@ -66,7 +66,7 @@ def test():
             for comic in housepets_db[year]:
                 if all(character in comic['characters'] for character in characters):
                     comics.append(comic)
-    print(f"[*]{len(comics)} comics found")
+    print(f"[*] {len(comics)} comics found")
     return jsonify({'comics': comics})
 
 @app.route('/data', methods=['GET'])
@@ -83,6 +83,6 @@ def characters():
 
 if __name__ == '__main__':
     from waitress import serve
-    print("[*]starting server")
-    print("[*]server is running on port 5000")
+    print("[*] Starting server...")
+    print("[*] Server running on port 5000.")
     serve(app, host='localhost', port=5000)
