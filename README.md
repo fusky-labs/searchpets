@@ -36,7 +36,8 @@ yarn
 ```
 
 - Go back to root project directory and cd into the `server` folder and
-install all the Python libraries
+install all the Python libraries and generate the database locally from
+your computer
 
 ```sh
 # cd into the 'server' folder
@@ -44,6 +45,9 @@ cd server
 
 # Install required Python libraries
 pip install -r requirements.txt
+
+# Run update.py to generate Housepets database
+python update.py
 ```
 
 - Go back to root project directory once again and run both servers with
@@ -67,4 +71,4 @@ of Fair Use. _Housepets!_ and its story and characters is a trademark of Rick Gr
 
 ## License
 
-GPT-2.0.
+GPT-2.0
