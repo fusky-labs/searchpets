@@ -1,5 +1,9 @@
 <h1 align="center">Searchpets</h1>
 
+![](https://img.shields.io/github/license/OpenFurs/searchpets?style=flat)
+![](https://img.shields.io/github/issues/OpenFurs/searchpets?style=flat)
+![](https://img.shields.io/github/commit-activity/w/OpenFurs/searchpets?style=flat)
+
 Searchpets is an open source search engine to find characters and texts from comics (coming soon) from _Housepets!_ written in Next.js with TypeScript, Tailwind, and Flask.
 
 This project was taken inspiration from this [forum post](https://www.housepetscomic.com/forums/viewtopic.php?f=13&t=5434&p=938783&hilit=search+engine#p938783).
