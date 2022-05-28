@@ -7,7 +7,7 @@
     "generate": "cd server && python3 gen.py",
     "server": "cd server && python3 app.py",
     "dev:next": "yarn --cwd ./app dev",
-    "build": "yarn --cwd ./app lint && yarn --cwd ./app build",
+    "build": "yarn --cwd ./app lint && concurrently -n next,python \"yarn --cwd ./app build\" \"yarn server\" && exit 0",
     "start:next": "yarn --cwd ./app start -p 80"
   },
   "repository": {

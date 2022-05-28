@@ -48,8 +48,9 @@ export default function Home({ housepets_db_length, characters_db_length }) {
     setCharacters(e.target.value.toLowerCase().split(", "))
 
   const requestHousepetsData = () => {
-    console.log(`🚧 DEBUG: Searching on year ${years}`)
-    console.log(`🚧 DEBUG: ${characters}`)
+    console.info(`🚧 DEBUG: Searching on year ${years}`)
+    console.info(`🚧 DEBUG: ${characters}`)
+
     if (years.length === 0) {
       Store.addNotification({
         title: "No year selected",
@@ -105,31 +106,33 @@ export default function Home({ housepets_db_length, characters_db_length }) {
       : setYears(years.concat(year))
 
   useEffect(() => {
-    console.log(`🚧 DEBUG: ${years}`)
+    console.info(`🚧 DEBUG: ${years}`)
+  }, [comics, years])
 
+  useEffect(() => {
     const heroText = document.querySelector(".hero-header")
     const searchBox = document.querySelector(".search-box-wrapper")
 
     window.onscroll = () => {
-      if (heroText.clientHeight == 72) {
+      if (heroText.clientHeight === 72) {
         window.pageYOffset > 327
           ? searchBox.classList.add("lock")
           : searchBox.classList.remove("lock")
       }
 
-      if (heroText.clientHeight == 108) {
+      if (heroText.clientHeight === 108) {
         window.pageYOffset > 390
           ? searchBox.classList.add("lock")
           : searchBox.classList.remove("lock")
       }
 
-      if (heroText.clientHeight == 144) {
+      if (heroText.clientHeight === 144) {
         window.pageYOffset > 408
           ? searchBox.classList.add("lock")
           : searchBox.classList.remove("lock")
       }
     }
-  }, [comics, years])
+  }, [])
 
   const title = "Searchpets! - Search characters and pages from Housepets!"
   let description = `Search through ${housepets_db_length} pages and ${characters_db_length} characters from a furry comic, Housepets!`
