@@ -1,16 +1,18 @@
 <h1 align="center">Searchpets</h1>
 
-A "search engine" to find characters from _Housepets!_
+Searchpets is an open source search engine to find characters and texts from comics (coming soon) from _Housepets!_ written in Next.js with TypeScript, Tailwind, and Flask.
+
+This project was taken inspiration from this [forum post](https://www.housepetscomic.com/forums/viewtopic.php?f=13&t=5434&p=938783&hilit=search+engine#p938783).
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/94678583/163629497-9f5c4921-5a39-4dfe-8729-e56705efb2f7.gif" alt="Searchpets Dev Demo">
 </p>
 
-![Searchpets Stack](https://skillicons.dev/icons?i=nextjs,ts,sass,tailwind,py,flask)
 
-Written in Next.js with TypeScript, Tailwind, and Flask.
 
-## Structure
+
+
+## Project structure
 
 - `app` - The Next.js app, bootstrapped with Tailwind CSS and Sass
 - `server` - The Python backend, mostly responsible with auto-updaters and stuff
@@ -63,4 +65,6 @@ yarn dev
 The use of third-party content is heavily transformative, and therefore, subject
 of Fair Use. _Housepets!_ and its story and characters is a trademark of Rick Griffin.
 
-Licensed under GPT-2.0
+## License
+
+GPT-2.0.
