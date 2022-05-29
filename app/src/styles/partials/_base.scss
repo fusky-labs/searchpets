@@ -3,13 +3,13 @@ html {
 }
 
 body {
-  @apply font-lato;
+  @apply font-open-sans;
 }
 
 @layer base {
   @for $i from 1 through 6 {
     h#{$i} {
-      @apply font-noto-sans;
+      @apply font-montserrat;
     }
   }
 }

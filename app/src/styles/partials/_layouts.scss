@@ -24,7 +24,7 @@ footer {
     @apply text-center max-w-[900px] p-4 mt-[12vh] mx-0 flex justify-center;
   }
 
-  @apply text-center max-w-3xl text-3xl;
+  @apply text-center max-w-3xl text-3xl font-open-sans;
 }
 
 #pages-count {
@@ -38,7 +38,6 @@ footer {
 }
 
 .page {
-
   &_searchComic-wrapper {
     @apply select-none mx-auto my-0 max-w-[1400px] p-5 flex flex-col items-center gap-y-8;
   }
@@ -70,7 +69,7 @@ footer {
 }
 
 @supports (backdrop-filter: blur(10px)) {
-.search-box-wrapper.lock {
+  .search-box-wrapper.lock {
     backdrop-filter: blur(10px);
     background-color: rgba(60, 60, 60, 0.44);
   }
@@ -194,8 +193,36 @@ input:checked ~ label {
   @apply flex items-center gap-x-1;
 
   &::before {
-    content: '';
+    content: "";
     @apply block h-4 w-4 translate-y-[0.1rem] rounded-full;
     background: var(--legend-clr);
+  }
+}
+
+.profile-showcase {
+  @apply flex flex-col md:flex-row justify-center my-5 gap-6;
+}
+
+.profile-info {
+  @apply flex flex-col items-center gap-y-2 p-4 rounded-md transition-colors duration-200;
+
+  img {
+    @apply w-[10rem] rounded-full border-4 p-[0.25rem] transition-all duration-200;
+  }
+
+  h3 {
+    @apply text-xl font-bold;
+  }
+
+  span {
+    @apply text-base px-2 py-1 bg-opacity-40 rounded-md;
+  }
+
+  &:hover {
+    @apply bg-slate-700;
+
+    img {
+      @apply border-0 p-0;
+    }
   }
 }

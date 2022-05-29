@@ -5,8 +5,8 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      lato: ['Lato', 'sans-serif'],
-      'noto-sans': ['Noto Sans', 'sans-serif'],
+      'open-sans': ['Open Sans', 'sans-serif'],
+      'montserrat': ['Montserrat', 'sans-serif'],
     },
     extend: {
       borderRadius: {
