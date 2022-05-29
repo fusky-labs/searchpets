@@ -12,10 +12,6 @@ This project was taken inspiration from this [forum post](https://www.housepetsc
   <img src="https://user-images.githubusercontent.com/94678583/163629497-9f5c4921-5a39-4dfe-8729-e56705efb2f7.gif" alt="Searchpets Dev Demo">
 </p>
 
-
-
-
-
 ## Project structure
 
 - `app` - The Next.js app, bootstrapped with Tailwind CSS and Sass
@@ -23,50 +19,32 @@ This project was taken inspiration from this [forum post](https://www.housepetsc
 - `scripts` - For bulk install Pyhton and Node packages and for code formatting
 and linting across Python and JavaScript codebases
 
-## Installation
+## Running the app locally
 
-- Fork or clone the repo locally
-- cd into the `app` folder and install with npm or yarn
+### Prerequisites
 
-```sh
-# cd into the 'app' folder
-cd app
+- Node.js 12 or higher (LTS recommended)
+- Python 3.9 or higher
+- Git Bash or WSL (for Windows only, required to execute Bash scripts)
+- Yarn Package Manager (npm can still be used but we strongly recommend using
+- yarn!)
 
-# Install with npm
-npm i
+### Installation
 
-# or yarn
-yarn
+The installation was complicated and will be automated via Bash script.
+To install all the required Node and Python libraries, execute the `setup.sh`
+file.
+
+```console
+sh setup.sh
 ```
 
-- Go back to root project directory and cd into the `server` folder and
-install all the Python libraries and generate the database locally from
-your computer
+Once all the libraries have been installed, it will execute `gen.py` to
+generate a JSON file containing Housepets! data.
 
-```sh
-# cd into the 'server' folder
-cd server
-
-# Install required Python libraries
-pip install -r requirements.txt
-
-# Run update.py to generate Housepets database
-python update.py
-```
-
-- Go back to root project directory once again and run both servers with
-`npm run dev` or `yarn dev`
-
-```sh
-# Go back to project root
-cd ..
-
-# Run local dev server with npm
-npm run dev
-
-# or yarn
-yarn dev
-```
+Once it's finished, simply run `yarn dev` or `npm run dev` to
+concurrently start both Node and Python servers. Press `Ctrl+C` twice
+to exit both running servers.
 
 ## Disclaimer
 
