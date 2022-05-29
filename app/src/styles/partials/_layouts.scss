@@ -23,6 +23,28 @@ footer {
   @apply underline decoration-2 transition-colors duration-150 decoration-blue-500 hover:decoration-blue-300;
 }
 
+.back-to-top-btn {
+  @apply pointer-events-none opacity-0 translate-y-2 fixed bottom-0 right-0 m-7 px-5 py-4 z-40 bg-blue-600 hover:bg-blue-700 text-white rounded-md shadow-lg transition-all duration-200 ease-in-out;
+
+  &.show {
+    @apply pointer-events-auto opacity-100 translate-y-0;
+  }
+}
+
+#circle-loader {
+  @apply h-[3.75rem] w-[3.75rem] rounded-full border-8 relative z-40 border-blue-800 border-t-blue-600;
+  animation: circle-loader-animation 1s infinite linear;
+}
+
+@keyframes circle-loader-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /*** Header stuff ***/
 .header-nav {
   @apply flex text-lg gap-x-1 flex-col md:flex-row;
@@ -166,11 +188,16 @@ input:checked ~ label {
 }
 
 .comic-item {
-  @apply drop-shadow-md rounded-md p-4;
-  background-color: var(--app-g-hover);
+  @apply drop-shadow-md rounded-md p-3;
+  background-color: mix(white, black, 27%);
+  // background-color: var(--app-g-hover);
 
   &__title {
     @apply text-lg text-center italic;
+  }
+
+  &__img {
+    @apply relative pointer-events-none;
   }
 
   &__lower {

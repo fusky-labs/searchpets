@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, Suspense } from "react"
 import dynamic from "next/dynamic"
 import Container from "../components/Container"
 import BaseHead from "../components/BaseHead"
@@ -59,16 +59,18 @@ export default function Characters() {
         </p>
       </div>
       <Container mainClassName="" classNames="page_searchChars-wrapper">
-        <div
-          className="grid my-0 mx-auto gap-4 max-w-[1440px]"
-          style={{
-            gridTemplateColumns: "repeat(auto-fill, minmax(360px, 1fr))",
-          }}
-        >
-          {characters.sort().map((character) => {
-            return <CharacterItem character={character} key="character" />;
-          })}
-        </div>
+        <Suspense fallback={<p>Loading</p>}>
+          <div
+            className="grid my-0 mx-auto gap-4 max-w-[1440px]"
+            style={{
+              gridTemplateColumns: "repeat(auto-fill, minmax(360px, 1fr))",
+            }}
+          >
+            {characters.sort().map((character) => {
+              return <CharacterItem character={character} key="character" />;
+            })}
+          </div>
+        </Suspense>
       </Container>
     </>
   );
