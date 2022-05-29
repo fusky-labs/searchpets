@@ -1,8 +1,16 @@
 import Link from "next/link"
+import BaseHead from "../components/BaseHead"
 
 export default function AboutPage() {
   return (
     <>
+      <BaseHead
+        title="About"
+        description="Searchpets is an open source project created by two web
+            developers from Southeast Asia. The initial idea was to create a
+            website that searches comics from an ongoing furry web comic
+            Housepets! created by Rick Griffin"
+      />
       <div className="my-0 mx-auto gap-4 max-w-[1366px] px-4 py-1">
         <article className="text-lg text-center">
           <h1 className="text-3xl font-bold w-full text-center mt-5">
