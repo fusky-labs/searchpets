@@ -32,6 +32,23 @@ export default function Home({ housepets_db_length, characters_db_length }) {
   const [characters, setCharacters] = useState([])
   const [years, setYears] = useState([])
 
+  // load the data from localstorage
+  useEffect(() => {
+    const comics = localStorage.getItem("comics")
+    const characters = localStorage.getItem("characters")
+    const years = localStorage.getItem("years")
+
+    if (comics) {
+      setComics(JSON.parse(comics))
+    }
+    if (characters) {
+      setCharacters(characters.split(", "))
+    }
+    if (years) {
+      setYears(years.split(", "))
+    }
+  }, [])
+
   // generate a list of years from 2008 to the current year in strings
   const generateYears = () => {
     const currentYear = new Date().getFullYear()
@@ -44,9 +61,13 @@ export default function Home({ housepets_db_length, characters_db_length }) {
 
   const year_list = generateYears()
 
-  const onChangeCharacters = (e: any) =>
+  const onChangeCharacters = (e: any) =>{
     setCharacters(e.target.value.toLowerCase().split(", "))
-
+    console.log(e.target.value.toLowerCase())
+    // were storing the characters in localstorage as a string
+    localStorage.setItem("characters", e.target.value.toLowerCase())
+  }
+  
   const requestHousepetsData = () => {
     console.info(`🚧 DEBUG: Searching on year ${years}`)
     console.info(`🚧 DEBUG: ${characters}`)
@@ -97,6 +118,7 @@ export default function Home({ housepets_db_length, characters_db_length }) {
       .then((res) => res.json())
       .then((res) => {
         setComics(res.comics)
+        localStorage.setItem("comics", JSON.stringify(res.comics))
       })
   }
 
@@ -107,6 +129,7 @@ export default function Home({ housepets_db_length, characters_db_length }) {
 
   useEffect(() => {
     console.info(`🚧 DEBUG: ${years}`)
+    localStorage.setItem("years", years.join(","))
   }, [comics, years])
 
   useEffect(() => {
@@ -158,6 +181,7 @@ export default function Home({ housepets_db_length, characters_db_length }) {
               placeholder="Search for characters"
               onChange={onChangeCharacters}
               onKeyDown={(e) => e.key === "Enter" && requestHousepetsData()}
+              value={characters}
             />
             <div className="search-actions">
               <button
