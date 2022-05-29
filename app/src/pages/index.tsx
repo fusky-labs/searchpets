@@ -201,7 +201,7 @@ export default function Home({ housepets_db_length, characters_db_length }) {
               placeholder="Search for characters"
               onChange={onChangeCharacters}
               onKeyDown={(e) => e.key === "Enter" && requestHousepetsData()}
-              value={characters}
+              value={characters.join(", ")}
             />
             <div className="flex items-center pr-3">
               <button className="search-btn" onClick={requestHousepetsData}>
