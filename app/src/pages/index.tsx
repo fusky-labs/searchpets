@@ -140,6 +140,12 @@ export default function Home({ housepets_db_length, characters_db_length }) {
   useEffect(() => {
     console.info(`🚧 DEBUG: ${years}`)
     localStorage.setItem("years", years.join(","))
+    // if the comic list is empty, make sure to hide the clear button
+    if (comics.length === 0) {
+      document.getElementById("clear-btn").style.display = "none"
+    } else {
+      document.getElementById("clear-btn").style.display = "block"
+    }
   }, [comics, years])
 
   useEffect(() => {
@@ -214,7 +220,8 @@ export default function Home({ housepets_db_length, characters_db_length }) {
           </div>
           <div className="flex justify-center mt-4">
             <button
-              className="my-0 mx-auto px-4 py-2 shadow-md rounded-md bg-red-500 hover:bg-red-700 transition-colors duration-200"
+              id="clear-btn"
+              className="my-0 mx-auto px-4 py-2 shadow-md rounded-md bg-blue-500 hover:bg-blue-700 transition-colors duration-200"
               onClick={() => {
                 setComics([])
                 localStorage.removeItem("comics")
