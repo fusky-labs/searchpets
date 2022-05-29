@@ -1,13 +1,18 @@
-<h1 align="center">Searchpets</h1>
-
-![](https://img.shields.io/github/license/OpenFurs/searchpets?style=flat)
-![](https://img.shields.io/github/issues/OpenFurs/searchpets?style=flat)
-![](https://img.shields.io/github/commit-activity/w/OpenFurs/searchpets?style=flat)
-
-Searchpets is an open source search engine to find characters and texts from comics (coming soon) from _Housepets!_ written in Next.js with TypeScript, Tailwind, and Flask.
-
-This project was taken inspiration from this [forum post](https://www.housepetscomic.com/forums/viewtopic.php?f=13&t=5434&p=938783&hilit=search+engine#p938783).
-
+<h1 align="center">
+  <img width="128" alt="searchpets-peanut-transparent" src="https://user-images.githubusercontent.com/94678583/170873665-9d07cb32-abb9-45b6-8aea-8e361da84bd7.png">
+  <br>
+  Searchpets
+</h1>
+<p align="center">
+  <img src="https://img.shields.io/github/license/OpenFurs/searchpets?style=flat"  alt="GPL 2.0 License"/>
+  <img src="https://img.shields.io/github/issues/OpenFurs/searchpets?style=flat" alt="Searchpets' open issues" />
+</p>
+<p align="center">
+Searchpets is an open source search engine to find characters and texts from comics (coming soon) from <i>Housepets!</i> written in Next.js with TypeScript, Sass, TailwindCSS, Python, and Flask.
+</p>
+<p align="center">
+This project was taken inspiration from this <a href="https://www.housepetscomic.com/forums/viewtopic.php?f=13&t=5434&p=938783&hilit=search+engine#p938783">forum post</a>.
+</p>
 <p align="center">
   <img src="https://user-images.githubusercontent.com/94678583/163629497-9f5c4921-5a39-4dfe-8729-e56705efb2f7.gif" alt="Searchpets Dev Demo">
 </p>
@@ -27,7 +32,7 @@ and linting across Python and JavaScript codebases
 - Python 3.9 or higher
 - Git Bash or WSL (for Windows only, required to execute Bash scripts)
 - Yarn Package Manager (npm can still be used but we strongly recommend using
-- yarn!)
+yarn!)
 
 ### Installation
 
