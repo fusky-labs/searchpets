@@ -35,7 +35,7 @@ export default function Footer() {
           </section>
           <div className="flex sm:flex-col flex-row items-start justify-center gap-4 sm:gap-0">
             <h2 className="text-xl font-bold hidden sm:block">Links</h2>
-            <Link href="https://github.com/OpenFurs/searchpets" passHref>
+            <Link href="https://housepetscomic.com" passHref>
               <a
                 rel="noreferrer"
                 target="_blank"
