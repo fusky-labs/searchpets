@@ -31,8 +31,9 @@ export default function ComicItem({
           <div className="flex gap-x-1 flex-wrap">
             {characters.split(", ").map((character, i) => {
               const characterName = character
-                .replace(/\s+/g, "-")
-                .toLowerCase();
+                .replace(/(\s)|(\')/g, "-")
+                .replace(/(\()|(\))|(\.)/g, "")
+                .toLowerCase()
               return (
                 <span className={`char-inline ${characterName}`} key={i}>
                   {character}
