@@ -192,18 +192,7 @@ export default function Home({ housepets_db_length, characters_db_length }) {
               onKeyDown={(e) => e.key === "Enter" && requestHousepetsData()}
               value={characters}
             />
-            <div className="search-actions">
-              <button
-                className="back-to-top-btn"
-                onClick={() => window.scrollTo(0, 314)}
-              >
-                <FontAwesomeIcon
-                  icon={faCaretUp}
-                  size="lg"
-                  className="translate-y-[0.20rem]"
-                />
-                <span className="px-1 text-[1.125rem]">Back to top</span>
-              </button>
+            <div className="flex items-center pr-3">
               <button className="search-btn" onClick={requestHousepetsData}>
                 <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
               </button>
