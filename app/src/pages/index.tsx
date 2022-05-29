@@ -3,7 +3,7 @@ import { GetStaticProps } from "next"
 import dynamic from "next/dynamic"
 import { ReactNotifications, Store } from "react-notifications-component"
 import { FontAwesomeIcon as FaIcon } from "@fortawesome/react-fontawesome"
-import { faTimes } from "@fortawesome/free-solid-svg-icons"
+import { faCaretUp, faTimes } from "@fortawesome/free-solid-svg-icons"
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 import { ComicItemLoading } from "../components/ComicItem"
 import BaseHead from "../components/BaseHead"
@@ -201,7 +201,7 @@ export default function Home({ housepets_db_length, characters_db_length }) {
               placeholder="Search for characters"
               onChange={onChangeCharacters}
               onKeyDown={(e) => e.key === "Enter" && requestHousepetsData()}
-              value={characters}
+              value={characters.join(", ")}
             />
             <div className="flex items-center pr-3">
               <button className="search-btn" onClick={requestHousepetsData}>
