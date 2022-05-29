@@ -10,6 +10,7 @@ import BaseHead from "../components/BaseHead"
 import Container from "../components/Container"
 import HeaderHero from "../components/HeaderHero"
 import YearPickerItem from "../components/YearPickerItem"
+import BackToTopButton from "../components/BackToTop"
 
 const ComicItem = dynamic(() => import("../components/ComicItem"), {
   loading: () => <ComicItemLoading />,
@@ -74,7 +75,7 @@ export default function Home({ housepets_db_length, characters_db_length }) {
     // were storing the characters in localstorage as a string
     localStorage.setItem("characters", e.target.value.toLowerCase())
   }
-  
+
   const requestHousepetsData = () => {
     console.info(`🚧 DEBUG: Searching on year ${years}`)
     console.info(`🚧 DEBUG: ${characters}`)
@@ -171,8 +172,9 @@ export default function Home({ housepets_db_length, characters_db_length }) {
 
   return (
     <>
-      <ReactNotifications />
       <BaseHead title={title} description={description} />
+      <ReactNotifications />
+      <BackToTopButton />
       <Container>
         {/* main */}
         <HeaderHero

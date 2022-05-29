@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import dynamic from "next/dynamic"
 import Container from "../components/Container"
 import BaseHead from "../components/BaseHead"
+import BackToTopButton from "../components/BackToTop"
 
 const CharacterItem = dynamic(() => import("../components/CharacterItem"))
 
@@ -22,6 +23,7 @@ export default function Characters() {
         title="Housepets! Character List"
         description="Browse through the entire catalog of Housepets! characters"
       />
+      <BackToTopButton />
       <div className="my-0 mx-auto gap-4 max-w-[1440px] px-4 py-1">
         <h1 className="text-2xl font-bold">Character List</h1>
         <p>
