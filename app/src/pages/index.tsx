@@ -215,7 +215,10 @@ export default function Home({ housepets_db_length, characters_db_length }) {
           <div className="flex justify-center mt-4">
             <button
               className="my-0 mx-auto px-4 py-2 shadow-md rounded-md bg-red-500 hover:bg-red-700 transition-colors duration-200"
-              onClick={() => {alert("trigger event")}}
+              onClick={() => {
+                setComics([])
+                localStorage.removeItem("comics")
+              }}
             >
               <FaIcon icon={faTimes} className="mr-2" />
               Clear results
