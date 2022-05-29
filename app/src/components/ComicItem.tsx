@@ -1,3 +1,4 @@
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -43,7 +44,7 @@ export default function ComicItem({
         <Link href={link} passHref>
           <a target="_blank" className="comic-item__link">
             Original Link{" "}
-            <FontAwesomeIcon icon={["fas", "external-link-alt"]} size="sm" />
+            <FontAwesomeIcon icon={faExternalLinkAlt} size="sm" />
           </a>
         </Link>
       </div>

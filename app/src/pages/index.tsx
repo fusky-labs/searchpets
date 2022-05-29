@@ -166,7 +166,7 @@ export default function Home({ housepets_db_length, characters_db_length }) {
   }, [])
 
   const title = "Searchpets! - Search characters and pages from Housepets!"
-  let description = `Search through ${housepets_db_length} pages and ${characters_db_length} characters from a furry comic, Housepets!`
+  let description = `Search through ${housepets_db_length} pages and ${characters_db_length} characters from the entire Housepets! comic catalog!`
 
   // #endregion
 
