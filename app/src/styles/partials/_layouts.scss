@@ -131,7 +131,7 @@ footer {
 }
 
 .year-picker {
-  @apply grid gap-2 sm:max-w-[50rem] min-w-full;
+  @apply grid gap-2 sm:max-w-[55rem] min-w-full;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
 
   @media only screen and (max-width: 480px) {

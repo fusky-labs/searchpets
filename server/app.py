@@ -14,8 +14,6 @@ with open('housepets_db.json', 'r') as housepets_db_json:
 def update_database():
     while True:
         time.sleep(600)
-        # print the latest comic in the database
-        print(housepets_db[time.strftime("%Y")][-1])
         characters_db = set(housepets_db['characters_db'])
         year = time.strftime("%Y")
         web = req.get(f"https://www.housepetscomic.com/archive/?archive_year={year}")
@@ -45,12 +43,12 @@ def update_database():
                     characters_db.update(characters_in_comic)
             housepets_db['characters_db'] = list(characters_db) # update the characters db
             housepets_db[year] = comics_db # update the comics db
-            print(housepets_db)
             with open('housepets_db.json', 'w') as housepets_db_json:
                 json.dump(housepets_db, housepets_db_json)
+            print("[*] Database updated!")
         else:
-            print("* database is up to date")
-    
+            print("[*] Database is currently up to date!")
+
 threading.Thread(target=update_database).start()
 
 app = Flask(__name__)
@@ -68,7 +66,7 @@ def test():
             for comic in housepets_db[year]:
                 if all(character in comic['characters'] for character in characters):
                     comics.append(comic)
-    print(comics)
+    print(f"[*] {len(comics)} comics found")
     return jsonify({'comics': comics})
 
 @app.route('/data', methods=['GET'])
@@ -85,6 +83,6 @@ def characters():
 
 if __name__ == '__main__':
     from waitress import serve
-    print("[*]starting server")
-    print("[*]server is running on port 5000")
+    print("[*] Starting server...")
+    print("[*] Server running on port 5000.")
     serve(app, host='localhost', port=5000)

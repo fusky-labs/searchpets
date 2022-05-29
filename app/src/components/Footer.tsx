@@ -10,11 +10,6 @@ export default function Footer() {
         <hr className="my-5" />
         <div className="flex justify-center text-center sm:text-inherit sm:justify-between flex-col sm:flex-row">
           <section className="text-neutral-400 w-full sm:w-[50%] text-sm text-center sm:text-left">
-            <p className="mb-[0.55rem]">
-              The use of third-party content falls under Fair Use.{" "}
-              <i>Housepets!</i> and its characters and story is a trademark of
-              Rick Griffin. All rights reserved.
-            </p>
             <p>
               A full stack web app created with Next.js and Flask by{" "}
               <Link href="https://twitter.com/skepfuskyjs" passHref>
@@ -31,6 +26,11 @@ export default function Footer() {
                 </a>
               </Link>
               .
+            </p>
+            <p className="mt-[0.55rem]">
+              The use of third-party content falls under Fair Use.{" "}
+              <i>Housepets!</i> and its characters and story is a trademark of
+              Rick Griffin. All rights reserved.
             </p>
           </section>
           <div className="flex sm:flex-col flex-row items-start justify-center gap-4 sm:gap-0">
@@ -67,5 +67,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )
 }
