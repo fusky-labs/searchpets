@@ -46,6 +46,13 @@ export default function Home({ housepets_db_length, characters_db_length }) {
     }
     if (years) {
       setYears(years.split(", "))
+      // for every yearpicker item, check if it's checked
+      years.split(", ").forEach((year) => {
+        const year_id = document.getElementById(`year-${year}`) as HTMLInputElement
+        if (year_id) {
+          year_id.checked = true
+        }
+      })
     }
   }, [])
 
