@@ -2,8 +2,8 @@ import { useEffect, useState } from "react"
 import { GetStaticProps } from "next"
 import dynamic from "next/dynamic"
 import { ReactNotifications, Store } from "react-notifications-component"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCaretUp } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon as FaIcon } from "@fortawesome/react-fontawesome"
+import { faCaretUp, faTimes } from "@fortawesome/free-solid-svg-icons"
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 import { ComicItemLoading } from "../components/ComicItem"
 import BaseHead from "../components/BaseHead"
@@ -49,7 +49,9 @@ export default function Home({ housepets_db_length, characters_db_length }) {
       setYears(years.split(", "))
       // for every yearpicker item, check if it's checked
       years.split(", ").forEach((year) => {
-        const year_id = document.getElementById(`year-${year}`) as HTMLInputElement
+        const year_id = document.getElementById(
+          `year-${year}`
+        ) as HTMLInputElement
         if (year_id) {
           year_id.checked = true
         }
@@ -69,7 +71,7 @@ export default function Home({ housepets_db_length, characters_db_length }) {
 
   const year_list = generateYears()
 
-  const onChangeCharacters = (e: any) =>{
+  const onChangeCharacters = (e: any) => {
     setCharacters(e.target.value.toLowerCase().split(", "))
     console.log(e.target.value.toLowerCase())
     // were storing the characters in localstorage as a string
@@ -194,7 +196,7 @@ export default function Home({ housepets_db_length, characters_db_length }) {
             />
             <div className="flex items-center pr-3">
               <button className="search-btn" onClick={requestHousepetsData}>
-                <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
+                <FaIcon icon={faMagnifyingGlass} size="lg" />
               </button>
             </div>
           </div>
@@ -209,6 +211,15 @@ export default function Home({ housepets_db_length, characters_db_length }) {
                 onClick={() => ClickedYears(year)}
               />
             ))}
+          </div>
+          <div className="flex justify-center mt-4">
+            <button
+              className="my-0 mx-auto px-4 py-2 shadow-md rounded-md bg-red-500 hover:bg-red-700 transition-colors duration-200"
+              onClick={() => {alert("trigger event")}}
+            >
+              <FaIcon icon={faTimes} className="mr-2" />
+              Clear results
+            </button>
           </div>
         </div>
         {/* Search results */}
