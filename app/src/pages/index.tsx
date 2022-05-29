@@ -140,11 +140,14 @@ export default function Home({ housepets_db_length, characters_db_length }) {
   useEffect(() => {
     console.info(`🚧 DEBUG: ${years}`)
     localStorage.setItem("years", years.join(","))
+
     // if the comic list is empty, make sure to hide the clear button
+    const resultText = document.querySelector(".result-text")
+
     if (comics.length === 0) {
-      document.getElementById("clear-btn").style.display = "none"
+      resultText.classList.add("hidden")
     } else {
-      document.getElementById("clear-btn").style.display = "block"
+      resultText.classList.remove("hidden")
     }
   }, [comics, years])
 
@@ -218,10 +221,15 @@ export default function Home({ housepets_db_length, characters_db_length }) {
               />
             ))}
           </div>
-          <div className="flex justify-center mt-4">
+        </div>
+        {/* Search results */}
+        <div className="result-container">
+          <div className="result-text">
+            <h2>
+              Showing <strong>{comics.length}</strong> results
+            </h2>
             <button
               id="clear-btn"
-              className="my-0 mx-auto px-4 py-2 shadow-md rounded-md bg-blue-500 hover:bg-blue-700 transition-colors duration-200"
               onClick={() => {
                 setComics([])
                 localStorage.removeItem("comics")
@@ -231,12 +239,6 @@ export default function Home({ housepets_db_length, characters_db_length }) {
               Clear results
             </button>
           </div>
-        </div>
-        {/* Search results */}
-        <div className="result-container">
-          <h2 className="result-text">
-            Showing <strong>{comics.length}</strong> results
-          </h2>
           <div className="result-grid">
             {comics.map((comic) => {
               return (

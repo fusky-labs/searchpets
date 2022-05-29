@@ -186,16 +186,22 @@ input:checked ~ label {
   }
 }
 
-.result-container {
-  @apply p-5 max-w-screen-lg md:max-w-max;
+.result {
+  &-container {
+    @apply p-5 max-w-screen-lg md:max-w-max;
+  }
+
+  &-text {
+    @apply mb-4 text-2xl text-center gap-x-2 flex justify-center items-center border-t-2 border-dashed border-gray-400 pt-5;
+  }
+
+  &-grid {
+    @apply grid-cols-1 lg:grid-cols-2 grid gap-4 max-w-screen-md md:max-w-screen-2xl my-0 mx-auto;
+  }
 }
 
-.result-text {
-  @apply mb-4 text-2xl text-center;
-}
-
-.result-grid {
-  @apply grid-cols-1 lg:grid-cols-2 grid gap-4 max-w-screen-md md:max-w-screen-2xl my-0 mx-auto;
+#clear-btn {
+  @apply text-base px-3 py-1 shadow-md rounded-md bg-blue-500 hover:bg-blue-700 transition-colors duration-200;
 }
 
 #legend-item {
