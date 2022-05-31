@@ -46,9 +46,9 @@ export default function Home({ housepets_db_length, characters_db_length }) {
       setCharacters(characters.split(", "))
     }
     if (years) {
-      setYears(years.split(", "))
+      setYears(years.split(","))
       // for every yearpicker item, check if it's checked
-      years.split(", ").forEach((year) => {
+      years.split(",").forEach((year) => {
         const year_id = document.getElementById(
           `year-${year}`
         ) as HTMLInputElement
