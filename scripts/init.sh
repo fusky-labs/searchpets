@@ -8,12 +8,12 @@ yarn install
 # Install the Next app
 yarn --cwd ./app install
 
-# Install python backend
+# Install Python backend
 cd server
 pip install -r requirements.txt
 
 # Generate database
-python3 gen.py
+python gen.py
 
 yarn build
 yarn start
