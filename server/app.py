@@ -62,7 +62,7 @@ def test():
     for year in years:
         # check if the year is a key in the database
         if year in housepets_db:
-            print(f'[*]{year} is a valid year')
+            print(f'[*] {year} is a valid year')
             for comic in housepets_db[year]:
                 if all(character in comic['characters'] for character in characters):
                     comics.append(comic)
