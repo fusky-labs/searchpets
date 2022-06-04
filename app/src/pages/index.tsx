@@ -2,14 +2,15 @@ import { useEffect, useState } from "react"
 import { GetStaticProps } from "next"
 import dynamic from "next/dynamic"
 import { ReactNotifications, Store } from "react-notifications-component"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCaretUp } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon as FaIcon } from "@fortawesome/react-fontawesome"
+import { faTimes } from "@fortawesome/free-solid-svg-icons"
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 import { ComicItemLoading } from "../components/ComicItem"
 import BaseHead from "../components/BaseHead"
 import Container from "../components/Container"
 import HeaderHero from "../components/HeaderHero"
 import YearPickerItem from "../components/YearPickerItem"
+import BackToTopButton from "../components/BackToTop"
 
 const ComicItem = dynamic(() => import("../components/ComicItem"), {
   loading: () => <ComicItemLoading />,
@@ -26,7 +27,7 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-export default function Home({ housepets_db_length, characters_db_length }) {
+export default function Home({ comicCount, charCount }) {
   // #region Communicating with the Flask server and some UI stuff
   const [comics, setComics] = useState([])
   const [characters, setCharacters] = useState([])
@@ -45,10 +46,12 @@ export default function Home({ housepets_db_length, characters_db_length }) {
       setCharacters(characters.split(", "))
     }
     if (years) {
-      setYears(years.split(", "))
+      setYears(years.split(","))
       // for every yearpicker item, check if it's checked
-      years.split(", ").forEach((year) => {
-        const year_id = document.getElementById(`year-${year}`) as HTMLInputElement
+      years.split(",").forEach((year) => {
+        const year_id = document.getElementById(
+          `year-${year}`
+        ) as HTMLInputElement
         if (year_id) {
           year_id.checked = true
         }
@@ -68,13 +71,13 @@ export default function Home({ housepets_db_length, characters_db_length }) {
 
   const year_list = generateYears()
 
-  const onChangeCharacters = (e: any) =>{
+  const onChangeCharacters = (e: any) => {
     setCharacters(e.target.value.toLowerCase().split(", "))
     console.log(e.target.value.toLowerCase())
     // were storing the characters in localstorage as a string
     localStorage.setItem("characters", e.target.value.toLowerCase())
   }
-  
+
   const requestHousepetsData = () => {
     console.info(`🚧 DEBUG: Searching on year ${years}`)
     console.info(`🚧 DEBUG: ${characters}`)
@@ -137,6 +140,15 @@ export default function Home({ housepets_db_length, characters_db_length }) {
   useEffect(() => {
     console.info(`🚧 DEBUG: ${years}`)
     localStorage.setItem("years", years.join(","))
+
+    // if the comic list is empty, make sure to hide the clear button
+    const resultText = document.querySelector(".result-text")
+
+    if (comics.length === 0) {
+      resultText.classList.add("hidden")
+    } else {
+      resultText.classList.remove("hidden")
+    }
   }, [comics, years])
 
   useEffect(() => {
@@ -164,20 +176,21 @@ export default function Home({ housepets_db_length, characters_db_length }) {
     }
   }, [])
 
-  const title = "Searchpets! - Search characters and pages from Housepets!"
-  let description = `Search through ${housepets_db_length} pages and ${characters_db_length} characters from a furry comic, Housepets!`
+  const title = "Search characters and texts from Housepets!"
+  let description = `Search through ${comicCount} pages and ${charCount} characters from the entire Housepets! comic catalog!`
 
   // #endregion
 
   return (
     <>
-      <ReactNotifications />
       <BaseHead title={title} description={description} />
+      <ReactNotifications />
+      <BackToTopButton />
       <Container>
         {/* main */}
         <HeaderHero
-          characterCount={characters_db_length}
-          comicCount={housepets_db_length}
+          characterCount={charCount}
+          comicCount={comicCount}
         />
         {/* Search box */}
         <div className="search-box-wrapper">
@@ -188,22 +201,11 @@ export default function Home({ housepets_db_length, characters_db_length }) {
               placeholder="Search for characters"
               onChange={onChangeCharacters}
               onKeyDown={(e) => e.key === "Enter" && requestHousepetsData()}
-              value={characters}
+              value={characters.join(", ")}
             />
-            <div className="search-actions">
-              <button
-                className="back-to-top-btn"
-                onClick={() => window.scrollTo(0, 314)}
-              >
-                <FontAwesomeIcon
-                  icon={faCaretUp}
-                  size="lg"
-                  className="translate-y-[0.20rem]"
-                />
-                <span className="px-1 text-[1.125rem]">Back to top</span>
-              </button>
+            <div className="flex items-center pr-3">
               <button className="search-btn" onClick={requestHousepetsData}>
-                <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
+                <FaIcon icon={faMagnifyingGlass} size="lg" />
               </button>
             </div>
           </div>
@@ -222,9 +224,21 @@ export default function Home({ housepets_db_length, characters_db_length }) {
         </div>
         {/* Search results */}
         <div className="result-container">
-          <h2 className="result-text">
-            Showing <strong>{comics.length}</strong> results
-          </h2>
+          <div className="result-text">
+            <h2>
+              Showing <strong>{comics.length}</strong> results
+            </h2>
+            <button
+              id="clear-btn"
+              onClick={() => {
+                setComics([])
+                localStorage.removeItem("comics")
+              }}
+            >
+              <FaIcon icon={faTimes} className="mr-2" />
+              Clear results
+            </button>
+          </div>
           <div className="result-grid">
             {comics.map((comic) => {
               return (

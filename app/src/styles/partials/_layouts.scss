@@ -11,20 +11,66 @@ header {
 header,
 footer {
   .content-wrapper {
-    @apply max-w-[1400px] my-0 mx-auto p-6;
+    @apply max-w-[1400px] my-0 mx-auto p-5;
   }
 }
+
+/*********
+ * COMPONENTS
+ *********/
 
 .styled-link {
   @apply underline decoration-2 transition-colors duration-150 decoration-blue-500 hover:decoration-blue-300;
 }
+
+.back-to-top-btn {
+  @apply pointer-events-none opacity-0 translate-y-2 fixed bottom-0 right-0 m-7 px-5 py-4 z-40 bg-blue-600 hover:bg-blue-700 text-white rounded-md shadow-lg transition-all duration-200 ease-in-out;
+
+  &.show {
+    @apply pointer-events-auto opacity-100 translate-y-0;
+  }
+}
+
+#circle-loader {
+  @apply h-[3.75rem] w-[3.75rem] rounded-full border-8 relative z-40 border-blue-800 border-t-blue-600;
+  animation: circle-loader-animation 1s infinite linear;
+}
+
+@keyframes circle-loader-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*** Header stuff ***/
+.header-nav {
+  @apply flex text-lg gap-x-1 flex-col md:flex-row;
+  a {
+    @apply px-3 py-2 rounded-md transition-colors duration-100;
+
+    &:hover {
+      @apply bg-slate-400 bg-opacity-30;
+    }
+  }
+}
+
+.active {
+  @apply text-blue-400;
+}
+
+/*********
+ * MAIN CONTENT
+ *********/
 
 .hero-header {
   &-container {
     @apply text-center max-w-[900px] p-4 mt-[12vh] mx-0 flex justify-center;
   }
 
-  @apply text-center max-w-3xl text-3xl;
+  @apply text-center max-w-3xl text-3xl font-open-sans;
 }
 
 #pages-count {
@@ -38,7 +84,6 @@ footer {
 }
 
 .page {
-
   &_searchComic-wrapper {
     @apply select-none mx-auto my-0 max-w-[1400px] p-5 flex flex-col items-center gap-y-8;
   }
@@ -70,7 +115,7 @@ footer {
 }
 
 @supports (backdrop-filter: blur(10px)) {
-.search-box-wrapper.lock {
+  .search-box-wrapper.lock {
     backdrop-filter: blur(10px);
     background-color: rgba(60, 60, 60, 0.44);
   }
@@ -107,24 +152,9 @@ footer {
   }
 }
 
-.back-to-top-btn {
-  @apply px-3 pl-4 py-3 rounded-md text-center h-max pointer-events-none opacity-0 translate-x-5 transition-all;
-
-  &.expand {
-    @apply pointer-events-auto opacity-100 translate-x-0;
-  }
-}
-
-.search-actions {
-  @apply absolute right-4 top-[0.4rem] flex justify-end items-center;
-}
-
 .search-btn {
   @apply transition-colors duration-150 p-3 px-5 rounded-md h-max;
-}
 
-.back-to-top-btn,
-.search-btn {
   &:hover {
     background-color: var(--app-g-hover);
   }
@@ -158,11 +188,16 @@ input:checked ~ label {
 }
 
 .comic-item {
-  @apply drop-shadow-md rounded-md p-4;
-  background-color: var(--app-g-hover);
+  @apply drop-shadow-md rounded-md p-3;
+  background-color: mix(white, black, 27%);
+  // background-color: var(--app-g-hover);
 
   &__title {
     @apply text-lg text-center italic;
+  }
+
+  &__img {
+    @apply relative pointer-events-none;
   }
 
   &__lower {
@@ -178,24 +213,62 @@ input:checked ~ label {
   }
 }
 
-.result-container {
-  @apply p-5 max-w-screen-lg md:max-w-max;
+.result {
+  &-container {
+    @apply p-5 max-w-screen-lg md:max-w-max;
+  }
+
+  &-text {
+    @apply mb-4 text-2xl text-center gap-x-2 flex justify-center items-center border-t-2 border-dashed border-gray-400 pt-5;
+  }
+
+  &-grid {
+    @apply grid-cols-1 lg:grid-cols-2 grid gap-4 max-w-screen-md md:max-w-screen-2xl my-0 mx-auto;
+  }
 }
 
-.result-text {
-  @apply mb-4 text-2xl text-center;
-}
-
-.result-grid {
-  @apply grid-cols-1 lg:grid-cols-2 grid gap-4 max-w-screen-md md:max-w-screen-2xl my-0 mx-auto;
+#clear-btn {
+  @apply text-base px-3 py-1 shadow-md rounded-md bg-blue-500 hover:bg-blue-700 transition-colors duration-200;
 }
 
 #legend-item {
   @apply flex items-center gap-x-1;
 
   &::before {
-    content: '';
+    content: "";
     @apply block h-4 w-4 translate-y-[0.1rem] rounded-full;
     background: var(--legend-clr);
+  }
+}
+
+/*********
+ * ABOUT PAGE
+ *********/
+
+.profile-showcase {
+  @apply flex flex-col md:flex-row justify-center my-5 gap-6;
+}
+
+.profile-info {
+  @apply flex flex-col items-center gap-y-2 p-4 rounded-md transition-colors duration-200;
+
+  img {
+    @apply w-[10rem] rounded-full border-4 p-[0.25rem] transition-all duration-200;
+  }
+
+  h3 {
+    @apply text-xl font-bold;
+  }
+
+  span {
+    @apply text-base px-2 py-1 bg-opacity-40 rounded-md;
+  }
+
+  &:hover {
+    @apply bg-slate-700;
+
+    img {
+      @apply border-0 p-0;
+    }
   }
 }

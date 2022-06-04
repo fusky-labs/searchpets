@@ -1,72 +1,67 @@
-<h1 align="center">Searchpets</h1>
-
-![](https://img.shields.io/github/license/OpenFurs/searchpets?style=flat)
-![](https://img.shields.io/github/issues/OpenFurs/searchpets?style=flat)
-![](https://img.shields.io/github/commit-activity/w/OpenFurs/searchpets?style=flat)
-
-Searchpets is an open source search engine to find characters and texts from comics (coming soon) from _Housepets!_ written in Next.js with TypeScript, Tailwind, and Flask.
-
-This project was taken inspiration from this [forum post](https://www.housepetscomic.com/forums/viewtopic.php?f=13&t=5434&p=938783&hilit=search+engine#p938783).
-
+<h1 align="center">
+  <img width="128" alt="searchpets-peanut-transparent" src="https://user-images.githubusercontent.com/94678583/170873665-9d07cb32-abb9-45b6-8aea-8e361da84bd7.png">
+  <br>
+  Searchpets
+</h1>
+<p align="center">
+  <img src="https://img.shields.io/github/license/OpenFurs/searchpets?style=flat"  alt="GPL 2.0 License"/>
+  <img src="https://img.shields.io/github/issues/OpenFurs/searchpets?style=flat" alt="Searchpets' open issues" />
+</p>
+<p align="center">
+Searchpets is an open source search engine to find characters and texts from comics (coming soon) from <i>Housepets!</i> written in Next.js and Flask.
+</p>
+<p align="center">
+This project was taken inspiration from this <a href="https://www.housepetscomic.com/forums/viewtopic.php?f=13&t=5434&p=938783&hilit=search+engine#p938783">forum post</a>.
+</p>
 <p align="center">
   <img src="https://user-images.githubusercontent.com/94678583/163629497-9f5c4921-5a39-4dfe-8729-e56705efb2f7.gif" alt="Searchpets Dev Demo">
 </p>
 
+## Tech stack
 
+![Searchpets Stack](https://skillicons.dev/icons?i=react,nextjs,ts,js,sass,tailwind,py,flask,cloudflare)
 
+The front-end is written in a React framework, Next.js + TypeScript;
+with Tailwind CSS and Sass as CSS painkillers. For the back-end, it's powered
+with Python with the lightweight web framework, Flask.
 
+The website is currently being hosted from a custom Linode server and
+delivered through the interwebs with CloudFlare.
 
 ## Project structure
 
-- `app` - The Next.js app, bootstrapped with Tailwind CSS and Sass
-- `server` - The Python backend, mostly responsible with auto-updaters and stuff
-- `scripts` - For bulk install Pyhton and Node packages and for code formatting
-and linting across Python and JavaScript codebases
+- `app` - Next.js app, bootstrapped with Tailwind CSS and Sass
+- `server` - Python backend, mostly responsible with auto-updaters and gathering
+Housepets database
+- `scripts` - Automated Bash scripts to bulk install Python and Node packages and
+for deployment from the server
 
-## Installation
+## Running the app locally
 
-- Fork or clone the repo locally
-- cd into the `app` folder and install with npm or yarn
+### Prerequisites
 
-```sh
-# cd into the 'app' folder
-cd app
+- Node.js 14 or higher (LTS recommended)
+- Python 3.9 or higher
+- Git Bash or WSL (for Windows only, required to execute Bash scripts)
+- Yarn Package Manager (npm can still be used but we strongly recommend using
+yarn!)
 
-# Install with npm
-npm i
+### Installation
 
-# or yarn
-yarn
+The installation was complicated and will be automated via Bash script.
+To install all the required Node and Python libraries, execute the `setup.sh`
+file.
+
+```console
+sh scripts/setup.sh
 ```
 
-- Go back to root project directory and cd into the `server` folder and
-install all the Python libraries and generate the database locally from
-your computer
+Once all the libraries have been installed, it will execute `gen.py` to
+generate a JSON file containing Housepets! data. (This will take a while!)
 
-```sh
-# cd into the 'server' folder
-cd server
-
-# Install required Python libraries
-pip install -r requirements.txt
-
-# Run update.py to generate Housepets database
-python update.py
-```
-
-- Go back to root project directory once again and run both servers with
-`npm run dev` or `yarn dev`
-
-```sh
-# Go back to project root
-cd ..
-
-# Run local dev server with npm
-npm run dev
-
-# or yarn
-yarn dev
-```
+Once it's finished, simply run `yarn dev` or `npm run dev` to
+concurrently start both Node and Python servers. Press `Ctrl+C` twice
+to exit both running servers.
 
 ## Disclaimer
 

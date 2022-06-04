@@ -21,7 +21,7 @@ export default function HeaderHero({ characterCount, comicCount}: IHeaderHeroPro
         >
           {characterCount}
         </span>{" "}
-        characters from your favorite furry comic!
+        characters from the entire <em>Housepets!</em> comic catalog!
       </h1>
     </div>
   );
