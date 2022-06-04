@@ -13,7 +13,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-notifications-component": "^3.4.1",
-    "sharp": "^0.30.4"
+    "sharp": "^0.30.5"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
