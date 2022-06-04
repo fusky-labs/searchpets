@@ -27,7 +27,7 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-export default function Home({ housepets_db_length, characters_db_length }) {
+export default function Home({ comicCount, charCount }) {
   // #region Communicating with the Flask server and some UI stuff
   const [comics, setComics] = useState([])
   const [characters, setCharacters] = useState([])
@@ -177,7 +177,7 @@ export default function Home({ housepets_db_length, characters_db_length }) {
   }, [])
 
   const title = "Search characters and texts from Housepets!"
-  let description = `Search through ${housepets_db_length} pages and ${characters_db_length} characters from the entire Housepets! comic catalog!`
+  let description = `Search through ${comicCount} pages and ${charCount} characters from the entire Housepets! comic catalog!`
 
   // #endregion
 
@@ -189,8 +189,8 @@ export default function Home({ housepets_db_length, characters_db_length }) {
       <Container>
         {/* main */}
         <HeaderHero
-          characterCount={characters_db_length}
-          comicCount={housepets_db_length}
+          characterCount={charCount}
+          comicCount={comicCount}
         />
         {/* Search box */}
         <div className="search-box-wrapper">
