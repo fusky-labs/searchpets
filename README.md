@@ -40,7 +40,7 @@ for deployment from the server
 
 ### Prerequisites
 
-- Node.js 12 or higher (LTS recommended)
+- Node.js 14 or higher (LTS recommended)
 - Python 3.9 or higher
 - Git Bash or WSL (for Windows only, required to execute Bash scripts)
 - Yarn Package Manager (npm can still be used but we strongly recommend using
@@ -53,11 +53,11 @@ To install all the required Node and Python libraries, execute the `setup.sh`
 file.
 
 ```console
-sh setup.sh
+sh scripts/setup.sh
 ```
 
 Once all the libraries have been installed, it will execute `gen.py` to
-generate a JSON file containing Housepets! data.
+generate a JSON file containing Housepets! data. (This will take a while!)
 
 Once it's finished, simply run `yarn dev` or `npm run dev` to
 concurrently start both Node and Python servers. Press `Ctrl+C` twice
