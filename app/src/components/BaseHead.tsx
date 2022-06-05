@@ -18,13 +18,13 @@ export default function BaseHead({
           {SITE_TITLE} | {title}
         </title>
         <meta name="description" content={description} />
-        <meta name="og:type" content="website" />
-        <meta name="og:site_name" content={SITE_TITLE} />
-        <meta name="og:title" content={`${SITE_TITLE} | ${title}`} />
-        <meta name="og:description" content={description} />
-        <meta name="og:image" content="/static/Searchpets-Peanut.png" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={SITE_TITLE} />
+        <meta property="og:title" content={`${SITE_TITLE} | ${title}`} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content="/static/Searchpets-Peanut.png" />
         <meta
-          name="og:url"
+          property="og:url"
           content={`https://searchpets.xyz${router.asPath}`}
         />
         <meta name="twitter:card" content="summary" />

@@ -1,4 +1,4 @@
-export default function YearPickerItem({ years, ...props }: any) {
+export default function YearPickerItem({ years, ...props }: { years: string }) {
   return (
     <div className="year-picker__item">
       <input
@@ -7,12 +7,9 @@ export default function YearPickerItem({ years, ...props }: any) {
         id={"year-" + years}
         {...props}
       />
-      <label
-        className="year-picker__label"
-        htmlFor={"year-" + years}
-      >
+      <label className="year-picker__label" htmlFor={"year-" + years}>
         {years}
       </label>
     </div>
-  );
-};
+  )
+}
