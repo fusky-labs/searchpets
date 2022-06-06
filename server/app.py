@@ -20,9 +20,10 @@ def update_database():
         soup = BeautifulSoup(web.text, 'html.parser')
         link_tag = soup.find_all('a', {'rel':"bookmark", 'href': re.compile("^https://")})
 
-        comics_db = [] # this will be a list of the comics at this year
+        comics_db = []
+
         if len(link_tag) > len(housepets_db[year]):
-            print("[*]updating database")
+            print("[*] Updating database...")
             for link in link_tag:
                 web_link = link.get('href')
                 web_link_page = req.get(web_link)
@@ -46,6 +47,7 @@ def update_database():
             with open('housepets_db.json', 'w') as housepets_db_json:
                 json.dump(housepets_db, housepets_db_json)
             print("[*] Database updated!")
+
         else:
             print("[*] Database is currently up to date!")
 
