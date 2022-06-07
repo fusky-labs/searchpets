@@ -20,7 +20,7 @@ const ComicItem = dynamic(() => import("../components/ComicItem"), {
 export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch("http://localhost:5000/data")
   const data = await res.json()
-  console.log(data)
+  // console.log(data)
 
   return {
     props: data,
@@ -141,14 +141,18 @@ export default function Home({ comicCount, charCount }) {
     console.info(`🚧 DEBUG: ${years}`)
     localStorage.setItem("years", years.join(","))
 
-    // if the comic list is empty, make sure to hide the clear button
-    const resultText = document.querySelector(".result-text")
+    const resultText: any = document.querySelector(".result-container")
+    const heroMargin: any = document.querySelector(".hero-header-container")
 
-    if (comics.length === 0) {
-      resultText.classList.add("hidden")
-    } else {
+    if (comics.length !== 0) {
       resultText.classList.remove("hidden")
+      heroMargin.style.marginTop = "1vh"
+      heroMargin.style.display = "none"
+      return
     }
+    resultText.classList.add("hidden")
+    heroMargin.style.marginTop = "12vh"
+    heroMargin.style.display = "flex"
   }, [comics, years])
 
   useEffect(() => {
@@ -188,10 +192,7 @@ export default function Home({ comicCount, charCount }) {
       <BackToTopButton />
       <Container>
         {/* main */}
-        <HeaderHero
-          characterCount={charCount}
-          comicCount={comicCount}
-        />
+        <HeaderHero characterCount={charCount} comicCount={comicCount} />
         {/* Search box */}
         <div className="search-box-wrapper">
           <div className="search-box">

@@ -1,4 +1,4 @@
-export default function YearPickerItem({ years, ...props }: { years: string }) {
+export default function YearPickerItem({ years, ...props }: any) {
   return (
     <div className="year-picker__item">
       <input
