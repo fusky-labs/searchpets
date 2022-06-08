@@ -2,12 +2,11 @@
   "name": "searchpets",
   "description": "A search engine to find your favorite Housepets comic!",
   "scripts": {
-    "dev": "concurrently -n next,python \"npm run dev:next\" \"npm run server\"",
-    "start": "concurrently -n next,python \"npm run start:next\" \"npm run server\"",
-    "generate": "cd server && python3 gen.py",
+    "dev": "concurrently -n next,python -k \"npm run dev:next\" \"npm run server\"",
+    "build": "concurrently -n next,python -k \"yarn --cwd ./app build\" \"yarn server\"",
+    "start": "concurrently -n next,python -k \"npm run start:next\" \"npm run server\"",
     "server": "cd server && python3 app.py",
     "dev:next": "yarn --cwd ./app dev",
-    "build": "yarn --cwd ./app lint && concurrently --kill-others -n next,python \"yarn --cwd ./app build\" \"yarn server\" ",
     "start:next": "yarn --cwd ./app start -p 80"
   },
   "repository": {
