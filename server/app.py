@@ -7,6 +7,8 @@ import time
 import requests as req
 from bs4 import BeautifulSoup
 import re
+import uvicorn
+from fastapi import FastAPI
 
 with open('housepets_db.json', 'r') as housepets_db_json:
     housepets_db = json.load(housepets_db_json)
