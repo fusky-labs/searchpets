@@ -32,6 +32,9 @@ export default function Footer() {
               <i>Housepets!</i> and its characters and story is a trademark of
               Rick Griffin. All rights reserved.
             </p>
+            <p className="mt-[0.55rem]">
+              Updated June 2022
+            </p>
           </section>
           <div className="flex sm:flex-col flex-row items-start justify-center gap-4 sm:gap-0">
             <h2 className="text-xl font-bold hidden sm:block">Links</h2>

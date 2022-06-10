@@ -1,4 +1,8 @@
 module.exports = {
+  experiemental: {
+    // Remove unused Tailwind variables
+    optimizeUniversalDefaults: true,
+  },
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}",

@@ -32,9 +32,9 @@ delivered through the interwebs with CloudFlare.
 
 - `app` - Next.js app, bootstrapped with Tailwind CSS and Sass
 - `server` - Python backend, mostly responsible with auto-updaters and gathering
-Housepets database
+  Housepets database
 - `scripts` - Automated Bash scripts to bulk install Python and Node packages and
-for deployment from the server
+  for deployment from the server
 
 ## Running the app locally
 
@@ -44,7 +44,7 @@ for deployment from the server
 - Python 3.9 or higher
 - Git Bash or WSL (for Windows only, required to execute Bash scripts)
 - Yarn Package Manager (npm can still be used but we strongly recommend using
-yarn!)
+  yarn!)
 
 ### Installation
 
@@ -60,8 +60,7 @@ Once all the libraries have been installed, it will execute `gen.py` to
 generate a JSON file containing Housepets! data. (This will take a while!)
 
 Once it's finished, simply run `yarn dev` or `npm run dev` to
-concurrently start both Node and Python servers. Press `Ctrl+C` twice
-to exit both running servers.
+concurrently start both Node and Python servers.
 
 ## Disclaimer
 

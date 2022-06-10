@@ -17,6 +17,14 @@ export default function Characters() {
       })
   }, [])
 
+  const isServer = typeof window === "undefined" // ! This is most likely the cause of that hydration UI error
+
+  const fallback = (
+    <div className="my-0 mx-auto gap-4 max-w-[1440px]">
+      <p>Loading...</p>
+    </div>
+  )
+
   return (
     <>
       <BaseHead
@@ -59,19 +67,23 @@ export default function Characters() {
         </p>
       </div>
       <Container mainClassName="" classNames="page_searchChars-wrapper">
-        <Suspense fallback={<p>Loading</p>}>
-          <div
-            className="grid my-0 mx-auto gap-4 max-w-[1440px]"
-            style={{
-              gridTemplateColumns: "repeat(auto-fill, minmax(360px, 1fr))",
-            }}
-          >
-            {characters.sort().map((character) => {
-              return <CharacterItem character={character} key="character" />;
-            })}
-          </div>
-        </Suspense>
+        <div
+          className="grid my-0 mx-auto gap-4 max-w-[1440px]"
+          style={{
+            gridTemplateColumns: "repeat(auto-fill, minmax(360px, 1fr))",
+          }}
+        >
+          {!isServer ? (
+            <React.Suspense fallback={fallback}>
+              {characters.sort().map((character) => {
+                return <CharacterItem character={character} key="character" />
+              })}
+            </React.Suspense>
+          ) : (
+            fallback
+          )}
+        </div>
       </Container>
     </>
-  );
-};
+  )
+}
