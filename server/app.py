@@ -1,7 +1,4 @@
-from traceback import print_tb
-from flask import Flask, request, jsonify
 import json
-import os
 import threading
 import time
 import requests as req
@@ -9,6 +6,12 @@ from bs4 import BeautifulSoup
 import re
 import uvicorn
 from fastapi import FastAPI
+from pydantic import BaseModel
+
+class Search(BaseModel):
+    characters: list = []
+    year: list = []
+
 
 with open('housepets_db.json', 'r') as housepets_db_json:
     housepets_db = json.load(housepets_db_json)
@@ -55,38 +58,34 @@ def update_database():
 
 threading.Thread(target=update_database).start()
 
-app = Flask(__name__)
+app = FastAPI()
 
-@app.route('/search', methods=['POST'])
-def test():
-    print(request.json)
-    years = request.json['year']
-    characters = request.json['characters']
+@app.post('/search')
+def search(search: Search):
+    characters = search.characters
+    years = search.year
+    print(characters)
+    print(years)
     comics = []
     for year in years:
-        # check if the year is a key in the database
-        if year in housepets_db:
-            print(f'[*] {year} is a valid year')
-            for comic in housepets_db[year]:
-                if all(character in comic['characters'] for character in characters):
+        for comic in housepets_db[year]:
+            if all(character in comic['characters'] for character in characters):
                     comics.append(comic)
-    print(f"[*] {len(comics)} comics found")
-    return jsonify({'comics': comics})
+    return {'comics': comics}
 
-@app.route('/data', methods=['GET'])
+@app.get('/data')
 def data():
     housepets_db_length = 0
     for year in range(2008, 2022+1):
         housepets_db_length += len(housepets_db[str(year)])
     characters_db_length = len(housepets_db['characters_db'])
-    return jsonify({'comicCount': housepets_db_length, 'charCount': characters_db_length})
+    return {'comicCount': housepets_db_length, 'charCount': characters_db_length}
 
-@app.route('/characters', methods=['GET'])
+@app.get('/characters')
 def characters():
-    return jsonify({'characters_db': housepets_db['characters_db']})
+    return {'characters_db': housepets_db['characters_db']}
 
 if __name__ == '__main__':
-    from waitress import serve
     print("[*] Starting server...")
     print("[*] Server running on port 5000.")
-    serve(app, host='localhost', port=5000)
+    uvicorn.run(app, host="0.0.0.0", port=5000)
