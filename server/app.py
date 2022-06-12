@@ -1,12 +1,12 @@
+from bs4 import BeautifulSoup
+from fastapi import FastAPI
+from pydantic import BaseModel
 import json
 import threading
 import time
 import requests as req
-from bs4 import BeautifulSoup
-import re
+import re as regex
 import uvicorn
-from fastapi import FastAPI
-from pydantic import BaseModel
 
 class Search(BaseModel):
     characters: list = []
@@ -23,7 +23,7 @@ def update_database():
         year = time.strftime("%Y")
         web = req.get(f"https://www.housepetscomic.com/archive/?archive_year={year}")
         soup = BeautifulSoup(web.text, 'html.parser')
-        link_tag = soup.find_all('a', {'rel':"bookmark", 'href': re.compile("^https://")})
+        link_tag = soup.find_all('a', {'rel':"bookmark", 'href': regex.compile("^https://")})
 
         comics_db = []
 
@@ -35,18 +35,18 @@ def update_database():
                 if "https://www.housepetscomic.com/character" in web_link_page.text:
                     print(f'{web_link} is a real comic by rick grifin')
 
-                    characters_in_comic = []
-                    characters_in_comic_soup = BeautifulSoup(web_link_page.text, 'html.parser')
-                    characters_in_comic_tag = characters_in_comic_soup.find_all('a', {'href': re.compile("^https://www\.housepetscomic\.com/character")})
-                    for character in characters_in_comic_tag:
-                        characters_in_comic.append(character.text.lower())
+                    chars = []
+                    chars_soup = BeautifulSoup(web_link_page.text, 'html.parser')
+                    chars_tag = chars_soup.find_all('a', {'href': regex.compile("^https://www\.housepetscomic\.com/character")})
+                    for character in chars_tag:
+                        chars.append(character.text.lower())
                     # the code under this will find the image where there is a tittle and alt
-                    comic_image = characters_in_comic_soup.find('img', {'title': True, 'alt': True})
-                    comics_db.append({"title": characters_in_comic_soup.title.text.split(' \u2013 ')[0],
+                    comic_image = chars_soup.find('img', {'title': True, 'alt': True})
+                    comics_db.append({"title": chars_soup.title.text.split(' \u2013 ')[0],
                                             "comic_link": web_link,
-                                            "characters": characters_in_comic,
+                                            "characters": chars,
                                             "image": comic_image.get('src')})
-                    characters_db.update(characters_in_comic)
+                    characters_db.update(chars)
             housepets_db['characters_db'] = list(characters_db) # update the characters db
             housepets_db[year] = comics_db # update the comics db
             with open('housepets_db.json', 'w') as housepets_db_json:
