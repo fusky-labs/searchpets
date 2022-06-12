@@ -75,11 +75,11 @@ def search(search: Search):
 
 @app.get('/data')
 def data():
-    housepets_db_length = 0
+    comic_length = 0
     for year in range(2008, 2022+1):
-        housepets_db_length += len(housepets_db[str(year)])
-    characters_db_length = len(housepets_db['characters_db'])
-    return {'comicCount': housepets_db_length, 'charCount': characters_db_length}
+        comic_length += len(housepets_db[str(year)])
+    chars_length = len(housepets_db['characters_db'])
+    return {'comicCount': comic_length, 'charCount': chars_length}
 
 @app.get('/characters')
 def characters():
