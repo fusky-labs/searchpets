@@ -61,7 +61,7 @@ threading.Thread(target=update_database).start()
 app = FastAPI()
 
 @app.post('/search')
-def search(search: Search):
+async def search(search: Search):
     characters = search.characters
     years = search.year
     print(characters)
@@ -74,7 +74,7 @@ def search(search: Search):
     return {'comics': comics}
 
 @app.get('/data')
-def data():
+async def data():
     comic_length = 0
     for year in range(2008, 2022+1):
         comic_length += len(housepets_db[str(year)])
@@ -82,7 +82,7 @@ def data():
     return {'comicCount': comic_length, 'charCount': chars_length}
 
 @app.get('/characters')
-def characters():
+async def characters():
     return {'characters_db': housepets_db['characters_db']}
 
 if __name__ == '__main__':
