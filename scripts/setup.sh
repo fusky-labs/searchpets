@@ -2,16 +2,12 @@
 
 yarn install
 
-cd app
+yarn --cwd ./app install
 
-yarn install
+cd ../server
 
-cd ..
-
-cd server
-
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 
 python gen.py
 
-echo Done! Start the development server by running `yarn dev`.
+echo "Done! Start the development server by running \"yarn dev\"."
