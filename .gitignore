@@ -41,4 +41,8 @@ venv
 *.key
 *.crt
 
+# Ignore local Housepets json file
 housepets_db.json
+
+# Ignore __pycache__ stuff
+server/__pycache__
