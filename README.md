@@ -8,7 +8,7 @@
   <img src="https://img.shields.io/github/issues/OpenFurs/searchpets?style=flat" alt="Searchpets' open issues" />
 </p>
 <p align="center">
-Searchpets is an open source search engine to find characters and texts from comics (coming soon) from <i>Housepets!</i> written in Next.js and Flask.
+Searchpets is an open source search engine to find characters and texts from comics (coming soon) from <i>Housepets!</i> written in Next.js and FastAPI.
 </p>
 <p align="center">
 This project was taken inspiration from this <a href="https://www.housepetscomic.com/forums/viewtopic.php?f=13&t=5434&p=938783&hilit=search+engine#p938783">forum post</a>.
