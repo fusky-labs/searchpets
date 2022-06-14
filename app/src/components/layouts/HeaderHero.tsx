@@ -1,9 +1,17 @@
+import { useEffect, useState } from "react"
+
 interface IHeaderHeroProps {
   characterCount: number
   comicCount: number
 }
 
-export default function HeaderHero({ characterCount, comicCount}: IHeaderHeroProps) {
+export default function HeaderHero({
+  characterCount,
+  comicCount,
+}: IHeaderHeroProps) {
+
+
+
   return (
     <div className="hero-header-container">
       <h1 className="hero-header">
@@ -24,5 +32,5 @@ export default function HeaderHero({ characterCount, comicCount}: IHeaderHeroPro
         characters from the entire <em>Housepets!</em> comic catalog!
       </h1>
     </div>
-  );
-};
+  )
+}

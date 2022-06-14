@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="flex justify-center text-center sm:text-inherit sm:justify-between flex-col sm:flex-row">
           <section className="text-neutral-400 w-full sm:w-[50%] text-sm text-center sm:text-left">
             <p>
-              A full stack web app created with Next.js and Flask by{" "}
+              A full stack web app created with Next.js and FastAPI by{" "}
               <Link href="https://twitter.com/skepfuskyjs" passHref>
                 <a className="font-bold text-white styled-link">
                   <FontAwesomeIcon icon={faTwitter} />
@@ -49,7 +49,7 @@ export default function Footer() {
                   size="sm"
                   className="translate-y-0.5"
                 />
-                <span className="whitespace-nowrap">Housepets Website</span>
+                <span className="whitespace-nowrap">Official Housepets Website</span>
               </a>
             </Link>
             <Link href="https://github.com/OpenFurs/searchpets" passHref>

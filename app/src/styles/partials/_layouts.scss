@@ -47,7 +47,8 @@ footer {
 
 /*** Header stuff ***/
 .header-nav {
-  @apply flex text-lg gap-x-1 flex-col md:flex-row;
+  @apply flex text-lg gap-x-1 flex-col md:flex-row relative;
+
   a {
     @apply px-3 py-2 rounded-md transition-colors duration-100;
 
@@ -58,7 +59,11 @@ footer {
 }
 
 .active {
-  @apply text-blue-400;
+  @apply text-blue-400 font-bold;
+}
+
+.nav-indicator {
+  @apply h-[3px] w-12 rounded-lg bg-blue-400 absolute -bottom-2 transition-transform duration-300;
 }
 
 /*********
@@ -116,7 +121,7 @@ footer {
 
 @supports (backdrop-filter: blur(10px)) {
   .search-box-wrapper.lock {
-    backdrop-filter: blur(10px);
+    @apply backdrop-blur;
     background-color: rgba(60, 60, 60, 0.44);
   }
 }

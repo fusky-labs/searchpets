@@ -8,7 +8,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 import { ComicItemLoading } from "../components/ComicItem"
 import BaseHead from "../components/BaseHead"
 import Container from "../components/Container"
-import HeaderHero from "../components/HeaderHero"
+import HeaderHero from "../components/layouts/HeaderHero"
 import YearPickerItem from "../components/YearPickerItem"
 import BackToTopButton from "../components/BackToTop"
 
@@ -150,35 +150,11 @@ export default function Home({ comicCount, charCount }) {
       heroMargin.style.display = "none"
       return
     }
+
     resultText.classList.add("hidden")
     heroMargin.style.marginTop = "12vh"
     heroMargin.style.display = "flex"
   }, [comics, years])
-
-  useEffect(() => {
-    window.onscroll = () => {
-      const heroText = document.querySelector(".hero-header")
-      const searchBox = document.querySelector(".search-box-wrapper")
-
-      if (heroText.clientHeight === 72) {
-        window.pageYOffset > 327
-          ? searchBox.classList.add("lock")
-          : searchBox.classList.remove("lock")
-      }
-
-      if (heroText.clientHeight === 108) {
-        window.pageYOffset > 390
-          ? searchBox.classList.add("lock")
-          : searchBox.classList.remove("lock")
-      }
-
-      if (heroText.clientHeight === 144) {
-        window.pageYOffset > 408
-          ? searchBox.classList.add("lock")
-          : searchBox.classList.remove("lock")
-      }
-    }
-  }, [])
 
   const title = "Search characters and texts from Housepets!"
   let description = `Search through ${comicCount} pages and ${charCount} characters from the entire Housepets! comic catalog!`
