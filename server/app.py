@@ -6,18 +6,13 @@ import json
 import threading
 import time
 import requests as req
-import re as regex
+import re
 import uvicorn
 
 parser = argparse.ArgumentParser(description="Searchpets FastAPI Server")
 parser.add_argument('-b', '--build', action="store_true",
                     help="Run the server in production mode, for development, don't provide with any arguments and run the file as is.")
 args = parser.parse_args()
-
-
-class Search(BaseModel):
-    characters: list = []
-    year: list = []
 
 
 with open('housepets_db.json', 'r') as housepets_db_json:
@@ -37,7 +32,7 @@ def update_database():
             f"https://www.housepetscomic.com/archive/?archive_year={year}")
         soup = BeautifulSoup(web.text, 'html.parser')
         link_tag = soup.find_all(
-            'a', {'rel': "bookmark", 'href': regex.compile("^https://")})
+            'a', {'rel': "bookmark", 'href': re.compile("^https://")})
 
         comics_db = []
 
@@ -53,7 +48,7 @@ def update_database():
                     chars_soup = BeautifulSoup(
                         web_link_page.text, 'html.parser')
                     chars_tag = chars_soup.find_all(
-                        'a', {'href': regex.compile("^https://www\.housepetscomic\.com/character")})
+                        'a', {'href': re.compile("^https://www\.housepetscomic\.com/character")})
                     for character in chars_tag:
                         chars.append(character.text.lower())
                     # the code under this will find the image where there is a tittle and alt
@@ -76,6 +71,12 @@ def update_database():
 
 
 threading.Thread(target=update_database).start()
+
+
+class Search(BaseModel):
+    characters: list = []
+    year: list = []
+
 
 app = FastAPI()
 
@@ -115,4 +116,5 @@ if __name__ == '__main__':
 
     else:
         print("[*] Server started in development mode")
-        uvicorn.run("app:app", host="0.0.0.0", port=5000, reload=True, debug=True)
+        uvicorn.run("app:app", host="0.0.0.0",
+                    port=5000, reload=True, debug=True)

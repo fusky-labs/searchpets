@@ -4,8 +4,8 @@ from bs4 import BeautifulSoup
 import re
 import datetime
 
-current_date_time = datetime.datetime.now()
-date = current_date_time.date()
+current_date = datetime.datetime.now()
+date = current_date.date()
 year = date.strftime("%Y")
 
 with open('housepets_db.json', 'r') as housepets_db_json:
@@ -23,15 +23,15 @@ for link in link_tag:
     if "https://www.housepetscomic.com/character" in web_link_page.text:
         print(f'{web_link} is a real comic by rick grifin')
 
-        characters_in_comic = []
-        characters_in_comic_soup = BeautifulSoup(web_link_page.text, 'html.parser')
-        characters_in_comic_tag = characters_in_comic_soup.find_all('a', {'href': re.compile("^https://www\.housepetscomic\.com/character")})
-        for character in characters_in_comic_tag:
-            characters_in_comic.append(character.text)
-        comic_image = characters_in_comic_soup.find('img', {'title': True, 'alt': True})
-        housepets_db[year].append({"title": characters_in_comic_soup.title.text.split(' \u2013 ')[0],
+        chars = []
+        chars_soup = BeautifulSoup(web_link_page.text, 'html.parser')
+        chars_tag = chars_soup.find_all('a', {'href': re.compile("^https://www\.housepetscomic\.com/character")})
+        for character in chars_tag:
+            chars.append(character.text)
+        comic_image = chars_soup.find('img', {'title': True, 'alt': True})
+        housepets_db[year].append({"title": chars_soup.title.text.split(' \u2013 ')[0],
                                    "comic_link": web_link,
-                                   "characters": characters_in_comic,
+                                   "characters": chars,
                                    "image": comic_image.get('src')})
 
 print(housepets_db)
