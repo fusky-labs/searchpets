@@ -8,7 +8,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 import { ComicItemLoading } from "../components/ComicItem"
 import BaseHead from "../components/BaseHead"
 import Container from "../components/Container"
-import HeaderHero from "../components/HeaderHero"
+import HeaderHero from "../components/layouts/HeaderHero"
 import YearPickerItem from "../components/YearPickerItem"
 import BackToTopButton from "../components/BackToTop"
 
