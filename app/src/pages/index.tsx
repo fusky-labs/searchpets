@@ -121,7 +121,7 @@ export default function Home({ comicCount, charCount }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        year: years,
+        year: years.sort(),
         characters: characters,
       }),
     })
