@@ -3,6 +3,7 @@ import { useEffect } from "react"
 import { useRouter } from "next/router"
 import Layout from "@/components/Layout"
 import { config } from "@fortawesome/fontawesome-svg-core"
+import Layout from "../components/Layout"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import "@/styles/globals.scss"
 import "react-notifications-component/dist/theme.css"
@@ -15,7 +16,7 @@ export default function SearchpetsApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
   useEffect(() => {
-    const handleRouteChange = (url) => {
+    const handleRouteChange = (url: any) => {
       ga.pageview(url)
     }
 

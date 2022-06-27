@@ -20,7 +20,7 @@ export default function AboutPage() {
             <Link href="https://github.com.skepfusky">
               <a className="profile-info">
                 <img
-                  src="https://github.com/skepfusky.png"
+                  src="/static/skepfusky.png"
                   alt="skepfusky's avatar"
                   className="border-purple-600"
                 />
@@ -31,7 +31,7 @@ export default function AboutPage() {
             <Link href="https://github.com/thatITfox">
               <a className="profile-info">
                 <img
-                  src="https://github.com/thatITfox.png"
+                  src="/static/maxthecomputerfox1.jpg"
                   alt="thatITfox's avatar"
                   className="border-orange-600"
                 />

@@ -10,7 +10,7 @@ export default function Document() {
         />
         <script
           async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA}`}
         ></script>
         <script
           dangerouslySetInnerHTML={{
@@ -18,7 +18,7 @@ export default function Document() {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+            gtag('config', '${process.env.GA}', {
               page_path: window.location.pathname,
             });
           `,

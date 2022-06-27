@@ -11,22 +11,29 @@ import {
 export default function Header() {
   const router = useRouter()
 
-  const [navIdn, setNavIdn] = useState("translate-x-8")
+  const [navIdn, setNavIdn] = useState("translate-x-9")
 
   useEffect(() => {
-    if (router.pathname === "/") setNavIdn("translate-x-9")
-    if (router.pathname === "/characters") setNavIdn("translate-x-[10.75rem]")
-    if (router.pathname === "/about") setNavIdn("translate-x-[19rem]")
-  }, [router.pathname])
+    if (router.pathname) {
+      switch (router.pathname) {
+        case "/characters":
+          setNavIdn("translate-x-[10.75rem]")
+          break
+        case "/about":
+          setNavIdn("translate-x-[19rem]")
+          break
+        default:
+          setNavIdn("translate-x-9")
+      }
+    }
+  }, [router])
 
   return (
     <header>
       <div className="content-wrapper flex justify-center">
         <div className="p-5 absolute top-2 left-2 text-xl">
-          <Link href="/">
-            <a>
+          <Link href="/" passHref>
               <strong>Searchpets</strong>
-            </a>
           </Link>
         </div>
         <nav className="header-nav">

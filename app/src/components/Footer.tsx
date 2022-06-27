@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon as FaIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 
@@ -14,14 +14,14 @@ export default function Footer() {
               A full stack web app created with Next.js and FastAPI by{" "}
               <Link href="https://twitter.com/skepfuskyjs" passHref>
                 <a className="font-bold text-white styled-link">
-                  <FontAwesomeIcon icon={faTwitter} />
+                  <FaIcon icon={faTwitter} />
                   <span className="pl-0.5">@skepfuskyjs</span>
                 </a>
               </Link>{" "}
               and{" "}
               <Link href="https://twitter.com/maxthecomputer1" passHref>
                 <a className="font-bold text-white styled-link">
-                  <FontAwesomeIcon icon={faTwitter} />
+                  <FaIcon icon={faTwitter} />
                   <span className="pl-0.5">@maxthecomputer1</span>
                 </a>
               </Link>
@@ -29,7 +29,7 @@ export default function Footer() {
             </p>
             <p className="mt-[0.55rem]">
               The use of third-party content falls under Fair Use.{" "}
-              <i>Housepets!</i> and its characters and story is a trademark of
+              <em>Housepets!</em> and its characters and story is a trademark of
               Rick Griffin. All rights reserved.
             </p>
             <p className="mt-[0.55rem]">
@@ -44,7 +44,7 @@ export default function Footer() {
                 target="_blank"
                 className="styled-link text-center flex items-center gap-x-2"
               >
-                <FontAwesomeIcon
+                <FaIcon
                   icon={faLink}
                   size="sm"
                   className="translate-y-0.5"
@@ -58,7 +58,7 @@ export default function Footer() {
                 target="_blank"
                 className="styled-link text-center flex items-center gap-x-2"
               >
-                <FontAwesomeIcon
+                <FaIcon
                   icon={faGithub}
                   size="sm"
                   className="translate-y-0.5"

@@ -6,7 +6,7 @@ export default function BackToTopButton() {
   const [show, setShow] = useState("back-to-top-btn")
 
   const handleScroll = () => {
-    window.scrollY > 400
+    window.scrollY > 450
       ? setShow("back-to-top-btn show")
       : setShow("back-to-top-btn")
   }
@@ -18,7 +18,7 @@ export default function BackToTopButton() {
 
   return (
     <button
-      className={`${show} `}
+      className={show}
       onClick={() => {
         window.scrollTo(0, 0)
       }}
