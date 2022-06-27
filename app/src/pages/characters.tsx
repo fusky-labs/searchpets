@@ -1,10 +1,10 @@
 import React, { useState, useEffect, Suspense } from "react"
 import dynamic from "next/dynamic"
-import Container from "../components/Container"
-import BaseHead from "../components/BaseHead"
-import BackToTopButton from "../components/BackToTop"
+import Container from "@/components/Container"
+import BaseHead from "@/components/BaseHead"
+import BackToTopButton from "@/components/BackToTop"
 
-const CharacterItem = dynamic(() => import("../components/CharacterItem"))
+const CharacterItem = dynamic(() => import("@/components/CharacterItem"))
 
 export default function Characters() {
   const [characters, setCharacters] = useState([])

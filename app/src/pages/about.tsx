@@ -1,5 +1,5 @@
 import Link from "next/link"
-import BaseHead from "../components/BaseHead"
+import BaseHead from "@/components/BaseHead"
 
 export default function AboutPage() {
   return (

@@ -5,12 +5,12 @@ import { ReactNotifications, Store } from "react-notifications-component"
 import { FontAwesomeIcon as FaIcon } from "@fortawesome/react-fontawesome"
 import { faTimes } from "@fortawesome/free-solid-svg-icons"
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
-import { ComicItemLoading } from "../components/ComicItem"
-import BaseHead from "../components/BaseHead"
-import Container from "../components/Container"
-import HeaderHero from "../components/layouts/HeaderHero"
-import YearPickerItem from "../components/YearPickerItem"
-import BackToTopButton from "../components/BackToTop"
+import { ComicItemLoading } from "@/components/ComicItem"
+import BaseHead from "@/components/BaseHead"
+import Container from "@/components/Container"
+import HeaderHero from "@/components/layouts/HeaderHero"
+import YearPickerItem from "@/components/YearPickerItem"
+import BackToTopButton from "@/components/BackToTop"
 
 const ComicItem = dynamic(() => import("../components/ComicItem"), {
   loading: () => <ComicItemLoading />,
