@@ -1,38 +1,55 @@
-import redis
-from redis.commands.search.field import TextField, NumericField, TagField
-from redis.commands.search.indexDefinition import IndexDefinition
-from bs4 import BeautifulSoup
-from colorama import *
+"""
+This Pythonscript is used to generate and update the Housepets! database.
+
+Written by thatITfox and skepfusky.
+"""
+
+# Stuff for updating the DB
 import os
 import sys
 import requests
 import re
 import time
+from dotenv import load_dotenv, find_dotenv
+from bs4 import BeautifulSoup
+from colorama import *
 
+# Redis DB
+import redis
+from redis.commands.search.field import TextField, NumericField, TagField
+from redis.commands.search.indexDefinition import IndexDefinition
+
+load_dotenv(find_dotenv())
 
 # setup and connect to redis and the database
-RedisDB = redis.StrictRedis(host="host", 
+RedisDB = redis.StrictRedis(host="host",
                             port=0,
-                            username="username",
-                            password="password",
+                            username=f"{os.getenv('REDIS_USER')}",
+                            password=f"{os.getenv('REDIS_PSWD')}",
 )
-# crate a schema for the comic's data
+
+"""
+Create a schema for the comic(s) data
+"""
 schema = (TextField("title"),
-            TextField("comic_link"),
-            TagField("characters"),
-            TextField("image"),
-            NumericField("index", sortable=True)
+          TextField("comic_link"),
+          TagField("characters"),
+          TextField("image"),
+          NumericField("index", sortable=True)
 )
 
 init(wrap=False)
 stream = AnsiToWin32(sys.stderr).stream
 
+# A user agent is required for the requests library
 user_agent = {'user-agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)'
                              'AppleWebKit/537.36 (KHTML, like Gecko)'
                              'Chrome/45.0.2454.101 Safari/537.36'),
                              'referer': 'https://www.housepetscomic.com'}
 
-# generate a list of years from 2008 to todays year
+"""
+Generate a list of years from 2008 to the current year
+"""
 years = [str(x) for x in range(2008, int(time.strftime("%Y"))+1)]
 
 housepets_db = {}
