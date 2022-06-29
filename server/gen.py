@@ -10,7 +10,6 @@ import sys
 import requests
 import re
 import time
-from dotenv import load_dotenv, find_dotenv
 from bs4 import BeautifulSoup
 from colorama import *
 
@@ -19,13 +18,11 @@ import redis
 from redis.commands.search.field import TextField, NumericField, TagField
 from redis.commands.search.indexDefinition import IndexDefinition
 
-load_dotenv(find_dotenv())
-
 # setup and connect to redis and the database
 RedisDB = redis.StrictRedis(host="host",
                             port=0,
-                            username=f"{os.getenv('REDIS_USER')}",
-                            password=f"{os.getenv('REDIS_PSWD')}",
+                            username="username",
+                            password="password",
 )
 
 """

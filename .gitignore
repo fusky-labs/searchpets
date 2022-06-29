@@ -36,7 +36,6 @@ node_modules
 
 # python and database
 venv
-.env
 
 # Ignore local Housepets json file
 housepets_db.json
