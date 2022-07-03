@@ -5,7 +5,6 @@ import Layout from "@/components/Layout"
 import { config } from "@fortawesome/fontawesome-svg-core"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import "@/styles/globals.scss"
-import "react-notifications-component/dist/theme.css"
 
 import * as ga from "../../lib/ga"
 
