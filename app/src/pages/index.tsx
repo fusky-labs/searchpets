@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { GetStaticProps } from "next"
 import dynamic from "next/dynamic"
-import { ReactNotifications, Store } from "react-notifications-component"
 import { FontAwesomeIcon as FaIcon } from "@fortawesome/react-fontawesome"
 import { faTimes } from "@fortawesome/free-solid-svg-icons"
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
@@ -83,35 +82,12 @@ export default function Home({ comicCount, charCount }) {
     console.info(`🚧 DEBUG: ${characters}`)
 
     if (years.length === 0) {
-      Store.addNotification({
-        title: "No year selected",
-        message: "Please select a year",
-        type: "danger",
-        insert: "top",
-        container: "top-right",
-        animationIn: ["animated", "fadeIn"],
-        animationOut: ["animated", "fadeOut"],
-        dismiss: {
-          duration: 2000,
-        },
-      })
+      console.log("🚧 DEBUG: No year selected")
       return
     }
 
     if (characters.join(", ") === "") {
-      console.log("🚧 DEBUG: No year selected")
-      Store.addNotification({
-        title: "Nothing has been outputted",
-        message: "Please select a character",
-        type: "danger",
-        insert: "top",
-        container: "top-right",
-        animationIn: ["animated", "fadeIn"],
-        animationOut: ["animated", "fadeOut"],
-        dismiss: {
-          duration: 1000,
-        },
-      })
+      console.log("🚧 DEBUG: No character selected")
       return
     }
 
@@ -164,7 +140,6 @@ export default function Home({ comicCount, charCount }) {
   return (
     <>
       <BaseHead title={title} description={description} />
-      <ReactNotifications />
       <BackToTopButton />
       <Container>
         {/* main */}
