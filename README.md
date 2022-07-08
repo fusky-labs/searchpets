@@ -19,11 +19,11 @@ This project was taken inspiration from this <a href="https://www.housepetscomic
 
 ## Tech stack
 
-![Searchpets Stack](https://skillicons.dev/icons?i=react,nextjs,ts,js,sass,tailwind,py,fastapi,redis,cloudflare)
+![Searchpets Stack](https://skillicons.dev/icons?i=react,nextjs,ts,js,sass,tailwind,py,flask,cloudflare)
 
 The front-end is written in a React framework, Next.js + TypeScript;
 with Tailwind CSS and Sass as CSS painkillers. For the back-end, it's powered
-with Python with the lightweight but fast web framework, FastAPI.
+with Python with the lightweight web framework, Flask.
 
 The website is currently being hosted from a custom Linode server and
 delivered through the interwebs with CloudFlare.
