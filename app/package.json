@@ -16,6 +16,7 @@
     "next": "12.1.2",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "redis-om": "^0.3.5",
     "sharp": "^0.30.5"
   },
   "devDependencies": {
