@@ -15,6 +15,8 @@
     "url": "git+https://github.com/OpenFurs/searchpets.git"
   },
   "devDependencies": {
-    "concurrently": "^7.0.0"
+    "@octokit/types": "^6.39.0",
+    "concurrently": "^7.0.0",
+    "octokit": "^2.0.3"
   }
 }
