@@ -17,7 +17,7 @@ export default function AboutPage() {
             About <em>Searchpets</em>
           </h1>
           <div className="profile-showcase">
-            <Link href="https://github.com.skepfusky">
+            <Link href="https://github.com/skepfusky">
               <a className="profile-info">
                 <img
                   src="/static/skepfusky.png"
