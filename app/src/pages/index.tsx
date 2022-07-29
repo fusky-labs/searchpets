@@ -16,7 +16,7 @@ const ComicItem = dynamic(() => import("../components/ComicItem"), {
   ssr: false,
 })
 
-export const getStaticProps: GetStaticProps = async () => {
+export async function getServerSideProps() {
   const res = await fetch("http://localhost:5000/data")
   const data = await res.json()
   // console.log(data)
