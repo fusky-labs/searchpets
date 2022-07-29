@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { GetStaticProps } from "next"
+import { GetServerSideProps, InferGetServerSidePropsType } from "next"
 import dynamic from "next/dynamic"
 import { FontAwesomeIcon as FaIcon } from "@fortawesome/react-fontawesome"
 import { faTimes } from "@fortawesome/free-solid-svg-icons"
@@ -16,23 +16,25 @@ const ComicItem = dynamic(() => import("../components/ComicItem"), {
   ssr: false,
 })
 
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps = async () => {
   const res = await fetch("http://localhost:5000/data")
   const data = await res.json()
-  // console.log(data)
 
   return {
     props: data,
   }
 }
 
-export default function Home({ comicCount, charCount }) {
-  // #region Communicating with the Flask server and some UI stuff
+export default function Home({
+  comicCount,
+  charCount,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  // #region Communicating with the FastAPI server and some UI stuff
   const [comics, setComics] = useState([])
   const [characters, setCharacters] = useState([])
   const [years, setYears] = useState([])
 
-  // load the data from localstorage
+  // load the data from localStorage
   useEffect(() => {
     const comics = localStorage.getItem("comics")
     const characters = localStorage.getItem("characters")
@@ -41,12 +43,14 @@ export default function Home({ comicCount, charCount }) {
     if (comics) {
       setComics(JSON.parse(comics))
     }
+
     if (characters) {
       setCharacters(characters.split(", "))
     }
+
     if (years) {
       setYears(years.split(","))
-      // for every yearpicker item, check if it's checked
+      // For every yearpicker item, check if it's checked
       years.split(",").forEach((year) => {
         const year_id = document.getElementById(
           `year-${year}`
@@ -58,7 +62,7 @@ export default function Home({ comicCount, charCount }) {
     }
   }, [])
 
-  // generate a list of years from 2008 to the current year in strings
+  // Generate a list of years from 2008 to the current year as strings
   const generateYears = () => {
     const currentYear = new Date().getFullYear()
     const years = []
@@ -117,24 +121,24 @@ export default function Home({ comicCount, charCount }) {
     console.info(`🚧 DEBUG: ${years}`)
     localStorage.setItem("years", years.join(","))
 
-    const resultText: any = document.querySelector(".result-container")
-    const heroMargin: any = document.querySelector(".hero-header-container")
+    // TODO: Use the useRef() hook for this code
+    // const resultText: any = document.querySelector(".result-container")
+    // const heroMargin: any = document.querySelector(".hero-header-container")
 
-    if (comics.length !== 0) {
-      resultText.classList.remove("hidden")
-      heroMargin.style.marginTop = "1vh"
-      heroMargin.style.display = "none"
-      return
-    }
+    // if (comics.length !== 0) {
+    //   resultText.classList.remove("hidden")
+    //   heroMargin.style.marginTop = "1vh"
+    //   heroMargin.style.display = "none"
+    //   return
+    // }
 
-    resultText.classList.add("hidden")
-    heroMargin.style.marginTop = "12vh"
-    heroMargin.style.display = "flex"
+    // resultText.classList.add("hidden")
+    // heroMargin.style.marginTop = "12vh"
+    // heroMargin.style.display = "flex"
   }, [comics, years])
 
   const title = "Search characters and texts from Housepets!"
   let description = `Search through ${comicCount} pages and ${charCount} characters from the entire Housepets! comic catalog!`
-
   // #endregion
 
   return (
