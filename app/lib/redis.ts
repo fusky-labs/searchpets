@@ -4,7 +4,7 @@ const client = new Client();
 
 async function connect(){
     if(!client.isOpen()){
-        await client.open("REDIS_URL")
+        await client.open(process.env.REDIS_URL);
     }
 }
 
@@ -24,18 +24,14 @@ export async function searchComics(years: string[], characters: string[]) {
     await connect()
     // for every year index given, search that year index that have the characters given
     let comics = []
-    years.forEach(async year => {
-        try{
-            let repo = new (Repository as any)(client, schema)
-            let results = await repo.search({
-                index: year,
-                characters: {$in: characters}
-            })
-            comics = comics.concat(results)
-        }
-        catch(e){
-            console.log(e)
-        }
+    console.log(years)
+    console.log(characters)
+
+    years.forEach((year) => {
+        console.log(year)
+        // search the index for the year for comics that have the characters given
+        // once found, add them to the comics array
+        
     })
     return {"comics": comics}
 }
