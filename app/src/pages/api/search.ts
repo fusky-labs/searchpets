@@ -7,9 +7,9 @@ export default function handler(
   res: NextApiResponse<string>
 ) {
   const sendData = (async () => {
-    let comics = await searchComics(req.body.years, req.body.characters)
+    let comics = await searchComics(req.body.year, req.body.characters)
     console.log(comics)
-    res.status(200).json(JSON.stringify(comics))
+    res.status(200).send(JSON.stringify(comics))
     resolve()
   })()
 }
