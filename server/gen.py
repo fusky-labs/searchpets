@@ -8,12 +8,23 @@ import sys
 import requests
 import re
 import time
+import json
+
+with open("./redis_config.json") as f:
+    redis_config = json.load(f)
 
 # setup and connect to redis and the database
-RedisDB = redis.StrictRedis(host="host", 
-                            port=0,
-                            username="username",
-                            password="password",
+print("Connecting to redis...")
+if redis_config["database"]["password"] is None:
+    RedisDB = redis.StrictRedis(host=redis_config["database"]["host"], 
+                                port=int(redis_config["database"]["port"]),
+                                username=redis_config["database"]["username"]
+)
+else:
+    RedisDB = redis.StrictRedis(host=redis_config["database"]["host"], 
+                                port=int(redis_config["database"]["port"]),
+                                username=redis_config["database"]["username"],
+                                password=redis_config["database"]["password"]
 )
 # crate a schema for the comic's data
 schema = (TextField("title"),
