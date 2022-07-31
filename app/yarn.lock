@@ -3520,15 +3520,7 @@ readdirp@~3.6.0:
   dependencies:
     picomatch "^2.2.1"
 
-redis-om@^0.3.5:
-  version "0.3.6"
-  resolved "https://registry.yarnpkg.com/redis-om/-/redis-om-0.3.6.tgz#5c2d9e57a614e2ae9c21b8ab1d22baa0b7c63fa6"
-  integrity sha512-WRmrAm1n1EQIQbEwbfqpceuxHgr7LKOZ471c/KGxyOTVFFm53E0S7vFSZA7a1Jnga7aHTOYqLhhMWE0lKKdsNw==
-  dependencies:
-    redis "^4.0.4"
-    ulid "^2.3.0"
-
-redis@^4.0.4:
+redis@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/redis/-/redis-4.2.0.tgz#1278a265b8aa1e096a585d103bdead027cd04e43"
   integrity sha512-bCR0gKVhIXFg8zCQjXEANzgI01DDixtPZgIUZHBCmwqixnu+MK3Tb2yqGjh+HCLASQVVgApiwhNkv+FoedZOGQ==
@@ -4071,11 +4063,6 @@ typescript@4.6.3:
   version "4.6.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.3.tgz#eefeafa6afdd31d725584c67a0eaba80f6fc6c6c"
   integrity sha512-yNIatDa5iaofVozS/uQJEl3JRWLKKGJKh6Yaiv0GLGSuhpFJe7P3SbHZ8/yjAHRQwKRoA6YZqlfjXWmVzoVSMw==
-
-ulid@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/ulid/-/ulid-2.3.0.tgz#93063522771a9774121a84d126ecd3eb9804071f"
-  integrity sha512-keqHubrlpvT6G2wH0OEfSW4mquYRcbe/J8NMmveoQOjUqmo+hXtO+ORCpWhdbZ7k72UtY61BL7haGxW6enBnjw==
 
 unbox-primitive@^1.0.2:
   version "1.0.2"
