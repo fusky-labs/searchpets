@@ -1,7 +1,9 @@
 import type { AppProps } from "next/app"
 import { useEffect } from "react"
 import { useRouter } from "next/router"
-import { config } from "@fortawesome/fontawesome-svg-core"
+import { config, library } from "@fortawesome/fontawesome-svg-core"
+import { fab } from "@fortawesome/free-brands-svg-icons"
+import { fas } from "@fortawesome/free-solid-svg-icons"
 import Layout from "@/components/base/Layout"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import "@/styles/globals.scss"
@@ -9,6 +11,9 @@ import "@/styles/globals.scss"
 import * as ga from "../../lib/ga"
 
 config.autoAddCss = false
+
+library.add(fab)
+library.add(fas)
 
 export default function SearchpetsApp({ Component, pageProps }: AppProps) {
   const router = useRouter()

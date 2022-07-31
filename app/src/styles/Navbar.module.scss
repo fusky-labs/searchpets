@@ -1,0 +1,39 @@
+@use "mixins" as *;
+
+.root {
+  @apply shadow-md z-10 relative;
+}
+
+.wrapper {
+  @include base-wrapper();
+  @apply py-4 flex justify-between items-center;
+
+  strong {
+    @apply text-[1.75rem] italic;
+  }
+}
+
+.nav-container {
+  @apply flex items-center gap-x-5 select-none;
+}
+
+.nav-links-container {
+  @apply flex items-center gap-x-2 pl-2 select-none;
+}
+
+.nav-link-item {
+  @apply px-5 py-[0.65rem] flex gap-x-2 items-center relative rounded-3xl font-semibold transition-all duration-300;
+
+  &:hover {
+    @apply bg-purple-200;
+  }
+}
+
+.nav-link-active {
+  @extend .nav-link-item;
+  @apply bg-purple-500 text-white;
+
+  &:hover {
+    @apply bg-purple-700;
+  }
+}
