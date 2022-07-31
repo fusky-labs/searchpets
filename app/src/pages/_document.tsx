@@ -4,7 +4,7 @@ import Document, {
   Main,
   NextScript,
   DocumentContext,
-  DocumentInitialProps,
+  DocumentInitialProps
 } from "next/document"
 
 export default class SearchpetsApp extends Document {
@@ -14,6 +14,7 @@ export default class SearchpetsApp extends Document {
     const initialProps = await Document.getInitialProps(ctx)
     return initialProps
   }
+
   render() {
     return (
       <Html lang="en-us">
@@ -35,13 +36,13 @@ export default class SearchpetsApp extends Document {
             gtag('config', '${process.env.GA}', {
               page_path: window.location.pathname,
             });
-          `,
+          `
             }}
           />
         </Head>
         <body>
-          <Main />
           <NextScript />
+          <Main />
         </body>
       </Html>
     )

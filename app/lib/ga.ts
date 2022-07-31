@@ -4,14 +4,14 @@ declare global {
   }
 }
 
-export const pageview = (url: any) => {
+export const pageView = (url: string) => {
   if (window && window.gtag) {
     window.gtag("config", process.env.GA, {
-      page_path: url,
+      page_path: url
     })
   }
 }
 
-export const event = ({ action, params }) => {
+export const event = ({ action, params }: any) => {
   window.gtag("event", action, params)
 }

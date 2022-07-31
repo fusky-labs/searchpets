@@ -1,8 +1,8 @@
 import type { AppProps } from "next/app"
 import { useEffect } from "react"
 import { useRouter } from "next/router"
-import Layout from "@/components/Layout"
 import { config } from "@fortawesome/fontawesome-svg-core"
+import Layout from "@/components/base/Layout"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import "@/styles/globals.scss"
 
@@ -15,7 +15,7 @@ export default function SearchpetsApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     const handleRouteChange = (url: any) => {
-      ga.pageview(url)
+      ga.pageView(url)
     }
 
     router.events.on("routeChangeComplete", handleRouteChange)
