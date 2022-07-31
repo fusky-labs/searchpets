@@ -17,3 +17,9 @@ export interface INavLinkProps {
 }
 
 export interface IFooterLinkProps extends INavLinkProps {}
+
+export interface RedisClient {
+  comics?: string[]
+  years: string[]
+  characters: string[]
+}
