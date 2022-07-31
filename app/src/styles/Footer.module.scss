@@ -2,4 +2,33 @@
 
 .wrapper {
   @include base-wrapper();
+  @apply text-sm;
+}
+
+.container {
+  @apply flex md:flex-row flex-col justify-between md:items-start items-center gap-y-3 my-7;
+}
+
+.text-container {
+  @apply md:w-[50%] w-full;
+
+  p {
+    @apply md:text-left text-center;
+  }
+
+  p:not(:last-child) {
+    @apply mb-2;
+  }
+}
+
+.links-container {
+  @apply flex flex-col;
+}
+
+.link-item {
+  @apply flex items-center gap-1;
+}
+
+.icon-align {
+  @apply w-5 inline-flex justify-end items-center;
 }

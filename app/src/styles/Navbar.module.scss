@@ -6,11 +6,15 @@
 
 .wrapper {
   @include base-wrapper();
-  @apply py-4 flex justify-between items-center;
+  @apply py-4 flex md:justify-between justify-center items-center;
 
   strong {
     @apply text-[1.75rem] italic;
   }
+}
+
+.logo {
+  @apply md:block hidden;
 }
 
 .nav-container {
@@ -18,11 +22,11 @@
 }
 
 .nav-links-container {
-  @apply flex items-center gap-x-2 pl-2 select-none;
+  @apply flex items-center md:gap-x-2 sm:gap-x-16 gap-x-6 pl-2 select-none;
 }
 
 .nav-link-item {
-  @apply px-5 py-[0.65rem] flex gap-x-2 items-center relative rounded-3xl font-semibold transition-all duration-300;
+  @apply md:px-5 md:py-[0.65rem] p-4 md:text-base text-xl md:rounded-3xl rounded-full flex gap-x-2 items-center relative font-semibold transition-all duration-300;
 
   &:hover {
     @apply bg-purple-200;
@@ -35,5 +39,19 @@
 
   &:hover {
     @apply bg-purple-700;
+  }
+}
+
+.nav-link-item, .nav-link-active {
+  span {
+    @extend .logo;
+  }
+}
+
+.nav-theme-toggle {
+  @apply md:relative absolute right-4;
+
+  button {
+    @apply px-5 py-4 rounded-md bg-purple-300;
   }
 }

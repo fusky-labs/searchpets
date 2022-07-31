@@ -4,6 +4,7 @@ import styles from "@/styles/Navbar.module.scss"
 import { INavLinkProps } from "@/utils/Interfaces"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
+  faAdjust,
   faInfoCircle,
   faList,
   faMagnifyingGlass
@@ -14,21 +15,19 @@ export default function Navbar() {
     <header className={styles.root}>
       <div className={styles.wrapper}>
         <div className={styles["nav-container"]}>
-          <strong>
+          <strong className={styles.logo}>
             <Link href="/">Searchpets!</Link>
           </strong>
           <ul className={styles["nav-links-container"]} role="navigation">
-            <NavLink
-              link="/"
-              name="Search"
-              icon={faMagnifyingGlass}
-            />
+            <NavLink link="/" name="Search" icon={faMagnifyingGlass} />
             <NavLink link="/characters" name="Character List" icon={faList} />
             <NavLink link="/about" name="About" icon={faInfoCircle} />
           </ul>
         </div>
-        <div>
-          <button>toggle theme</button>
+        <div className={styles["nav-theme-toggle"]}>
+          <button>
+            <FontAwesomeIcon icon={faAdjust} />
+          </button>
         </div>
       </div>
     </header>

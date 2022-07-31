@@ -15,3 +15,5 @@ export interface INavLinkProps {
   name?: string
   icon: IconProp
 }
+
+export interface IFooterLinkProps extends INavLinkProps {}
