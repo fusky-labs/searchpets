@@ -112,9 +112,9 @@ if __name__ == '__main__':
     if args.build:
         print("[*] Server started in build/production mode")
         print("[*] Server running on port 5000.")
-        uvicorn.run("app:app", host="0.0.0.0", port=5000)
+        uvicorn.run("app:app", host="192.168.0.1", port=5000)
 
     else:
         print("[*] Server started in development mode")
-        uvicorn.run("app:app", host="0.0.0.0",
+        uvicorn.run("app:app", host="192.168.0.1",
                     port=5000, reload=True, debug=True)

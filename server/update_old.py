@@ -13,9 +13,11 @@ with open('housepets_db.json', 'r') as housepets_db_json:
 
 housepets_db.update({year: []})
 print(year)
-web = requests.get(f"https://www.housepetscomic.com/archive/?archive_year={year}")
+web = requests.get(
+    f"https://www.housepetscomic.com/archive/?archive_year={year}")
 soup = BeautifulSoup(web.text, 'html.parser')
-link_tag = soup.find_all('a', {'rel':"bookmark", 'href': re.compile("^https://")})
+link_tag = soup.find_all(
+    'a', {'rel': "bookmark", 'href': re.compile("^https://")})
 print(len(link_tag))
 for link in link_tag:
     web_link = link.get('href')
@@ -25,7 +27,8 @@ for link in link_tag:
 
         chars = []
         chars_soup = BeautifulSoup(web_link_page.text, 'html.parser')
-        chars_tag = chars_soup.find_all('a', {'href': re.compile("^https://www\.housepetscomic\.com/character")})
+        chars_tag = chars_soup.find_all(
+            'a', {'href': re.compile("^https://www\.housepetscomic\.com/character")})
         for character in chars_tag:
             chars.append(character.text)
         comic_image = chars_soup.find('img', {'title': True, 'alt': True})
