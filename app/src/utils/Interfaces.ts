@@ -16,6 +16,11 @@ export interface INavLinkProps {
   icon: IconProp
 }
 
+export interface IFilterItemProps {
+  name: string | number
+  yearType?: boolean | undefined
+}
+
 export interface IFooterLinkProps extends INavLinkProps {}
 
 export interface RedisClient {

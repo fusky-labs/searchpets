@@ -41,8 +41,8 @@ export default class SearchpetsApp extends Document {
           />
         </Head>
         <body>
-          <NextScript />
           <Main />
+          <NextScript />
         </body>
       </Html>
     )
