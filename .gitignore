@@ -48,4 +48,4 @@ redis_config.json
 # Ignore __pycache__ stuff
 server/__pycache__
 
-app/public/0[1-5].jpg
+/app/public/static/0[1-5].jpg
