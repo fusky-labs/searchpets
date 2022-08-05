@@ -1,7 +1,6 @@
 import { useRouter } from "next/router"
 import Link from "next/link"
 import styles from "@/styles/Navbar.module.scss"
-import { INavLinkProps } from "@/utils/Interfaces"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faAdjust,

@@ -1,6 +1,5 @@
 import { useRef, useState, useLayoutEffect } from "react"
 import styles from "@/styles/Search.module.scss"
-import { IFilterItemProps } from "@/utils/Interfaces"
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 

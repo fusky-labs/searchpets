@@ -1,5 +1,4 @@
 import styles from "@/styles/Base.module.scss"
-import { IContainerProps } from "@/utils/Interfaces"
 import Head from "next/head"
 
 export default function Container({
