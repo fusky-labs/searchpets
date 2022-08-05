@@ -1,6 +1,6 @@
 import { createClient } from "redis"
 
-export function searchComics(years: string[], characters: string[]) {
+export async function searchComics(years: string[], characters: string[]) {
   // create a client and connect to the Redis server
   const client = createClient({
     url: process.env.REDIS_URL,
@@ -16,10 +16,10 @@ export function searchComics(years: string[], characters: string[]) {
   ).join(" ")
   console.log(character_query)
 
-  years.forEach((year) => {
+  await years.forEach((year) => {
     console.log(year)
-    const result = client.ft.search(`${year}`, character_query)
-    result.then((res) => {
+    client.ft.search(`${year}`, character_query)
+    .then((res) => {
       console.log(res.documents.length)
       res.documents.forEach((doc) => {
         // console.log(doc.value.title)
