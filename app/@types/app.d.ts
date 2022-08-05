@@ -24,7 +24,7 @@ declare interface IFilterItemProps {
 }
 
 declare interface IComicItemProps {
-  title: string
+  title?: string
   img: string
   characters?: string[]
 }

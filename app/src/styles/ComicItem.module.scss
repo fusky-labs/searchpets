@@ -1,5 +1,6 @@
 .wrapper {
-  @apply px-5 py-3 bg-gray-200 rounded-md flex flex-col;
+  @apply gap-2 px-5 py-3 bg-gray-200 rounded-md grid;
+  grid-template-rows: 1fr 600px 1fr;
 }
 
 .heading-container {
@@ -19,5 +20,28 @@
 
   img {
     @apply select-none;
+  }
+}
+
+.loading-container {
+  @apply rounded-md;
+  background: linear-gradient(
+    90deg,
+    theme("colors.gray.300") 0%,
+    theme("colors.gray.300") 35%,
+    theme("colors.gray.50") 50%,
+    theme("colors.gray.300") 65%,
+    theme("colors.gray.300") 100%,
+  );
+  animation: gradient-scroll 2s infinite linear;
+  background-size: 750% 750%;
+}
+
+@keyframes gradient-scroll {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
   }
 }

@@ -44,5 +44,11 @@ export default function ComicItem({ title, img, characters }: IComicItemProps) {
 }
 
 export function ComicItemLoading() {
-  return <>loading yes</>
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles["loading-container"]}></div>
+      <div className={styles["loading-container"]}></div>
+      <div className={styles["loading-container"]}></div>
+    </div>
+  )
 }

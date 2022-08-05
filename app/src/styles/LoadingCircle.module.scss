@@ -1,3 +1,5 @@
+$animCircle: 2s;
+
 .wrapper {
   @apply flex flex-col items-center justify-center z-10 h-[600px];
 
@@ -17,7 +19,7 @@
 
 .circle {
   @apply relative h-[100px] w-[100px];
-  animation: strokeRotate 0.5s linear infinite;
+  animation: strokeRotate calc($animCircle / 2 - .5s) linear infinite;
 
   svg circle {
     @apply fill-transparent stroke-[8];
@@ -25,19 +27,19 @@
     stroke-dasharray: 500;
     stroke-dashoffset: 500;
     stroke-linecap: round;
-    animation: strokePulse 2s steps(300) both infinite;
+    animation: strokePulse $animCircle steps(300) both infinite;
   }
 }
 
 @keyframes strokePulse {
   0% {
-    stroke-dashoffset: 225;
+    stroke-dashoffset: 300;
   }
   50% {
     stroke-dashoffset: 500;
   }
   100% {
-    stroke-dashoffset: 225;
+    stroke-dashoffset: 300;
   }
 }
 
