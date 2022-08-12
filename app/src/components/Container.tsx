@@ -1,17 +1,25 @@
-interface IContainerProps {
-  children: any;
-  classNames?: string;
-  mainClassName?: string;
-}
+import styles from "@/styles/Base.module.scss"
+import Head from "next/head"
 
 export default function Container({
+  title,
+  description,
   children,
-  mainClassName = "flex flex-col justify-between",
-  classNames = "page_searchComic-wrapper",
+  wrap
 }: IContainerProps) {
   return (
-    <main className={mainClassName}>
-      <div className={classNames}>{children}</div>
-    </main>
-  );
-};
+    <>
+      <Head>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+      </Head>
+      {wrap ? (
+        <main role="main" className={styles.wrapper}>
+          {children}
+        </main>
+      ) : (
+        <main role="main">{children}</main>
+      )}
+    </>
+  )
+}

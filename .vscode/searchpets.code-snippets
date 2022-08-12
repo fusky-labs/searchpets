@@ -1,0 +1,21 @@
+{
+  "Insert wrapper mixin": {
+    "scope": "scss",
+    "prefix": "wrapper",
+    "body": [
+      "@use \"mixins\" as *;",
+      "",
+      ".wrapper {",
+      "  @include base-wrapper();",
+      "}"
+    ],
+  },
+
+  "Import styles": {
+    "scope": "typescriptreact",
+    "prefix": "importstyles",
+    "body": [
+      "import styles from \"@/styles/$0.module.scss\""
+    ],
+  }
+}

@@ -1,0 +1,57 @@
+@use "mixins" as *;
+
+.root {
+  @apply shadow-md z-10 relative;
+}
+
+.wrapper {
+  @include base-wrapper();
+  @apply py-4 flex md:justify-between justify-center items-center;
+
+  strong {
+    @apply text-[1.75rem] italic;
+  }
+}
+
+.logo {
+  @apply md:block hidden;
+}
+
+.nav-container {
+  @apply flex items-center gap-x-5 select-none;
+}
+
+.nav-links-container {
+  @apply flex items-center md:gap-x-2 sm:gap-x-16 gap-x-6 pl-2 select-none;
+}
+
+.nav-link-item {
+  @apply md:px-5 md:py-[0.65rem] p-4 md:text-base text-xl md:rounded-3xl rounded-full flex gap-x-2 items-center relative font-semibold transition-all duration-300;
+
+  &:hover {
+    @apply bg-purple-200;
+  }
+}
+
+.nav-link-active {
+  @extend .nav-link-item;
+  @apply bg-purple-500 text-white;
+
+  &:hover {
+    @apply bg-purple-700;
+  }
+}
+
+.nav-link-item, .nav-link-active {
+  span {
+    @extend .logo;
+  }
+}
+
+.nav-theme-toggle {
+  @apply md:relative absolute right-4;
+
+  button {
+    @apply px-5 py-4 rounded-md bg-purple-300;
+  }
+}
