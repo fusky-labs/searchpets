@@ -1,57 +1,43 @@
-import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useState } from "react"
 import Image from "next/image"
-import Link from "next/link"
-interface IComicItemProps {
-  title: string
-  characters: string
-  link: string
-  image: string
-}
+import styles from "@/styles/ComicItem.module.scss"
+import LoadingCircle from "./LoadingCircle"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faBookmark } from "@fortawesome/free-solid-svg-icons"
 
-export default function ComicItem({
-  title,
-  characters,
-  link,
-  image,
-}: IComicItemProps) {
+export default function ComicItem({ title, img, characters }: IComicItemProps) {
+  const [isLoaded, setIsLoaded] = useState(false)
+
   return (
-    <div className="comic-item">
-      <h3 className="comic-item__title">"{title}"</h3>
-      <div className="comic-item__img">
+    <div className={styles.wrapper}>
+      <div className={styles["heading-container"]}>
+        <h2 className={styles.heading}>{title}</h2>
+        <button className={styles["bookmark-btn"]}>
+          <FontAwesomeIcon icon={faBookmark} size="sm" />
+        </button>
+      </div>
+      <div className={styles["image-container"]}>
+        <LoadingCircle hidden={isLoaded !== true ? false : true} />
         <Image
-          src={image}
-          alt={title}
+          src={img}
+          loading="lazy"
+          alt="comic"
           objectFit="contain"
-          width={1000}
-          height={700}
+          layout="fill"
+          quality={75}
+          onLoadingComplete={() => setIsLoaded(true)}
         />
       </div>
-      <hr className="border-dashed my-3" />
-      <div className="comic-item__lower">
-        <div className="comic-item__characters">
-          <span className="uppercase text-sm font-bold text-gray-200">
-            Characters
-          </span>
-          <div className="flex gap-x-1 flex-wrap">
-            {characters.split(", ").map((character, i) => {
-              const characterName = character
-                .replace(/(\s)|(\')/g, "-")
-                .replace(/(\()|(\))|(\.)/g, "")
-                .toLowerCase()
-              return (
-                <span className={`char-inline ${characterName}`} key={i}>
-                  {character}
-                </span>
-              )
-            })}
-          </div>
+      <div className={styles["info-container"]}>
+        <div>
+          <h3 className={styles.subheading}>Characters</h3>
+          {/* <ul className={styles["characters-list"]}>
+            {characters!.map((character: string) => (
+              <li key={character}>{character}</li>
+            ))}
+          </ul> */}
+          <ul className={styles["characters-list"]}></ul>
         </div>
-        <Link href={link} passHref>
-          <a target="_blank" className="comic-item__link">
-            Original Link <FontAwesomeIcon icon={faExternalLinkAlt} size="sm" />
-          </a>
-        </Link>
       </div>
     </div>
   )
@@ -59,13 +45,10 @@ export default function ComicItem({
 
 export function ComicItemLoading() {
   return (
-    <div className="comic-item">
-      <div className="grid place-items-center h-full">
-        <div className="flex flex-col items-center gap-y-3">
-          <div id="circle-loader"></div>
-          <strong className="text-lg">Loading...</strong>
-        </div>
-      </div>
+    <div className={styles.wrapper}>
+      <div className={styles["loading-container"]}></div>
+      <div className={styles["loading-container"]}></div>
+      <div className={styles["loading-container"]}></div>
     </div>
   )
 }

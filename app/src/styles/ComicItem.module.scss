@@ -1,0 +1,47 @@
+.wrapper {
+  @apply gap-2 px-5 py-3 bg-gray-200 rounded-md grid;
+  grid-template-rows: 1fr 600px 1fr;
+}
+
+.heading-container {
+  @apply flex items-center justify-between;
+}
+
+.heading {
+  @apply font-bold text-lg;
+}
+
+.bookmark-btn {
+  @apply text-gray-800 bg-yellow-200 hover:bg-yellow-300 px-3 py-2 rounded-md;
+}
+
+.image-container {
+  @apply relative h-[600px] w-full;
+
+  img {
+    @apply select-none;
+  }
+}
+
+.loading-container {
+  @apply rounded-md;
+  background: linear-gradient(
+    90deg,
+    theme("colors.gray.300") 0%,
+    theme("colors.gray.300") 35%,
+    theme("colors.gray.50") 50%,
+    theme("colors.gray.300") 65%,
+    theme("colors.gray.300") 100%,
+  );
+  animation: gradient-scroll 2s infinite linear;
+  background-size: 750% 750%;
+}
+
+@keyframes gradient-scroll {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
