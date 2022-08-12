@@ -2,6 +2,7 @@ import {ComicItemLoading} from "@/components/ComicItem";
 import Container from "@/components/Container";
 import SearchContainer from "@/components/SearchContainer";
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 
 const ComicItem = dynamic(() => import("../components/ComicItem"), {
   loading:() => <ComicItemLoading />,
@@ -10,6 +11,35 @@ const ComicItem = dynamic(() => import("../components/ComicItem"), {
 })
 
 export default function Home() {
+  const [comics, setComics] = useState([])
+  const [characters, setCharacters] = useState<string[]>([])
+  const [years, setYears] = useState<string[]>([])
+
+  useEffect(() => {
+    const comics = localStorage.getItem("comics")
+    const characters = localStorage.getItem("characters")
+    const years = localStorage.getItem("years")
+
+    if (comics) {
+      setComics(JSON.parse(comics))
+    }
+    if (characters) {
+      setCharacters(characters.split(", "))
+    }
+    if (years) {
+      setYears(years.split(","))
+      // for every yearpicker item, check if it's checked
+      years.split(",").forEach((year) => {
+        const year_id = document.getElementById(
+          `year-${year}`
+        ) as HTMLInputElement
+        if (year_id) {
+          year_id.checked = true
+        }
+      })
+    }
+  }, [])
+
   return (
     <Container wrap>
       <SearchContainer />
