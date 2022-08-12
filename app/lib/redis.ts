@@ -15,25 +15,23 @@ export async function searchComics(years: string[], characters: string[]) {
   }
   ).join(" ")
   console.log(character_query)
-
-  await years.forEach((year) => {
+  for (const year of years) {
     console.log(year)
-    client.ft.search(`${year}`, character_query)
-    .then((res) => {
-      console.log(res.documents.length)
-      res.documents.forEach((doc) => {
-        // console.log(doc.value.title)
+    console.log("this needs to run after the above")
+    await client.ft.search(year, character_query).then((result) => {
+      // console.log(result.documents)
+      result.documents.forEach((doc) => {
+        console.log(doc.value.title)
         const comic = {
           title: doc.value.title,
-          characters: doc.value.characters,
+          characters: (doc.value.characters as string).split(","),
           comic_link: doc.value.comic_link,
           image: doc.value.image,
         }
-        console.log(comic)
         comics.push(comic)
       })
     })
-  })
+  }
   client.quit()
   console.log(comics)
   return { comics: comics }
