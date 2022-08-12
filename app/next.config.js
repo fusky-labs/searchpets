@@ -3,8 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   compress: true,
-  compiler: {
-    removeConsole: true,
+  experimental: {
+    nextScriptWorkers: true,
   },
   images: {
     domains: ['www.housepetscomic.com']
