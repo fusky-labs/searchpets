@@ -1,13 +1,25 @@
 .wrapper {
-  @apply pb-1 px-12 h-auto;
+  @apply pb-1 px-12 h-auto overflow-hidden transition-all duration-300;
+
+  button {
+    @apply py-2 px-3.5 rounded-md transition-all duration-300 font-semibold;
+  }
+
+  .active {
+    @apply bg-purple-200;
+  }
+}
+
+.heading {
+  @apply flex gap-3 items-center flex-col-reverse md:flex-row;
+
+  strong {
+    @apply mt-3 md:mt-0;
+  }
 }
 
 .picker-contents {
-  @apply border-b-2 border-gray-300 overflow-y-hidden transition-all duration-300;
-}
-
-.detail-heading {
-  @apply flex justify-between items-center font-bold py-2 px-5;
+  @apply border-b-2 border-gray-300 overflow-y-hidden ;
 }
 
 .picker-wrapper {
@@ -15,7 +27,7 @@
 }
 
 .picker-container {
-  @apply px-5 pb-1 pt-1 flex flex-col gap-1;
+  @apply pb-1 pt-1 flex flex-col gap-1;
 
   &:last-child {
     @apply pb-4;

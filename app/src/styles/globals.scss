@@ -1,3 +1,16 @@
 @tailwind base;
+
+@layer base {
+  html {
+    @apply scroll-smooth scroll-pt-20;
+  }
+
+  @each $i, $s in [ 1 "4xl", 2 "3xl", 3 "2xl", 4 "xl", 5 "lg" ] {
+    h#{$i} {
+      @apply font-semibold font-inter text-#{$s};
+    }
+  }
+}
+
 @tailwind components;
 @tailwind utilities;
