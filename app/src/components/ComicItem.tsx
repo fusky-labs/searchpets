@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Image from "next/image"
-import styles from "@/styles/ComicItem.module.scss"
+import styles from "@/styles/components/ComicItem.module.scss"
 import LoadingCircle from "./LoadingCircle"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBookmark } from "@fortawesome/free-solid-svg-icons"

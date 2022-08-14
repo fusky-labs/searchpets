@@ -6,11 +6,11 @@
   "private": true,
   "scripts": {
     "reset:next": "rm -rf app/node_modules app/yarn.lock app/package-lock.json && yarn i",
-    "dev": "concurrently -n next,python -k \"npm run dev:next\" \"npm run server:dev\"",
-    "build": "concurrently -n next,python -k \"yarn --cwd ./app build\" \"yarn server:dev\"",
-    "start": "concurrently -n next,python -k \"npm run start:next\" \"npm run server:build\"",
+    "dev": "concurrently -n \"nextjs\",python -c bgBlack,bgBlue -k \"npm run dev:next\" \"npm run server:dev\"",
+    "build": "concurrently -n \"nextjs\",python -c bgBlack,bgBlue -k \"yarn --cwd ./app build\" \"yarn server:start\"",
+    "start": "concurrently -n \"nextjs\",python -c bgBlack,bgBlue -k \"npm run start:next\" \"npm run server:start\"",
     "server:dev": "cd server && python app.py",
-    "server:build": "cd server && python app.py --build",
+    "server:start": "cd server && python app.py --build",
     "dev:next": "yarn --cwd ./app dev",
     "start:next": "yarn --cwd ./app start -p 80"
   },

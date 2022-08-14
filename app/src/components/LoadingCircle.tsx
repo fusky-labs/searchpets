@@ -1,4 +1,4 @@
-import styles from "@/styles/LoadingCircle.module.scss"
+import styles from "@/styles/components/LoadingCircle.module.scss"
 
 export default function LoadingCircle({ hidden }: { hidden?: boolean }) {
   return (

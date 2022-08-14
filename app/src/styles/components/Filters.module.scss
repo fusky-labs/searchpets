@@ -1,15 +1,9 @@
 .wrapper {
-  @apply p-1 rounded-xl overflow-hidden h-auto;
-}
-
-.search-box-container {
-  input[type="text"] {
-    @apply p-3 border-2 border-gray-300 focus:outline-none focus:border-gray-400 w-full rounded-tl-xl rounded-tr-xl;
-  }
+  @apply pb-1 px-12 h-auto;
 }
 
 .picker-contents {
-  @apply border-t-4 bg-purple-100 rounded-bl-xl rounded-br-xl overflow-y-hidden;
+  @apply border-b-2 border-gray-300 overflow-y-hidden transition-all duration-300;
 }
 
 .detail-heading {

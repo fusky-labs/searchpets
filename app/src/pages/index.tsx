@@ -1,6 +1,7 @@
 import { ComicItemLoading } from "@/components/ComicItem"
 import Container from "@/components/Container"
-import SearchContainer from "@/components/SearchContainer"
+import SearchBox from "@/components/search/SearchBox"
+import FilterBox from "@/components/search/FilterBox"
 import dynamic from "next/dynamic"
 import { useEffect, useState } from "react"
 
@@ -42,7 +43,8 @@ export default function Home() {
 
   return (
     <Container wrap>
-      <SearchContainer />
+      <SearchBox />
+      <FilterBox />
       <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-3 mt-2 px-1">
         {/* <ComicItemLoading /> */}
         <ComicItem img="/static/01.jpg" title="title" />

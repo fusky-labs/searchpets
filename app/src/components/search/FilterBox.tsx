@@ -1,10 +1,9 @@
 import { useRef, useState, useLayoutEffect } from "react"
-import styles from "@/styles/Search.module.scss"
+import styles from "@/styles/components/Filters.module.scss"
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export default function SearchContainer() {
-  // Generate a list of years from 2008 to the current year as strings
   const generateYears = () => {
     const currentYear = new Date().getFullYear()
     const years = []
@@ -16,25 +15,28 @@ export default function SearchContainer() {
 
   const yearList = generateYears()
 
-  // Get the current height of the filter container based on the height of the element
-  // const [filterHeight, setFilterHeight] = useState(45)
-  // const filterRef = useRef<HTMLDivElement>(null)
+  const [filterHeight, setFilterHeight] = useState(45)
+  const [showFilter, setShowFilter] = useState(true)
+  const filterRef = useRef<HTMLDivElement>(null)
 
-  // useLayoutEffect(() => {
-  //   setFilterHeight(filterRef.current!.clientHeight)
-  // }, [])
+  useLayoutEffect(() => {
+    if (!showFilter) return setFilterHeight(filterRef.current!.scrollHeight)
+    setFilterHeight(45)
+  }, [showFilter])
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles["search-box-container"]}>
-        <input type="text" placeholder="Search" />
-      </div>
       <div
         className={styles["picker-contents"]}
-/*         style={{ "height": `${filterHeight}px` }}
-        ref={filterRef} */
+        style={{
+          height: `${filterHeight}px`
+        }}
+        ref={filterRef}
       >
-        <div className={styles["detail-heading"]}>
+        <div
+          className={styles["detail-heading"]}
+          onClick={() => setShowFilter(!showFilter)}
+        >
           <h2>Filters</h2>
           <FontAwesomeIcon icon={faCaretDown} />
         </div>

@@ -1,6 +1,6 @@
 import { useRouter } from "next/router"
 import Link from "next/link"
-import styles from "@/styles/Navbar.module.scss"
+import styles from "@/styles/base/Navbar.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faAdjust,

@@ -1,0 +1,9 @@
+.wrapper {
+  @apply pb-1 pt-10 px-12 h-auto;
+}
+
+.search-box-container {
+  input[type="text"] {
+    @apply p-3 border-2 border-gray-300 focus:outline-none focus:border-gray-400 w-full rounded-xl;
+  }
+}

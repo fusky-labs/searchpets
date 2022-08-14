@@ -1,4 +1,4 @@
-import styles from "@/styles/Base.module.scss"
+import styles from "@/styles/base/Base.module.scss"
 import Head from "next/head"
 
 export default function Container({

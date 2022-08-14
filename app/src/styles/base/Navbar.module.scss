@@ -1,4 +1,4 @@
-@use "mixins" as *;
+@use "../mixins" as *;
 
 .root {
   @apply shadow-md z-10 relative;

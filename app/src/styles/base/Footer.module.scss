@@ -1,8 +1,12 @@
-@use "mixins" as *;
+@use "../mixins" as *;
 
 .wrapper {
   @include base-wrapper();
   @apply text-sm;
+
+  hr {
+    @apply pt-6 border-slate-800 border-b-[1px] border-t-0;
+  }
 }
 
 .container {
