@@ -1,6 +1,9 @@
 import type { AppProps } from "next/app"
 import { useEffect } from "react"
 import { useRouter } from "next/router"
+
+import { MDXProvider } from "@mdx-js/react"
+
 import { config, library } from "@fortawesome/fontawesome-svg-core"
 import { fab } from "@fortawesome/free-brands-svg-icons"
 import { fas } from "@fortawesome/free-solid-svg-icons"
@@ -19,9 +22,7 @@ export default function SearchpetsApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
   useEffect(() => {
-    const handleRouteChange = (url: any) => {
-      ga.pageView(url)
-    }
+    const handleRouteChange = (url: any) => ga.pageView(url)
 
     router.events.on("routeChangeComplete", handleRouteChange)
     return () => router.events.off("routeChangeComplete", handleRouteChange)
@@ -29,7 +30,9 @@ export default function SearchpetsApp({ Component, pageProps }: AppProps) {
 
   return (
     <Layout>
-      <Component {...pageProps} />
+      <MDXProvider>
+        <Component {...pageProps} />
+      </MDXProvider>
     </Layout>
   )
 }

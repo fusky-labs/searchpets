@@ -11,10 +11,14 @@
   },
   "dependencies": {
     "@builder.io/partytown": "^0.6.4",
+    "@mdx-js/loader": "^2.1.2",
+    "@mdx-js/react": "^2.1.2",
+    "@next/mdx": "^12.2.5",
     "next": "12.2.3",
     "next-pwa": "^5.5.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "redis": "^4.2.0"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.2",

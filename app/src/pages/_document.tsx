@@ -30,6 +30,7 @@ export default class SearchpetsApp extends Document {
             strategy="worker"
           />
           <script
+            type="text/partytown"
             dangerouslySetInnerHTML={{
               __html: `
             window.dataLayer = window.dataLayer || [];

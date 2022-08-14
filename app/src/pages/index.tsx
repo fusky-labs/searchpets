@@ -1,11 +1,11 @@
-import {ComicItemLoading} from "@/components/ComicItem";
-import Container from "@/components/Container";
-import SearchContainer from "@/components/SearchContainer";
-import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { ComicItemLoading } from "@/components/ComicItem"
+import Container from "@/components/Container"
+import SearchContainer from "@/components/SearchContainer"
+import dynamic from "next/dynamic"
+import { useEffect, useState } from "react"
 
 const ComicItem = dynamic(() => import("../components/ComicItem"), {
-  loading:() => <ComicItemLoading />,
+  loading: () => <ComicItemLoading />,
   suspense: true,
   ssr: false
 })

@@ -5,7 +5,7 @@ declare global {
 }
 
 export const pageView = (url: string) => {
-  if (window && window.gtag) {
+  if (typeof window.gtag !== "undefined") {
     window.gtag("config", process.env.GA, {
       page_path: url
     })

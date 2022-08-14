@@ -1,6 +1,11 @@
 {
+  "name": "searchpets",
+  "author": {
+    "name": "openfurs"
+  },
   "private": true,
   "scripts": {
+    "reset:next": "rm -rf app/node_modules app/yarn.lock app/package-lock.json && yarn i",
     "dev": "concurrently -n next,python -k \"npm run dev:next\" \"npm run server:dev\"",
     "build": "concurrently -n next,python -k \"yarn --cwd ./app build\" \"yarn server:dev\"",
     "start": "concurrently -n next,python -k \"npm run start:next\" \"npm run server:build\"",
@@ -15,5 +20,6 @@
   },
   "devDependencies": {
     "concurrently": "^7.0.0"
-  }
+  },
+  "license": "GPL-2.0"
 }

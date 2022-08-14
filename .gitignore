@@ -54,3 +54,6 @@ server/__pycache__
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
+
+# MDX stuff
+.mdx-data
