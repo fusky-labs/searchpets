@@ -1,7 +1,47 @@
-.button {
+.button-wrapper {
   @apply md:relative absolute right-4;
 
-  button {
-    @apply px-5 py-4 rounded-md bg-purple-300;
+  > button {
+    @apply px-5 py-4 rounded-full bg-purple-300 relative;
   }
+}
+
+.dropdown-wrapper {
+  @apply absolute w-max top-[4rem] right-0 bg-purple-50 rounded-md border-[1px] border-purple-500 pb-6 pt-4 text-sm;
+
+  .theme,
+  .shortcuts {
+    @apply text-left cursor-default select-none;
+
+    h4 {
+      @apply mb-1 mt-2 px-5;
+    }
+  }
+
+  input[type^="checkbox"] {
+    @apply mr-2;
+  }
+}
+
+.toggle {
+  @apply px-5 py-2 flex justify-between;
+
+  p {
+    &:first-child {
+      @apply font-bold text-base;
+    }
+
+    &:last-child {
+      @apply text-sm;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    @apply bg-purple-200;
+  }
+}
+
+.subtext-wrap {
+  @apply w-[25rem];
 }

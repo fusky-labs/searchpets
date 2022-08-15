@@ -10,6 +10,10 @@
       @apply font-semibold font-inter text-#{$s};
     }
   }
+
+  a {
+    @apply underline text-purple-900 hover:text-purple-600;
+  }
 }
 
 @tailwind components;
