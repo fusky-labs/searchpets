@@ -5,14 +5,14 @@
     @apply scroll-smooth scroll-pt-20;
   }
 
+  body {
+    @apply overflow-x-hidden;
+  }
+
   @each $i, $s in [ 1 "4xl", 2 "3xl", 3 "2xl", 4 "xl", 5 "lg" ] {
     h#{$i} {
       @apply font-semibold font-inter text-#{$s};
     }
-  }
-
-  a {
-    @apply underline text-purple-900 hover:text-purple-600;
   }
 }
 

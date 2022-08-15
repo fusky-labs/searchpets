@@ -1,30 +1,46 @@
+@use "../mixins" as *;
+
 .button-wrapper {
-  @apply md:relative absolute right-4;
+  @apply absolute md:relative right-4;
 
   > button {
-    @apply px-5 py-4 rounded-full bg-purple-300 relative;
+    @apply px-5 py-4 rounded-full relative transition-all duration-300;
+
+    &:hover {
+      @apply bg-purple-200;
+    }
+  }
+
+  &-active {
+  @apply absolute md:relative right-4;
+
+    > button {
+      @apply px-5 py-4 rounded-full relative bg-purple-500 text-white transition-all duration-300;
+    }
   }
 }
 
 .dropdown-wrapper {
-  @apply absolute w-max top-[4rem] right-0 bg-purple-50 rounded-md border-[1px] border-purple-500 pb-6 pt-4 text-sm;
+  @apply absolute w-max top-[4rem] right-0 bg-purple-50 rounded-md border-[1px] border-purple-500 pb-6 pt-4 text-sm drop-shadow-2xl;
+  @apply opacity-100 scale-100 translate-x-0 translate-y-0 pointer-events-auto transition-all duration-300;
+
+  &-closed {
+    @extend .dropdown-wrapper;
+    @apply opacity-0 scale-95 translate-x-2 -translate-y-5 pointer-events-none;
+  }
 
   .theme,
   .shortcuts {
     @apply text-left cursor-default select-none;
 
     h4 {
-      @apply mb-1 mt-2 px-5;
+      @apply my-1 px-7;
     }
-  }
-
-  input[type^="checkbox"] {
-    @apply mr-2;
   }
 }
 
 .toggle {
-  @apply px-5 py-2 flex justify-between;
+  @apply px-7 py-2 flex justify-between items-center;
 
   p {
     &:first-child {
@@ -39,9 +55,49 @@
   &:hover,
   &:focus {
     @apply bg-purple-200;
+
+    .override-label {
+      @apply bg-purple-50;
+    }
   }
 }
 
 .subtext-wrap {
   @apply w-[25rem];
+}
+
+.subtext-link {
+  @include links();
+}
+
+.override-label {
+  @apply py-0.5 px-2 bg-purple-200 text-[80%] rounded-md;
+}
+
+/*******************/
+
+.switch {
+  @apply relative inline-block w-4 h-[13px] px-5 ml-2;
+
+  input {
+    @apply opacity-0 w-0 h-0;
+
+    &:checked {
+      + .slider {
+        @apply bg-purple-400 shadow-md;
+
+        &::before {
+          @apply translate-x-4 border-purple-400;
+        }
+      }
+    }
+  }
+}
+
+.slider {
+  @apply absolute cursor-pointer inset-0 bg-[#b4b4b4] transition-all duration-300 rounded-2xl;
+
+  &::before {
+    @apply content-[""] absolute w-[25px] h-[25px] right-4 -bottom-[6px] bg-gray-50 shadow-lg transition-all duration-300 rounded-full border-[3px] border-[#b4b4b4];
+  }
 }

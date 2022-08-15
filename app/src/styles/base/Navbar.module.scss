@@ -6,7 +6,7 @@
 
 .wrapper {
   @include base-wrapper();
-  @apply py-4 flex md:justify-between justify-center items-center;
+  @apply py-4 flex md:justify-between justify-start items-center;
 
   strong {
     @apply text-[1.75rem] italic;
@@ -14,7 +14,7 @@
 }
 
 .logo {
-  @apply md:block hidden;
+  @apply block;
 }
 
 .nav-container {
@@ -22,11 +22,15 @@
 }
 
 .nav-links-container {
-  @apply flex items-center md:gap-x-2 sm:gap-x-16 gap-x-6 pl-2 select-none;
+  @apply flex items-center md:gap-x-2 gap-x-6 pl-2 select-none;
 }
 
 .nav-link-item {
   @apply md:px-5 md:py-[0.65rem] p-4 md:text-base text-xl md:rounded-3xl rounded-full flex gap-x-2 items-center relative font-semibold transition-all duration-300;
+
+  span {
+    @apply hidden md:block;
+  }
 
   &:hover {
     @apply bg-purple-200;

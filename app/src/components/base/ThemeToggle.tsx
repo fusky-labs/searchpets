@@ -11,23 +11,30 @@ import styles from "@/styles/components/ThemeToggle.module.scss"
 export default function ThemeToggle() {
   // I need to touch some grass
   const [menuOpen, setMenuOpen] = useState(false)
-  const [theme, setTheme] = useState("light")
+  const [theme, setTheme] = useState("")
 
   const menuToggle = () => {
     setMenuOpen(!menuOpen)
-
-    // if menu is open and if the user clicks anywhere else, close the menu
-    if (menuOpen) {
-      document.addEventListener("click", () => setMenuOpen(false))
-    }
   }
 
   return (
-    <div className={styles["button-wrapper"]}>
+    <div
+      className={
+        !menuOpen
+          ? styles["button-wrapper"].toString()
+          : styles["button-wrapper-active"].toString()
+      }
+    >
       <button className={styles.button} onClick={menuToggle}>
         <FontAwesomeIcon icon={faSlidersH} />
       </button>
-      <div className={styles["dropdown-wrapper"]}>
+      <div
+        className={
+          menuOpen
+            ? styles["dropdown-wrapper"].toString()
+            : styles["dropdown-wrapper-closed"].toString()
+        }
+      >
         <section className={styles.theme}>
           <h4>
             <FontAwesomeIcon icon={faSun} style={{ marginRight: "0.35rem" }} />
@@ -40,8 +47,14 @@ export default function ThemeToggle() {
                 Changing the theme will override system theme and is applied to
                 this browser only
               </p>
+              <span className={styles["override-label"]}>
+                THEME OVERWRITTEN &bull; REVERT TO DEFAULT
+              </span>
             </article>
-            <input type="checkbox" />
+            <label className={styles.switch}>
+              <input type="checkbox" />
+              <span className={styles.slider}></span>
+            </label>
           </div>
         </section>
         <section className={styles.shortcuts}>
@@ -57,14 +70,10 @@ export default function ThemeToggle() {
               <p>High contrast</p>
               <p>Provide high contrast colors for legibility</p>
             </article>
-            <input type="checkbox" />
-          </div>
-          <div className={styles.toggle}>
-            <article>
-              <p>Shortcuts</p>
-              <p>Use keyboard shortcuts for quicker navigation</p>
-            </article>
-            <input type="checkbox" />
+            <label className={styles.switch}>
+              <input type="checkbox" />
+              <span className={styles.slider}></span>
+            </label>
           </div>
           <div className={styles.toggle}>
             <article>
@@ -72,6 +81,7 @@ export default function ThemeToggle() {
               <p className={styles["subtext-wrap"]}>
                 NOTE: For people with{" "}
                 <a
+                  className={styles["subtext-link"]}
                   href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation#accessibility_concerns"
                   target="_blank"
                   rel="noreferrer noopener"
@@ -81,7 +91,10 @@ export default function ThemeToggle() {
                 , you may turn off animations to override this setting
               </p>
             </article>
-            <input type="checkbox" />
+            <label className={styles.switch}>
+              <input type="checkbox" />
+              <span className={styles.slider}></span>
+            </label>
           </div>
         </section>
       </div>

@@ -1,5 +1,5 @@
 .wrapper {
-  @apply pb-1 px-12 h-auto overflow-hidden transition-all duration-300;
+  @apply pb-1 px-1 md:px-12 h-auto overflow-hidden transition-all duration-300;
 
   button {
     @apply py-2 px-5 rounded-3xl transition-all duration-300 font-semibold;
