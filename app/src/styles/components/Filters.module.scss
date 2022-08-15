@@ -5,8 +5,12 @@
     @apply py-2 px-5 rounded-3xl transition-all duration-300 font-semibold;
   }
 
-  .active {
-    @apply bg-purple-500 text-white;
+  .filter-btn {
+    @apply bg-purple-200;
+
+    &-active {
+      @apply bg-purple-500 text-white;
+    }
   }
 }
 
@@ -19,15 +23,19 @@
 }
 
 .picker-contents {
-  @apply border-b-2 border-gray-300 overflow-y-hidden ;
+  @apply border-b-2 border-gray-300 overflow-y-hidden;
 }
 
 .picker-wrapper {
-  @apply flex flex-col;
+  @apply flex flex-col transition-all duration-[320ms];
 }
 
-.picker-container {
+.picker-divider {
   @apply pb-1 pt-1 flex flex-col gap-1;
+
+  &:first-child {
+    @apply pt-3;
+  }
 
   &:last-child {
     @apply pb-4;
@@ -39,5 +47,17 @@
 }
 
 .filter-item {
-  @apply flex gap-1 px-3 py-[0.45rem] bg-purple-300 rounded-md select-none;
+  @apply flex gap-1;
+
+  input {
+    @apply hidden;
+  }
+
+  label {
+    @apply px-4 py-[0.35rem] rounded-md select-none border-2 border-purple-500 transition-colors duration-[200ms];
+  }
+
+  input:checked ~ label {
+    @apply bg-purple-900 border-purple-900 text-white font-bold;
+  }
 }

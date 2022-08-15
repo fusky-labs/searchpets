@@ -17,7 +17,6 @@ export default function Footer() {
               Rick Griffin. All rights reserved.
             </p>
             <p><em>Searchpets!</em> is an open source project built with Next.js and FastAPI.</p>
-            <p>Updated August 2022</p>
           </article>
           <ul className={styles["links-container"]}>
             <FooterLink
