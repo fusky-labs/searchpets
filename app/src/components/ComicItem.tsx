@@ -30,7 +30,7 @@ export default function ComicItem({ title, img, characters }: IComicItemProps) {
       </div>
       <div className={styles["info-container"]}>
         <div>
-          <h3 className={styles.subheading}>Characters</h3>
+          <strong className={styles.subheading}>Characters</strong>
           {/* <ul className={styles["characters-list"]}>
             {characters!.map((character: string) => (
               <li key={character}>{character}</li>

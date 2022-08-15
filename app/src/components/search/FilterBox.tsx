@@ -1,4 +1,4 @@
-import { useRef, useState, useLayoutEffect } from "react"
+import { useRef, useState, useEffect } from "react"
 import styles from "@/styles/components/Filters.module.scss"
 import FilterItem from "./FilterItem"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -16,14 +16,14 @@ export default function SearchContainer() {
 
   const yearList = generateYears()
 
-  const [filterHeight, setFilterHeight] = useState(45)
+  const [filterHeight, setFilterHeight] = useState(100)
   const [showFilter, setShowFilter] = useState(true)
   const filterRef = useRef<HTMLDivElement>(null)
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!showFilter) return setFilterHeight(filterRef.current!.scrollHeight)
-    if (window.matchMedia("(min-width: 768px)").matches) return setFilterHeight(45)
-    setFilterHeight(100)
+    if (window.matchMedia("(min-width: 768px)").matches) return setFilterHeight(50)
+    return setFilterHeight(100)
   }, [showFilter])
 
   return (

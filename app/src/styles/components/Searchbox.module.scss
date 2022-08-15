@@ -3,7 +3,13 @@
 }
 
 .search-box-container {
+  @apply relative;
+
+  .icon {
+    @apply absolute top-0 p-[0.85rem] pl-5 pointer-events-none;
+  }
+
   input[type="text"] {
-    @apply p-3 border-2 border-gray-300 focus:outline-none focus:border-gray-400 w-full rounded-xl;
+    @apply p-3 pl-12 border-2 border-gray-300 focus:outline-none focus:border-gray-400 w-full rounded-xl;
   }
 }

@@ -1,4 +1,4 @@
-$animCircle: 2s;
+$animCircle: 2.1s;
 
 .wrapper {
   @apply flex flex-col items-center justify-center z-10 h-[600px];
@@ -33,13 +33,13 @@ $animCircle: 2s;
 
 @keyframes strokePulse {
   0% {
-    stroke-dashoffset: 300;
+    stroke-dashoffset: 350;
   }
   50% {
     stroke-dashoffset: 500;
   }
   100% {
-    stroke-dashoffset: 300;
+    stroke-dashoffset: 350;
   }
 }
 

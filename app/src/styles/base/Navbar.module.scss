@@ -47,11 +47,3 @@
     @extend .logo;
   }
 }
-
-.nav-theme-toggle {
-  @apply md:relative absolute right-4;
-
-  button {
-    @apply px-5 py-4 rounded-md bg-purple-300;
-  }
-}

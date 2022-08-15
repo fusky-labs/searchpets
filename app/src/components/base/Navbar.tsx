@@ -8,6 +8,7 @@ import {
   faList,
   faMagnifyingGlass
 } from "@fortawesome/free-solid-svg-icons"
+import ThemeToggle from "./ThemeToggle"
 
 export default function Navbar() {
   return (
@@ -23,11 +24,7 @@ export default function Navbar() {
             <NavLink link="/about" name="About" icon={faInfoCircle} />
           </ul>
         </div>
-        <div className={styles["nav-theme-toggle"]}>
-          <button>
-            <FontAwesomeIcon icon={faAdjust} />
-          </button>
-        </div>
+        <ThemeToggle />
       </div>
     </header>
   )

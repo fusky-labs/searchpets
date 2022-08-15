@@ -2,16 +2,16 @@
   @apply pb-1 px-12 h-auto overflow-hidden transition-all duration-300;
 
   button {
-    @apply py-2 px-3.5 rounded-md transition-all duration-300 font-semibold;
+    @apply py-2 px-5 rounded-3xl transition-all duration-300 font-semibold;
   }
 
   .active {
-    @apply bg-purple-200;
+    @apply bg-purple-500 text-white;
   }
 }
 
 .heading {
-  @apply flex gap-3 items-center flex-col-reverse md:flex-row;
+  @apply flex gap-3 items-center flex-col-reverse md:flex-row mt-2;
 
   strong {
     @apply mt-3 md:mt-0;
