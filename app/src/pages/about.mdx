@@ -1,11 +1,23 @@
 import styles from "@/styles/pages/About.module.scss"
 import Container from "@/components/Container"
 
-# My MDX page
-This is a list in markdown:
+# About *Searchpets!*
+**Searchpets!** is a passion project initially created by[@maxthecomputer1](https://twitter.com/maxthecomputer1)
+and [@skepfuskyjs](https://twitter.com/skepfusky); where users can search and bookmark the entire *Housepets!*
+comic catalog by Rick Griffin.
 
-- One
-- Two
-- Three
+## History
+On March 2022, Max had this idea to create a Housepets search engine to look through recognizable memes
+
+## Technical garbage
+Searchpets is written in:
+- **Next.js**, a web framework built on top of [React](https://reactjs.org), one of the popular JavaScript
+frameworks for building websites. We've written this on [TypeScript](https://www.typescript-lang.org) version of Next.js.
+  - We also use [Tailwind CSS](https://tailwindcss.com) and [Sass](https://sass-lang.org) for building the UI.
+- **Python**, for gathering and updating up-to-date comics via the official Housepets! comic website
+and sending it to a [Redis](https://redis.io) database.
+
+If you find any of this interesting, the [source code](https://github.com/openfurs/searchpets) for
+*Searchpets!* is completely free and open-source on GitHub!
 
 export default ({children}) => <Container wrap>{children}</Container>

@@ -1,11 +1,11 @@
 import { createClient } from "redis"
 
 export async function searchComics(years: string[], characters: string[]) {
-  // create a client and connect to the Redis server
   const client = createClient({
     url: process.env.REDIS_URL
   })
   client.connect()
+
   // for every year index given, search that year index that have the characters given
   let comics: string[] = []
   console.log(years)
@@ -15,6 +15,7 @@ export async function searchComics(years: string[], characters: string[]) {
       return `@characters:{${character}}`
     })
     .join(" ")
+
   console.log(character_query)
   for (const year of years) {
     console.log(year)

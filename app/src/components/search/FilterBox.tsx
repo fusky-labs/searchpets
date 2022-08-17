@@ -3,6 +3,7 @@ import styles from "@/styles/components/Filters.module.scss"
 import FilterItem from "./FilterItem"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFilter } from "@fortawesome/free-solid-svg-icons"
+import { Chapters } from "./Chapters"
 
 export default function SearchContainer() {
   const generateYears = () => {
@@ -78,9 +79,9 @@ export default function SearchContainer() {
         <section className={styles["picker-divider"]}>
           <h3>Chapters</h3>
           <div className={styles["filter-container"]}>
-            <FilterItem name="The Heckening" />
-            <FilterItem name="The Heckening 2" />
-            <FilterItem name="The Heckening 3" />
+            {Chapters.map((chapters) => {
+              return <FilterItem key={chapters} name={chapters} />
+            })}
           </div>
         </section>
         <section className={styles["picker-divider"]}>

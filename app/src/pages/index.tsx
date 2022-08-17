@@ -47,7 +47,10 @@ export default function Home() {
       <FilterBox />
       <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-3 mt-2 px-1">
         {/* <ComicItemLoading /> */}
-        <ComicItem img="/static/01.jpg" title="title" />
+        <ComicItem
+          img="https://www.housepetscomic.com/wp-content/uploads/2019/01/2019-01-16-whats-the-story-wishbone.png"
+          title="title"
+        />
         <ComicItem img="/static/02.jpg" title="title" />
         <ComicItem img="/static/03.jpg" title="title" />
         <ComicItem img="/static/04.jpg" title="title" />

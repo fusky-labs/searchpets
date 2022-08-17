@@ -13,7 +13,7 @@ declare interface IContainerProps extends ILayoutProps {
 declare interface INavLinkProps {
   link?: string
   name?: string
-  icon: IconProp
+  icon: any
 }
 
 declare interface IFooterLinkProps extends INavLinkProps {}

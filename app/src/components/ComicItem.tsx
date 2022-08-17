@@ -17,7 +17,7 @@ export default function ComicItem({ title, img, characters }: IComicItemProps) {
         </button>
       </div>
       <div className={styles["image-container"]}>
-        <LoadingCircle hidden={isLoaded !== true ? false : true} />
+        <LoadingCircle hidden={!isLoaded ? false : true} />
         <Image
           src={img}
           loading="lazy"

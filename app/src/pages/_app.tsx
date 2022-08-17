@@ -1,9 +1,7 @@
 import type { AppProps } from "next/app"
 import { useEffect } from "react"
 import { useRouter } from "next/router"
-
 import { MDXProvider } from "@mdx-js/react"
-
 import { config, library } from "@fortawesome/fontawesome-svg-core"
 import { fab } from "@fortawesome/free-brands-svg-icons"
 import { fas } from "@fortawesome/free-solid-svg-icons"
