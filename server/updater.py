@@ -93,7 +93,7 @@ def main():
                     f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} Setting up {year} index... {Style.RESET_ALL}")
                 RedisDB.ft(f"{year}").create_index(
                     schema, definition=index_def)
-            except:
+            except Exception as e:
                 print(
                     f"{Back.RED}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} {year} index already exists {Style.RESET_ALL}")
 
