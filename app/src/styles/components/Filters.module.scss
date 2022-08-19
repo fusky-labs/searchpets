@@ -6,7 +6,7 @@
   }
 
   .filter-btn {
-    @apply bg-purple-200;
+    @apply dark:bg-purple-900 bg-purple-200;
 
     &-active {
       @apply bg-purple-500 text-white;
@@ -15,7 +15,7 @@
 }
 
 .heading {
-  @apply flex gap-3 items-center flex-col-reverse md:flex-row mt-2;
+  @apply flex gap-3 items-center flex-col-reverse md:flex-row mt-2 pb-4;
 
   strong {
     @apply mt-3 md:mt-0;
@@ -54,7 +54,7 @@
   }
 
   label {
-    @apply px-4 py-[0.35rem] rounded-md select-none border-2 border-purple-500 transition-colors duration-[200ms];
+    @apply px-4 py-[0.35rem] rounded-md select-none border-2 dark:border-purple-800 border-purple-500 transition-colors duration-[200ms];
   }
 
   input:checked ~ label {

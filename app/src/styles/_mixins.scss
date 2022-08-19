@@ -9,5 +9,5 @@
 }
 
 @mixin links() {
-  @apply underline text-purple-900 hover:text-purple-600;
+  @apply underline text-purple-900 dark:text-purple-300 hover:text-purple-600;
 }

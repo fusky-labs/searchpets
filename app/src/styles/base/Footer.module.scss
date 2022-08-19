@@ -1,16 +1,20 @@
 @use "../mixins" as *;
 
+.root {
+  @apply dark:bg-neutral-900;
+}
+
 .wrapper {
   @include base-wrapper();
   @apply text-sm;
 
   hr {
-    @apply pt-6 border-slate-800 border-b-[1px] border-t-0;
+    @apply pt-6 border-slate-800 dark:border-slate-100 border-b-[1px] border-t-0;
   }
 }
 
 .container {
-  @apply flex md:flex-row flex-col justify-between md:items-start items-center gap-y-3 my-7;
+  @apply flex md:flex-row flex-col justify-between md:items-start items-center gap-y-3 py-7;
 }
 
 .text-container {

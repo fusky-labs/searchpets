@@ -1,0 +1,7 @@
+.comic-contents {
+  @apply relative grid grid-cols-1 lg:grid-cols-2 gap-3 py-7 px-1 dark:bg-neutral-900;
+
+  &::before {
+    @apply content-[""] absolute -left-[100%] -right-[100%] top-0 bottom-0 -z-10 dark:bg-neutral-900;
+  }
+}

@@ -4,10 +4,10 @@
   @apply absolute md:relative right-4;
 
   > button {
-    @apply px-5 py-4 rounded-full relative transition-all duration-300;
+    @apply px-5 py-4 rounded-full relative transition-all duration-300 bg-opacity-50;
 
     &:hover {
-      @apply bg-purple-200;
+      @apply bg-purple-200 dark:bg-purple-900;
     }
   }
 
@@ -21,7 +21,7 @@
 }
 
 .dropdown-wrapper {
-  @apply absolute w-max top-[4rem] right-0 bg-purple-50 rounded-md border-[1px] border-purple-500 pb-6 pt-4 text-sm drop-shadow-2xl;
+  @apply absolute w-max top-[4rem] right-0 dark:bg-neutral-900 bg-purple-50 rounded-md border-[1px] border-purple-500 pb-6 pt-4 text-sm drop-shadow-2xl;
   @apply opacity-100 scale-100 translate-x-0 translate-y-0 pointer-events-auto transition-all duration-300;
 
   &-closed {
@@ -54,10 +54,10 @@
 
   &:hover,
   &:focus {
-    @apply bg-purple-200;
+    @apply dark:bg-purple-900 dark:bg-opacity-25 bg-purple-200;
 
     .override-label {
-      @apply bg-purple-50;
+      @apply dark:bg-purple-600 bg-purple-50;
     }
   }
 }
@@ -71,7 +71,7 @@
 }
 
 .override-label {
-  @apply py-0.5 px-2 bg-purple-200 text-[80%] rounded-md;
+  @apply py-0.5 px-2 dark:bg-purple-900 bg-purple-200 text-[80%] rounded-md;
 }
 
 /*******************/
@@ -84,10 +84,10 @@
 
     &:checked {
       + .slider {
-        @apply bg-purple-400 shadow-md;
+        @apply bg-white shadow-md;
 
         &::before {
-          @apply translate-x-4 border-purple-400;
+          @apply translate-x-5 border-white bg-purple-900;
         }
       }
     }
@@ -95,9 +95,9 @@
 }
 
 .slider {
-  @apply absolute cursor-pointer inset-0 bg-[#b4b4b4] transition-all duration-300 rounded-2xl;
+  @apply absolute cursor-pointer inset-0 dark:bg-neutral-600 bg-[#b4b4b4] transition-all duration-300 rounded-2xl;
 
   &::before {
-    @apply content-[""] absolute w-[25px] h-[25px] right-4 -bottom-[6px] bg-gray-50 shadow-lg transition-all duration-300 rounded-full border-[3px] border-[#b4b4b4];
+    @apply content-[""] absolute w-[25px] h-[25px] right-4 -bottom-[6px] dark:bg-gray-300 bg-gray-50 shadow-lg transition-all duration-300 rounded-full border-[3px] dark:border-neutral-600 border-[#b4b4b4];
   }
 }

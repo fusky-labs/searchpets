@@ -3,7 +3,7 @@ import Link from "next/link"
 import styles from "@/styles/base/Navbar.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
-  faAdjust,
+  faBoxesPacking,
   faInfoCircle,
   faList,
   faMagnifyingGlass
@@ -21,6 +21,7 @@ export default function Navbar() {
           <ul className={styles["nav-links-container"]} role="navigation">
             <NavLink link="/" name="Search" icon={faMagnifyingGlass} />
             <NavLink link="/characters" name="Character List" icon={faList} />
+            <NavLink link="/updates" name="Updates" icon={faBoxesPacking} />
             <NavLink link="/about" name="About" icon={faInfoCircle} />
           </ul>
         </div>

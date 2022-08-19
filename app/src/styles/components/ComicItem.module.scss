@@ -1,18 +1,35 @@
 .wrapper {
-  @apply gap-2 px-5 py-3 bg-gray-200 rounded-md grid;
-  grid-template-rows: 1fr 600px 1fr;
+  @apply gap-2 px-5 py-4 dark:bg-neutral-800 bg-gray-200 rounded-md flex flex-col;
+}
+
+[theme-override="dark"] .wrapper {
+  @apply bg-neutral-800;
 }
 
 .heading-container {
   @apply flex items-center justify-between;
 }
 
+.heading-actions {
+  @apply flex gap-x-1;
+}
+
 .heading {
   @apply font-bold text-lg;
 }
 
+.buttons {
+  @apply px-4 py-2 rounded-md;
+}
+
 .bookmark-btn {
-  @apply bg-yellow-200 hover:bg-yellow-300 px-4 py-2 rounded-md;
+  @extend .buttons;
+  @apply dark:bg-yellow-900 dark:hover:bg-yellow-800 bg-yellow-200 hover:bg-yellow-300;
+}
+
+.link-btn {
+  @extend .buttons;
+  @apply dark:bg-neutral-900 dark:hover:bg-neutral-700 bg-neutral-200 hover:bg-neutral-300;
 }
 
 .image-container {
@@ -20,6 +37,22 @@
 
   img {
     @apply select-none;
+  }
+}
+
+.subheading {
+  @apply text-xl;
+}
+
+.info-container {
+  @apply flex flex-col justify-between;
+
+  ul {
+    @apply flex gap-1;
+  }
+
+  li {
+    @apply py-1 px-3 bg-neutral-500 bg-opacity-25 rounded-md select-none text-sm;
   }
 }
 
@@ -31,7 +64,7 @@
     theme("colors.gray.300") 35%,
     theme("colors.gray.50") 50%,
     theme("colors.gray.300") 65%,
-    theme("colors.gray.300") 100%,
+    theme("colors.gray.300") 100%
   );
   animation: gradient-scroll 2s infinite linear;
   background-size: 750% 750%;

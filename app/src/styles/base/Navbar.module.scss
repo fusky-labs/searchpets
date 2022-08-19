@@ -1,7 +1,7 @@
 @use "../mixins" as *;
 
 .root {
-  @apply shadow-md z-10 relative;
+  @apply z-10 relative dark:bg-neutral-800;
 }
 
 .wrapper {
@@ -33,20 +33,21 @@
   }
 
   &:hover {
-    @apply bg-purple-200;
+    @apply bg-purple-200 dark:bg-purple-900;
   }
 }
 
 .nav-link-active {
   @extend .nav-link-item;
-  @apply bg-purple-500 text-white;
+  @apply dark:bg-purple-800 bg-purple-500 text-white;
 
   &:hover {
     @apply bg-purple-700;
   }
 }
 
-.nav-link-item, .nav-link-active {
+.nav-link-item,
+.nav-link-active {
   span {
     @extend .logo;
   }

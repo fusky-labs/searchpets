@@ -35,7 +35,7 @@ export default function SearchContainer() {
   useEffect(() => {
     if (!showFilter) return setFilterHeight(filterRef.current!.scrollHeight)
     if (window.matchMedia("(min-width: 768px)").matches) {
-      return setFilterHeight(50)
+      return setFilterHeight(60)
     } else {
       return setFilterHeight(100)
     }

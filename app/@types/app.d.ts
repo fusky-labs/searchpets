@@ -1,5 +1,10 @@
 // import type { IconProp } from "@fortawesome/fontawesome-svg-core"
 
+declare type ThemeCtxTypes = {
+  theme: string | null
+  toggleTheme: any
+}
+
 declare interface ILayoutProps {
   children?: React.ReactNode
 }

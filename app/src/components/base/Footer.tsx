@@ -6,7 +6,7 @@ import Link from "next/link"
 
 export default function Footer() {
   return (
-    <footer>
+    <footer className={styles.root}>
       <div className={styles.wrapper}>
         <hr />
         <div className={styles.container}>

@@ -4,6 +4,9 @@
     "name": "openfurs"
   },
   "private": true,
+  "workspaces": [
+    "searchpets-v2-next"
+  ],
   "scripts": {
     "reset:next": "rm -rf app/node_modules app/yarn.lock app/package-lock.json && yarn --cwd ./app install",
     "dev": "concurrently -n \" next \",python -c bgBlack,bgBlue.yellow -k \"npm run dev:next\" \"npm run server:dev\"",

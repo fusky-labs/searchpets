@@ -4,6 +4,7 @@ import SearchBox from "@/components/search/SearchBox"
 import FilterBox from "@/components/search/FilterBox"
 import dynamic from "next/dynamic"
 import { useEffect, useState } from "react"
+import styles from "@/styles/pages/Search.module.scss"
 
 const ComicItem = dynamic(() => import("../components/ComicItem"), {
   loading: () => <ComicItemLoading />,
@@ -45,7 +46,7 @@ export default function Home() {
     <Container wrap>
       <SearchBox />
       <FilterBox />
-      <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-3 mt-2 px-1">
+      <div className={styles["comic-contents"]}>
         {/* <ComicItemLoading /> */}
         <ComicItem
           img="https://www.housepetscomic.com/wp-content/uploads/2019/01/2019-01-16-whats-the-story-wishbone.png"

@@ -1,5 +1,5 @@
 .wrapper {
-  @apply pb-1 pt-10 px-1 md:px-12 h-auto;
+  @apply pb-1 pt-2 px-1 md:px-12 h-auto;
 }
 
 .search-box-container {
@@ -10,6 +10,6 @@
   }
 
   input[type="text"] {
-    @apply p-3 pl-12 border-2 border-gray-300 focus:outline-none focus:border-purple-400 w-full rounded-xl;
+    @apply p-3 pl-12 border-[1px] dark:bg-neutral-700 dark:border-neutral-600 border-gray-300 focus:outline-none focus:border-purple-400 w-full rounded-xl;
   }
 }

@@ -6,7 +6,7 @@
   }
 
   body {
-    @apply overflow-x-hidden;
+    @apply overflow-x-hidden dark:bg-neutral-800 dark:text-gray-50 text-black bg-neutral-100;
   }
 
   @each $i, $s in [ 1 "4xl", 2 "3xl", 3 "2xl", 4 "xl", 5 "lg" ] {
