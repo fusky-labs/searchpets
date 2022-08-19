@@ -1,10 +1,11 @@
 import Navbar from "./Navbar"
 import Footer from "./Footer"
 import { useState } from "react"
-import { ThemeContext } from "@/utils/Contexts"
+import { SearchLockContext, ThemeContext } from "@/utils/Contexts"
 
 export default function Layout({ children }: ILayoutProps) {
   const [theme, toggleTheme] = useState<string>("unset")
+  const [searchLocked, isSearchLock] = useState(true)
 
   if (typeof window !== "undefined") {
     const themeHandler = (theme: string) => {
@@ -17,8 +18,10 @@ export default function Layout({ children }: ILayoutProps) {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <Navbar />
-      {children}
+      <SearchLockContext.Provider value={{ searchLocked, isSearchLock }}>
+        <Navbar />
+        {children}
+      </SearchLockContext.Provider>
       <Footer />
     </ThemeContext.Provider>
   )

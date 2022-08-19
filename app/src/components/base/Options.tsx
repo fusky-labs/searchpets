@@ -1,21 +1,16 @@
 import { useState, useEffect } from "react"
 import {
-  faCheck,
+  faDisplay,
   faSlidersH,
   faSun,
   faUniversalAccess
 } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import styles from "@/styles/components/ThemeToggle.module.scss"
+import styles from "@/styles/components/Options.module.scss"
 
-export default function ThemeToggle() {
+export default function Options() {
   // I need to touch some grass
   const [menuOpen, setMenuOpen] = useState(false)
-  const [theme, setTheme] = useState("")
-
-  const menuToggle = () => {
-    setMenuOpen(!menuOpen)
-  }
 
   return (
     <div
@@ -25,7 +20,11 @@ export default function ThemeToggle() {
           : styles["button-wrapper-active"].toString()
       }
     >
-      <button className={styles.button} onClick={menuToggle}>
+      <button
+        aria-label="Options"
+        className={styles.button}
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
         <FontAwesomeIcon icon={faSlidersH} />
       </button>
       <div
@@ -37,8 +36,11 @@ export default function ThemeToggle() {
       >
         <section className={styles.theme}>
           <h4>
-            <FontAwesomeIcon icon={faSun} style={{ marginRight: "0.35rem" }} />
-            Theme
+            <FontAwesomeIcon
+              icon={faDisplay}
+              style={{ marginRight: "0.35rem" }}
+            />
+            Appearance
           </h4>
           <div className={styles.toggle}>
             <article>
@@ -50,6 +52,30 @@ export default function ThemeToggle() {
               <span className={styles["override-label"]}>
                 THEME OVERWRITTEN &bull; REVERT TO DEFAULT
               </span>
+            </article>
+            <label className={styles.switch}>
+              <input type="checkbox" />
+              <span className={styles.slider}></span>
+            </label>
+          </div>
+          <div className={styles.toggle}>
+            <article>
+              <p>Expand width contents</p>
+              <p className={styles["subtext-wrap"]}>
+                Fill comic contents for larger displays
+              </p>
+            </article>
+            <label className={styles.switch}>
+              <input type="checkbox" />
+              <span className={styles.slider}></span>
+            </label>
+          </div>
+          <div className={styles.toggle}>
+            <article>
+              <p>Item height</p>
+              <p className={styles["subtext-wrap"]}>
+                Specify comic height, optimal for longer strips of a comic page
+              </p>
             </article>
             <label className={styles.switch}>
               <input type="checkbox" />
@@ -96,6 +122,10 @@ export default function ThemeToggle() {
               <span className={styles.slider}></span>
             </label>
           </div>
+        </section>
+        <section className={styles.theme}>
+          <p>Searchpets version 2.0</p>
+          <p>Browse v1</p>
         </section>
       </div>
     </div>

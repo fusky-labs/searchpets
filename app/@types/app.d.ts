@@ -5,6 +5,11 @@ declare type ThemeCtxTypes = {
   toggleTheme: any
 }
 
+declare type SearchLockCtxTypes = {
+  searchLocked: boolean
+  isSearchLock: any
+}
+
 declare interface ILayoutProps {
   children?: React.ReactNode
 }

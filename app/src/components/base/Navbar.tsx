@@ -8,14 +8,26 @@ import {
   faList,
   faMagnifyingGlass
 } from "@fortawesome/free-solid-svg-icons"
-import ThemeToggle from "./ThemeToggle"
+import Options from "./Options"
+import { SearchLockContext } from "@/utils/Contexts"
+import { useContext } from "react"
 
 export default function Navbar() {
+  const { searchLocked } = useContext(SearchLockContext)
+
   return (
     <header className={styles.root}>
       <div className={styles.wrapper}>
         <div className={styles["nav-container"]}>
-          <strong className={styles.logo}>
+          <strong
+            className={`${styles.logo} transition-all`}
+            style={{
+              transform: searchLocked
+                ? "translateX(0rem)"
+                : "translateX(-1rem)",
+              opacity: !searchLocked ? "0" : "1"
+            }}
+          >
             <Link href="/">Searchpets!</Link>
           </strong>
           <ul className={styles["nav-links-container"]} role="navigation">
@@ -25,7 +37,7 @@ export default function Navbar() {
             <NavLink link="/about" name="About" icon={faInfoCircle} />
           </ul>
         </div>
-        <ThemeToggle />
+        <Options />
       </div>
     </header>
   )
@@ -33,6 +45,7 @@ export default function Navbar() {
 
 export function NavLink({ link = "#", name, icon }: INavLinkProps) {
   const router = useRouter()
+  const { searchLocked } = useContext(SearchLockContext)
 
   const active = () => {
     if (router.pathname !== link) {
@@ -43,7 +56,13 @@ export function NavLink({ link = "#", name, icon }: INavLinkProps) {
   }
 
   return (
-    <li>
+    <li
+      style={{
+        marginLeft: !searchLocked ? "-7.5rem" : "0rem",
+        opacity: !searchLocked ? "0" : "1"
+      }}
+      className="transition-all duration-200"
+    >
       <Link href={link}>
         <a className={active()}>
           <FontAwesomeIcon icon={icon} />
