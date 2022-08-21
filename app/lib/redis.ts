@@ -20,7 +20,7 @@ export async function searchComics(years: string[], characters: string[]) {
   for (const year of years) {
     console.log(year)
     console.log("this needs to run after the above")
-    await client.ft.search(year, character_query).then((result) => {
+    await client.ft.search(year, character_query, {LIMIT: {from: 0, size: -1}}).then((result) => {
       // console.log(result.documents)
       result.documents.forEach((doc) => {
         console.log(doc.value.title)
