@@ -12,6 +12,10 @@ export default function Container({
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta name="og:title" content={title} />
+        <meta name="twitter:description" content={description} />
       </Head>
       {wrap ? (
         <main role="main" className={styles.wrapper}>

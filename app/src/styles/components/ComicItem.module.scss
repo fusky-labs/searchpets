@@ -15,7 +15,7 @@
 }
 
 .heading {
-  @apply font-bold text-lg;
+  @apply font-bold text-xl italic;
 }
 
 .buttons {
@@ -48,11 +48,11 @@
   @apply flex flex-col justify-between;
 
   ul {
-    @apply flex gap-1;
+    @apply flex gap-1 flex-wrap;
   }
 
   li {
-    @apply py-1 px-3 bg-neutral-500 bg-opacity-25 rounded-md select-none text-sm;
+    @apply py-1 px-2.5 bg-neutral-500 bg-opacity-25 rounded-md select-none text-sm;
   }
 }
 

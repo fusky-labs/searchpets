@@ -2,14 +2,13 @@ import { useState, useEffect } from "react"
 import {
   faDisplay,
   faSlidersH,
-  faSun,
+  faTrash,
   faUniversalAccess
 } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import styles from "@/styles/components/Options.module.scss"
 
-export default function Options() {
-  // I need to touch some grass
+export default function OptionsMenu() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
@@ -22,6 +21,7 @@ export default function Options() {
     >
       <button
         aria-label="Options"
+        title="Options"
         className={styles.button}
         onClick={() => setMenuOpen(!menuOpen)}
       >
@@ -124,8 +124,22 @@ export default function Options() {
           </div>
         </section>
         <section className={styles.theme}>
-          <p>Searchpets version 2.0</p>
-          <p>Browse v1</p>
+          <h4>
+            <FontAwesomeIcon
+              icon={faTrash}
+              style={{ marginRight: "0.35rem" }}
+            />
+            Danger zone
+          </h4>
+          <div className={styles.toggle}>
+            <article>
+              <p>Revert to default settings</p>
+              <p>All existing settings will be reverted to their default settings</p>
+            </article>
+            <button title="Reset settings">
+              Reset settings
+            </button>
+          </div>
         </section>
       </div>
     </div>

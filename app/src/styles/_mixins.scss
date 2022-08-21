@@ -1,11 +1,5 @@
-@mixin base-wrapper($h: null) {
+@mixin base-wrapper() {
   @apply mx-auto px-5 md:px-7;
-
-  @if ($h) {
-    @apply max-w-[#{$h}];
-  } @else {
-    @apply max-w-screen-2xl;
-  }
 }
 
 @mixin links() {

@@ -3,8 +3,22 @@ import { useEffect } from "react"
 import { useRouter } from "next/router"
 import { MDXProvider } from "@mdx-js/react"
 import { config, library } from "@fortawesome/fontawesome-svg-core"
-import { fab } from "@fortawesome/free-brands-svg-icons"
-import { fas } from "@fortawesome/free-solid-svg-icons"
+import { faGithub } from "@fortawesome/free-brands-svg-icons"
+import {
+  faFilter,
+  faSearch,
+  faDisplay,
+  faSlidersH,
+  faTrash,
+  faUniversalAccess,
+  faLink,
+  faBars,
+  faDownload,
+  faHistory,
+  faInfoCircle,
+  faList,
+  faCode
+} from "@fortawesome/free-solid-svg-icons"
 import Layout from "@/components/base/Layout"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import "@/styles/globals.scss"
@@ -13,8 +27,22 @@ import * as ga from "../../lib/ga"
 
 config.autoAddCss = false
 
-library.add(fab)
-library.add(fas)
+library.add(faGithub)
+library.add(
+  faFilter,
+  faSearch,
+  faDisplay,
+  faSlidersH,
+  faTrash,
+  faUniversalAccess,
+  faLink,
+  faBars,
+  faDownload,
+  faHistory,
+  faInfoCircle,
+  faList,
+  faCode
+)
 
 export default function SearchpetsApp({ Component, pageProps }: AppProps) {
   const router = useRouter()

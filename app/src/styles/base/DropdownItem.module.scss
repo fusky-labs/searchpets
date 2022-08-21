@@ -1,0 +1,16 @@
+.item {
+  @apply px-5 py-2 flex gap-x-3 items-center;
+
+  &:hover {
+    @apply dark:bg-purple-600 bg-purple-200;
+  }
+
+  &-active {
+    @extend .item;
+    @apply dark:bg-purple-800 bg-purple-600 text-white font-bold;
+
+    &:hover {
+      @apply dark:bg-purple-800 bg-purple-600 text-white;
+    }
+  }
+}

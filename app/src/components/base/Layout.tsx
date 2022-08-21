@@ -1,28 +1,58 @@
+import { useState } from "react"
+import { ExpandSearchContext, OptionsContext } from "@/utils/Contexts"
 import Navbar from "./Navbar"
 import Footer from "./Footer"
-import { useState } from "react"
-import { SearchLockContext, ThemeContext } from "@/utils/Contexts"
+import { useEffect } from "react"
 
 export default function Layout({ children }: ILayoutProps) {
-  const [theme, toggleTheme] = useState<string>("unset")
-  const [searchLocked, isSearchLock] = useState(true)
+  // Options state
+  const [theme, toggleTheme] = useState<ThemeOverrides>("")
+  const [contrast, toggleContrast] = useState(false)
+  const [animations, toggleAnimations] = useState<boolean>()
+
+  // Navbar state
+  const [expand, isExpanded] = useState(false)
 
   if (typeof window !== "undefined") {
-    const themeHandler = (theme: string) => {
+    const themeHandler = (theme: ThemeOverrides) => {
       document.body.setAttribute("theme-override", theme)
-      localStorage.setItem("theme", theme)
+      localStorage.setItem("theme-override", theme)
     }
 
-    themeHandler("unset")
+    const contrastHandler = (contrast: boolean) => {
+      document.body.setAttribute("high-contrast", contrast.toString())
+      localStorage.setItem("high-contrast", contrast.toString())
+    }
+
+    themeHandler("")
+    contrastHandler(false)
+
+    const expandScroll = () => {
+      window.scrollY > 200 ? isExpanded(true) : isExpanded(false)
+    }
+
+    useEffect(() => {
+      window.addEventListener("scroll", expandScroll)
+      return () => window.removeEventListener("scroll", expandScroll)
+    }, [])
   }
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <SearchLockContext.Provider value={{ searchLocked, isSearchLock }}>
+    <OptionsContext.Provider
+      value={{
+        theme,
+        setTheme: toggleTheme,
+        highContrast: contrast,
+        setHighContrast: toggleContrast,
+        animations,
+        setAnimations: toggleAnimations
+      }}
+    >
+      <ExpandSearchContext.Provider value={{ expanded: expand }}>
         <Navbar />
-        {children}
-      </SearchLockContext.Provider>
+      </ExpandSearchContext.Provider>
+      {children}
       <Footer />
-    </ThemeContext.Provider>
+    </OptionsContext.Provider>
   )
 }

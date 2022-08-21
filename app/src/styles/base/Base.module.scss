@@ -2,4 +2,5 @@
 
 .wrapper {
   @include base-wrapper();
+  @apply mt-[4.5rem];
 }

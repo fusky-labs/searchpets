@@ -1,54 +1,29 @@
 @use "../mixins" as *;
 
 .root {
-  @apply z-10 relative dark:bg-neutral-800;
+  @apply z-10 w-full fixed top-0 dark:bg-neutral-800 bg-neutral-100 bg-opacity-80 dark:bg-opacity-80;
+
+  @supports (backdrop-filter: blur(8px)) {
+    backdrop-filter: blur(8px);
+  }
 }
 
 .wrapper {
-  @include base-wrapper();
-  @apply py-4 flex md:justify-between justify-start items-center;
+  @apply max-w-screen-2xl py-4 flex mx-auto px-6 justify-between gap-x-7 items-center;
 
   strong {
-    @apply text-[1.75rem] italic;
+    @apply text-[1.75rem] italic transition-all duration-300;
   }
+}
+
+.logo-handler {
+  @apply block relative;
 }
 
 .logo {
-  @apply block;
+  @apply absolute -top-[1.35rem] left-0;
 }
 
 .nav-container {
-  @apply flex items-center gap-x-5 select-none;
-}
-
-.nav-links-container {
-  @apply flex items-center md:gap-x-2 gap-x-6 pl-2 select-none;
-}
-
-.nav-link-item {
-  @apply md:px-5 md:py-[0.65rem] p-4 md:text-base text-xl md:rounded-3xl rounded-full flex gap-x-2 items-center relative font-semibold transition-all duration-300;
-
-  span {
-    @apply hidden md:block;
-  }
-
-  &:hover {
-    @apply bg-purple-200 dark:bg-purple-900;
-  }
-}
-
-.nav-link-active {
-  @extend .nav-link-item;
-  @apply dark:bg-purple-800 bg-purple-500 text-white;
-
-  &:hover {
-    @apply bg-purple-700;
-  }
-}
-
-.nav-link-item,
-.nav-link-active {
-  span {
-    @extend .logo;
-  }
+  @apply flex items-center gap-x-3 select-none w-full;
 }

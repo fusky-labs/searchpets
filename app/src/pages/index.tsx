@@ -1,15 +1,12 @@
 import { ComicItemLoading } from "@/components/ComicItem"
 import Container from "@/components/Container"
-import SearchBox from "@/components/search/SearchBox"
-import FilterBox from "@/components/search/FilterBox"
 import dynamic from "next/dynamic"
 import { useEffect, useState } from "react"
 import styles from "@/styles/pages/Search.module.scss"
 
 const ComicItem = dynamic(() => import("../components/ComicItem"), {
   loading: () => <ComicItemLoading />,
-  suspense: true,
-  ssr: false
+  ssr: false,
 })
 
 export default function Home() {
@@ -18,20 +15,19 @@ export default function Home() {
   const [years, setYears] = useState<string[]>([])
 
   useEffect(() => {
-    const comics = localStorage.getItem("comics")
-    const characters = localStorage.getItem("characters")
-    const years = localStorage.getItem("years")
+    const comicsParse: string | null = localStorage.getItem("comics")
+    const charactersParse = localStorage.getItem("characters")
+    const yearsParse = localStorage.getItem("years")
 
-    if (comics) {
-      setComics(JSON.parse(comics))
+    if (comicsParse) {
+      setComics(JSON.parse(comicsParse))
     }
-    if (characters) {
-      setCharacters(characters.split(", "))
+    if (charactersParse) {
+      setCharacters(charactersParse.split(", "))
     }
-    if (years) {
-      setYears(years.split(","))
-      // for every yearpicker item, check if it's checked
-      years.split(",").forEach((year) => {
+    if (yearsParse) {
+      setYears(yearsParse.split(","))
+      yearsParse.split(",").forEach((year) => {
         const year_id = document.getElementById(
           `year-${year}`
         ) as HTMLInputElement
@@ -43,18 +39,15 @@ export default function Home() {
   }, [])
 
   return (
-    <Container wrap>
-      <SearchBox />
-      <FilterBox />
+    <Container wrap title="Search page" description="Search page description">
       <div className={styles["comic-contents"]}>
-        {/* <ComicItemLoading /> */}
         {comics.map((comic) => (
-          <ComicItem img={comic["image"]} title={comic["title"]}/>
+          <ComicItem
+            img={comic["image"]}
+            title={comic["title"]}
+            characters={comic["characters"]}
+          />
         ))}
-        <ComicItem
-          img="https://www.housepetscomic.com/wp-content/uploads/2019/01/2019-01-16-whats-the-story-wishbone.png"
-          title="title"
-        />
       </div>
     </Container>
   )

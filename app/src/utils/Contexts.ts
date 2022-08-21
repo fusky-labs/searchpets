@@ -1,11 +1,14 @@
 import { createContext } from "react"
 
-export const ThemeContext = createContext<ThemeCtxTypes>({
-  theme: null,
-  toggleTheme: () => {}
+export const OptionsContext = createContext<OptionsCtxTypes>({
+  theme: "",
+  highContrast: false,
+  animations: true,
+  setTheme: () => {},
+  setHighContrast: () => {},
+  setAnimations: () => {}
 })
 
-export const SearchLockContext = createContext<SearchLockCtxTypes>({
-  searchLocked: false,
-  isSearchLock: () => {}
+export const ExpandSearchContext = createContext<ExpandSearchCtxTypes>({
+  expanded: false
 })

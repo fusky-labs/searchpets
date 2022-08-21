@@ -4,7 +4,7 @@
   @apply absolute md:relative right-4;
 
   > button {
-    @apply px-5 py-4 rounded-full relative transition-all duration-300 bg-opacity-50;
+    @apply px-5 py-3 rounded-md relative transition-all duration-300 bg-opacity-50;
 
     &:hover {
       @apply bg-purple-200 dark:bg-purple-900;
@@ -15,7 +15,7 @@
   @apply absolute md:relative right-4;
 
     > button {
-      @apply px-5 py-4 rounded-full relative bg-purple-500 text-white transition-all duration-300;
+      @apply px-5 py-3 rounded-md relative bg-purple-500 text-white transition-all duration-300;
     }
   }
 }
