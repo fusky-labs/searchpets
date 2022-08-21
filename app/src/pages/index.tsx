@@ -48,14 +48,13 @@ export default function Home() {
       <FilterBox />
       <div className={styles["comic-contents"]}>
         {/* <ComicItemLoading /> */}
+        {comics.map((comic) => (
+          <ComicItem img={comic["image"]} title={comic["title"]}/>
+        ))}
         <ComicItem
           img="https://www.housepetscomic.com/wp-content/uploads/2019/01/2019-01-16-whats-the-story-wishbone.png"
           title="title"
         />
-        <ComicItem img="/static/02.jpg" title="title" />
-        <ComicItem img="/static/03.jpg" title="title" />
-        <ComicItem img="/static/04.jpg" title="title" />
-        <ComicItem img="/static/05.jpg" title="title" />
       </div>
     </Container>
   )
