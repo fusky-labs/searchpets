@@ -2,15 +2,16 @@
 const defaultTheme = require("tailwindcss/defaultTheme")
 
 module.exports = {
-  content : [
-    "./src/pages/**/*.{js,jsx,ts,tsx}", "./src/components/**/*.{js,jsx,ts,tsx}"
+  content: [
+    "./src/pages/**/*.{js,jsx,ts,tsx}",
+    "./src/components/**/*.{js,jsx,ts,tsx}"
   ],
-  theme : {
-    fontFamily : {
-      "open-sans" : [ "Open Sans", ...defaultTheme.fontFamily.sans ],
-      inter : [ "Inter", ...defaultTheme.fontFamily.sans ]
+  theme: {
+    fontFamily: {
+      "open-sans": ["Open Sans", ...defaultTheme.fontFamily.sans],
+      inter: ["Inter", ...defaultTheme.fontFamily.sans]
     },
-    extend : {borderRadius : {full : "50%"}}
+    extend: { borderRadius: { full: "50%" } }
   },
-  plugins : []
+  plugins: []
 }
