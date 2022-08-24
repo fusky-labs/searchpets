@@ -4,12 +4,12 @@
  *  @type {import('next').NextConfig}
  **/
 module.exports = async (phase) => {
-  const withPlugins = require('next-compose-plugins')
-  const withMDX = require('@next/mdx')({
+  const withPlugins = require("next-compose-plugins")
+  const withMDX = require("@next/mdx")({
     extension: /\.mdx?$/,
     options: {
-      providerImportSource: "@mdx-js/react",
-    },
+      providerImportSource: "@mdx-js/react"
+    }
   })
 
   const nextConfig = {
@@ -17,17 +17,22 @@ module.exports = async (phase) => {
     swcMinify: true,
     compress: true,
     experimental: {
-      nextScriptWorkers: true,
+      nextScriptWorkers: true
     },
     images: {
       domains: ["www.housepetscomic.com"],
-      formats: ['image/webp'],
-    },
+      formats: ["image/webp"]
+    }
   }
 
   const defaultConfig = {}
 
-  return withPlugins([withMDX({
-    pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
-  })], nextConfig)(phase, { defaultConfig })
+  return withPlugins(
+    [
+      withMDX({
+        pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"]
+      })
+    ],
+    nextConfig
+  )(phase, { defaultConfig })
 }
