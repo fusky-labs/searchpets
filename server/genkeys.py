@@ -1,5 +1,5 @@
-import json
 import argparse
+import json
 
 parser = argparse.ArgumentParser(description="A script to generate keys for the server")
 parser.add_argument(

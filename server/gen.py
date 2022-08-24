@@ -1,15 +1,16 @@
+import json
+import os
+import re
+import sys
+import time
+from concurrent.futures import ThreadPoolExecutor
+
 import redis
-from redis.commands.search.field import TextField, NumericField, TagField
-from redis.commands.search.indexDefinition import IndexDefinition
+import requests
 from bs4 import BeautifulSoup
 from colorama import *
-import os
-import sys
-import requests
-import re
-import time
-import json
-from concurrent.futures import ThreadPoolExecutor
+from redis.commands.search.field import NumericField, TagField, TextField
+from redis.commands.search.indexDefinition import IndexDefinition
 
 rs = requests.Session()
 

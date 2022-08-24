@@ -1,14 +1,15 @@
+import argparse
+import json
+import re
+import threading
+import time
+from datetime import datetime
+
+import requests as req
+import uvicorn
 from bs4 import BeautifulSoup
 from fastapi import FastAPI
 from pydantic import BaseModel
-from datetime import datetime
-import argparse
-import json
-import threading
-import time
-import requests as req
-import re
-import uvicorn
 
 parser = argparse.ArgumentParser(description="Searchpets FastAPI Server")
 parser.add_argument(

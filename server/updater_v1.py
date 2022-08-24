@@ -1,8 +1,9 @@
+import datetime
 import json
+import re
+
 import requests
 from bs4 import BeautifulSoup
-import re
-import datetime
 
 current_date = datetime.datetime.now()
 date = current_date.date()
