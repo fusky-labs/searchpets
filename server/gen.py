@@ -51,11 +51,12 @@ def main():
     stream = AnsiToWin32(sys.stderr).stream
 
     user_agent = {
-        "user-agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)"
-                       "AppleWebKit/537.36 (KHTML, like Gecko)"
-                       "Chrome/45.0.2454.101 Safari/537.36"),
-        "referer":
-        "https://www.housepetscomic.com",
+        "user-agent": (
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)"
+            "AppleWebKit/537.36 (KHTML, like Gecko)"
+            "Chrome/45.0.2454.101 Safari/537.36"
+        ),
+        "referer": "https://www.housepetscomic.com",
     }
 
     # generate a list of years from 2008 to todays year
@@ -70,9 +71,9 @@ def main():
 
     for year in years:
         # create an index for the comics pecific year
-        index_def = IndexDefinition(prefix=[f"{year}:"],
-                                    score=0.5,
-                                    score_field="doc_score")
+        index_def = IndexDefinition(
+            prefix=[f"{year}:"], score=0.5, score_field="doc_score"
+        )
 
         try:
             print(
@@ -84,9 +85,7 @@ def main():
                 f"{Back.RED}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} {year} index already exists {Style.RESET_ALL}"
             )
 
-        print(
-            f"Searching in year {Fore.GREEN}{Style.BRIGHT}{year}{Style.RESET_ALL}"
-        )
+        print(f"Searching in year {Fore.GREEN}{Style.BRIGHT}{year}{Style.RESET_ALL}")
 
         web = rs.get(
             f"https://www.housepetscomic.com/archive/?archive_year={year}",
@@ -94,13 +93,10 @@ def main():
             timeout=None,
         )
         soup = BeautifulSoup(web.text, "html.parser")
-        link_tag = soup.find_all("a", {
-            "rel": "bookmark",
-            "href": re.compile("^https://")
-        })
-        print(
-            f"Found {Fore.GREEN}{Style.BRIGHT}{len(link_tag)}{Style.RESET_ALL} tags!"
+        link_tag = soup.find_all(
+            "a", {"rel": "bookmark", "href": re.compile("^https://")}
         )
+        print(f"Found {Fore.GREEN}{Style.BRIGHT}{len(link_tag)}{Style.RESET_ALL} tags!")
 
         for index, link in enumerate(link_tag, start=1):
             link = link.get("href")
@@ -112,20 +108,13 @@ def main():
                 comic_soup = BeautifulSoup(link_page.text, "html.parser")
                 characters_tag = comic_soup.find_all(
                     "a",
-                    {
-                        "href":
-                        re.compile(
-                            "^https://www\.housepetscomic\.com/character")
-                    },
+                    {"href": re.compile("^https://www\.housepetscomic\.com/character")},
                 )
                 for character in characters_tag:
                     characters.append(character.text.lower())
                     characters_db.add(character.text.lower())
 
-                comic_image = comic_soup.find("img", {
-                    "title": True,
-                    "alt": True
-                })
+                comic_image = comic_soup.find("img", {"title": True, "alt": True})
 
                 print(comic_image.get("src"))
                 link_title = link.split("/")[-2]
