@@ -51,12 +51,11 @@ def main():
     stream = AnsiToWin32(sys.stderr).stream
 
     user_agent = {
-        "user-agent": (
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)"
-            "AppleWebKit/537.36 (KHTML, like Gecko)"
-            "Chrome/45.0.2454.101 Safari/537.36"
-        ),
-        "referer": "https://www.housepetscomic.com",
+        "user-agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)"
+                       "AppleWebKit/537.36 (KHTML, like Gecko)"
+                       "Chrome/45.0.2454.101 Safari/537.36"),
+        "referer":
+        "https://www.housepetscomic.com",
     }
 
     housepets_db = {}
@@ -82,11 +81,13 @@ def main():
 
         print("year_db length:", len(year_db))
 
-        web = rs.get(f"https://www.housepetscomic.com/archive/?archive_year={year}")
+        web = rs.get(
+            f"https://www.housepetscomic.com/archive/?archive_year={year}")
         soup = BeautifulSoup(web.text, "html.parser")
-        link_tag = soup.find_all(
-            "a", {"rel": "bookmark", "href": re.compile("^https://")}
-        )
+        link_tag = soup.find_all("a", {
+            "rel": "bookmark",
+            "href": re.compile("^https://")
+        })
 
         if len(link_tag) > len(year_db):
             print(len(link_tag))
@@ -95,15 +96,16 @@ def main():
                 f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} New comics found! {Style.RESET_ALL}"
             )
             # create an index for the comics pecific year
-            index_def = IndexDefinition(
-                prefix=[f"{year}:"], score=0.5, score_field="doc_score"
-            )
+            index_def = IndexDefinition(prefix=[f"{year}:"],
+                                        score=0.5,
+                                        score_field="doc_score")
 
             try:
                 print(
                     f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} Setting up {year} index... {Style.RESET_ALL}"
                 )
-                RedisDB.ft(f"{year}").create_index(schema, definition=index_def)
+                RedisDB.ft(f"{year}").create_index(schema,
+                                                   definition=index_def)
             except Exception as e:
                 print(
                     f"{Back.RED}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} {year} index already exists {Style.RESET_ALL}"
@@ -119,9 +121,10 @@ def main():
                 timeout=None,
             )
             soup = BeautifulSoup(web.text, "html.parser")
-            link_tag = soup.find_all(
-                "a", {"rel": "bookmark", "href": re.compile("^https://")}
-            )
+            link_tag = soup.find_all("a", {
+                "rel": "bookmark",
+                "href": re.compile("^https://")
+            })
             print(
                 f"Found {Fore.GREEN}{Style.BRIGHT}{len(link_tag)}{Style.RESET_ALL} tags!"
             )
@@ -137,16 +140,19 @@ def main():
                     characters_tag = comic_soup.find_all(
                         "a",
                         {
-                            "href": re.compile(
-                                "^https://www\.housepetscomic\.com/character"
-                            )
+                            "href":
+                            re.compile(
+                                "^https://www\.housepetscomic\.com/character")
                         },
                     )
                     for character in characters_tag:
                         characters.append(character.text.lower())
                         characters_db.add(character.text.lower())
 
-                    comic_image = comic_soup.find("img", {"title": True, "alt": True})
+                    comic_image = comic_soup.find("img", {
+                        "title": True,
+                        "alt": True
+                    })
 
                     print(comic_image.get("src"))
                     link_title = link.split("/")[-2]
@@ -156,7 +162,8 @@ def main():
                         f"{year}:{link_title}",
                         mapping={
                             # The character "u\u2013" is the unicode for the dash
-                            "title": comic_soup.title.text.split(" \u2013 ")[0],
+                            "title":
+                            comic_soup.title.text.split(" \u2013 ")[0],
                             "comic_link": link,
                             "characters": ",".join(characters),
                             "image": comic_image.get("src"),
