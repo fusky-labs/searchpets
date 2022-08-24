@@ -10,10 +10,6 @@
   @apply flex items-center justify-between;
 }
 
-.heading-actions {
-  @apply flex gap-x-1;
-}
-
 .heading {
   @apply font-bold text-xl italic;
 }
@@ -52,7 +48,7 @@
   }
 
   li {
-    @apply py-1 px-2.5 bg-neutral-500 bg-opacity-25 rounded-md select-none text-sm;
+    @apply py-1 px-2.5 bg-opacity-25 rounded-md select-none text-sm;
   }
 }
 

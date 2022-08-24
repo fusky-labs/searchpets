@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from fastapi import FastAPI
 from pydantic import BaseModel
+from datetime import datetime
 import argparse
 import json
 import threading
@@ -14,6 +15,7 @@ parser.add_argument('-b', '--build', action="store_true",
                     help="Run the server in production mode, for development, don't provide with any arguments and run the file as is.")
 args = parser.parse_args()
 
+current_year = datetime.now().year
 
 with open('housepets_db.json', 'r') as housepets_db_json:
     housepets_db = json.load(housepets_db_json)
@@ -98,7 +100,7 @@ async def search(search: Search):
 @app.get('/data')
 async def data():
     comic_length = 0
-    for year in range(2008, 2022+1):
+    for year in range(2008, current_year+1):
         comic_length += len(housepets_db[str(year)])
     chars_length = len(housepets_db['characters_db'])
     return {'comicCount': comic_length, 'charCount': chars_length}

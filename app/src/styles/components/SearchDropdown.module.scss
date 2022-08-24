@@ -1,0 +1,37 @@
+.wrapper {
+  @apply absolute -top-2 left-0 right-0 pt-5 px-4 pb-3 rounded-bl-lg rounded-br-lg dark:bg-neutral-800 bg-neutral-100 shadow-lg;
+
+  button {
+    @apply block w-full text-left py-2;
+  }
+}
+
+.filter-block {
+  code {
+    @apply px-2 py-1 mr-2 rounded-md;
+
+    &:nth-child(4) {
+      @apply text-3xl;
+    }
+  }
+
+  &:nth-child(2) code {
+    @apply dark:bg-red-700 bg-red-200;
+  }
+
+  &:nth-child(3) code {
+    @apply dark:bg-blue-700 bg-blue-200;
+  }
+
+  &:nth-child(4) code {
+    @apply dark:bg-green-700 bg-green-200;
+  }
+
+  &:nth-child(5) code {
+    @apply dark:bg-yellow-700 bg-yellow-200;
+  }
+
+  &:last-child code {
+    @apply dark:bg-gray-500 bg-gray-200;
+  }
+}

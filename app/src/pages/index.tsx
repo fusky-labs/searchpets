@@ -46,6 +46,7 @@ export default function Home() {
             img={comic["image"]}
             title={comic["title"]}
             characters={comic["characters"]}
+            link={comic["comic_link"]}
           />
         ))}
       </div>

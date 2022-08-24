@@ -57,7 +57,7 @@ To install all the required Node and Python libraries, execute the `setup.sh`
 file.
 
 ```console
-sh scripts/setup.sh
+sh scripts/init.sh
 ```
 
 Once all the libraries have been installed, it will execute `gen.py` to

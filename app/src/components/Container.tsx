@@ -6,7 +6,7 @@ export default function Container({
   description,
   children,
   wrap
-}: IContainerProps) {
+}: ContainerProps) {
   return (
     <>
       <Head>

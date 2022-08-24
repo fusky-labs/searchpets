@@ -6,13 +6,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faStar } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
 
-export default function ComicItem({ title, img, characters }: IComicItemProps) {
+export default function ComicItem({
+  title,
+  img,
+  characters,
+  link
+}: ComicItemProps) {
   const [isLoaded, setIsLoaded] = useState(false)
 
   return (
     <div className={styles.wrapper}>
       <div className={styles["heading-container"]}>
-        <h2 className={styles.heading}>{title}</h2>
+        <h2 className={styles.heading}>
+          <Link href={link} passHref>
+            {title}
+          </Link>
+        </h2>
         <div className={styles["heading-actions"]}>
           <button
             className={styles["bookmark-btn"]}
@@ -28,7 +37,7 @@ export default function ComicItem({ title, img, characters }: IComicItemProps) {
         <Image
           src={img}
           loading="lazy"
-          alt="comic"
+          alt={`Comic for "${title}", containing characters: ${characters}`}
           objectFit="contain"
           layout="fill"
           quality={75}
@@ -39,11 +48,25 @@ export default function ComicItem({ title, img, characters }: IComicItemProps) {
         <div>
           <strong className={styles.subheading}>Characters</strong>
           <ul className={styles["characters-list"]}>
-            {characters!.map((character: string) => (
-              <li key={character} id={`char-${character}`}>
-                {character}
-              </li>
-            ))}
+            {characters!.map((character: string) => {
+              const c = character
+                .replace(/(\s)|(\')/g, "-")
+                .replace(/(\()|(\))|(\.)|(\")/g, "")
+                .toLowerCase()
+
+              return (
+                <li
+                  key={character}
+                  className={styles["char-item"]}
+                  style={{
+                    backgroundColor: `var(--bg-${c})`,
+                    color: `var(--fg-${c})`
+                  }}
+                >
+                  {character}
+                </li>
+              )
+            })}
           </ul>
           <ul className={styles["characters-list"]}></ul>
         </div>

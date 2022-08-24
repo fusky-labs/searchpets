@@ -1,10 +1,9 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ExpandSearchContext, OptionsContext } from "@/utils/Contexts"
 import Navbar from "./Navbar"
-import Footer from "./Footer"
-import { useEffect } from "react"
+import BackToTopBtn from "../BackToTopBtn"
 
-export default function Layout({ children }: ILayoutProps) {
+export default function Layout({ children }: LayoutProps) {
   // Options state
   const [theme, toggleTheme] = useState<ThemeOverrides>("")
   const [contrast, toggleContrast] = useState(false)
@@ -48,11 +47,11 @@ export default function Layout({ children }: ILayoutProps) {
         setAnimations: toggleAnimations
       }}
     >
+      <BackToTopBtn />
       <ExpandSearchContext.Provider value={{ expanded: expand }}>
         <Navbar />
       </ExpandSearchContext.Provider>
       {children}
-      <Footer />
     </OptionsContext.Provider>
   )
 }

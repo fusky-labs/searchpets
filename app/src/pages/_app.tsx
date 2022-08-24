@@ -17,7 +17,8 @@ import {
   faHistory,
   faInfoCircle,
   faList,
-  faCode
+  faCode,
+  faScaleBalanced
 } from "@fortawesome/free-solid-svg-icons"
 import Layout from "@/components/base/Layout"
 import "@fortawesome/fontawesome-svg-core/styles.css"
@@ -41,7 +42,8 @@ library.add(
   faHistory,
   faInfoCircle,
   faList,
-  faCode
+  faCode,
+  faScaleBalanced
 )
 
 export default function SearchpetsApp({ Component, pageProps }: AppProps) {

@@ -6,7 +6,7 @@ export async function searchComics(years: string[], characters: string[]) {
   })
   client.connect()
 
-  let comics: string[] = []
+  let comicsOutput: string[] = []
   console.log(years)
   console.log(characters)
   const character_query = characters
@@ -31,11 +31,11 @@ export async function searchComics(years: string[], characters: string[]) {
             comic_link: doc.value.comic_link,
             image: doc.value.image
           }
-          comics.push(comic)
+          comicsOutput.push(comic)
         })
       })
   }
   client.quit()
-  console.log(comics)
-  return { comics: comics }
+  console.log(comicsOutput)
+  return { comics: comicsOutput }
 }

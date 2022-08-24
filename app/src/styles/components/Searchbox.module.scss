@@ -1,5 +1,5 @@
 .wrapper {
-  @apply pb-1 pt-2 px-1 md:px-12 h-auto;
+  @apply pb-1 pt-2 px-1 md:px-12 h-auto z-10;
 }
 
 .search-box-container {
@@ -12,4 +12,13 @@
   input[type="text"] {
     @apply p-3 pl-12 border-[1px] dark:bg-neutral-700 dark:border-neutral-600 border-gray-300 focus:outline-none focus:border-purple-400 w-full rounded-xl;
   }
+
+  &:focus-within #dropdown-handler {
+    @apply opacity-100 translate-y-0 pointer-events-auto;
+  }
+}
+
+#dropdown-handler {
+  @apply relative opacity-0 -translate-y-2 pointer-events-none;
+  @apply transition-all duration-200 -z-10;
 }
