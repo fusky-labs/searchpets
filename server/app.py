@@ -16,7 +16,8 @@ parser.add_argument(
     "-b",
     "--build",
     action="store_true",
-    help="Run the server in production mode, for development, don't provide with any arguments and run the file as is.",
+    help=
+    "Run the server in production mode, for development, don't provide with any arguments and run the file as is.",
 )
 args = parser.parse_args()
 
@@ -34,11 +35,13 @@ def update_database():
         time.sleep(600)
         characters_db = set(housepets_db["characters_db"])
         year = time.strftime("%Y")
-        web = req.get(f"https://www.housepetscomic.com/archive/?archive_year={year}")
+        web = req.get(
+            f"https://www.housepetscomic.com/archive/?archive_year={year}")
         soup = BeautifulSoup(web.text, "html.parser")
-        link_tag = soup.find_all(
-            "a", {"rel": "bookmark", "href": re.compile("^https://")}
-        )
+        link_tag = soup.find_all("a", {
+            "rel": "bookmark",
+            "href": re.compile("^https://")
+        })
 
         comics_db = []
 
@@ -51,31 +54,36 @@ def update_database():
                     print(f"{web_link} is a real comic by rick grifin")
 
                     chars = []
-                    chars_soup = BeautifulSoup(web_link_page.text, "html.parser")
+                    chars_soup = BeautifulSoup(web_link_page.text,
+                                               "html.parser")
                     chars_tag = chars_soup.find_all(
                         "a",
                         {
-                            "href": re.compile(
-                                "^https://www\.housepetscomic\.com/character"
-                            )
+                            "href":
+                            re.compile(
+                                "^https://www\.housepetscomic\.com/character")
                         },
                     )
                     for character in chars_tag:
                         chars.append(character.text.lower())
                     # the code under this will find the image where there is a tittle and alt
-                    comic_image = chars_soup.find("img", {"title": True, "alt": True})
-                    comics_db.append(
-                        {
-                            "title": chars_soup.title.text.split(" \u2013 ")[0],
-                            "comic_link": web_link,
-                            "characters": chars,
-                            "image": comic_image.get("src"),
-                        }
-                    )
+                    comic_image = chars_soup.find("img", {
+                        "title": True,
+                        "alt": True
+                    })
+                    comics_db.append({
+                        "title":
+                        chars_soup.title.text.split(" \u2013 ")[0],
+                        "comic_link":
+                        web_link,
+                        "characters":
+                        chars,
+                        "image":
+                        comic_image.get("src"),
+                    })
                     characters_db.update(chars)
             housepets_db["characters_db"] = list(
-                characters_db
-            )  # update the characters db
+                characters_db)  # update the characters db
             housepets_db[year] = comics_db  # update the comics db
             with open("housepets_db.json", "w") as housepets_db_json:
                 json.dump(housepets_db, housepets_db_json)
@@ -105,7 +113,8 @@ async def search(search: Search):
     comics = []
     for year in years:
         for comic in housepets_db[year]:
-            if all(character in comic["characters"] for character in characters):
+            if all(character in comic["characters"]
+                   for character in characters):
                 comics.append(comic)
     return {"comics": comics}
 
@@ -132,4 +141,8 @@ if __name__ == "__main__":
 
     else:
         print("[*] Server started in development mode")
-        uvicorn.run("app:app", host="localhost", port=5000, reload=True, debug=True)
+        uvicorn.run("app:app",
+                    host="localhost",
+                    port=5000,
+                    reload=True,
+                    debug=True)
