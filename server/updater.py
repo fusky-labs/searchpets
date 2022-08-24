@@ -9,9 +9,7 @@ import redis
 import requests
 from bs4 import BeautifulSoup
 from colorama import *
-from redis.commands.search.field import NumericField
-from redis.commands.search.field import TagField
-from redis.commands.search.field import TextField
+from redis.commands.search.field import NumericField, TagField, TextField
 from redis.commands.search.indexDefinition import IndexDefinition
 
 rs = requests.Session()
