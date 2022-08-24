@@ -13,6 +13,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 rs = requests.Session()
 
+
 def main():
     global rs
 
