@@ -16,26 +16,24 @@ export default function Home() {
 
   useEffect(() => {
     const comicsParse: string | null = localStorage.getItem("comics")
-    const charactersParse = localStorage.getItem("characters")
-    const yearsParse = localStorage.getItem("years")
 
     if (comicsParse) {
       setComics(JSON.parse(comicsParse))
     }
-    if (charactersParse) {
-      setCharacters(charactersParse.split(", "))
-    }
-    if (yearsParse) {
-      setYears(yearsParse.split(","))
-      yearsParse.split(",").forEach((year) => {
-        const year_id = document.getElementById(
-          `year-${year}`
-        ) as HTMLInputElement
-        if (year_id) {
-          year_id.checked = true
-        }
-      })
-    }
+    // if (charactersParse) {
+    //   setCharacters(charactersParse.split(", "))
+    // }
+    // if (yearsParse) {
+    //   setYears(yearsParse.split(","))
+    //   yearsParse.split(",").forEach((year) => {
+    //     const year_id = document.getElementById(
+    //       `year-${year}`
+    //     ) as HTMLInputElement
+    //     if (year_id) {
+    //       year_id.checked = true
+    //     }
+    //   })
+    // }
   }, [])
 
   return (
