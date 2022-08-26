@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react"
-import { faCaretUp } from "@fortawesome/free-solid-svg-icons"
+import { faAngleUp } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import styles from "@/styles/components/BackToTop.module.scss"
 
 export default function BackToTopBtn() {
-  const [show, setShow] = useState("back-to-top-btn")
-
-  const handleScroll = () => {
-    window.scrollY > 500
-      ? setShow(styles.btt.toString())
-      : setShow(styles["btt-hidden"].toString())
-  }
+  const [show, setShow] = useState(styles["btt-hidden"].toString())
 
   useEffect(() => {
+    const handleScroll = () => {
+      window.scrollY > 500
+        ? setShow(styles.btt.toString())
+        : setShow(styles["btt-hidden"].toString())
+    }
+
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
@@ -25,7 +25,7 @@ export default function BackToTopBtn() {
       className={show}
       aria-label="Back to top"
     >
-      <FontAwesomeIcon icon={faCaretUp} />
+      <FontAwesomeIcon icon={faAngleUp} />
       <strong>Back to top</strong>
     </button>
   )

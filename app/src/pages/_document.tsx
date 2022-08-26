@@ -18,7 +18,7 @@ export default class SearchpetsApp extends Document {
 
   render() {
     return (
-      <Html lang="en-us">
+      <Html lang="en">
         <Head>
           <link
             rel="stylesheet"
@@ -30,7 +30,6 @@ export default class SearchpetsApp extends Document {
             strategy="worker"
           />
           <script
-            type="text/partytown"
             dangerouslySetInnerHTML={{
               __html: `
             window.dataLayer = window.dataLayer || [];
@@ -44,17 +43,21 @@ export default class SearchpetsApp extends Document {
           />
           <meta name="application-name" content="Searchpets" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
-          <meta
-            name="apple-mobile-web-app-status-bar-style"
-            content="default"
-          />
+          <meta name="apple-mobile-web-app-status-bar-style" content="default" />
           <meta name="apple-mobile-web-app-title" content="Searchpets" />
           <meta name="format-detection" content="telephone=no" />
           <meta name="mobile-web-app-capable" content="yes" />
-          <meta name="msapplication-TileColor" content="#2B5797" />
+          <meta name="msapplication-TileColor" content="#7f5bd5" />
           <meta name="msapplication-tap-highlight" content="no" />
-          <meta name="theme-color" content="#FFFFFF" />
-          <link rel="apple-touch-icon" href="/favicon.ico" />
+          <meta name="theme-color" content="#7f5bd5" />
+          <link rel="apple-touch-icon" sizes="120x120" href="/static/apple-touch-icon-120x120.png" />
+          <link rel="apple-touch-icon" sizes="144x144" href="/static/apple-touch-icon-144x144.png" />
+          <link rel="apple-touch-icon" sizes="152x152" href="/static/apple-touch-icon-152x152.png" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon-180x180.png" />
+          <link rel="icon" sizes="192x192" href="/static/android-chrome-192x192.png" />
+          <link rel="icon" sizes="512x512" href="/static/android-chrome-512x512.png" />
+          <link rel="shortcut icon" href="/static/favicon-96x96.png" />
+          <link rel="mask-icon" href="/static/safari-pinned-tab.svg" color="#7f5bd5" />
           <link rel="manifest" href="/manifest.json" />
         </Head>
         <body>

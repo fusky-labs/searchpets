@@ -25,16 +25,16 @@ export default function Layout({ children }: LayoutProps) {
 
     themeHandler("")
     contrastHandler(false)
+  }
 
+  useEffect(() => {
     const expandScroll = () => {
       window.scrollY > 200 ? isExpanded(true) : isExpanded(false)
     }
 
-    useEffect(() => {
-      window.addEventListener("scroll", expandScroll)
-      return () => window.removeEventListener("scroll", expandScroll)
-    }, [])
-  }
+    window.addEventListener("scroll", expandScroll)
+    return () => window.removeEventListener("scroll", expandScroll)
+  }, [])
 
   return (
     <OptionsContext.Provider
