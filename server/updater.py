@@ -13,6 +13,7 @@ from redis.commands.search.field import NumericField
 from redis.commands.search.field import TagField
 from redis.commands.search.field import TextField
 from redis.commands.search.indexDefinition import IndexDefinition
+from redis.commands.search.query import Query
 
 rs = requests.Session()
 
@@ -76,8 +77,7 @@ def main():
         print("characters_db length:", len(characters_db))
 
         # grab todays year database hash index
-        year_db = RedisDB.hgetall(f"{year}")
-        # TODO: fix year_db being empty
+        year_db = RedisDB.ft(year).search(Query("*").paging(0, 500))
 
         print("year_db length:", len(year_db))
 
