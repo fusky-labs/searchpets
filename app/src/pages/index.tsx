@@ -11,29 +11,18 @@ const ComicItem = dynamic(() => import("../components/ComicItem"), {
 
 export default function Home() {
   const [comics, setComics] = useState([])
-  const [characters, setCharacters] = useState<string[]>([])
-  const [years, setYears] = useState<string[]>([])
+  const [query, setQuerry] = useState<string>("")
 
   useEffect(() => {
     const comicsParse: string | null = localStorage.getItem("comics")
+    const queryParse: string | null = localStorage.getItem("query")
 
     if (comicsParse) {
       setComics(JSON.parse(comicsParse))
     }
-    // if (charactersParse) {
-    //   setCharacters(charactersParse.split(", "))
-    // }
-    // if (yearsParse) {
-    //   setYears(yearsParse.split(","))
-    //   yearsParse.split(",").forEach((year) => {
-    //     const year_id = document.getElementById(
-    //       `year-${year}`
-    //     ) as HTMLInputElement
-    //     if (year_id) {
-    //       year_id.checked = true
-    //     }
-    //   })
-    // }
+    if(queryParse) {
+      setQuerry(queryParse)
+    }
   }, [])
 
   return (
