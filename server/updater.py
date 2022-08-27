@@ -79,7 +79,7 @@ def main():
         # grab todays year database hash index
         year_db = RedisDB.ft(year).search(Query("*").paging(0, 500))
 
-        print("year_db length:", len(year_db))
+        print("year_db length:", year_db.total)
 
         web = rs.get(
             f"https://www.housepetscomic.com/archive/?archive_year={year}")
@@ -89,7 +89,7 @@ def main():
             "href": re.compile("^https://")
         })
 
-        if len(link_tag) > len(year_db):
+        if len(link_tag) > year_db.total:
             print(len(link_tag))
             print(year_db)
             print(
@@ -175,7 +175,7 @@ def main():
                         f"{Fore.BLACK}{Back.LIGHTWHITE_EX}{Style.BRIGHT}{link} is a guest comics{Style.RESET_ALL}"
                     )
 
-            RedisDB.lset("characters_db", 0, *characters_db)
+            RedisDB.lpush("characters_db", *characters_db)
 
 
 with ThreadPoolExecutor(max_workers=55) as executor:
