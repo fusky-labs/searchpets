@@ -1,16 +1,17 @@
-// import type { NextApiRequest, NextApiResponse } from "next"
-// import { resolve } from "path"
+import type { NextApiRequest, NextApiResponse } from "next"
+import { grabData } from "lib/redis"
+import { resolve } from "path"
 
-// export default function handler(
-//   req: NextApiRequest,
-//   res: NextApiResponse<string>
-// ) {
-//   const receiveData = (async () => {
-//     const response = await fetch("http://localhost:5000/data")
-//     const json = await response.json()
-//     res.end(JSON.stringify(json))
-//     resolve()
-//   })()
-// }
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<string>
+) {
+  const receiveData = (async () => {
+    const data = await grabData()
+    console.log(data)
+    res.send(JSON.stringify(data))
+    resolve()
+  })()
+}
 
 export {}
