@@ -7,18 +7,34 @@ import type { IconProp } from "@fortawesome/fontawesome-svg-core"
 export default function DropdownItem({
   link = "",
   name,
-  icon
+  icon,
+  disabled,
+  header
 }: {
-  link: string
-  name: string
-  icon: IconProp
+  link?: string
+  name?: string
+  icon?: IconProp | any
+  disabled?: boolean
+  header?: string
 }) {
   const router = useRouter()
 
-  const linkHandler =
-    router.pathname !== link
-      ? styles["item"].toString()
-      : styles["item-active"].toString()
+  // prettier-ignore
+  const linkHandler = router.pathname !== link ? styles["item"].toString() : styles["item-active"].toString()
+
+  if (header) return <span className={styles.heading}>{header}</span>
+
+  if (disabled)
+    return (
+      <div className={styles["item-disabled"]} aria-disabled="true" role="link">
+        <FontAwesomeIcon icon={icon} />
+        <span>{name}</span>
+        <div className={styles.tooltip}>
+          This feature has been planned but still currently in the works or not
+          working as expected
+        </div>
+      </div>
+    )
 
   return (
     <Link href={link}>

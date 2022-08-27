@@ -3,7 +3,11 @@ import Image from "next/image"
 import styles from "@/styles/components/ComicItem.module.scss"
 import LoadingCircle from "./LoadingCircle"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faStar } from "@fortawesome/free-solid-svg-icons"
+import {
+  faExternalLink,
+  faLink,
+  faStar
+} from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
 
 export default function ComicItem({
@@ -15,14 +19,34 @@ export default function ComicItem({
   const [isLoaded, setIsLoaded] = useState(false)
 
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={styles.wrapper}
+      id={title
+        ?.replace(/(\s)|(\')/g, "-")
+        .replace(/(\()|(\))|(\.)|(\")|(,)|(\?)|(\!)/g, "")
+        .toLowerCase()}
+    >
       <div className={styles["heading-container"]}>
         <h2 className={styles.heading}>
           <Link href={link} passHref>
-            {title}
+            <a title="Click for original source">
+              {title}
+              <FontAwesomeIcon
+                icon={faLink}
+                style={{ marginLeft: "0.65rem" }}
+                size="sm"
+              />
+            </a>
           </Link>
         </h2>
         <div className={styles["heading-actions"]}>
+          <button
+            className={styles["bookmark-btn"]}
+            title="Copy comic link"
+            aria-label="Copy comic link"
+          >
+            <FontAwesomeIcon icon={faExternalLink} size="sm" />
+          </button>
           <button
             className={styles["bookmark-btn"]}
             title="Favorite"
@@ -68,7 +92,6 @@ export default function ComicItem({
               )
             })}
           </ul>
-          <ul className={styles["characters-list"]}></ul>
         </div>
       </div>
     </div>

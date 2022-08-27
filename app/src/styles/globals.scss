@@ -20,6 +20,10 @@
       @apply font-semibold font-inter text-#{$s};
     }
   }
+
+  hr {
+    @apply dark:border-neutral-700 border-neutral-300;
+  }
 }
 
 @tailwind components;

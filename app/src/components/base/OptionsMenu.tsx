@@ -2,11 +2,12 @@ import { useState, useEffect } from "react"
 import {
   faDisplay,
   faSlidersH,
-  faTrash,
-  faUniversalAccess
+  faUniversalAccess,
+  faWarning
 } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import styles from "@/styles/components/Options.module.scss"
+import styles from "@/styles/components/OptionsMenu.module.scss"
+import OptionsItem from "./OptionsItem"
 
 export default function OptionsMenu() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -34,110 +35,55 @@ export default function OptionsMenu() {
             : styles["dropdown-wrapper-closed"].toString()
         }
       >
-        <section className={styles.theme}>
-          <h4>
-            <FontAwesomeIcon
-              icon={faDisplay}
-              style={{ marginRight: "0.35rem" }}
-            />
-            Appearance
-          </h4>
-          <div className={styles.toggle}>
-            <article>
-              <p>Theme</p>
-              <p className={styles["subtext-wrap"]}>
-                Changing the theme will override system theme and is applied to
-                this browser only
-              </p>
-              <span className={styles["override-label"]}>
-                THEME OVERWRITTEN &bull; REVERT TO DEFAULT
-              </span>
-            </article>
-            <label className={styles.switch}>
-              <input type="checkbox" />
-              <span className={styles.slider}></span>
-            </label>
-          </div>
-          <div className={styles.toggle}>
-            <article>
-              <p>Expand width contents</p>
-              <p className={styles["subtext-wrap"]}>
-                Fill comic contents for larger displays
-              </p>
-            </article>
-            <label className={styles.switch}>
-              <input type="checkbox" />
-              <span className={styles.slider}></span>
-            </label>
-          </div>
-          <div className={styles.toggle}>
-            <article>
-              <p>Item height</p>
-              <p className={styles["subtext-wrap"]}>
-                Specify comic height, optimal for longer strips of a comic page
-              </p>
-            </article>
-            <label className={styles.switch}>
-              <input type="checkbox" />
-              <span className={styles.slider}></span>
-            </label>
-          </div>
+        <section className={styles.section}>
+          <OptionsItem icon={faDisplay} header="Appearance" />
+          <OptionsItem title="Theme" themeItem>
+            Changing the theme will override system theme and is applied to this
+            browser only
+            <span className={styles["override-label"]}>
+              THEME OVERWRITTEN &bull; REVERT TO DEFAULT
+            </span>
+          </OptionsItem>
+          <OptionsItem title="Expand width contents">
+            Fill comic contents for larger displays
+          </OptionsItem>
+          <OptionsItem title="Item height">
+            Specify comic height, optimal for longer strips of a comic page
+          </OptionsItem>
         </section>
-        <section className={styles.shortcuts}>
-          <h4>
-            <FontAwesomeIcon
-              icon={faUniversalAccess}
-              style={{ marginRight: "0.35rem" }}
-            />
-            Accessibility
-          </h4>
-          <div className={styles.toggle}>
-            <article>
-              <p>High contrast</p>
-              <p>Provide high contrast colors for legibility</p>
-            </article>
-            <label className={styles.switch}>
-              <input type="checkbox" />
-              <span className={styles.slider}></span>
-            </label>
-          </div>
-          <div className={styles.toggle}>
-            <article>
-              <p>Animations</p>
-              <p className={styles["subtext-wrap"]}>
-                NOTE: For people with{" "}
-                <a
-                  className={styles["subtext-link"]}
-                  href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation#accessibility_concerns"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  certain disabilities
-                </a>
-                , you may turn off animations to override this setting
-              </p>
-            </article>
-            <label className={styles.switch}>
-              <input type="checkbox" />
-              <span className={styles.slider}></span>
-            </label>
-          </div>
+        <section className={styles.section}>
+          <OptionsItem icon={faUniversalAccess} header="Accessibility" />
+          <OptionsItem title="High contrast">
+            Provide high contrast colors for legibility
+          </OptionsItem>
+          <OptionsItem title="Animations">
+            NOTE: For people with{" "}
+            <a
+              className={styles["subtext-link"]}
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation#accessibility_concerns"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              certain disabilities
+            </a>
+            , you may turn off animations to override this setting
+          </OptionsItem>
         </section>
-        <section className={styles.theme}>
-          <h4>
-            <FontAwesomeIcon
-              icon={faTrash}
-              style={{ marginRight: "0.35rem" }}
-            />
-            Danger zone
-          </h4>
+        <section className={styles.section}>
+          <OptionsItem icon={faWarning} header="Danger zone" />
           <div className={styles.toggle}>
             <article>
               <p>Revert to default settings</p>
-              <p>All existing settings will be reverted to their default settings</p>
+              <p>
+                All existing settings will be reverted to their default settings
+              </p>
             </article>
-            <button title="Reset settings">
-              Reset settings
+            <button
+              className={styles["reset-btn"]}
+              aria-label="Reset"
+              title="Reset"
+            >
+              Reset
             </button>
           </div>
         </section>

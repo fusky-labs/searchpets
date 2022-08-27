@@ -1,9 +1,6 @@
-import { cli } from "cypress"
-import { result } from "cypress/types/lodash"
 import { createClient } from "redis"
-import internal from "stream"
 
-export async function searchComics(years: string[], characters: string[]) {
+const searchComics = async (years: string[], characters: string[]) => {
   const client = createClient({
     url: process.env.REDIS_URL
   })
@@ -43,35 +40,39 @@ export async function searchComics(years: string[], characters: string[]) {
   return { comics: comicsOutput }
 }
 
-export async function grabData() {
+const grabData = async () => {
   const client = createClient({
     url: process.env.REDIS_URL
   })
   client.connect()
-  let comicCount = 0, charCount = 0
-  await client.DBSIZE().then(
-    (result) => {
-      console.log(result-1)
-      comicCount = result-1
-    }
-  )
+  let comicCount = 0
+  let charCount = 0
+
+  await client.DBSIZE().then((result) => {
+    console.log(result - 1)
+    comicCount = result - 1
+  })
   await client.LLEN("characters_db").then((result) => {
     console.log(result)
     charCount = result
   })
   client.quit()
-  return {comicCount: comicCount, charCount: charCount}
+  return { comicCount: comicCount, charCount: charCount }
 }
 
-export async function grabCharacters() {
+const grabCharacters = async () => {
   const client = createClient({
     url: process.env.REDIS_URL
   })
   client.connect()
-  let characters
+
+  let characters: string[] | undefined
+
   await client.LRANGE("characters_db", 0, -1).then((result) => {
     client.quit()
     characters = result
   })
-  return {characters_db: characters}
+  return { characters_db: characters }
 }
+
+export { searchComics, grabData, grabCharacters }

@@ -1,0 +1,87 @@
+@use "../mixins" as *;
+
+.toggle {
+  @apply px-7 py-2 flex justify-between items-center;
+
+  p {
+    &:first-child {
+      @apply font-bold text-base;
+    }
+
+    &:last-child {
+      @apply text-sm;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    @apply dark:bg-purple-900 dark:bg-opacity-25 bg-purple-200;
+
+    .override-label {
+      @apply dark:bg-purple-600 bg-purple-50;
+    }
+  }
+}
+
+.subtext-wrap {
+  @apply w-[27rem];
+}
+
+.subtext-link {
+  @include links();
+}
+
+.override-label {
+  @apply py-0.5 px-2 dark:bg-purple-900 bg-purple-200 text-[80%] rounded-md;
+}
+
+.switch {
+  @apply relative inline-block w-10 h-[25px] px-5 ml-2;
+
+  input {
+    @apply opacity-0 w-0 h-0;
+
+    &:checked {
+      + .slider {
+        @apply bg-white shadow-md;
+
+        &::before {
+          @apply translate-x-4 border-white bg-neutral-700;
+        }
+      }
+
+      + .theme-slider {
+        @apply bg-slate-600;
+
+        &::before {
+          @apply border-slate-600 bg-white;
+        }
+
+        &:active::before {
+          @apply w-[32px];
+        }
+      }
+    }
+  }
+}
+
+.slider {
+  @apply absolute cursor-pointer inset-0 dark:bg-neutral-600 bg-[#b4b4b4] transition-all duration-300 rounded-2xl shadow-md;
+
+  &::before {
+    @apply content-[""] absolute w-[25px] h-[25px] right-4 top-0 dark:bg-gray-300 bg-gray-50 transition-all duration-300 rounded-xl border-[3px] dark:border-neutral-600 border-[#b4b4b4];
+  }
+
+  &:active::before {
+    @apply w-[32px] translate-x-1.5;
+  }
+}
+
+.theme-slider {
+  @extend .slider;
+  @apply bg-blue-300;
+
+  &:before {
+    @apply border-blue-300 bg-yellow-100;
+  }
+}

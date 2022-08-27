@@ -1,5 +1,5 @@
 .item {
-  @apply px-5 py-2 flex gap-x-3 items-center;
+  @apply px-5 py-[0.45rem] flex gap-x-3 items-center;
 
   &:hover {
     @apply dark:bg-purple-600 bg-purple-200;
@@ -13,4 +13,31 @@
       @apply dark:bg-purple-800 bg-purple-600 text-white;
     }
   }
+}
+
+.heading {
+  @apply mx-5 py-0.5 font-bold;
+}
+
+.item-disabled {
+  @extend .item;
+  @apply text-neutral-500 cursor-not-allowed relative;
+
+  &:hover,
+  &:focus {
+    @apply dark:bg-neutral-800 bg-neutral-200;
+
+    .tooltip {
+      @apply opacity-100 z-50;
+    }
+  }
+
+  &::after {
+    content: "WIP";
+    @apply relative right-1 px-1.5 py-0.5 text-xs dark:bg-neutral-700 bg-neutral-400 text-white rounded-md;
+  }
+}
+
+.tooltip {
+  @apply absolute top-[2.65rem] dark:text-white dark:bg-neutral-700 text-black bg-neutral-50 shadow-md px-3 py-1.5 rounded-md w-[90%] opacity-0 transition-all duration-300 pointer-events-none z-50 text-xs;
 }

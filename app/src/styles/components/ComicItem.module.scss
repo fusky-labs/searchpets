@@ -10,8 +10,24 @@
   @apply flex items-center justify-between;
 }
 
+.heading-actions {
+  @apply flex gap-x-2;
+}
+
 .heading {
-  @apply font-bold text-xl italic;
+  @apply font-bold text-xl italic px-2 py-1 -translate-x-1.5 rounded-md transition-colors duration-300;
+
+  svg {
+    @apply opacity-0 transition-all duration-300;
+  }
+
+  &:hover {
+    @apply dark:bg-purple-700 bg-purple-500 text-white;
+
+    svg {
+      @apply opacity-100 text-white;
+    }
+  }
 }
 
 .buttons {

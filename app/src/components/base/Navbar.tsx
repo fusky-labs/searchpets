@@ -57,7 +57,6 @@ export default function Navbar() {
         {/* prettier-ignore */}
         <NavRowItem name="History" link="/history" icon={faHistory} />
         {/* prettier-ignore */}
-        <NavRowItem name="Statistics" link="/statistics" icon={faChartLine} />
         <NavRowItem name="About" link="/about" icon={faInfoCircle} />
       </nav>
       <OptionsMenu />
