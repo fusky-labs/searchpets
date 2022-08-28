@@ -174,7 +174,7 @@ def main():
                     print(
                         f"{Fore.BLACK}{Back.LIGHTWHITE_EX}{Style.BRIGHT}{link} is a guest comics{Style.RESET_ALL}"
                     )
-
+            RedisDB.delete("characters_db")
             RedisDB.lpush("characters_db", *characters_db)
 
 
