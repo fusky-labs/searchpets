@@ -1,6 +1,12 @@
 {
   "name": "Searchpets!",
   "short_name": "Searchpets!",
+  "theme_color": "#ffffff",
+  "background_color": "#7f5bd5",
+  "start_url": "/",
+  "scope": "/",
+  "dir": "auto",
+  "display": "standalone",
   "icons": [
     {
       "src": "/static/apple-touch-icon-120x120.png",
@@ -20,11 +26,5 @@
       "type": "image/png",
       "purpose": "any"
     }
-  ],
-  "theme_color": "#ffffff",
-  "background_color": "#7f5bd5",
-  "start_url": "/",
-  "dir": "auto",
-  "display": "standalone",
-  "orientation": "portrait"
+  ]
 }

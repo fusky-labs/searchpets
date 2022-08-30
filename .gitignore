@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 node_modules
 /.pnp
@@ -37,23 +35,23 @@ node_modules
 # python and database
 venv
 
-# ssl certs
-*.key
-*.crt
-
 # Ignore local Housepets json file
 housepets_db.json
 redis_config.json
 
 # Ignore __pycache__ stuff
-server/__pycache__
-
-/app/public/static/0[1-5].jpg
+**/__pycache__
 
 # Ignore lock files
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
 
-# MDX stuff
-.mdx-data
+# PWA service workers
+**/sw.js
+**/sw.js.map
+**/workbox-*.js
+**/workbox-*.js.map
+**/worker-*.js
+**/worker-*.js.map
+**/fallback-development.js

@@ -10,7 +10,6 @@
     "cypress:open": "cypress open"
   },
   "dependencies": {
-    "@builder.io/partytown": "^0.6.4",
     "@fortawesome/fontawesome-svg-core": "^6.1.2",
     "@fortawesome/free-brands-svg-icons": "^6.1.2",
     "@fortawesome/free-solid-svg-icons": "^6.1.2",

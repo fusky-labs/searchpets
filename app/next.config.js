@@ -4,35 +4,47 @@
  *  @type {import('next').NextConfig}
  **/
 module.exports = async (phase) => {
-  const withPlugins = require("next-compose-plugins")
-  const withMDX = require("@next/mdx")({
-    extension: /\.mdx?$/,
-    options: {
-      providerImportSource: "@mdx-js/react"
-    }
-  })
+	const withPlugins = require("next-compose-plugins")
 
-  const nextConfig = {
-    reactStrictMode: true,
-    swcMinify: true,
-    compress: true,
-    experimental: {
-      nextScriptWorkers: true
-    },
-    images: {
-      domains: ["www.housepetscomic.com"],
-      formats: ["image/webp"]
-    }
-  }
+	const runtimeCaching = require('next-pwa/cache')
+	runtimeCaching[0].handler = 'StaleWhileRevalidate'
 
-  const defaultConfig = {}
+	const withPWA = require('next-pwa')({
+		dest: "public",
+		// disable: process.env.NODE_ENV === "development",
+		register: true,
+		runtimeCaching
+	});
 
-  return withPlugins(
-    [
-      withMDX({
-        pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"]
-      })
-    ],
-    nextConfig
-  )(phase, { defaultConfig })
+	const withMDX = require("@next/mdx")({
+		extension: /\.mdx?$/,
+		options: {
+			providerImportSource: "@mdx-js/react"
+		}
+	})
+
+	const nextConfig = {
+		reactStrictMode: true,
+		swcMinify: true,
+		compress: true,
+		compiler: {
+			removeConsole: process.env.NODE_ENV !== "development"
+		},
+		images: {
+			domains: ["www.housepetscomic.com"],
+			formats: ["image/webp"]
+		}
+	}
+
+	const defaultConfig = {}
+
+	return withPlugins(
+		[
+			withMDX({
+				pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"]
+			}),
+			withPWA
+		],
+		nextConfig
+	)(phase, { defaultConfig })
 }
