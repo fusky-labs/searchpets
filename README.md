@@ -1,7 +1,7 @@
 <h1 align="center">
   <img width="128" alt="searchpets-peanut-transparent" src="https://user-images.githubusercontent.com/94678583/170873665-9d07cb32-abb9-45b6-8aea-8e361da84bd7.png">
   <br>
-  Searchpets
+  <em>Searchpets!</em>
 </h1>
 <p align="center">
   <img src="https://img.shields.io/github/license/OpenFurs/searchpets?style=flat" alt="GPL 2.0 License" />
@@ -11,7 +11,7 @@
   <img src="https://img.shields.io/github/contributors/OpenFurs/searchpets" />
 </p>
 <p align="center">
-Searchpets is an open source search engine to find characters and texts from comics (coming soon) from <i>Housepets!</i> written in Next.js and FastAPI.
+<em>Searchpets!</em> is search engine for finding characters and texts from comics and chapter arcs from <em>Housepets!</em> written in Next.js and FastAPI.
 </p>
 <p align="center">
 This project was taken inspiration from this <a href="https://www.housepetscomic.com/forums/viewtopic.php?f=13&t=5434&p=938783&hilit=search+engine#p938783">forum post</a>.
@@ -20,16 +20,12 @@ This project was taken inspiration from this <a href="https://www.housepetscomic
   <img src="https://user-images.githubusercontent.com/94678583/163629497-9f5c4921-5a39-4dfe-8729-e56705efb2f7.gif" alt="Searchpets Dev Demo">
 </p>
 
-## Tech stack
-
-![Searchpets Stack](https://skillicons.dev/icons?i=react,nextjs,ts,js,sass,tailwind,py,flask,redis,cloudflare)
-
-The front-end is written in a React framework, Next.js + TypeScript;
-with Tailwind CSS and Sass as CSS painkillers. For the back-end, it's powered
-with Python with the lightweight and fast web framework, FastAPI - the
+The front-end is written in the React framework, Next.js + TypeScript;
+with Tailwind CSS. For the back-end, it's powered
+with Python with a lightweight and fast web framework, FastAPI - the
 database is powered by Redis.
 
-The website is currently being hosted from a custom Linode server and
+The website is currently being hosted from a Linode server and
 delivered through the interwebs with CloudFlare.
 
 ## Project structure
