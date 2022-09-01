@@ -11,7 +11,7 @@
   <img src="https://img.shields.io/github/contributors/OpenFurs/searchpets" />
 </p>
 <p align="center">
-<em>Searchpets!</em> is search engine for finding characters and texts from comics and chapter arcs from <em>Housepets!</em> written in Next.js and FastAPI.
+<em>Searchpets!</em> is search engine for finding characters and texts from comics and chapter arcs from <em>Housepets!</em> written in Next.js, TypeScript, and FastAPI.
 </p>
 <p align="center">
 This project was taken inspiration from this <a href="https://www.housepetscomic.com/forums/viewtopic.php?f=13&t=5434&p=938783&hilit=search+engine#p938783">forum post</a>.
