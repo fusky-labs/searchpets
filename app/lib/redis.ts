@@ -5,39 +5,48 @@ const searchComics = async (years: string[], characters: string[]) => {
     url: process.env.REDIS_URL
   })
   client.connect()
+  try{
+    years = Array.isArray(years) ? years : [years]
+    characters = Array.isArray(characters) ? characters : [characters]
 
-  let comicsOutput: string[] = []
-  console.log(years)
-  console.log(characters)
-  const character_query = characters
-    .map((character) => {
-      return `@characters:{${character}}`
-    })
-    .join(" ")
-
-  console.log(character_query)
-  for (const year of years) {
-    console.log(year)
-    console.log("this needs to run after the above")
-    await client.ft
-      .search(year, character_query, { LIMIT: { from: 0, size: 500 } })
-      .then((result) => {
-        // console.log(result.documents)
-        result.documents.forEach((doc) => {
-          console.log(doc.value.title)
-          const comic: any = {
-            title: doc.value.title,
-            characters: (doc.value.characters as string).split(","),
-            comic_link: doc.value.comic_link,
-            image: doc.value.image
-          }
-          comicsOutput.push(comic)
-        })
+    let comicsOutput: string[] = []
+    console.log(years)
+    console.log(characters)
+    const character_query = characters
+      .map((character) => {
+        return `@characters:{${character}}`
       })
+      .join(" ")
+
+    console.log(character_query)
+    for (const year of years) {
+      console.log(year)
+      console.log("this needs to run after the above")
+      await client.ft
+        .search(year, character_query, { LIMIT: { from: 0, size: 500 } })
+        .then((result) => {
+          // console.log(result.documents)
+          result.documents.forEach((doc) => {
+            // console.log(doc.value.title)
+            const comic: any = {
+              title: doc.value.title,
+              characters: (doc.value.characters as string).split(","),
+              comic_link: doc.value.comic_link,
+              image: doc.value.image
+            }
+            comicsOutput.push(comic)
+          })
+        })
+    }
+    client.quit()
+    // console.log(comicsOutput)
+    return { comics: comicsOutput }
   }
-  client.quit()
-  console.log(comicsOutput)
-  return { comics: comicsOutput }
+  catch{
+    client.quit()
+    return { comics: "ERROR: search failed"}
+  }
+  
 }
 
 const grabData = async () => {
