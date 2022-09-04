@@ -1,30 +1,57 @@
+import redis
+from redis.commands.search.query import Query
+from redis.commands.search.field import NumericField
+from redis.commands.search.field import TagField
+from redis.commands.search.field import TextField
+from redis.commands.search.indexDefinition import IndexDefinition
 import json
-import os
 import re
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor
-
-import redis
 import requests
 from bs4 import BeautifulSoup
 from colorama import *
+from scraper import *
 
 init(wrap=False)
 stream = AnsiToWin32(sys.stderr).stream
 
-# rs = requests.Session()
-
-
 def main():
-    # global rs
+    schema = (
+        TextField("title"),
+        TextField("comic_link"),
+        TagField("characters"),
+        TextField("image"),
+        NumericField("index", sortable=True),
+    )
+    rs = requests.Session()
 
-    housepets_db = {}
+    with open("./redis_config.json") as f:
+        redis_config = json.load(f)
+
+    print("Connecting to redis...")
+    if redis_config["database"]["password"] is None:
+        RedisDB = redis.StrictRedis(
+            host=redis_config["database"]["host"],
+            port=int(redis_config["database"]["port"]),
+            username=redis_config["database"]["username"],
+            decode_responses=True
+        )
+    else:
+        RedisDB = redis.StrictRedis(
+            host=redis_config["database"]["host"],
+            port=int(redis_config["database"]["port"]),
+            username=redis_config["database"]["username"],
+            password=redis_config["database"]["password"],
+            decode_responses=True
+        )
     print(
-        f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} Generating Housepets database... {Style.RESET_ALL}"
+        f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} Updating Housepets database... {Style.RESET_ALL}"
     )
 
     while True:
+        print("waiting 5 secconds")
         time.sleep(5)
         year = time.strftime("%Y")
         characters = RedisDB.lrange("characters_db", 0, -1)
@@ -32,6 +59,9 @@ def main():
         characters_db = set(characters)
 
         print("characters_db length:", len(characters_db))
+        index_def = IndexDefinition(prefix=[f"{year}:"],
+                                score=0.5,
+                                score_field="doc_score")
 
         # grab todays year database hash index
         year_db = RedisDB.ft(year).search(Query("*").paging(0, 500))
@@ -52,13 +82,27 @@ def main():
             print(
                 f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} New comics found! {Style.RESET_ALL}"
             )
+            try:
+                print(
+                    f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} Setting up {year} index... {Style.RESET_ALL}"
+                )
+                RedisDB.ft(f"{year}").create_index(schema, definition=index_def)
+            except Exception as e:
+                print(
+                    f"{Back.RED}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} {year} index already exists {Style.RESET_ALL}"
+                )
 
-            """
-            !!!
-            !!! Scraper part refactor in progress
-            !!! Can be found on scraper.py/gen.py
-            !!!
-            """
+            # fill code to scrape here
+            for index, link in enumerate(link_tag, start=1):
+                link = link.get("href")
+
+                data = scrape_comic(link, year, index, characters_db)
+
+                RedisDB.hset(
+                    data["key_name"],
+                    mapping=data["comic"]
+                )
+                characters_db = data["characters"]
 
             RedisDB.delete("characters_db")
             RedisDB.lpush("characters_db", *characters_db)
