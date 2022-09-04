@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react"
-import { ExpandSearchContext, OptionsContext } from "@/utils/Contexts"
+import { SidebarContext, OptionsContext } from "@/utils/Contexts"
 import Navbar from "./Navbar"
 import BackToTopBtn from "../BackToTopBtn"
+import SidebarMenu from "../navigation/SidebarMenu"
 
 export default function Layout({ children }: LayoutProps) {
   // Options state
@@ -27,15 +28,6 @@ export default function Layout({ children }: LayoutProps) {
     contrastHandler(false)
   }
 
-  useEffect(() => {
-    const expandScroll = () => {
-      window.scrollY > 200 ? isExpanded(true) : isExpanded(false)
-    }
-
-    window.addEventListener("scroll", expandScroll)
-    return () => window.removeEventListener("scroll", expandScroll)
-  }, [])
-
   return (
     <OptionsContext.Provider
       value={{
@@ -48,9 +40,10 @@ export default function Layout({ children }: LayoutProps) {
       }}
     >
       <BackToTopBtn />
-      <ExpandSearchContext.Provider value={{ expanded: expand }}>
+      <SidebarContext.Provider value={{ expanded: expand }}>
         <Navbar />
-      </ExpandSearchContext.Provider>
+      </SidebarContext.Provider>
+      <SidebarMenu />
       {children}
     </OptionsContext.Provider>
   )

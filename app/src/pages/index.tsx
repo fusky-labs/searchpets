@@ -26,18 +26,18 @@ export default function Home() {
       setQuery(queryParse)
     }
 
-    Characters().then((response: any) => {
-      console.log(response)
-      // will return a list of characters
-    })
-    Data().then((response: any) => {
-      console.log(response)
-      // will return a json object, see the console to see the response
-    })
-    Search(["2008"], ["bino", "grape", "peanut"]).then((response: any) => {
-      setComics(response)
-      // will return a list of json objects that will be the comics
-    })
+    // Characters().then((response: any) => {
+    //   console.log(response)
+    //   // will return a list of characters
+    // })
+    // Data().then((response: any) => {
+    //   console.log(response)
+    //   // will return a json object, see the console to see the response
+    // })
+    // Search(["2008"], ["bino", "grape", "peanut"]).then((response: any) => {
+    //   setComics(response)
+    //   // will return a list of json objects that will be the comics
+    // })
   }, [])
 
   return (

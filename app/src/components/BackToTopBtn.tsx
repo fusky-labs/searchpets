@@ -8,7 +8,7 @@ export default function BackToTopBtn() {
 
   useEffect(() => {
     const handleScroll = () => {
-      window.scrollY > 500
+      window.scrollY > 350
         ? setShow(styles.btt.toString())
         : setShow(styles["btt-hidden"].toString())
     }

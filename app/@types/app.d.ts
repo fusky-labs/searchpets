@@ -13,7 +13,7 @@ declare type OptionsCtxTypes = {
   setAnimations?: (animations: boolean) => void
 }
 
-declare type ExpandSearchCtxTypes = {
+declare type SidebarCtxTypes = {
   expanded: boolean
 }
 
