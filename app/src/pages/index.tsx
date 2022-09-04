@@ -41,11 +41,11 @@ export default function Home() {
   }, [])
 
   return (
-    <Container wrap title="Search page" description="Search page description">
+    <Container title="Search page" description="Search page description">
       <div className={styles["comic-contents"]}>
         {comics.map((comic) => (
           <ComicItem
-            key={comic}
+            key={comic["title"]}
             img={comic["image"]}
             title={comic["title"]}
             characters={comic["characters"]}

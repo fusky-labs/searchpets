@@ -2,7 +2,6 @@ import { useState, useEffect } from "react"
 import { SidebarContext, OptionsContext } from "@/utils/Contexts"
 import Navbar from "./Navbar"
 import BackToTopBtn from "../BackToTopBtn"
-import SidebarMenu from "../navigation/SidebarMenu"
 
 export default function Layout({ children }: LayoutProps) {
   // Options state
@@ -11,7 +10,8 @@ export default function Layout({ children }: LayoutProps) {
   const [animations, toggleAnimations] = useState<boolean>()
 
   // Navbar state
-  const [expand, isExpanded] = useState(false)
+  const [expand, setExpanded] = useState(false)
+  const [margin, setMargin] = useState("69")
 
   if (typeof window !== "undefined") {
     const themeHandler = (theme: ThemeOverrides) => {
@@ -40,11 +40,17 @@ export default function Layout({ children }: LayoutProps) {
       }}
     >
       <BackToTopBtn />
-      <SidebarContext.Provider value={{ expanded: expand }}>
+      <SidebarContext.Provider
+        value={{
+          expanded: expand,
+          setExpanded,
+          marginSize: margin,
+          setMarginSize: setMargin
+        }}
+      >
         <Navbar />
+        {children}
       </SidebarContext.Provider>
-      <SidebarMenu />
-      {children}
     </OptionsContext.Provider>
   )
 }

@@ -25,10 +25,14 @@
 }
 
 .sidebar-btn {
-  @apply px-5 py-3 rounded-md relative transition-all duration-300 bg-opacity-50;
+  @apply px-5 py-3 rounded-md relative transition-all duration-200 bg-opacity-50;
 
   &:hover {
     @apply bg-purple-200 dark:bg-purple-900;
+  }
+
+  &:active {
+    @apply bg-purple-500 text-white;
   }
 }
 

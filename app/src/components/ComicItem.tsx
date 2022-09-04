@@ -1,7 +1,6 @@
 import { useState } from "react"
 import Image from "next/image"
 import styles from "@/styles/components/ComicItem.module.scss"
-import LoadingCircle from "./LoadingCircle"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faExternalLink,
@@ -9,6 +8,7 @@ import {
   faStar
 } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
+import LoadingClient from "./Loading.client"
 
 export default function ComicItem({
   title,
@@ -23,7 +23,7 @@ export default function ComicItem({
       className={styles.wrapper}
       id={title
         ?.replace(/(\s)|(\')/g, "-")
-        .replace(/(\()|(\))|(\.)|(\")|(,)|(\?)|(\!)/g, "")
+        .replace(/(\()|(\))|(\.)|(\")|(,)|(\?)|(\!)|(\')/g, "")
         .toLowerCase()}
     >
       <div className={styles["heading-container"]}>
@@ -57,7 +57,7 @@ export default function ComicItem({
         </div>
       </div>
       <div className={styles["image-container"]}>
-        <LoadingCircle hidden={!isLoaded ? false : true} />
+        <LoadingClient hidden={!isLoaded ? false : true} />
         <Image
           src={img}
           loading="lazy"

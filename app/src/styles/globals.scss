@@ -28,3 +28,7 @@
 
 @tailwind components;
 @tailwind utilities;
+
+loading-fox-plush[hidden="true"] {
+  @apply hidden;
+}

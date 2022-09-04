@@ -17,16 +17,16 @@
 This project was taken inspiration from this <a href="https://www.housepetscomic.com/forums/viewtopic.php?f=13&t=5434&p=938783&hilit=search+engine#p938783">forum post</a>.
 </p>
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/94678583/163629497-9f5c4921-5a39-4dfe-8729-e56705efb2f7.gif" alt="Searchpets Dev Demo">
+  <img src="https://user-images.githubusercontent.com/94678583/188504378-07189cc8-78f1-4020-9878-cae6e4435708.png" alt="Searchpets Dev Demo">
 </p>
 
-The front-end is written in the React framework, Next.js + TypeScript;
-with Tailwind CSS. For the back-end, it's powered
-with Python with a lightweight and fast web framework, FastAPI - the
+The front-end is written in Next.js + TypeScript + Lit Web Components;
+with Tailwind CSS. For the back-end, it's written
+in Python with a lightweight and fast web framework, FastAPI - the
 database is powered by Redis.
 
-The website is currently being hosted from a Linode server and
-delivered through the interwebs with CloudFlare.
+The infrastructure is being hosted from Linode and Netlify then
+delivered through the interwebs with Cloudflare.
 
 ## Project structure
 

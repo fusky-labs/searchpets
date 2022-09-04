@@ -12,5 +12,8 @@ export const OptionsContext = createContext<OptionsCtxTypes>({
 })
 
 export const SidebarContext = createContext<SidebarCtxTypes>({
-  expanded: false
+  expanded: false,
+  marginSize: "0",
+  setExpanded: () => {},
+  setMarginSize: () => {},
 })

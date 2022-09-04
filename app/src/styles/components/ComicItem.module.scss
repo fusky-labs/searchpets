@@ -1,5 +1,5 @@
 .wrapper {
-  @apply gap-2 px-5 py-4 dark:bg-neutral-800 bg-gray-200 rounded-md flex flex-col;
+  @apply gap-2 px-5 py-4 dark:bg-neutral-800 bg-gray-50 shadow-lg rounded-md flex flex-col;
 }
 
 [theme-override="dark"] .wrapper {

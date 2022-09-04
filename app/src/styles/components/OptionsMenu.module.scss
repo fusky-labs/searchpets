@@ -20,12 +20,12 @@
   }
 }
 
-.dropdown-wrapper {
+.sidebar {
   @apply absolute w-max top-[4rem] right-0 dark:bg-neutral-900 bg-purple-50 rounded-md border-[1px] border-purple-500 pb-6 pt-4 text-sm drop-shadow-2xl;
   @apply opacity-100 scale-100 translate-x-0 translate-y-0 pointer-events-auto transition-all duration-300;
 
-  &-closed {
-    @extend .dropdown-wrapper;
+  &-hidden {
+    @extend .sidebar;
     @apply opacity-0 scale-95 translate-x-2 -translate-y-5 pointer-events-none;
   }
 

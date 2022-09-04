@@ -15,6 +15,9 @@ declare type OptionsCtxTypes = {
 
 declare type SidebarCtxTypes = {
   expanded: boolean
+  marginSize: string
+  setExpanded: (expanded: boolean) => void
+  setMarginSize: (marginSize: string) => void
 }
 
 declare interface LayoutProps {
@@ -37,7 +40,7 @@ declare interface ComicItemProps {
   title?: string
   img: string
   link: string
-  characters: string[]
+  characters?: string[]
 }
 
 declare interface NavbarRootProps extends LayoutProps {}

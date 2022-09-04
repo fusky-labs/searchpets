@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import styles from "@/styles/base/SidebarMenu.module.scss"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import {
@@ -7,50 +7,57 @@ import {
   faHistory,
   faInfoCircle,
   faList,
-  faSearch
+  faSearch,
+  faPaw
 } from "@fortawesome/free-solid-svg-icons"
 import SidebarItem from "./SidebarItem"
+import { SidebarContext } from "@/utils/Contexts"
 
 export default function SidebarMenu() {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const { expanded } = useContext(SidebarContext)
 
   return (
     <aside
       className={
-        !menuOpen
-          ? styles["dropdown-wrapper"].toString()
-          : styles["dropdown-wrapper-closed"].toString()
+        !expanded
+          ? styles["sidebar-hidden"].toString()
+          : styles["sidebar"].toString()
       }
     >
       <nav className={styles["menu-nav"]}>
         <SidebarItem name="Search" link="/" icon={faSearch} />
-        <SidebarItem name="Character List" link="/characters" icon={faList} />
+        <SidebarItem name="Character List" link="/characters" icon={faPaw} />
         <SidebarItem name="Chapter List" icon={faList} disabled />
+        <hr className={styles.separator} hide-item-on-collapse="" />
+        <SidebarItem name="Bookmarks and History" icon={faHistory} disabled />
+        <SidebarItem
+          name="Install Searchpets"
+          icon={faDownload}
+          disabled
+          hideOnCollapse
+        />
+        <hr className={styles.separator} hide-item-on-collapse="" />
+        <SidebarItem
+          name="Housepets API"
+          icon={faCode}
+          disabled
+          hideOnCollapse
+        />
         <SidebarItem
           name="About this project"
           link="/about"
           icon={faInfoCircle}
         />
-        <hr className={styles.separator} />
-        <SidebarItem name="Bookmarks and History" icon={faHistory} disabled />
-        <SidebarItem name="Install Searchpets" icon={faDownload} disabled />
-        <hr className={styles.separator} />
-        <SidebarItem name="Housepets API" icon={faCode} disabled />
         <SidebarItem
           name="Source code on GitHub"
           link="https://github.com/openfurs/searchpets"
           icon={faGithub}
+          hideOnCollapse
         />
-        <hr className={styles.separator} />
+        <SidebarItem name="Support us on Ko-fi!" kofi />
+        <hr className={styles.separator} hide-item-on-collapse="" />
       </nav>
-      <div className={styles["about-section"]}>
-        <p>
-          <strong className={styles.emphasis}>Searchpets!</strong> is an
-          open-source project for searching the entire <em>Housepets!</em> web
-          comic catalog by Rick Griffin.
-        </p>
-        <span className={styles.version}>Searchpets v2 beta 1</span>
-      </div>
+      <strong className={styles.version}>Searchpets v2 beta 1</strong>
     </aside>
   )
 }

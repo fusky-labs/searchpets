@@ -31,8 +31,8 @@ export default function OptionsMenu() {
       <div
         className={
           menuOpen
-            ? styles["dropdown-wrapper"].toString()
-            : styles["dropdown-wrapper-closed"].toString()
+            ? styles["sidebar"].toString()
+            : styles["sidebar-hidden"].toString()
         }
       >
         <section className={styles.section}>
