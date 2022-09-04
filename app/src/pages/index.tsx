@@ -3,6 +3,7 @@ import Container from "@/components/Container"
 import dynamic from "next/dynamic"
 import { useEffect, useState } from "react"
 import styles from "@/styles/pages/Search.module.scss"
+import { Search, Data, Characters} from "src/APIhandlers/ApiHandler"
 
 const ComicItem = dynamic(() => import("../components/ComicItem"), {
   loading: () => <ComicItemLoading />,
@@ -24,6 +25,19 @@ export default function Home() {
     if (queryParse) {
       setQuery(queryParse)
     }
+
+    Characters().then((response:any) => {
+      console.log(response)
+      // will return a list of characters
+    })
+    Data().then((response:any) => {
+      console.log(response)
+      // will return a json object, see the console to see the response
+    })
+    Search(["2008"], ["bino", "grape", "peanut"]).then((response:any) => {
+      setComics(response)
+      // will return a list of json objects that will be the comics
+    })
   }, [])
 
   return (
