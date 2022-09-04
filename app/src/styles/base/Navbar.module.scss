@@ -9,7 +9,7 @@
 }
 
 .wrapper {
-  @apply max-w-screen-2xl py-4 flex mx-auto px-6 justify-between gap-x-7 items-center;
+  @apply py-4 flex px-6 justify-between gap-x-7 items-center;
 }
 
 .logo-handler {
@@ -24,11 +24,19 @@
   @apply w-full ml-[10.25rem] flex gap-x-1;
 }
 
+.sidebar-btn {
+  @apply px-5 py-3 rounded-md relative transition-all duration-300 bg-opacity-50;
+
+  &:hover {
+    @apply bg-purple-200 dark:bg-purple-900;
+  }
+}
+
 .nav-container {
-  @apply flex items-center gap-x-3 select-none w-full;
+  @apply flex justify-between items-center gap-x-3 select-none w-full;
 
   .item {
-    @apply px-[1.5rem] py-[0.5rem] rounded-[10rem] flex gap-x-2 items-center ;
+    @apply px-[1.5rem] py-[0.5rem] rounded-[10rem] flex gap-x-2 items-center;
 
     &:hover {
       @apply bg-purple-200 dark:bg-purple-900 bg-opacity-50 dark:bg-opacity-50;

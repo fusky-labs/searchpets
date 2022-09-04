@@ -1,5 +1,5 @@
 .item {
-  @apply px-5 py-[0.45rem] flex gap-x-3 items-center;
+  @apply px-6 py-[0.48rem] flex gap-x-3 items-center select-none text-[0.98rem];
 
   &:hover {
     @apply dark:bg-purple-600 bg-purple-200;
@@ -39,5 +39,5 @@
 }
 
 .tooltip {
-  @apply absolute top-[2.65rem] dark:text-white dark:bg-neutral-700 text-black bg-neutral-50 shadow-md px-3 py-1.5 rounded-md w-[90%] opacity-0 transition-all duration-300 pointer-events-none z-50 text-xs;
+  @apply absolute top-[2.65rem] dark:text-white dark:bg-neutral-700 text-black bg-neutral-50 shadow-md px-4 py-2.5 rounded-md w-[90%] opacity-0 transition-all duration-300 pointer-events-none z-50 text-sm;
 }

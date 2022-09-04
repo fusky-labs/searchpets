@@ -1,10 +1,10 @@
 import Link from "next/link"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import styles from "@/styles/base/DropdownItem.module.scss"
+import styles from "@/styles/base/SidebarItem.module.scss"
 import { useRouter } from "next/router"
 import type { IconProp } from "@fortawesome/fontawesome-svg-core"
 
-export default function DropdownItem({
+export default function SidebarItem({
   link = "",
   name,
   icon,
@@ -27,7 +27,7 @@ export default function DropdownItem({
   if (disabled)
     return (
       <div className={styles["item-disabled"]} aria-disabled="true" role="link">
-        <FontAwesomeIcon icon={icon} />
+        <FontAwesomeIcon icon={icon} size="1x" />
         <span>{name}</span>
         <div className={styles.tooltip}>
           This feature has been planned but still currently in the works or not
@@ -39,7 +39,7 @@ export default function DropdownItem({
   return (
     <Link href={link}>
       <a className={linkHandler}>
-        <FontAwesomeIcon icon={icon} />
+        <FontAwesomeIcon icon={icon} size="1x" />
         <span>{name}</span>
       </a>
     </Link>
