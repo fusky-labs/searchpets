@@ -1,5 +1,5 @@
-export function Search(years:string[], characters:string[]){
-    fetch("/api/search", {
+export function Search(years:string[], characters:string[]): any{
+    return fetch("/api/search", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -15,16 +15,18 @@ export function Search(years:string[], characters:string[]){
         })
 }
 
-export function Data(){
-    fetch("/api/data").then((res) =>{
-        return res.json()
+export function Data(): any{
+    return fetch("/api/data")
+    .then((res) =>res.json())
+    .then((data) => {
+      return data
     })
 }
 
-export function Characters(){
-    fetch("/api/characters")
-      .then((res) => res.json())
-      .then((data) => {
-        return data.characters_db
-      })
+export function Characters(): any{
+    return fetch("/api/characters")
+    .then((res) => res.json())
+    .then((characters) => {
+      return characters.characters_db
+    })
 }
