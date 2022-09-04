@@ -2,7 +2,6 @@ import styles from "@/styles/base/DropdownMenu.module.scss"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import {
   faBars,
-  faChartLine,
   faCode,
   faDownload,
   faHistory,

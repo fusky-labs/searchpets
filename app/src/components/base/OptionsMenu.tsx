@@ -24,7 +24,7 @@ export default function OptionsMenu() {
         aria-label="Options"
         title="Options"
         className={styles.button}
-        onClick={() => setMenuOpen(!menuOpen)}
+        onClick={() => setMenuOpen((prev) => !prev)}
       >
         <FontAwesomeIcon icon={faSlidersH} />
       </button>
