@@ -12,6 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 import SidebarItem from "./SidebarItem"
 import { SidebarContext } from "@/utils/Contexts"
+import ReactMarkdown from "react-markdown"
 
 export default function SidebarMenu() {
   const { expanded } = useContext(SidebarContext)
@@ -57,7 +58,21 @@ export default function SidebarMenu() {
         <SidebarItem name="Support us on Ko-fi!" kofi />
         <hr className={styles.separator} hide-item-on-collapse="" />
       </nav>
-      <strong className={styles.version}>Searchpets v2 beta 1</strong>
+      <div id={styles["disclaimer-note"]}>
+        <div id={styles.wrapper}>
+          <ReactMarkdown>
+            _Searchpets!_ is an open source fan project. SP does not own any of
+            the contents used on this website and has no direct affiliation with
+            _Housepets!_ or all of Rick Griffin's intellectual property.
+          </ReactMarkdown>
+          <span
+            className={styles.copyright}
+          >{`© ${new Date().getFullYear()} OpenFurs`}</span>
+          <strong className={styles.version} ide-item-on-collapse="">
+            Searchpets v2 beta 1
+          </strong>
+        </div>
+      </div>
     </aside>
   )
 }

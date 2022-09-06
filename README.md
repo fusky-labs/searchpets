@@ -61,10 +61,11 @@ generate a JSON file containing Housepets! data. (This will take a while!)
 Once it's finished, simply run `yarn dev` or `npm run dev` to
 concurrently start both Node and Python servers.
 
-## Copyright notice
+## Disclaimer
 
-The use of third-party content is heavily transformative, and therefore, subject
-of Fair Use. _Housepets!_ and its story and characters is a trademark of Rick Griffin.
+_Searchpets!_ is an open source fan project. SP does not own any of the
+contents used on this website and has no direct affiliation with the entire
+_Housepets!_ web comic or all of Rick Griffin's intellectual property.
 
 ## License
 

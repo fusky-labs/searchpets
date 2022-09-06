@@ -36,7 +36,7 @@ module.exports = async (phase) => {
 		images: {
 			domains: ["www.housepetscomic.com"],
 			formats: ["image/webp"]
-		}
+		},
 	}
 
 	const defaultConfig = {}

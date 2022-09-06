@@ -39,7 +39,6 @@ export default function SidebarItem({
         aria-label={name}
         role="link"
         hide-item-on-collapse={!hideOnCollapse ? null : ""}
-        data-collapsed-label={name}
       >
         <FontAwesomeIcon icon={icon} size="1x" />
         <span className={styles.text}>{name}</span>
@@ -53,10 +52,7 @@ export default function SidebarItem({
   if (kofi)
     return (
       <Link href="https://ko-fi.com/openfurs">
-        <a
-          className={styles["item-kofi"]}
-          aria-label={name}
-        >
+        <a className={styles["item-kofi"]} aria-label={name}>
           <div className={styles["logo-wrapper"]}>
             <Image
               src="/static/kofilogo.png"
