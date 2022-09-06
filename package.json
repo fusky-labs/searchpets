@@ -15,14 +15,16 @@
     "server:dev": "cd server && python app.py",
     "server:start": "cd server && python app.py --build",
     "dev:next": "yarn --cwd ./app dev",
-    "start:next": "yarn --cwd ./app start -p 80"
+    "start:next": "yarn --cwd ./app start -p 80",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/OpenFurs/searchpets.git"
   },
   "devDependencies": {
-    "concurrently": "^7.0.0"
+    "concurrently": "^7.0.0",
+    "husky": "^8.0.0"
   },
   "license": "GPL-2.0"
 }
