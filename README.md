@@ -11,22 +11,11 @@
   <img src="https://img.shields.io/github/contributors/OpenFurs/searchpets" />
 </p>
 <p align="center">
-<em>Searchpets!</em> is search engine for finding characters and texts from comics and chapter arcs from <em>Housepets!</em> written in Next.js, TypeScript, and FastAPI.
-</p>
-<p align="center">
-This project was taken inspiration from this <a href="https://www.housepetscomic.com/forums/viewtopic.php?f=13&t=5434&p=938783&hilit=search+engine#p938783">forum post</a>.
+<em>Searchpets!</em> is comic search engine for searching characters, texts from comics, and chapter arcs from the entire <em>Housepets!</em> catalog! Written in Python and TypeScript - it was taken inspiration from this <a href="https://www.housepetscomic.com/forums/viewtopic.php?f=13&t=5434&p=938783&hilit=search+engine#p938783">forum post</a>.
 </p>
 <p align="center">
   <img src="https://user-images.githubusercontent.com/94678583/188504378-07189cc8-78f1-4020-9878-cae6e4435708.png" alt="Searchpets Dev Demo">
 </p>
-
-The front-end is written in Next.js + TypeScript + Lit Web Components;
-with Tailwind CSS. For the back-end, it's written
-in Python with a lightweight and fast web framework, FastAPI - the
-database is powered by Redis.
-
-The infrastructure is being hosted from Linode and Netlify then
-delivered through the interwebs with Cloudflare.
 
 ## Project structure
 
@@ -35,6 +24,16 @@ delivered through the interwebs with Cloudflare.
   Housepets database
 - `scripts` - Automated Bash scripts to bulk install Python and Node packages and
   for deployment from the server
+
+## Infrastructure
+
+The front-end is written in Next.js + TypeScript + Lit Web Components;
+with Tailwind CSS. While the back-end is written
+in Python with a lightweight and fast web framework, FastAPI - the
+database is powered by Redis.
+
+The infrastructure is being hosted from Linode and Netlify then
+delivered through the interwebs with Cloudflare.
 
 ## Running the app locally
 
