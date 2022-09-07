@@ -13,7 +13,7 @@ export function LogoNav() {
     setExpanded(!expanded)
 
     if (typeof window !== "undefined") {
-      const laptopScreen = window.matchMedia("(min-width: 1366px)").matches
+      const laptopScreen = window.matchMedia("(min-width: 1300px)").matches
       if (!expanded) {
         if (laptopScreen) {
           return setMarginSize("330")
@@ -25,7 +25,11 @@ export function LogoNav() {
 
   return (
     <div className="flex items-center">
-      <button className={styles["sidebar-btn"]} onClick={handleMargin}>
+      <button
+        className={styles["sidebar-btn"]}
+        onClick={handleMargin}
+        aria-label="Toggle sidebar"
+      >
         <FontAwesomeIcon icon={faBars} />
       </button>
       <Link href="/">

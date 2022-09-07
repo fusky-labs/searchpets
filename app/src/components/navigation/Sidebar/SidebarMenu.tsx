@@ -1,5 +1,5 @@
 import { useContext, useState } from "react"
-import styles from "@/styles/base/SidebarMenu.module.scss"
+import styles from "@/styles/base/Sidebar.module.scss"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import {
   faCode,
@@ -14,7 +14,7 @@ import { SidebarItem } from "./SidebarItem"
 import { SidebarContext } from "@/utils/Contexts"
 import ReactMarkdown from "react-markdown"
 
-export default function SidebarMenu() {
+export default function Sidebar() {
   const { expanded } = useContext(SidebarContext)
 
   return (
@@ -29,7 +29,7 @@ export default function SidebarMenu() {
         <SidebarItem name="Search" link="/" icon={faSearch} />
         <SidebarItem name="Character List" link="/characters" icon={faPaw} />
         <SidebarItem name="Chapter List" icon={faList} disabled />
-        <hr className={styles.separator} hide-item-on-collapse="" />
+        <hr className={styles.separator} />
         <SidebarItem name="Bookmarks and History" icon={faHistory} disabled />
         <SidebarItem
           name="Install Searchpets"
@@ -37,7 +37,7 @@ export default function SidebarMenu() {
           disabled
           hideOnCollapse
         />
-        <hr className={styles.separator} hide-item-on-collapse="" />
+        <hr className={styles.separator} />
         <SidebarItem
           name="Housepets API"
           icon={faCode}
@@ -56,7 +56,7 @@ export default function SidebarMenu() {
           hideOnCollapse
         />
         <SidebarItem name="Support us on Ko-fi!" kofi />
-        <hr className={styles.separator} hide-item-on-collapse="" />
+        <hr className={styles.separator} />
       </nav>
       <div id={styles["disclaimer-note"]}>
         <div id={styles.wrapper}>

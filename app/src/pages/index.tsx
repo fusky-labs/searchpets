@@ -1,4 +1,4 @@
-import { ComicItemLoading } from "@/components/ComicItem"
+import { ComicItemLoading } from "@/components/ComicItem/ComicItem"
 import Container from "@/components/base/Container"
 import dynamic from "next/dynamic"
 import { useEffect, useState } from "react"

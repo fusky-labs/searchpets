@@ -27,7 +27,7 @@
     }
   }
 
-  [hide-item-on-collapse] {
+  :is([hide-item-on-collapse], hr) {
     @apply hidden;
   }
 

@@ -59,9 +59,6 @@ export default function OptionsMenu() {
           <OptionsItem title="Expand width contents">
             Fill comic contents for larger displays
           </OptionsItem>
-          <OptionsItem title="Item height">
-            Specify comic height, optimal for longer strips of a comic page
-          </OptionsItem>
         </section>
         <section className={styles.section}>
           <OptionsItem icon={faUniversalAccess} header="Accessibility" />

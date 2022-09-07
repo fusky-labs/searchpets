@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import styles from "@/styles/base/SidebarMenu.module.scss"
+import styles from "@/styles/base/Sidebar.module.scss"
 import { useRouter } from "next/router"
 import Image from "next/image"
 
