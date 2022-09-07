@@ -1,5 +1,5 @@
 import { ComicItemLoading } from "@/components/ComicItem"
-import Container from "@/components/Container"
+import Container from "@/components/base/Container"
 import dynamic from "next/dynamic"
 import { useEffect, useState } from "react"
 import styles from "@/styles/pages/Search.module.scss"

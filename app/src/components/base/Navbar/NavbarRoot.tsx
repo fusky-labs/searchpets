@@ -1,6 +1,6 @@
 import styles from "@/styles/base/Navbar.module.scss"
 
-export default function NavbarRoot({ children }: NavbarRootProps) {
+export function NavbarRoot({ children }: NavbarRootProps) {
   return (
     <header className={styles.root}>
       <div className={styles.wrapper}>

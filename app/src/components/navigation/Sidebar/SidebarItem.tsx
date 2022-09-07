@@ -2,10 +2,9 @@ import Link from "next/link"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import styles from "@/styles/base/SidebarMenu.module.scss"
 import { useRouter } from "next/router"
-import type { IconProp } from "@fortawesome/fontawesome-svg-core"
 import Image from "next/image"
 
-export default function SidebarItem({
+export function SidebarItem({
   link = "",
   name,
   icon,
@@ -13,15 +12,7 @@ export default function SidebarItem({
   header,
   kofi,
   hideOnCollapse
-}: {
-  link?: string
-  name?: string
-  icon?: IconProp | any
-  disabled?: boolean
-  header?: string
-  kofi?: boolean
-  hideOnCollapse?: boolean
-}) {
+}: SidebarItemProps) {
   const router = useRouter()
 
   // prettier-ignore

@@ -5,7 +5,7 @@ import styles from "@/styles/base/Navbar.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars } from "@fortawesome/free-solid-svg-icons"
 
-export default function LogoNav() {
+export function LogoNav() {
   const { expanded, setExpanded, marginSize, setMarginSize } =
     useContext(SidebarContext)
 

@@ -3,7 +3,7 @@
 }
 
 .search-box-container {
-  @apply relative w-[50%];
+  @apply relative w-full lg:w-[50%];
 
   .icon {
     @apply absolute top-0 p-[0.85rem] pl-5 pointer-events-none;

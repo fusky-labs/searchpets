@@ -44,3 +44,13 @@ declare interface ComicItemProps {
 }
 
 declare interface NavbarRootProps extends LayoutProps {}
+
+declare interface SidebarItemProps {
+  link?: string
+  name?: string
+  icon?: IconProp | any
+  disabled?: boolean
+  header?: string
+  kofi?: boolean
+  hideOnCollapse?: boolean
+}

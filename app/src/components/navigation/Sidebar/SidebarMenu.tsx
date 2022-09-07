@@ -10,7 +10,7 @@ import {
   faSearch,
   faPaw
 } from "@fortawesome/free-solid-svg-icons"
-import SidebarItem from "./SidebarItem"
+import { SidebarItem } from "./SidebarItem"
 import { SidebarContext } from "@/utils/Contexts"
 import ReactMarkdown from "react-markdown"
 

@@ -13,7 +13,7 @@
 }
 
 .logo-handler {
-  @apply block relative;
+  @apply hidden lg:block relative;
 }
 
 .logo {

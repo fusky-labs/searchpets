@@ -2,7 +2,7 @@ import { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import styles from "@/styles/components/OptionsItem.module.scss"
 
-export default function OptionsItem({
+export function OptionsItem({
   title,
   header,
   icon,

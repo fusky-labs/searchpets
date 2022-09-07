@@ -1,16 +1,28 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import {
   faDisplay,
-  faSlidersH,
+  faCog,
   faUniversalAccess,
   faWarning
 } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import styles from "@/styles/components/OptionsMenu.module.scss"
-import OptionsItem from "./OptionsItem"
+import { OptionsItem } from "./OptionsItem"
 
 export default function OptionsMenu() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleDropdown = (e: any) => {
+      if (!menuRef.current?.contains(e.target)) {
+        setMenuOpen(false)
+      }
+    }
+
+    document.addEventListener("click", handleDropdown)
+    return () => document.removeEventListener("click", handleDropdown)
+  })
 
   return (
     <div
@@ -19,14 +31,14 @@ export default function OptionsMenu() {
           ? styles["button-wrapper"].toString()
           : styles["button-wrapper-active"].toString()
       }
+      ref={menuRef}
     >
       <button
         aria-label="Options"
-        title="Options"
         className={styles.button}
-        onClick={() => setMenuOpen((prev) => !prev)}
+        onClick={() => setMenuOpen(!menuOpen)}
       >
-        <FontAwesomeIcon icon={faSlidersH} />
+        <FontAwesomeIcon icon={faCog} />
       </button>
       <div
         className={
@@ -78,11 +90,7 @@ export default function OptionsMenu() {
                 All existing settings will be reverted to their default settings
               </p>
             </article>
-            <button
-              className={styles["reset-btn"]}
-              aria-label="Reset"
-              title="Reset"
-            >
+            <button className={styles["reset-btn"]} aria-label="Reset">
               Reset
             </button>
           </div>

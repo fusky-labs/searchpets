@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { SidebarContext, OptionsContext } from "@/utils/Contexts"
 import Navbar from "./Navbar"
-import BackToTopBtn from "../BackToTopBtn"
+import BackToTopBtn from "../navigation/BackToTopBtn"
 
 export default function Layout({ children }: LayoutProps) {
   // Options state
