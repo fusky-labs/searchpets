@@ -29,7 +29,7 @@ export function SidebarItem({
         aria-disabled="true"
         aria-label={name}
         role="link"
-        hide-item-on-collapse={!hideOnCollapse ? null : ""}
+        data-hide-item-on-collapse={!hideOnCollapse ? null : ""}
       >
         <FontAwesomeIcon icon={icon} size="1x" />
         <span className={styles.text}>{name}</span>
@@ -63,7 +63,7 @@ export function SidebarItem({
       <a
         className={linkHandler}
         aria-label={name}
-        hide-item-on-collapse={!hideOnCollapse ? null : ""}
+        data-hide-item-on-collapse={!hideOnCollapse ? null : ""}
       >
         <FontAwesomeIcon icon={icon} size="1x" />
         <span className={styles.text}>{name}</span>

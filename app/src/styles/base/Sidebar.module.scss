@@ -27,7 +27,7 @@
     }
   }
 
-  :is([hide-item-on-collapse], hr) {
+  :is([data-hide-item-on-collapse], hr) {
     @apply hidden;
   }
 

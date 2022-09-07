@@ -68,7 +68,7 @@ export default function Sidebar() {
           <span
             className={styles.copyright}
           >{`© ${new Date().getFullYear()} OpenFurs`}</span>
-          <strong className={styles.version} ide-item-on-collapse="">
+          <strong className={styles.version} data-hide-item-on-collapse="">
             Searchpets v2 beta 1
           </strong>
         </div>
