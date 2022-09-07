@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
-import { ExpandSearchContext, OptionsContext } from "@/utils/Contexts"
+import { SidebarContext, OptionsContext } from "@/utils/Contexts"
 import Navbar from "./Navbar"
-import BackToTopBtn from "../BackToTopBtn"
+import BackToTopBtn from "../navigation/BackToTopBtn"
 
 export default function Layout({ children }: LayoutProps) {
   // Options state
@@ -10,7 +10,8 @@ export default function Layout({ children }: LayoutProps) {
   const [animations, toggleAnimations] = useState<boolean>()
 
   // Navbar state
-  const [expand, isExpanded] = useState(false)
+  const [expand, setExpanded] = useState(false)
+  const [margin, setMargin] = useState("69")
 
   if (typeof window !== "undefined") {
     const themeHandler = (theme: ThemeOverrides) => {
@@ -27,15 +28,6 @@ export default function Layout({ children }: LayoutProps) {
     contrastHandler(false)
   }
 
-  useEffect(() => {
-    const expandScroll = () => {
-      window.scrollY > 200 ? isExpanded(true) : isExpanded(false)
-    }
-
-    window.addEventListener("scroll", expandScroll)
-    return () => window.removeEventListener("scroll", expandScroll)
-  }, [])
-
   return (
     <OptionsContext.Provider
       value={{
@@ -48,10 +40,17 @@ export default function Layout({ children }: LayoutProps) {
       }}
     >
       <BackToTopBtn />
-      <ExpandSearchContext.Provider value={{ expanded: expand }}>
+      <SidebarContext.Provider
+        value={{
+          expanded: expand,
+          setExpanded,
+          marginSize: margin,
+          setMarginSize: setMargin
+        }}
+      >
         <Navbar />
-      </ExpandSearchContext.Provider>
-      {children}
+        {children}
+      </SidebarContext.Provider>
     </OptionsContext.Provider>
   )
 }

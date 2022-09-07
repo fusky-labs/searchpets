@@ -11,22 +11,11 @@
   <img src="https://img.shields.io/github/contributors/OpenFurs/searchpets" />
 </p>
 <p align="center">
-<em>Searchpets!</em> is search engine for finding characters and texts from comics and chapter arcs from <em>Housepets!</em> written in Next.js, TypeScript, and FastAPI.
+<em>Searchpets!</em> is comic search engine for searching characters, texts from comics, and chapter arcs from the entire <em>Housepets!</em> catalog! Written in Python and TypeScript - it was taken inspiration from this <a href="https://www.housepetscomic.com/forums/viewtopic.php?f=13&t=5434&p=938783&hilit=search+engine#p938783">forum post</a>.
 </p>
 <p align="center">
-This project was taken inspiration from this <a href="https://www.housepetscomic.com/forums/viewtopic.php?f=13&t=5434&p=938783&hilit=search+engine#p938783">forum post</a>.
+  <img src="https://user-images.githubusercontent.com/94678583/188504378-07189cc8-78f1-4020-9878-cae6e4435708.png" alt="Searchpets Dev Demo">
 </p>
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/94678583/163629497-9f5c4921-5a39-4dfe-8729-e56705efb2f7.gif" alt="Searchpets Dev Demo">
-</p>
-
-The front-end is written in the React framework, Next.js + TypeScript;
-with Tailwind CSS. For the back-end, it's powered
-with Python with a lightweight and fast web framework, FastAPI - the
-database is powered by Redis.
-
-The website is currently being hosted from a Linode server and
-delivered through the interwebs with CloudFlare.
 
 ## Project structure
 
@@ -35,6 +24,16 @@ delivered through the interwebs with CloudFlare.
   Housepets database
 - `scripts` - Automated Bash scripts to bulk install Python and Node packages and
   for deployment from the server
+
+## Infrastructure
+
+The front-end is written in Next.js + TypeScript + Lit Web Components;
+with Tailwind CSS. While the back-end is written
+in Python with a lightweight and fast web framework, FastAPI - the
+database is powered by Redis.
+
+The infrastructure is being hosted from Linode and Netlify then
+delivered through the interwebs with Cloudflare.
 
 ## Running the app locally
 
@@ -62,10 +61,11 @@ generate a JSON file containing Housepets! data. (This will take a while!)
 Once it's finished, simply run `yarn dev` or `npm run dev` to
 concurrently start both Node and Python servers.
 
-## Copyright notice
+## Disclaimer
 
-The use of third-party content is heavily transformative, and therefore, subject
-of Fair Use. _Housepets!_ and its story and characters is a trademark of Rick Griffin.
+_Searchpets!_ is an open source fan project. SP does not own any of the
+contents used on this website and has no direct affiliation with the entire
+_Housepets!_ web comic or all of Rick Griffin's intellectual property.
 
 ## License
 

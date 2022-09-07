@@ -11,6 +11,9 @@ export const OptionsContext = createContext<OptionsCtxTypes>({
   setAnimations: () => {}
 })
 
-export const ExpandSearchContext = createContext<ExpandSearchCtxTypes>({
-  expanded: false
+export const SidebarContext = createContext<SidebarCtxTypes>({
+  expanded: false,
+  marginSize: "0",
+  setExpanded: () => {},
+  setMarginSize: () => {},
 })

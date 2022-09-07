@@ -1,7 +1,6 @@
 import { useState } from "react"
 import Image from "next/image"
 import styles from "@/styles/components/ComicItem.module.scss"
-import LoadingCircle from "./LoadingCircle"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faExternalLink,
@@ -9,6 +8,8 @@ import {
   faStar
 } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
+import LoadingClient from "../Loading.client"
+import CharacterItem from "./CharacterItem"
 
 export default function ComicItem({
   title,
@@ -19,12 +20,16 @@ export default function ComicItem({
   const [isLoaded, setIsLoaded] = useState(false)
 
   return (
-    <div
+    <section
       className={styles.wrapper}
       id={title
         ?.replace(/(\s)|(\')/g, "-")
-        .replace(/(\()|(\))|(\.)|(\")|(,)|(\?)|(\!)/g, "")
+        .replace(/(\()|(\))|(\.)|(\")|(,)|(\?)|(\!)|(\')/g, "")
         .toLowerCase()}
+      aria-label={title}
+      aria-labelledby={`Contains ${
+        characters?.length
+      } characters - whom are ${characters?.join(", ")}`}
     >
       <div className={styles["heading-container"]}>
         <h2 className={styles.heading}>
@@ -57,44 +62,34 @@ export default function ComicItem({
         </div>
       </div>
       <div className={styles["image-container"]}>
-        <LoadingCircle hidden={!isLoaded ? false : true} />
+        <LoadingClient hidden={!isLoaded ? false : true} />
         <Image
           src={img}
           loading="lazy"
-          alt={`Comic for "${title}", containing characters: ${characters}`}
+          alt={`Image comic for "${title}", containing characters: ${characters?.join(
+            ", "
+          )}`}
           objectFit="contain"
           layout="fill"
           quality={75}
           onLoadingComplete={() => setIsLoaded(true)}
         />
       </div>
-      <div className={styles["info-container"]}>
-        <div>
-          <strong className={styles.subheading}>Characters</strong>
-          <ul className={styles["characters-list"]}>
-            {characters!.map((character: string) => {
-              const c = character
-                .replace(/(\s)|(\')/g, "-")
-                .replace(/(\()|(\))|(\.)|(\")/g, "")
-                .toLowerCase()
-
-              return (
-                <li
-                  key={character}
-                  className={styles["char-item"]}
-                  style={{
-                    backgroundColor: `var(--bg-${c})`,
-                    color: `var(--fg-${c})`
-                  }}
-                >
-                  {character}
-                </li>
-              )
-            })}
-          </ul>
+      <div
+        className={styles["info-container"]}
+        aria-label={`This comic contains ${characters?.length} character(s)`}
+      >
+        <div className={styles.subheading}>
+          <strong>Characters</strong>
+          <span className={styles.count}>{characters?.length}</span>
         </div>
+        <ul className={styles["characters-list"]}>
+          {characters!.map((character: string) => (
+            <CharacterItem key={character} name={character} />
+          ))}
+        </ul>
       </div>
-    </div>
+    </section>
   )
 }
 

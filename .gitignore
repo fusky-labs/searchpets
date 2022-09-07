@@ -55,3 +55,4 @@ pnpm-lock.yaml
 **/worker-*.js
 **/worker-*.js.map
 **/fallback-development.js
+**/fallback-*.js

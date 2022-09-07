@@ -13,8 +13,11 @@ declare type OptionsCtxTypes = {
   setAnimations?: (animations: boolean) => void
 }
 
-declare type ExpandSearchCtxTypes = {
+declare type SidebarCtxTypes = {
   expanded: boolean
+  marginSize: string
+  setExpanded: (expanded: boolean) => void
+  setMarginSize: (marginSize: string) => void
 }
 
 declare interface LayoutProps {
@@ -37,7 +40,17 @@ declare interface ComicItemProps {
   title?: string
   img: string
   link: string
-  characters: string[]
+  characters?: string[]
 }
 
 declare interface NavbarRootProps extends LayoutProps {}
+
+declare interface SidebarItemProps {
+  link?: string
+  name?: string
+  icon?: IconProp | any
+  disabled?: boolean
+  header?: string
+  kofi?: boolean
+  hideOnCollapse?: boolean
+}

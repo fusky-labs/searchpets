@@ -1,5 +1,5 @@
-import { ComicItemLoading } from "@/components/ComicItem"
-import Container from "@/components/Container"
+import { ComicItemLoading } from "@/components/ComicItem/ComicItem"
+import Container from "@/components/base/Container"
 import dynamic from "next/dynamic"
 import { useEffect, useState } from "react"
 import styles from "@/styles/pages/Search.module.scss"
@@ -26,26 +26,26 @@ export default function Home() {
       setQuery(queryParse)
     }
 
-    Characters().then((response: any) => {
-      console.log(response)
-      // will return a list of characters
-    })
-    Data().then((response: any) => {
-      console.log(response)
-      // will return a json object, see the console to see the response
-    })
-    Search(["2008"], ["bino", "grape", "peanut"]).then((response: any) => {
-      setComics(response)
-      // will return a list of json objects that will be the comics
-    })
+    // Characters().then((response: any) => {
+    //   console.log(response)
+    //   // will return a list of characters
+    // })
+    // Data().then((response: any) => {
+    //   console.log(response)
+    //   // will return a json object, see the console to see the response
+    // })
+    // Search(["2008"], ["bino", "grape", "peanut"]).then((response: any) => {
+    //   setComics(response)
+    //   // will return a list of json objects that will be the comics
+    // })
   }, [])
 
   return (
-    <Container wrap title="Search page" description="Search page description">
+    <Container title="Search page" description="Search page description">
       <div className={styles["comic-contents"]}>
         {comics.map((comic) => (
           <ComicItem
-            key={comic}
+            key={comic["title"]}
             img={comic["image"]}
             title={comic["title"]}
             characters={comic["characters"]}

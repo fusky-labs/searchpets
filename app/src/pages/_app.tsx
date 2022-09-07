@@ -8,7 +8,7 @@ import {
   faFilter,
   faSearch,
   faDisplay,
-  faSlidersH,
+  faCog,
   faTrash,
   faUniversalAccess,
   faLink,
@@ -33,7 +33,7 @@ library.add(
   faFilter,
   faSearch,
   faDisplay,
-  faSlidersH,
+  faCog,
   faTrash,
   faUniversalAccess,
   faLink,
@@ -56,11 +56,19 @@ export default function SearchpetsApp({ Component, pageProps }: AppProps) {
     return () => router.events.off("routeChangeComplete", handleRouteChange)
   }, [router.events])
 
+  if (router.pathname === "/about") {
+    return (
+      <Layout>
+        <MDXProvider>
+          <Component {...pageProps} />
+        </MDXProvider>
+      </Layout>
+    )
+  }
+
   return (
     <Layout>
-      <MDXProvider>
-        <Component {...pageProps} />
-      </MDXProvider>
+      <Component {...pageProps} />
     </Layout>
   )
 }
