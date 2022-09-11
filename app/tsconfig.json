@@ -22,6 +22,6 @@
     "incremental": true,
     "typeRoots": ["./@types"]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/navigation/sidebar/index.txs"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

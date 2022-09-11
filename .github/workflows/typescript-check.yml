@@ -1,0 +1,29 @@
+name: TS Type Checking
+
+on:
+  push:
+    paths:
+      - "**.ts"
+      - "**.tsx"
+
+jobs:
+  typescript-check:
+    name: TypeScript Type Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Use yarn cache keyed by hashed yarn.lock
+        uses: actions/cache@v2
+        with:
+          path: ~/.yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Checking types
+        run: yarn --cwd "./app" ts:check

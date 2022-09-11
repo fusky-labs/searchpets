@@ -5,13 +5,15 @@ const searchComics = async (years: string[], characters: string[]) => {
     url: process.env.REDIS_URL
   })
   client.connect()
-  try{
+  try {
     years = Array.isArray(years) ? years : [years]
     characters = Array.isArray(characters) ? characters : [characters]
 
-    let comicsOutput: string[] = []
+    let comicsOutput: SearchComicsType[] = []
+
     console.log(years)
     console.log(characters)
+
     const character_query = characters
       .map((character) => {
         return `@characters:{${character}}`
@@ -19,6 +21,7 @@ const searchComics = async (years: string[], characters: string[]) => {
       .join(" ")
 
     console.log(character_query)
+
     for (const year of years) {
       console.log(year)
       console.log("this needs to run after the above")
@@ -26,13 +29,14 @@ const searchComics = async (years: string[], characters: string[]) => {
         .search(year, character_query, { LIMIT: { from: 0, size: 500 } })
         .then((result) => {
           // console.log(result.documents)
+
           result.documents.forEach((doc) => {
             // console.log(doc.value.title)
-            const comic: any = {
-              title: doc.value.title,
+            const comic: SearchComicsType = {
+              title: doc.value.title as string,
               characters: (doc.value.characters as string).split(","),
-              comic_link: doc.value.comic_link,
-              image: doc.value.image
+              comic_link: doc.value.comic_link as string,
+              image: doc.value.image as string
             }
             comicsOutput.push(comic)
           })
@@ -41,12 +45,10 @@ const searchComics = async (years: string[], characters: string[]) => {
     client.quit()
     // console.log(comicsOutput)
     return { comics: comicsOutput }
-  }
-  catch{
+  } catch {
     client.quit()
-    return { comics: "ERROR: search failed"}
+    return { comics: "ERROR: Search failed!" }
   }
-  
 }
 
 const grabData = async () => {

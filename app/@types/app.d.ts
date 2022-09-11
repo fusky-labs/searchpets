@@ -1,5 +1,3 @@
-/// <reference types="@fontawesome/fontawesome-svg-core" />
-
 declare type ThemeOverrides = "light" | "dark" | ""
 
 declare type OptionsCtxTypes = {
@@ -48,7 +46,7 @@ declare interface NavbarRootProps extends LayoutProps {}
 declare interface SidebarItemProps {
   link?: string
   name?: string
-  icon?: IconProp | any
+  icon?: any
   disabled?: boolean
   header?: string
   kofi?: boolean
