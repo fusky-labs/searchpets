@@ -1,21 +1,23 @@
 import type { SetStateAction } from "react"
 
 declare global {
-  type HPSearchTypes = {
+  type SearchRes = {
     years: string
     characters: string
+    comics: string[]
   } & SetStateAction<never[]>
 
-  type HPDataTypes = {
+  type DataRes = {
     comicCount: number
     charCount: number
   }
 
-  type HPCharacterTypes = {
-    character: string[]
+  type CharacterRes = {
+    characters: string[]
   }
 
-  type SearchComicsType = {
+  // Redis.ts
+  type ComicItems = {
     title: string
     characters: string[]
     comic_link: string

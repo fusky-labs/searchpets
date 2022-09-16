@@ -34,10 +34,12 @@ export default function SearchPage() {
       console.log(response)
       // will return a json object, see the console to see the response
     })
-    Search(["2008"], ["bino", "grape", "peanut"]).then((response) => {
-      setComics(response)
-      // will return a list of json objects that will be the comics
-    })
+    Search(["2008"], ["bino", "grape", "peanut"]).then(
+      (response: SearchRes) => {
+        setComics(response)
+        // will return a list of json objects that will be the comics
+      }
+    )
   }, [])
 
   return (

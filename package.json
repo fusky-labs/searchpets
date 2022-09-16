@@ -9,18 +9,18 @@
   ],
   "scripts": {
     "reset:next": "rm -rf app/node_modules app/yarn.lock app/package-lock.json && yarn --cwd ./app install",
-    "dev": "concurrently -n \" next \",python -c bgBlack,bgBlue.yellow -k \"npm run dev:next\" \"npm run server:dev\"",
-    "build": "concurrently -n \" next \",python -c bgBlack,bgBlue.yellow -k \"yarn --cwd ./app build\" \"yarn server:start\"",
-    "start": "concurrently -n \" next \",python -c bgBlack,bgBlue.yellow -k \"npm run start:next\" \"npm run server:start\"",
-    "server:dev": "cd server && python app.py",
-    "server:start": "cd server && python app.py --build",
-    "dev:next": "yarn --cwd ./app dev",
-    "start:next": "yarn --cwd ./app start -p 80",
+    "dev": "concurrently -n tsc,next,python -k \"npm run tsc:watch\" \"npm run dev:next\"  \"npm run dev:server\"",
+    "build": "concurrently -n next,python -c bgBlack,bgBlue.yellow -k \"yarn --cwd ./app build\" \"yarn build:server\"",
+    "dev:server": "cd server && python app.py",
+    "build:server": "cd server && python app.py --build",
+    "dev:next": "concurrently -n next,tsc -c bgBlack,bgBlue.white -k \"yarn --cwd ./app dev\" \"yarn tsc:watch\"",
+    "tsc:watch": "yarn --cwd ./app tsc --preserveWatchOutput --watch --noEmit",
+    "start:next": "yarn --cwd ./app start",
     "prepare": "husky install"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OpenFurs/searchpets.git"
+    "url": "https://github.com/openfurs/searchpets.git"
   },
   "devDependencies": {
     "concurrently": "^7.0.0",

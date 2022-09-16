@@ -9,7 +9,7 @@ const searchComics = async (years: string[], characters: string[]) => {
     years = Array.isArray(years) ? years : [years]
     characters = Array.isArray(characters) ? characters : [characters]
 
-    let comicsOutput: SearchComicsType[] = []
+    let comicsOutput: ComicItems[] = []
 
     console.log(years)
     console.log(characters)
@@ -32,9 +32,9 @@ const searchComics = async (years: string[], characters: string[]) => {
 
           result.documents.forEach((doc) => {
             // console.log(doc.value.title)
-            const comic: SearchComicsType = {
+            const comic: ComicItems = {
               title: doc.value.title as string,
-              characters: (doc.value.characters as string).split(","),
+              characters: (doc.value.characters as string).split(", "),
               comic_link: doc.value.comic_link as string,
               image: doc.value.image as string
             }
