@@ -27,3 +27,7 @@ jobs:
 
       - name: Checking types
         run: yarn --cwd ./app ./node_modules/.bin/tsc --noEmit
+
+      - name: Checking types (attempt 2)
+        run: yarn --cwd ./app tsc --noEmit
+
