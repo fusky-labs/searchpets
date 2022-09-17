@@ -26,4 +26,4 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Checking types
-        run: yarn --cwd "./app" ts:check
+        run: yarn --cwd ./app tsc --noEmit
