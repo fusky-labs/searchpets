@@ -14,11 +14,23 @@ def scrape_comic(url, year, index, characters_db):
     }
     rs = requests.Session()
     link_page = rs.get(url, headers=user_agent, timeout=None)
+
+    comic_soup = BeautifulSoup(link_page.text, "html.parser")
+    comic_image = comic_soup.find("img", {
+            "title": True,
+            "alt": True
+        })
+    print(comic_image.get("src"))
+    link_title = url.split("/")[-2]
+    print(link_title)
+
+    guest = 0 # if this variable get's changed that means we have encountered a 
+    characterstring = "guest"
     if "https://www.housepetscomic.com/character" in link_page.text:
+
         print(url)
 
         characters = []
-        comic_soup = BeautifulSoup(link_page.text, "html.parser")
         characters_tag = comic_soup.find_all(
             "a",
             {
@@ -31,30 +43,24 @@ def scrape_comic(url, year, index, characters_db):
             characters.append(character.text.lower())
             character_db.add(character.text.lower())
 
-        comic_image = comic_soup.find("img", {
-            "title": True,
-            "alt": True
-        })
-
-        print(comic_image.get("src"))
-        link_title = url.split("/")[-2]
-
-        print(link_title)
-
-        return {
-            "key_name":f"{year}:{link_title}",
-            "comic":{
-                "title":
-                    comic_soup.title.text.split(" \u2013 ")[0],
-                "comic_link": url,
-                "characters": ",".join(characters),
-                "image": comic_image.get("src"),
-                "index": index,
-            },
-            "characters": character_db   
-        }
+        characterstring = ",".join(characters)
+        
     else:
         print(
             f"{Fore.BLACK}{Back.LIGHTWHITE_EX}{Style.BRIGHT}{url} is a guest comics{Style.RESET_ALL}"
         )
+
+    return {
+        "key_name":f"{year}:{link_title}",
+        "comic":{
+            "title":
+                comic_soup.title.text.split(" \u2013 ")[0],
+            "comic_link": url,
+            "characters": characterstring,
+            "image": comic_image.get("src"),
+            "guest":guest,
+            "index": index,
+        },
+        "characters": character_db   
+    }
     

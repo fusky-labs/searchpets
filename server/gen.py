@@ -44,6 +44,7 @@ def main():
         TextField("comic_link"),
         TagField("characters"),
         TextField("image"),
+        NumericField("guest"),
         NumericField("index", sortable=True),
     )
 
