@@ -47,7 +47,7 @@ export default function SearchPage() {
       <div className={styles["comic-contents"]}>
         <ComicItem
           title="(Isolated component debug mode)"
-          characters={["test", "your mom gay"]}
+          characters={["test", "test2"]}
           img="https://www.housepetscomic.com/wp-content/uploads/2017/07/2017-07-14-concerned-1.png"
           link=""
           guestItem

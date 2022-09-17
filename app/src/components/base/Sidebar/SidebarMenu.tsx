@@ -26,7 +26,7 @@ export default function Sidebar() {
       }
     >
       <nav className={styles["menu-nav"]}>
-        <SidebarItem name="Search" link="/" icon={faSearch} />
+        <SidebarItem name="Search" link="/search" icon={faSearch} />
         <SidebarItem name="Character List" link="/characters" icon={faPaw} />
         <SidebarItem name="Chapter List" icon={faList} disabled />
         <hr className={styles.separator} />

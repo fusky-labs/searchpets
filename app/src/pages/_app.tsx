@@ -23,6 +23,7 @@ import {
 import Layout from "@/components/base/Layout"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import "@/styles/globals.scss"
+import Script from "next/script"
 
 import * as ga from "../../lib/ga"
 
@@ -56,19 +57,15 @@ export default function SearchpetsApp({ Component, pageProps }: AppProps) {
     return () => router.events.off("routeChangeComplete", handleRouteChange)
   }, [router.events])
 
-  if (router.pathname === "/about") {
-    return (
-      <Layout>
+  return (
+    <Layout>
+      {router.pathname === "/about" ? (
         <MDXProvider>
           <Component {...pageProps} />
         </MDXProvider>
-      </Layout>
-    )
-  }
-
-  return (
-    <Layout>
-      <Component {...pageProps} />
+      ) : (
+        <Component {...pageProps} />
+      )}
     </Layout>
   )
 }

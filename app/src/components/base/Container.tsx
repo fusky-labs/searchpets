@@ -2,7 +2,7 @@ import { useContext } from "react"
 import styles from "@/styles/base/Base.module.scss"
 import Head from "next/head"
 import lazy from "next/dynamic"
-import SidebarMenu from "../navigation/Sidebar/SidebarMenu"
+import SidebarMenu from "./Sidebar/SidebarMenu"
 import { SidebarContext } from "@/utils/Contexts"
 
 const MarginFiller = lazy(() => import("../MarginFiller.client"), {

@@ -6,12 +6,11 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<string>
 ) {
-  const reciveCharacters = (async () => {
+  const recieveCharacters = (async () => {
     console.log("api is running")
     const characters = await grabCharacters()
     console.log(characters)
     res.status(200).send(JSON.stringify(characters))
-    
   })()
 }
 

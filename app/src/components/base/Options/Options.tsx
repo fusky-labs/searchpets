@@ -52,9 +52,9 @@ export default function OptionsMenu() {
           <OptionsItem title="Theme" themeItem>
             Changing the theme will override system theme and is applied to this
             browser only
-            <span className={styles["override-label"]}>
+            {/* <span className={styles["override-label"]}>
               THEME OVERWRITTEN &bull; REVERT TO DEFAULT
-            </span>
+            </span> */}
           </OptionsItem>
           <OptionsItem title="Expand width contents">
             Fill comic contents for larger displays
@@ -79,7 +79,7 @@ export default function OptionsMenu() {
           </OptionsItem>
         </section>
         <section className={styles.section}>
-          <OptionsItem icon={faWarning} header="Danger zone" />
+          <OptionsItem icon={faWarning} header="Reset settings" />
           <div className={styles.toggle}>
             <article>
               <p>Revert to default settings</p>

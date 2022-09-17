@@ -11,6 +11,7 @@ export default function CharacterItem({ name }: { name?: string }) {
   return (
     <li
       role="button"
+      title="Append character to the search query"
       className={styles["char-item"]}
       style={{
         backgroundColor: `var(--bg-${character})`,

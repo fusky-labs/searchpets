@@ -15,12 +15,4 @@ declare global {
   type CharacterRes = {
     characters: string[]
   }
-
-  // Redis.ts
-  type ComicItems = {
-    title: string
-    characters: string[]
-    comic_link: string
-    image: string
-  }
 }

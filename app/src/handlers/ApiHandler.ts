@@ -1,7 +1,7 @@
 export async function Search(
   years: string[],
   characters: string[]
-): Promise<SearchRes> {
+): Promise<SearchRes | {}> {
   return fetch("/api/search", {
     method: "POST",
     headers: {
@@ -13,7 +13,7 @@ export async function Search(
     })
   })
     .then((res) => res.json())
-    .then((res) => {
+    .then((res: SearchRes) => {
       return res.comics
     })
 }
@@ -24,10 +24,10 @@ export async function Data(): Promise<DataRes> {
   })
 }
 
-export async function Characters(): Promise<CharacterRes> {
+export async function Characters(): Promise<CharacterRes | {}> {
   return fetch("/api/characters")
     .then((res) => res.json())
-    .then((data) => {
+    .then((data: { characters_db: string[] }) => {
       return data.characters_db
     })
 }

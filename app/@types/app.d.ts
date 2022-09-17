@@ -1,14 +1,14 @@
 declare type ThemeOverrides = "light" | "dark" | ""
 
 declare type OptionsCtxTypes = {
-  theme?: ThemeOverrides
-  highContrast?: boolean
+  theme: ThemeOverrides
+  highContrast: boolean
   expandComics?: boolean
-  animations?: boolean
-  setTheme?: (theme: ThemeOverrides) => void
+  animations: boolean | undefined
+  setTheme: (theme: ThemeOverrides) => void
   setExpandComics?: (expandComics: boolean) => void
-  setHighContrast?: (highContrast: boolean) => void
-  setAnimations?: (animations: boolean) => void
+  setHighContrast: (highContrast: boolean) => void
+  setAnimations: (animations: boolean) => void
 }
 
 declare type SidebarCtxTypes = {
