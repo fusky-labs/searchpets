@@ -1,5 +1,15 @@
 .wrapper {
-  @apply gap-2 px-5 py-4 dark:bg-neutral-800 bg-gray-50 shadow-lg rounded-md flex flex-col;
+  @apply gap-2 px-5 py-4 dark:bg-neutral-800 bg-neutral-50 shadow-lg rounded-md flex flex-col border-2 border-transparent;
+}
+
+.wrapper-guest {
+  @extend .wrapper;
+  @apply relative dark:bg-[#25253b] bg-indigo-100 dark:border-indigo-900;
+
+  // &::before {
+  //   content: "GUEST COMIC";
+  //   @apply absolute -top-3 left-2.5 h-3 text-sm font-bold bg-inherit py-1 px-4 rounded-tl-md rounded-tr-md border-2 border-inherit border-b-0;
+  // }
 }
 
 [theme-override="dark"] .wrapper {

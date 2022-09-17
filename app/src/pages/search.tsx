@@ -26,25 +26,32 @@ export default function SearchPage() {
       setQuery(queryParse)
     }
 
-    Characters().then((response) => {
-      console.log(response)
-      // will return a list of characters
-    })
-    Data().then((response) => {
-      console.log(response)
-      // will return a json object, see the console to see the response
-    })
-    Search(["2008"], ["bino", "grape", "peanut"]).then(
-      (response: SearchRes) => {
-        setComics(response)
-        // will return a list of json objects that will be the comics
-      }
-    )
+    // Characters().then((response) => {
+    //   console.log(response)
+    //   // will return a list of characters
+    // })
+    // Data().then((response) => {
+    //   console.log(response)
+    //   // will return a json object, see the console to see the response
+    // })
+    // Search(["2008"], ["bino", "grape", "peanut"]).then(
+    //   (response: SearchRes) => {
+    //     setComics(response)
+    //     // will return a list of json objects that will be the comics
+    //   }
+    // )
   }, [])
 
   return (
     <Container title="Search page" description="Search page description">
       <div className={styles["comic-contents"]}>
+        <ComicItem
+          title="(Isolated component debug mode)"
+          characters={["test", "your mom gay"]}
+          img="https://www.housepetscomic.com/wp-content/uploads/2017/07/2017-07-14-concerned-1.png"
+          link=""
+          guestItem
+        />
         {comics!.map((comic) => (
           <ComicItem
             key={comic["title"]}

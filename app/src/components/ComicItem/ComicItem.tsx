@@ -15,21 +15,22 @@ export default function ComicItem({
   title,
   img,
   characters,
-  link
+  link,
+  guestItem
 }: ComicItemProps) {
   const [isLoaded, setIsLoaded] = useState(false)
+  const comicStyleWrapper = !guestItem
+    ? styles.wrapper.toString()
+    : styles["wrapper-guest"].toString()
 
   return (
     <section
-      className={styles.wrapper}
+      className={comicStyleWrapper}
       id={title
         ?.replace(/(\s)|(\')/g, "-")
         .replace(/(\()|(\))|(\.)|(\")|(,)|(\?)|(\!)|(\')/g, "")
         .toLowerCase()}
       aria-label={title}
-      aria-labelledby={`Contains ${
-        characters?.length
-      } characters - whom are ${characters?.join(", ")}`}
     >
       <div className={styles["heading-container"]}>
         <h2 className={styles.heading}>

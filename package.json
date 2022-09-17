@@ -12,10 +12,10 @@
     "dev": "concurrently -n tsc,next,python -k \"npm run tsc:watch\" \"npm run dev:next\"  \"npm run dev:server\"",
     "build": "concurrently -n next,python -c bgBlack,bgBlue.yellow -k \"yarn --cwd ./app build\" \"yarn build:server\"",
     "dev:server": "cd server && python app.py",
-    "build:server": "cd server && python app.py --build",
     "dev:next": "concurrently -n next,tsc -c bgBlack,bgBlue.white -k \"yarn --cwd ./app dev\" \"yarn tsc:watch\"",
+    "build:server": "cd server && python app.py --build",
     "tsc:watch": "yarn --cwd ./app tsc --preserveWatchOutput --watch --noEmit",
-    "start:next": "yarn --cwd ./app start",
+    "tsc:lint": "yarn --cwd ./app tsc --noEmit",
     "prepare": "husky install"
   },
   "repository": {
