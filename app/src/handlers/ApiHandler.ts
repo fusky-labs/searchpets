@@ -1,36 +1,30 @@
-const fetchData = async <T>(url: string, ...params: any): Promise<T> => {
-  return fetch(url, params).then((res) => res.json())
+export function Search(years:string[], characters:string[]){
+  return fetch("/api/search", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        year: years.sort(),
+        characters: characters,
+      }),
+      })
+      .then((res) => res.json())
+      .then((res) => {
+        return res.comics
+      })
 }
 
-// @ts-ignore
-// prettier-ignore
-export async function Search(years: string[], characters: string[]): Promise<SearchRes> {
-  fetchData<SearchRes>("/api/search", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      year: years.sort(),
-      characters: characters
+export function Data(){
+  return fetch("/api/data").then((res) =>{
+      return res.json()
+  })
+}
+
+export function Characters(){
+  return fetch("/api/characters")
+    .then((res) => res.json())
+    .then((data) => {
+      return data.characters_db
     })
-  }).then((res: SearchRes) => {
-    return res.comics
-  })
-}
-
-// @ts-ignore
-export function Data(): Promise<CharacterRes> {
-  fetchData<DataRes>("/api/data").then((data: DataRes) => {
-    return data
-  })
-}
-
-// @ts-ignore
-export function Characters(): Promise<CharacterRes> {
-  fetchData<CharacterRes>("/api/characters").then(
-    (characters: CharacterRes) => {
-      return characters
-    }
-  )
 }
