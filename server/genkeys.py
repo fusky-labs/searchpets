@@ -47,4 +47,4 @@ with open("redis_config.json", "w") as f:
 
 with open("../app/.env.local", "a+") as f:
     if not "REDIS_URL" in f.read():
-        f.write(f"REDIS_URL={redis_url}\n")
+        f.write(f"\nREDIS_URL={redis_url}")

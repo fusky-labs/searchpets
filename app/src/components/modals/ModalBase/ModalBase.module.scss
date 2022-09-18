@@ -1,0 +1,31 @@
+.wrapper {
+  @apply fixed inset-0 z-[60] grid place-items-center;
+
+  &::before {
+    @apply content-[""] fixed inset-0 z-[60] opacity-50 bg-black transition-all duration-[250ms] pointer-events-auto;
+  }
+
+  &[aria-hidden="true"] {
+    @apply pointer-events-none z-10;
+
+    &::before {
+      @apply pointer-events-none opacity-0;
+    }
+
+    .container {
+      @apply translate-y-5 opacity-0;
+    }
+  }
+}
+
+.container {
+  @apply max-w-full md:max-w-[75%] xl:max-w-[45%] relative z-[70] mx-6 px-6 py-5 dark:bg-neutral-800 bg-neutral-200 rounded-md transition-all duration-300;
+}
+
+.heading {
+  @apply flex justify-between items-center;
+
+  button {
+    @apply px-4 py-2 rounded-md dark:hover:bg-red-700 hover:bg-red-500 hover:text-white transition-colors;
+  }
+}

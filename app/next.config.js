@@ -28,9 +28,6 @@ module.exports = async (phase) => {
 		swcMinify: true,
 		compress: true,
     concurrentFeatures: true,
-    experimental: {
-      serverComponents: true,
-    },
     compiler: {
 			removeConsole: process.env.NODE_ENV !== "development"
 		},

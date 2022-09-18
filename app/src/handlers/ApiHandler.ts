@@ -24,7 +24,7 @@ export async function dataHandler(): Promise<DataRes> {
   })
 }
 
-export async function characterHandler(): Promise<CharacterRes | string[]> {
+export async function characterHandler(): Promise<CharacterArray | string[]> {
   return fetch("/api/characters")
     .then((res) => res.json())
     .then((data: { characters_db: string[] }) => {

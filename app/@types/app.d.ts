@@ -18,6 +18,11 @@ declare type SidebarCtxTypes = {
   setMarginSize: (marginSize: string) => void
 }
 
+declare type ModalCtxTypes = {
+  modalOpen: boolean
+  setModalOpen: (modalOpen: boolean) => void
+}
+
 declare interface LayoutProps {
   children?: React.ReactNode
 }

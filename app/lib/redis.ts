@@ -1,12 +1,5 @@
 import { createClient } from "redis"
 
-type ComicItems = {
-  title: string
-  characters: string[]
-  comic_link: string
-  image: string
-}
-
 const client = createClient({
   url: process.env.REDIS_URL
 })
@@ -87,5 +80,6 @@ export async function grabCharacters() {
     client.quit()
     characters = result
   })
+
   return { characters_db: characters }
 }

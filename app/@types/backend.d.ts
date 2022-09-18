@@ -1,18 +1,23 @@
 import type { SetStateAction } from "react"
 
 declare global {
+  type CharacterArray = {
+    characters: string[]
+  }
+
   type SearchRes = {
     years: string
-    characters: string
     comics: string[]
-  } & SetStateAction<never[]>
+  } & CharacterArray
+
+  type ComicItems = {
+    title: string
+    comic_link: string
+    image: string
+  } & CharacterArray
 
   type DataRes = {
     comicCount: number
     charCount: number
-  }
-
-  type CharacterRes = {
-    characters: string[]
   }
 }

@@ -15,5 +15,10 @@ export const SidebarContext = createContext<SidebarCtxTypes>({
   expanded: false,
   marginSize: "0",
   setExpanded: () => {},
-  setMarginSize: () => {},
+  setMarginSize: () => {}
+})
+
+export const ModalContext = createContext<ModalCtxTypes>({
+  modalOpen: false,
+  setModalOpen: () => {}
 })
