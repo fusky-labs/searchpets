@@ -1,4 +1,4 @@
-@use "../mixins" as *;
+@use "@/styles/mixins" as *;
 
 .nowrap-fixed {
   @apply mt-[5.65rem] flex justify-between;
@@ -14,4 +14,8 @@
 
   @apply bg-gradient-to-t from-purple-200 to-neutral-100;
   @apply dark:bg-gradient-to-t dark:from-purple-900 dark:to-neutral-900;
+}
+
+#sidebar-fill {
+  @apply transition-all duration-300;
 }

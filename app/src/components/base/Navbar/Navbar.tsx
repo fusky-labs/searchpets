@@ -1,13 +1,18 @@
+import { useRouter } from "next/router"
 import { NavbarRoot } from "./NavbarRoot"
 import { LogoNav } from "./LogoNav"
-import Options from "../Options"
 import SearchBox from "./SearchBox"
+import Options from "../Options"
 
 export default function Navbar() {
+  const router = useRouter()
+
   return (
     <NavbarRoot>
       <LogoNav />
-      <SearchBox />
+      {router.pathname === "/" || router.pathname === "/about" ? null : (
+        <SearchBox />
+      )}
       <Options />
     </NavbarRoot>
   )

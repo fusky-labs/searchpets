@@ -45,6 +45,7 @@ export default function SearchPage() {
   return (
     <Container title="Search page" description="Search page description">
       <div className={styles["comic-contents"]}>
+        <ComicItemLoading />
         <ComicItem
           title="(Isolated component debug mode)"
           characters={["test", "test2"]}

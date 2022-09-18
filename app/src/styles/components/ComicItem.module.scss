@@ -1,15 +1,11 @@
 .wrapper {
-  @apply gap-2 px-5 py-4 dark:bg-neutral-800 bg-neutral-50 shadow-lg rounded-md flex flex-col border-2 border-transparent;
+  --comic-height: 750px;
+  @apply gap-2 px-5 py-4 dark:bg-neutral-800 bg-neutral-50 shadow-lg rounded-md flex flex-col border-2 border-transparent h-[var(--comic-height)];
 }
 
 .wrapper-guest {
   @extend .wrapper;
   @apply relative dark:bg-[#25253b] bg-indigo-100 dark:border-indigo-900;
-
-  // &::before {
-  //   content: "GUEST COMIC";
-  //   @apply absolute -top-3 left-2.5 h-3 text-sm font-bold bg-inherit py-1 px-4 rounded-tl-md rounded-tr-md border-2 border-inherit border-b-0;
-  // }
 }
 
 [theme-override="dark"] .wrapper {
@@ -100,20 +96,45 @@
 }
 
 .loading-container {
-  @apply rounded-md;
+  @apply rounded-md h-full w-full;
   background: linear-gradient(
-    90deg,
-    theme("colors.gray.300") 0%,
-    theme("colors.gray.300") 35%,
-    theme("colors.gray.50") 50%,
-    theme("colors.gray.300") 65%,
-    theme("colors.gray.300") 100%
+    128deg,
+    theme("colors.neutral.200") 0%,
+    theme("colors.neutral.200") 35%,
+    theme("colors.neutral.400") 50%,
+    theme("colors.neutral.200") 65%,
+    theme("colors.neutral.200") 100%
   );
-  animation: gradient-scroll 2s infinite linear;
+
+  @media (prefers-color-scheme: dark) {
+    background: linear-gradient(
+      128deg,
+      theme("colors.neutral.700") 0%,
+      theme("colors.neutral.700") 35%,
+      theme("colors.neutral.900") 50%,
+      theme("colors.neutral.700") 65%,
+      theme("colors.neutral.700") 100%
+    );
+    background-size: 750% 750%;
+  }
+
+  animation: gradientScroll 2s infinite linear;
   background-size: 750% 750%;
+
+  &:is(:first-child, :last-child) {
+    @apply h-[4.5rem];
+  }
+
+  &:first-child {
+    animation-delay: 150ms;
+  }
+
+  &:last-child {
+    animation-delay: -150ms;
+  }
 }
 
-@keyframes gradient-scroll {
+@keyframes gradientScroll {
   0% {
     background-position: 0% 50%;
   }

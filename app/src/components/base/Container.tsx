@@ -1,13 +1,8 @@
 import { useContext } from "react"
-import styles from "@/styles/base/Base.module.scss"
+import styles from "./Base.module.scss"
 import Head from "next/head"
-import lazy from "next/dynamic"
 import SidebarMenu from "./Sidebar/SidebarMenu"
 import { SidebarContext } from "@/utils/Contexts"
-
-const MarginFiller = lazy(() => import("../MarginFiller.client"), {
-  ssr: false
-})
 
 export default function Container({
   title,
@@ -31,11 +26,14 @@ export default function Container({
         <meta name="og:title" content={title} />
         <meta name="twitter:description" content={description} />
       </Head>
-      <main role="main" className={isWrap}>
+      <div className={isWrap}>
         <SidebarMenu />
-        <MarginFiller size={marginSize} />
-        {children}
-      </main>
+        <div
+          id={styles["sidebar-fill"]}
+          style={{ width: `${marginSize}px` }}
+        ></div>
+        <main className="w-screen pr-10">{children}</main>
+      </div>
     </>
   )
 }

@@ -1,0 +1,20 @@
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  row-gap: 0.5rem;
+  height: 100%;
+  width: 100%;
+}
+
+#fox-speen {
+  animation: speen 7s linear infinite;
+}
+
+@keyframes speen {
+  100% {
+    transform: rotate(-360deg);
+  }
+}

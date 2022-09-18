@@ -6,8 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars } from "@fortawesome/free-solid-svg-icons"
 
 export function LogoNav() {
-  const { expanded, setExpanded, marginSize, setMarginSize } =
-    useContext(SidebarContext)
+  const { expanded, setExpanded, setMarginSize } = useContext(SidebarContext)
 
   const handleMargin = () => {
     setExpanded(!expanded)
@@ -16,10 +15,10 @@ export function LogoNav() {
       const laptopScreen = window.matchMedia("(min-width: 1300px)").matches
       if (!expanded) {
         if (laptopScreen) {
-          return setMarginSize("330")
+          return setMarginSize("420")
         }
       }
-      return setMarginSize("70")
+      return setMarginSize("78")
     }
   }
 

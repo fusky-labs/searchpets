@@ -8,7 +8,7 @@ import {
   faStar
 } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
-import LoadingClient from "../Loading.client"
+import FoxSpin from "../FoxSpin"
 import CharacterItem from "./ComicCharacterItem"
 
 export default function ComicItem({
@@ -63,7 +63,7 @@ export default function ComicItem({
         </div>
       </div>
       <div className={styles["image-container"]}>
-        <LoadingClient hidden={!isLoaded ? false : true} />
+        <FoxSpin hidden={!isLoaded ? false : true} />
         <Image
           src={img}
           loading="lazy"
