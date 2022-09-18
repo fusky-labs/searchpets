@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { characterHandler } from "src/handlers/ApiHandler"
 
 export default function CharactersPage() {
-  const [characters, setCharacters] = useState([])
+  const [characters, setCharacters] = useState<string[]>([])
 
   useEffect(() => {
     characterHandler().then((res) => {
@@ -12,5 +12,13 @@ export default function CharactersPage() {
     })
   }, [])
 
-  return <Container wrap>Characters page</Container>
+  return (
+  <Container wrap>
+    {
+      characters.sort().map((character) => {
+        return <div>{character}</div>
+      })
+    }
+  </Container>
+  )
 }
