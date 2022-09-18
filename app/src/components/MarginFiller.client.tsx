@@ -10,7 +10,7 @@ class MarginFiller extends LitElement {
     }
   }
 
-  size = "0"
+  size = "69"
 
   render(): TemplateResult {
     return html`<div style="width: ${this.size}px; height: 100%; transition: width 300ms;"></div>`

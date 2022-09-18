@@ -13,6 +13,7 @@ const styles = css`
     z-index: 5;
     row-gap: 0.5rem;
     height: 100%;
+    width: 100%;
   }
 
   :host[hidden] {

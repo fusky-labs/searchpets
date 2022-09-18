@@ -27,6 +27,7 @@ module.exports = async (phase) => {
 		reactStrictMode: true,
 		swcMinify: true,
 		compress: true,
+    concurrentFeatures: true,
     experimental: {
       serverComponents: true,
     },

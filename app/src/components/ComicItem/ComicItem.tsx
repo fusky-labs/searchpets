@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
 import LoadingClient from "../Loading.client"
-import CharacterItem from "./CharacterItem"
+import CharacterItem from "./ComicCharacterItem"
 
 export default function ComicItem({
   title,
