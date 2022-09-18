@@ -45,5 +45,6 @@ redis_config_json = {
 with open("redis_config.json", "w") as f:
     json.dump(redis_config_json, f)
 
-with open("../app/.env.local", "w") as f:
-    f.write(f"REDIS_URL={redis_url}")
+with open("../app/.env.local", "a+") as f:
+    if not "REDIS_URL" in f.read():
+        f.write(f"REDIS_URL={redis_url}\n")
