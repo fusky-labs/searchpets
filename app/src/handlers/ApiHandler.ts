@@ -1,7 +1,7 @@
-export async function Search(
+export async function searchHandler(
   years: string[],
   characters: string[]
-): Promise<SearchRes | {}> {
+): Promise<SearchRes | string[]> {
   return fetch("/api/search", {
     method: "POST",
     headers: {
@@ -18,13 +18,13 @@ export async function Search(
     })
 }
 
-export async function Data(): Promise<DataRes> {
+export async function dataHandler(): Promise<DataRes> {
   return fetch("/api/data").then((res) => {
     return res.json()
   })
 }
 
-export async function Characters(): Promise<CharacterRes | {}> {
+export async function characterHandler(): Promise<CharacterRes | string[]> {
   return fetch("/api/characters")
     .then((res) => res.json())
     .then((data: { characters_db: string[] }) => {
