@@ -3,7 +3,7 @@ import { ComicItemLoading } from "@/components/ComicItem/ComicItem"
 import Container from "@/components/base/Container"
 import dynamic from "next/dynamic"
 import styles from "@/styles/pages/Search.module.scss"
-import { Search, Data, Characters } from "../handlers/ApiHandler"
+import { searchHandler, dataHandler} from "../handlers/ApiHandler"
 
 const ComicItem = dynamic(() => import("../components/ComicItem"), {
   loading: () => <ComicItemLoading />,
