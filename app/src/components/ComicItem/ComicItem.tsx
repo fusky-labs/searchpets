@@ -99,13 +99,12 @@ export default function ComicItem({
             name="Next.js image module - naturalHeight"
             value={nHeight}
           />
-          <hr className="my-1.5" />
           <DebugContext
-            name=" shouldZoomContents nWidth threshold >420"
-            value={nWidth! > 420 ? true : false}
+            name="nWidth threshold >450"
+            value={nWidth! > 450 ? true : false}
           />
           <DebugContext
-            name="shouldZoomContents nHeight threshold >500"
+            name="nHeight threshold >500"
             value={nHeight! > 500 ? true : false}
           />
           <hr className="my-1.5" />
@@ -145,7 +144,7 @@ export function ComicItemLoading() {
 export function DebugContext({ name, value }: { name: string; value: any }) {
   return (
     <div
-      className={`flex gap-x-2 bg-opacity-25 ${
+      className={`flex gap-x-2 bg-opacity-25 border-b-2 border-gray-600 ${
         !value ? "bg-red-600" : "bg-green-700"
       }`}
     >

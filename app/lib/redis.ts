@@ -11,7 +11,7 @@ export async function searchComics(years: string[], characters: string[]) {
     years = Array.isArray(years) ? years : [years]
     characters = Array.isArray(characters) ? characters : [characters]
 
-    let comicsOutput: ComicItems[] = []
+    let comicsOutput: ComicItemType[] = []
 
     console.log(years)
     console.log(characters)
@@ -32,10 +32,11 @@ export async function searchComics(years: string[], characters: string[]) {
         .search(year, character_query, { LIMIT: { from: 0, size: 500 } })
         .then((result) => {
           result.documents.forEach((doc) => {
-            const comic: ComicItems = {
+            const comic: ComicItemType = {
               title: doc.value.title as string,
-              characters: (doc.value.characters as string).split(", "),
+              characters: (doc.value.characters as string).split(","),
               comic_link: doc.value.comic_link as string,
+              guest: doc.value.guest as string,
               image: doc.value.image as string
             }
             comicsOutput.push(comic)
@@ -47,7 +48,6 @@ export async function searchComics(years: string[], characters: string[]) {
     return { comics: comicsOutput }
   } catch {
     client.quit()
-
     return { comics: "ERROR: Search failed!" }
   }
 }
