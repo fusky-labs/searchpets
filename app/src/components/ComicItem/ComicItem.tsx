@@ -16,9 +16,12 @@ export default function ComicItem({
   img,
   characters,
   link,
-  guestItem
+  guestItem,
+  favoriteItem
 }: ComicItemProps) {
   const [isLoaded, setIsLoaded] = useState(false)
+  const [nWidth, setNWidth] = useState<number>()
+  const [nHeight, setNHeight] = useState<number>()
   const comicStyleWrapper = !guestItem
     ? styles.wrapper.toString()
     : styles["wrapper-guest"].toString()
@@ -73,13 +76,48 @@ export default function ComicItem({
           objectFit="contain"
           layout="fill"
           quality={75}
-          onLoadingComplete={() => setIsLoaded(true)}
+          onLoadingComplete={(e) => {
+            setIsLoaded(true)
+            setNWidth(e.naturalWidth)
+            setNHeight(e.naturalHeight)
+          }}
         />
       </div>
       <div
         className={styles["info-container"]}
         aria-label={`This comic contains ${characters?.length} character(s)`}
       >
+        <div className={styles.subheading}>
+          <strong>Debug</strong>
+        </div>
+        <code>
+          <DebugContext
+            name="Next.js image module - naturalWidth"
+            value={nWidth}
+          />
+          <DebugContext
+            name="Next.js image module - naturalHeight"
+            value={nHeight}
+          />
+          <hr className="my-1.5" />
+          <DebugContext
+            name=" shouldZoomContents nWidth threshold >420"
+            value={nWidth! > 420 ? true : false}
+          />
+          <DebugContext
+            name="shouldZoomContents nHeight threshold >500"
+            value={nHeight! > 500 ? true : false}
+          />
+          <hr className="my-1.5" />
+          <DebugContext
+            name="prop.favoriteItem?<expected: bool>"
+            value={favoriteItem}
+          />
+          <DebugContext
+            name="prop.guestItem?<expected: bool>"
+            value={guestItem}
+          />
+        </code>
         <div className={styles.subheading}>
           <strong>Characters</strong>
           <span className={styles.count}>{characters?.length}</span>
@@ -100,6 +138,21 @@ export function ComicItemLoading() {
       <div className={styles["loading-container"]}></div>
       <div className={styles["loading-container"]}></div>
       <div className={styles["loading-container"]}></div>
+    </div>
+  )
+}
+
+export function DebugContext({ name, value }: { name: string; value: any }) {
+  return (
+    <div
+      className={`flex gap-x-2 bg-opacity-25 ${
+        !value ? "bg-red-600" : "bg-green-700"
+      }`}
+    >
+      {name}
+      <span className={`px-2 ${!value ? "bg-red-600" : "bg-green-700"}`}>
+        {value === undefined ? "undefined" : value!.toString()}
+      </span>
     </div>
   )
 }

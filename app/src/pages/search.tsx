@@ -34,9 +34,8 @@ export default function SearchPage() {
     //   console.log(response)
     // })
 
-    searchHandler(["2017"], ["king"]).then((response) => {
+    searchHandler(["2019", "2020"], ["lois"]).then((response) => {
       setComics(response as never[])
-      console.log(response)
     })
   }, [])
 
@@ -46,26 +45,26 @@ export default function SearchPage() {
         <h2>
           {comics!.length !== 0
             ? `Returned ${comics!.length} result(s)`
-            : "Looks like there's nothing fam"}
+            : "No results found"}
         </h2>
       </div>
       <div className={styles["comic-contents"]}>
-        {/* <ComicItem
+        {comics.map((comic: ComicItems) => (
+          <ComicItem
+            key={comic.title}
+            img={comic.image}
+            title={comic.title}
+            characters={comic.characters}
+            link={comic.comic_link}
+          />
+        ))}
+        <ComicItem
           title="(Isolated component debug mode)"
           characters={["test", "test2"]}
           img="https://www.housepetscomic.com/wp-content/uploads/2017/07/2017-07-14-concerned-1.png"
           link=""
           guestItem
-        /> */}
-        {comics!.map((comic) => (
-          <ComicItem
-            key={comic["title"]}
-            img={comic["image"]}
-            title={comic["title"]}
-            characters={comic["characters"]}
-            link={comic["comic_link"]}
-          />
-        ))}
+        />
       </div>
     </Container>
   )

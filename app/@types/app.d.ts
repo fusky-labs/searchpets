@@ -44,7 +44,8 @@ declare interface ComicItemProps {
   img: string
   link: string
   characters?: string[]
-  guestItem?: true
+  guestItem?: boolean
+  favoriteItem?: boolean
 }
 
 declare interface NavbarRootProps extends LayoutProps {}
