@@ -2,6 +2,10 @@
   @apply pb-1 pt-2 px-1 md:px-12 h-auto z-10;
 }
 
+.root {
+  @apply w-full flex relative;
+}
+
 .search-box-container {
   @apply w-full lg:w-[50%];
 
@@ -17,7 +21,7 @@
 }
 
 .search-box-wrapper {
-  @apply relative overflow-hidden;
+  @apply relative overflow-hidden w-full pr-14;
 
   :is(.icon, input[type="text"]) {
     @apply transition-all duration-[250ms];
@@ -28,8 +32,8 @@
   }
 
   input[type="text"] {
-    @apply py-3 pl-12 pr-28 border-2 dark:bg-neutral-700 dark:border-neutral-600 border-gray-300 focus:outline-none  w-full rounded-md;
-    @apply dark:focus:border-purple-800  focus:border-purple-600;
+    @apply py-3 pl-12 pr-28 border  dark:bg-neutral-700 outline-none w-full rounded-tl-md rounded-bl-md;
+    @apply dark:focus:border-purple-800 focus:border-purple-600 dark:border-neutral-600 border-gray-300;
   }
 
   #dropdown-handler {
@@ -38,19 +42,23 @@
 }
 
 .search-actions {
-  @apply flex absolute right-0 top-0.5 bottom-0.5;
+  @apply flex absolute right-0 top-0 bottom-0 z-10;
 
   button {
     @apply px-5;
   }
 }
 
+:is(#search-btn, #clear-btn:active, #help-btn:active) {
+	@apply text-white;
+}
+
 #search-btn {
-  @apply dark:bg-purple-800 bg-purple-600 text-white rounded-tr-md rounded-br-md;
+  @apply dark:bg-purple-800 bg-purple-600 rounded-tr-md rounded-br-md px-5;
 }
 
 #clear-btn:active {
-  @apply bg-red-600 text-white transition-colors duration-200;
+  @apply bg-red-600;
 }
 
 #help-btn:active {

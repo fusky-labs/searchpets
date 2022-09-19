@@ -1,4 +1,4 @@
-declare type ThemeOverrides = "light" | "dark" | ""
+declare type ThemeOverrides = "light" | "dark" | "unset"
 
 declare type OptionsCtxTypes = {
   theme: ThemeOverrides

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { ModalContext } from "@/utils/Contexts"
 import { faClose } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -16,6 +16,7 @@ export default function ModalBase({
   hidden
 }: ModalBaseProps) {
   const { modalOpen, setModalOpen } = useContext(ModalContext)
+  const [stateClear, setStateClear] = useState(true)
   const rootModalRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -26,10 +27,12 @@ export default function ModalBase({
     if (!modalOpen) {
       setTimeout(() => {
         rootModalRef.current!.style.display = "none"
+        setStateClear(true)
       }, 500)
     }
 
     rootModalRef.current!.style.display = ""
+    setStateClear(false)
 
     document.addEventListener("keydown", escapeModal)
     return () => document.removeEventListener("keydown", escapeModal)
@@ -57,7 +60,7 @@ export default function ModalBase({
               <FontAwesomeIcon icon={faClose} />
             </button>
           </div>
-          <article>{component}</article>
+          {stateClear ? null : <article>{component}</article>}
         </div>
       </div>
       <div

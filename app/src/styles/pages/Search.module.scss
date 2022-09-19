@@ -1,5 +1,5 @@
 .comic-contents {
-  @apply max-w-screen-2xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-7 py-5 px-6 pb-20;
+  @apply max-w-screen-2xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-7 py-3 md:py-5 px-3 md:px-6 pb-[7.5rem] md:pb-20;
 }
 
 .info-contents {

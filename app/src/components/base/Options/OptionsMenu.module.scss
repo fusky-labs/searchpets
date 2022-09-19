@@ -1,7 +1,7 @@
 @use "@/styles/mixins" as *;
 
 .button-wrapper {
-  @apply absolute md:relative;
+  @apply relative hidden md:block;
 
   > button {
     @apply px-5 py-3 rounded-md relative transition-all duration-300 bg-opacity-50;

@@ -12,6 +12,10 @@
   @apply py-4 flex px-6 justify-between gap-x-7 items-center;
 }
 
+.toggle-wrapper {
+  @apply flex items-center;
+}
+
 .logo-handler {
   @apply hidden lg:block relative;
 }

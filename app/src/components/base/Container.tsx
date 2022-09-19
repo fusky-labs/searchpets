@@ -1,8 +1,9 @@
 import { useContext } from "react"
 import styles from "./Base.module.scss"
 import Head from "next/head"
-import SidebarMenu from "./Sidebar/SidebarMenu"
+import SidebarMenu, { SidebarMobile } from "./Sidebar"
 import { SidebarContext } from "@/utils/Contexts"
+import { isMobile } from "react-device-detect"
 
 export default function Container({
   title,
@@ -26,13 +27,14 @@ export default function Container({
         <meta name="og:title" content={title} />
         <meta name="twitter:description" content={description} />
       </Head>
+      <SidebarMobile />
+      <SidebarMenu />
       <div className={isWrap}>
-        <SidebarMenu />
         <div
           id={styles["sidebar-fill"]}
           style={{ width: `${marginSize}px` }}
         ></div>
-        <main className="w-screen pr-10">{children}</main>
+        <main>{children}</main>
       </div>
     </>
   )

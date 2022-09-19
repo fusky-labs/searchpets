@@ -23,7 +23,7 @@ export function LogoNav() {
   }
 
   return (
-    <div className="flex items-center">
+    <div className={styles["toggle-wrapper"]}>
       <button
         className={styles["sidebar-btn"]}
         onClick={handleMargin}

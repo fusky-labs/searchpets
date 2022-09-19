@@ -10,6 +10,7 @@ import {
 import Link from "next/link"
 import FoxSpin from "../FoxSpin"
 import CharacterItem from "./ComicCharacterItem"
+import ParseRegexId from "@/utils/ParseRegexId"
 
 export default function ComicItem({
   title,
@@ -22,14 +23,14 @@ export default function ComicItem({
   const [isLoaded, setIsLoaded] = useState(false)
   const [nWidth, setNWidth] = useState<number>()
   const [nHeight, setNHeight] = useState<number>()
+
+  console.log({ title: title , nw: nWidth, nH: nHeight })
+
   const comicStyleWrapper = !guestItem
     ? styles.wrapper.toString()
     : styles["wrapper-guest"].toString()
 
-  const regexTitle = title
-    ?.replace(/(\s)|(\')/g, "-")
-    .replace(/(\()|(\))|(\.)|(\")|(,)|(\?)|(\!)|(\')/g, "")
-    .toLowerCase()
+  const regexTitle = ParseRegexId(title)
 
   return (
     <section className={comicStyleWrapper} id={regexTitle} aria-label={title}>

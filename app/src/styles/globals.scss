@@ -8,9 +8,11 @@
   body {
     @apply overflow-x-hidden dark:bg-neutral-900 dark:text-gray-50 text-black bg-neutral-100;
   }
+
   [theme-override="dark"] {
     @apply bg-neutral-900 text-gray-50;
   }
+	
   [theme-override="light"] {
     @apply bg-neutral-100 text-black;
   }

@@ -27,7 +27,6 @@ module.exports = async (phase) => {
 		reactStrictMode: true,
 		swcMinify: true,
 		compress: true,
-    concurrentFeatures: true,
     compiler: {
 			removeConsole: process.env.NODE_ENV !== "development"
 		},

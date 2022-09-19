@@ -1,10 +1,14 @@
 .btt {
-  @apply fixed bottom-8 right-7 z-50 px-6 py-3 flex gap-2 items-center rounded-md bg-purple-500 dark:bg-purple-600 shadow-md text-white transition-all duration-300;
+  @apply fixed bottom-8 right-7 z-50 px-7  md:px-6 py-7 md:py-3 flex gap-2 items-center rounded-full md:rounded-md bg-purple-500 dark:bg-purple-600 shadow-md text-white transition-all duration-300;
   @apply opacity-100 translate-y-0 pointer-events-auto;
 
   &:hover {
     @apply bg-purple-600 dark:bg-purple-800
   }
+
+	strong {
+		@apply hidden md:block;
+	}
 
   &-hidden {
     @extend .btt;

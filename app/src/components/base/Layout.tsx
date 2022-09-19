@@ -20,11 +20,11 @@ export default function Layout({ children }: LayoutProps) {
     setMarginSize: setMargin
   }
 
-  themeHandler("")
+  themeHandler("unset")
   contrastHandler(false)
 
   // Options state
-  const [theme, toggleTheme] = useState<ThemeOverrides>("")
+  const [theme, toggleTheme] = useState<ThemeOverrides>("unset")
   const [contrast, toggleContrast] = useState(false)
   const [animations, toggleAnimations] = useState<boolean>()
   const OptionsValue = {
@@ -38,8 +38,8 @@ export default function Layout({ children }: LayoutProps) {
 
   if (typeof window !== "undefined") {
     !modalOpen
-      ? (document.body.style.overflow = "auto")
-      : (document.body.style.overflow = "hidden")
+      ? (document.body.style.overflowY = "auto")
+      : (document.body.style.overflowY = "hidden")
   }
 
   return (
