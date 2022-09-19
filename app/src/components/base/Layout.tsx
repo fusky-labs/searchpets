@@ -3,6 +3,7 @@ import { SidebarContext, OptionsContext, ModalContext } from "@/utils/Contexts"
 import Navbar from "./Navbar"
 import BackToTopBtn from "../BackToTopBtn"
 import ModalBase from "../modals/ModalBase"
+import { themeHandler, contrastHandler } from "@/utils/SiteOptions"
 
 export default function Layout({ children }: LayoutProps) {
   // Modal state
@@ -18,6 +19,9 @@ export default function Layout({ children }: LayoutProps) {
     marginSize: margin,
     setMarginSize: setMargin
   }
+
+  themeHandler("")
+  contrastHandler(false)
 
   // Options state
   const [theme, toggleTheme] = useState<ThemeOverrides>("")
@@ -41,7 +45,11 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <OptionsContext.Provider value={OptionsValue}>
       <ModalContext.Provider value={ModalValues}>
-        <ModalBase hidden={!modalOpen} heading="yes" />
+        <ModalBase
+          hidden={!modalOpen}
+          heading="Query terms"
+          component={<>WIP, must be used with MDX content here</>}
+        />
         <BackToTopBtn />
         <SidebarContext.Provider value={SidebarValues}>
           <Navbar />

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import styles from "@/styles/components/OptionsItem.module.scss"
+import styles from "./OptionsItem.module.scss"
 
 export function OptionsItem({
   title,

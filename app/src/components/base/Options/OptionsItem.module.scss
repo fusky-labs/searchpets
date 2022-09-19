@@ -1,4 +1,4 @@
-@use "../mixins" as *;
+@use "@/styles/mixins" as *;
 
 .toggle {
   @apply px-7 py-2 flex justify-between items-center;

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Image from "next/image"
-import styles from "@/styles/components/ComicItem.module.scss"
+import styles from "./ComicItem.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faExternalLink,
@@ -26,15 +26,13 @@ export default function ComicItem({
     ? styles.wrapper.toString()
     : styles["wrapper-guest"].toString()
 
+  const regexTitle = title
+    ?.replace(/(\s)|(\')/g, "-")
+    .replace(/(\()|(\))|(\.)|(\")|(,)|(\?)|(\!)|(\')/g, "")
+    .toLowerCase()
+
   return (
-    <section
-      className={comicStyleWrapper}
-      id={title
-        ?.replace(/(\s)|(\')/g, "-")
-        .replace(/(\()|(\))|(\.)|(\")|(,)|(\?)|(\!)|(\')/g, "")
-        .toLowerCase()}
-      aria-label={title}
-    >
+    <section className={comicStyleWrapper} id={regexTitle} aria-label={title}>
       <div className={styles["heading-container"]}>
         <h2 className={styles.heading}>
           <Link href={link} passHref>
@@ -49,13 +47,15 @@ export default function ComicItem({
           </Link>
         </h2>
         <div className={styles["heading-actions"]}>
-          <button
-            className={styles["bookmark-btn"]}
+          <a
+            href={`#${regexTitle}`}
+            className={styles["link-btn"]}
+            role="button"
             title="Copy comic link"
             aria-label="Copy comic link"
           >
             <FontAwesomeIcon icon={faExternalLink} size="sm" />
-          </button>
+          </a>
           <button
             className={styles["bookmark-btn"]}
             title="Favorite"
@@ -76,6 +76,10 @@ export default function ComicItem({
           objectFit="contain"
           layout="fill"
           quality={75}
+          style={{
+            opacity: !isLoaded ? "0" : "1",
+            transition: "all ease 420ms"
+          }}
           onLoadingComplete={(e) => {
             setIsLoaded(true)
             setNWidth(e.naturalWidth)
@@ -87,10 +91,10 @@ export default function ComicItem({
         className={styles["info-container"]}
         aria-label={`This comic contains ${characters?.length} character(s)`}
       >
-        <div className={styles.subheading}>
+        {/* <div className={styles.subheading}>
           <strong>Debug</strong>
-        </div>
-        <code>
+        </div> */}
+        {/* <code>
           <DebugContext
             name="Next.js image module - naturalWidth"
             value={nWidth}
@@ -107,6 +111,29 @@ export default function ComicItem({
             name="nHeight threshold >500"
             value={nHeight! > 500 ? true : false}
           />
+          <DebugContext
+            name="Both nW and nH are true"
+            value={nHeight! > 500 && nWidth! > 450 ? true : false}
+          />
+          <hr className="my-1.5" />
+          <DebugContext
+            name="** override nw/nH in favor for long_strip breakpoint"
+            value={nHeight! > 675 || nHeight! > 900 ? true : false}
+          />
+          <DebugContext
+            name="nHeight long_strip breakpoint >675"
+            value={nHeight! > 675 ? true : false}
+          />
+          <DebugContext
+            name="** long_strip override very_long_strip"
+            value={nHeight! > 675 && nHeight! > 900 ? true : false}
+          />
+
+          <DebugContext
+            name="nHeight very_long_strip breakpoint >900"
+            value={nHeight! > 900 ? true : false}
+          />
+
           <hr className="my-1.5" />
           <DebugContext
             name="prop.favoriteItem?<expected: bool>"
@@ -116,7 +143,7 @@ export default function ComicItem({
             name="prop.guestItem?<expected: bool>"
             value={guestItem}
           />
-        </code>
+        </code> */}
         <div className={styles.subheading}>
           <strong>Characters</strong>
           <span className={styles.count}>{characters?.length}</span>

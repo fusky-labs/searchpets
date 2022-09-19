@@ -1,11 +1,14 @@
 .wrapper {
   --comic-height: 850px;
+  @apply gap-2 px-5 py-4 dark:bg-neutral-800 bg-neutral-50 shadow-lg rounded-md flex flex-col border-2 border-transparent h-[var(--comic-height)];
 
   &:nth-child(odd) {
-    @apply bg-gray-900;
+    // @apply bg-gray-900;
   }
 
-  @apply gap-2 px-5 py-4 dark:bg-neutral-800 bg-neutral-50 shadow-lg rounded-md flex flex-col border-2 border-transparent h-[var(--comic-height)];
+  &:target {
+    @apply dark:bg-violet-900 dark:bg-opacity-30 border-purple-400 transition-colors duration-300;
+  }
 }
 
 .wrapper-guest {
@@ -42,7 +45,7 @@
 }
 
 .buttons {
-  @apply px-3.5 py-1.5 rounded-md;
+  @apply px-4 py-3.5 rounded-md flex;
 }
 
 .bookmark-btn {

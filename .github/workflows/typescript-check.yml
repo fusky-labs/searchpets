@@ -26,7 +26,4 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Checking types
-        run: yarn --cwd ./app tsc --noEmit
-
-      - name: Checking types (attempt 2)
-        run: yarn --cwd ./app ./node_modules/.bin/tsc --noEmit
+        run: yarn tsc:lint

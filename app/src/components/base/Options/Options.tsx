@@ -6,7 +6,7 @@ import {
   faWarning
 } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import styles from "@/styles/components/OptionsMenu.module.scss"
+import styles from "./OptionsMenu.module.scss"
 import { OptionsItem } from "./OptionsItem"
 
 export default function OptionsMenu() {
@@ -20,8 +20,8 @@ export default function OptionsMenu() {
       }
     }
 
-    document.addEventListener("click", handleDropdown)
-    return () => document.removeEventListener("click", handleDropdown)
+    document.addEventListener("mousedown", handleDropdown)
+    return () => document.removeEventListener("mousedown", handleDropdown)
   })
 
   return (

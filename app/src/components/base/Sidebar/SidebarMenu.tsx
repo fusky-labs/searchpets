@@ -28,7 +28,6 @@ export default function Sidebar() {
       <nav className={styles["menu-nav"]}>
         <SidebarItem name="Search" link="/search" icon={faSearch} />
         <SidebarItem name="Character List" link="/characters" icon={faPaw} />
-        <SidebarItem name="Chapter List" icon={faList} disabled />
         <hr className={styles.separator} />
         <SidebarItem name="Bookmarks and History" icon={faHistory} disabled />
         <SidebarItem
@@ -69,7 +68,7 @@ export default function Sidebar() {
             className={styles.copyright}
           >{`© ${new Date().getFullYear()} OpenFurs`}</span>
           <strong className={styles.version} data-hide-item-on-collapse="">
-            Searchpets v2 beta 1
+            Searchpets release v2.0.0
           </strong>
         </div>
       </div>

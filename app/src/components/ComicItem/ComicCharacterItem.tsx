@@ -1,4 +1,4 @@
-import styles from "@/styles/components/ComicItem.module.scss"
+import styles from "./ComicItem.module.scss"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { faAngleUp } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import styles from "@/styles/components/BackToTop.module.scss"
+import styles from "./BackToTop.module.scss"
 
 export default function BackToTopBtn() {
   const [show, setShow] = useState(styles["btt-hidden"].toString())

@@ -1,15 +1,27 @@
 .wrapper {
-  @apply fixed inset-0 z-[60] grid place-items-center;
+  @apply fixed z-[60] md:max-w-[75%] xl:max-w-[45%];
+  top: calc(90% / 2);
 
-  &::before {
-    @apply content-[""] fixed inset-0 z-[60] opacity-50 bg-black transition-all duration-[250ms] pointer-events-auto;
+  left: calc(var(--modal-rel-l, 1rem));
+  right: calc(var(--modal-rel-r, 3rem));
+
+  @media (min-width: 768px) {
+    --modal-rel: 32% / 2;
+    --modal-rel-l: var(--modal-rel);
+    --modal-rel-r: var(--modal-rel);
+  }
+
+  @media (min-width: 1280px) {
+    --modal-rel: 50% / 2;
+    --modal-rel-l: var(--modal-rel);
+    --modal-rel-r: var(--modal-rel);
   }
 
   &[aria-hidden="true"] {
-    @apply pointer-events-none z-10;
+    @apply pointer-events-none z-[56];
 
-    &::before {
-      @apply pointer-events-none opacity-0;
+    ~ #backdrop {
+      @apply opacity-0 pointer-events-none;
     }
 
     .container {
@@ -18,8 +30,12 @@
   }
 }
 
+#backdrop {
+  @apply fixed inset-0 z-[55] opacity-50 bg-black transition-all duration-[250ms];
+}
+
 .container {
-  @apply max-w-full md:max-w-[75%] xl:max-w-[45%] relative z-[70] mx-6 px-6 py-5 dark:bg-neutral-800 bg-neutral-200 rounded-md transition-all duration-300;
+  @apply w-full relative z-[70] mx-6 px-6 py-5 dark:bg-neutral-800 bg-neutral-200 rounded-md transition-all duration-300;
 }
 
 .heading {

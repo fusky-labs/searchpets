@@ -25,7 +25,7 @@ export default function SearchPage() {
     if (queryParse) {
       setQuery(queryParse)
     }
-    searchHandler(["2016","2017", "2020"], ["king"]).then((response) => {
+    searchHandler(["2017", "2020"], ["great kitsune"]).then((response) => {
       setComics(response as never[] & ComicItemType[])
     })
   }, [])

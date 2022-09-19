@@ -1,4 +1,4 @@
-import styles from "@/styles/components/Searchbox.module.scss"
+import styles from "./SearchBox.module.scss"
 import {
   faClose,
   faQuestionCircle,
@@ -24,7 +24,7 @@ export default function SearchBox() {
             <FontAwesomeIcon icon={faClose} />
           </button>
           <button
-            id={styles["clear-btn"]}
+            id={styles["help-btn"]}
             aria-label="Show help"
             onClick={() => setModalOpen(true)}
           >
