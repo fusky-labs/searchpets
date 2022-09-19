@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import styles from "./ComicItem.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -24,7 +24,7 @@ export default function ComicItem({
   const [nWidth, setNWidth] = useState<number>()
   const [nHeight, setNHeight] = useState<number>()
 
-  console.log({ title: title , nw: nWidth, nH: nHeight })
+  // console.log({ title: title , nw: nWidth, nH: nHeight })
 
   const comicStyleWrapper = !guestItem
     ? styles.wrapper.toString()
@@ -32,8 +32,19 @@ export default function ComicItem({
 
   const regexTitle = ParseRegexId(title)
 
+  useEffect(() => {
+    if (nHeight == undefined || nHeight === 1) {
+      setNHeight(350)
+    }
+  }, [nHeight])
+
   return (
-    <section className={comicStyleWrapper} id={regexTitle} aria-label={title}>
+    <section
+      className={comicStyleWrapper}
+      id={regexTitle}
+      aria-label={title}
+      style={{ "--comic-height-column": `${nHeight}px` } as React.CSSProperties}
+    >
       <div className={styles["heading-container"]}>
         <h2 className={styles.heading}>
           <Link href={link} passHref>
@@ -92,59 +103,6 @@ export default function ComicItem({
         className={styles["info-container"]}
         aria-label={`This comic contains ${characters?.length} character(s)`}
       >
-        {/* <div className={styles.subheading}>
-          <strong>Debug</strong>
-        </div> */}
-        {/* <code>
-          <DebugContext
-            name="Next.js image module - naturalWidth"
-            value={nWidth}
-          />
-          <DebugContext
-            name="Next.js image module - naturalHeight"
-            value={nHeight}
-          />
-          <DebugContext
-            name="nWidth threshold >450"
-            value={nWidth! > 450 ? true : false}
-          />
-          <DebugContext
-            name="nHeight threshold >500"
-            value={nHeight! > 500 ? true : false}
-          />
-          <DebugContext
-            name="Both nW and nH are true"
-            value={nHeight! > 500 && nWidth! > 450 ? true : false}
-          />
-          <hr className="my-1.5" />
-          <DebugContext
-            name="** override nw/nH in favor for long_strip breakpoint"
-            value={nHeight! > 675 || nHeight! > 900 ? true : false}
-          />
-          <DebugContext
-            name="nHeight long_strip breakpoint >675"
-            value={nHeight! > 675 ? true : false}
-          />
-          <DebugContext
-            name="** long_strip override very_long_strip"
-            value={nHeight! > 675 && nHeight! > 900 ? true : false}
-          />
-
-          <DebugContext
-            name="nHeight very_long_strip breakpoint >900"
-            value={nHeight! > 900 ? true : false}
-          />
-
-          <hr className="my-1.5" />
-          <DebugContext
-            name="prop.favoriteItem?<expected: bool>"
-            value={favoriteItem}
-          />
-          <DebugContext
-            name="prop.guestItem?<expected: bool>"
-            value={guestItem}
-          />
-        </code> */}
         <div className={styles.subheading}>
           <strong>Characters</strong>
           <span className={styles.count}>{characters?.length}</span>
@@ -165,21 +123,6 @@ export function ComicItemLoading() {
       <div className={styles["loading-container"]}></div>
       <div className={styles["loading-container"]}></div>
       <div className={styles["loading-container"]}></div>
-    </div>
-  )
-}
-
-export function DebugContext({ name, value }: { name: string; value: any }) {
-  return (
-    <div
-      className={`flex gap-x-2 bg-opacity-25 border-b-2 border-gray-600 ${
-        !value ? "bg-red-600" : "bg-green-700"
-      }`}
-    >
-      {name}
-      <span className={`px-2 ${!value ? "bg-red-600" : "bg-green-700"}`}>
-        {value === undefined ? "undefined" : value!.toString()}
-      </span>
     </div>
   )
 }

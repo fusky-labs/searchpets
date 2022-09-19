@@ -7,7 +7,7 @@
 }
 
 .search-box-container {
-  @apply w-full lg:w-[50%];
+  @apply w-full lg:w-[50%] xl:w-[60%];
 
   &:focus-within {
     .icon {
@@ -21,7 +21,7 @@
 }
 
 .search-box-wrapper {
-  @apply relative overflow-hidden w-full pr-14;
+  @apply relative overflow-hidden w-full;
 
   :is(.icon, input[type="text"]) {
     @apply transition-all duration-[250ms];
@@ -29,11 +29,15 @@
 
   .icon {
     @apply absolute top-0 p-[0.85rem] pl-5 pointer-events-none;
+    // Mobile
+    @apply hidden lg:block;
   }
 
   input[type="text"] {
-    @apply py-3 pl-12 pr-28 border  dark:bg-neutral-700 outline-none w-full rounded-tl-md rounded-bl-md;
+    @apply py-3 pl-12 pr-28 border dark:bg-neutral-700 outline-none w-full rounded-tl-md rounded-bl-md;
     @apply dark:focus:border-purple-800 focus:border-purple-600 dark:border-neutral-600 border-gray-300;
+    // Mobile
+    @apply hidden lg:block;
   }
 
   #dropdown-handler {
@@ -43,14 +47,16 @@
 
 .search-actions {
   @apply flex absolute right-0 top-0 bottom-0 z-10;
+  // Mobile
+  @apply hidden lg:block;
 
   button {
-    @apply px-5;
+    @apply px-5 py-[0.8rem];
   }
 }
 
 :is(#search-btn, #clear-btn:active, #help-btn:active) {
-	@apply text-white;
+  @apply text-white;
 }
 
 #search-btn {
@@ -68,4 +74,21 @@
 #dropdown-handler {
   @apply relative opacity-0 -translate-y-2 pointer-events-none;
   @apply transition-all duration-200 -z-10;
+}
+
+#mobile-nav {
+  @apply px-5 py-3 border-2 block lg:hidden;
+
+  &:first-child {
+    @apply hidden;
+  }
+}
+
+#mobile-nav-focus {
+  &:first-child {
+    @apply mr-4;
+  }
+  &:last-child {
+    @apply hidden;
+  }
 }

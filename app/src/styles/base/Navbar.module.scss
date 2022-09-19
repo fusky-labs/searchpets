@@ -17,7 +17,7 @@
 }
 
 .logo-handler {
-  @apply hidden lg:block relative;
+  @apply block relative;
 }
 
 .logo {
@@ -41,7 +41,7 @@
 }
 
 .nav-container {
-  @apply flex justify-between items-center gap-x-3 select-none w-full;
+  @apply relative flex justify-between items-center gap-x-3 select-none w-full;
 
   .item {
     @apply px-[1.5rem] py-[0.5rem] rounded-[10rem] flex gap-x-2 items-center;

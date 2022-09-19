@@ -25,7 +25,14 @@ export default function SearchPage() {
     if (queryParse) {
       setQuery(queryParse)
     }
-    searchHandler(["2017"], ["king"]).then((response) => {
+
+    let year = ["2016", "2017", "2018", "2019", "2020"]
+    let char = ["grape", "king", "peanut", "great kitsune", "tarot"]
+
+    let randomYear = year[Math.floor(Math.random() * year.length)]
+		let randomChar = char[Math.floor(Math.random() * char.length)]
+		
+    searchHandler([randomYear], [randomChar]).then((response) => {
       setComics(response as never[] & ComicItemType[])
     })
   }, [])

@@ -1,6 +1,8 @@
 import styles from "./SearchBox.module.scss"
 import {
+  faAngleLeft,
   faClose,
+  faMagnifyingGlass,
   faQuestion,
   faQuestionCircle,
   faSearch
@@ -16,6 +18,9 @@ export default function SearchBox() {
   return (
     <div className={styles["search-box-container"]}>
       <div className={styles.root}>
+        <button id={styles["mobile-nav"]}>
+          <FontAwesomeIcon icon={faAngleLeft} />
+        </button>
         <div className={styles["search-box-wrapper"]}>
           <span className={styles.icon}>
             <FontAwesomeIcon icon={faSearch} />
@@ -37,6 +42,9 @@ export default function SearchBox() {
             <FontAwesomeIcon icon={faSearch} />
           </button>
         </div>
+        <button id={styles["mobile-nav"]}>
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </button>
       </div>
       <div id={styles["dropdown-handler"]}>
         <SearchDropdown />

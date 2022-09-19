@@ -12,7 +12,7 @@ export default function Layout({ children }: LayoutProps) {
 
   // Sidebar state
   const [expand, setExpanded] = useState(false)
-  const [margin, setMargin] = useState("69")
+  const [margin, setMargin] = useState("78")
   const SidebarValues = {
     expanded: expand,
     setExpanded,

@@ -12,7 +12,7 @@
   [theme-override="dark"] {
     @apply bg-neutral-900 text-gray-50;
   }
-	
+
   [theme-override="light"] {
     @apply bg-neutral-100 text-black;
   }
@@ -30,7 +30,3 @@
 
 @tailwind components;
 @tailwind utilities;
-
-loading-fox-plush[hidden="true"] {
-  @apply hidden;
-}
