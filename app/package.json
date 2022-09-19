@@ -38,7 +38,7 @@
     "autoprefixer": "^10.4.8",
     "cssnano": "^5.1.12",
     "eslint": "8.20.0",
-    "eslint-config-next": "12.2.3",
+    "eslint-config-next": "12.3.0",
     "next-compose-plugins": "^2.2.1"
   }
 }
