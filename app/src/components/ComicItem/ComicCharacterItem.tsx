@@ -1,10 +1,10 @@
 import styles from "./ComicItem.module.scss"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import ParseRegexId from "@/utils/ParseRegexId"
+import { parseRegex } from "@/utils/TextParsers"
 
 export default function CharacterItem({ name }: { name?: string }) {
-  const characterName = ParseRegexId(name)
+  const characterName = parseRegex(name)
 
   return (
     <li

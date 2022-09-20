@@ -20,11 +20,11 @@ export default function Layout({ children }: LayoutProps) {
     setMarginSize: setMargin
   }
 
-  themeHandler("unset")
+  themeHandler(Theme.unset)
   contrastHandler(false)
 
   // Options state
-  const [theme, toggleTheme] = useState<ThemeOverrides>("unset")
+  const [theme, toggleTheme] = useState<Theme>(Theme.unset)
   const [contrast, toggleContrast] = useState(false)
   const [animations, toggleAnimations] = useState<boolean>()
   const OptionsValue = {

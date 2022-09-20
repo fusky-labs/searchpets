@@ -22,8 +22,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
+      - name: Install dependencies on app/
+        run: yarn --cwd ./app install
 
       - name: Checking types
         run: yarn tsc:lint

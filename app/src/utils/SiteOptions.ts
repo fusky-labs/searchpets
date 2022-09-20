@@ -1,4 +1,4 @@
-export function themeHandler(theme: ThemeOverrides = "unset") {
+export function themeHandler(theme: Theme) {
   if (typeof window !== "undefined") {
     document.body.setAttribute("data-theme-override", theme)
     localStorage.setItem("theme-override", theme)

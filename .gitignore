@@ -42,11 +42,6 @@ redis_config.json
 # Ignore __pycache__ stuff
 **/__pycache__
 
-# Ignore lock files
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
-
 # PWA service workers
 **/sw.js
 **/sw.js.map

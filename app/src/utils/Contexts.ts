@@ -1,7 +1,7 @@
 import { createContext } from "react"
 
 export const OptionsContext = createContext<OptionsCtxTypes>({
-  theme: "unset",
+  theme: Theme.unset,
   expandComics: false,
   highContrast: false,
   animations: true,
