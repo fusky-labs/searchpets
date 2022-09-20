@@ -27,7 +27,7 @@
 
 ## Infrastructure
 
-The front-end is written in Next.js + TypeScript + Lit Web Components;
+The front-end is written in Next.js + TypeScript;
 with Tailwind CSS. While the back-end is written
 in Python with a lightweight and fast web framework, FastAPI - the
 database is powered by Redis.
@@ -52,7 +52,7 @@ To install all the required Node and Python libraries, execute the `setup.sh`
 file.
 
 ```console
-sh scripts/init.sh
+sh scripts/setup.sh
 ```
 
 Once all the libraries have been installed, it will execute `gen.py` to
