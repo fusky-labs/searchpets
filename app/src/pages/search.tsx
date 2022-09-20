@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { ComicItemLoading } from "@/components/ComicItem/ComicItem"
+import { ComicItemLoading } from "@/components/ComicItem"
 import Container from "@/components/base/Container"
 import dynamic from "next/dynamic"
 import styles from "@/styles/pages/Search.module.scss"
@@ -29,9 +29,13 @@ export default function SearchPage() {
     let year = ["2016", "2017", "2018", "2019", "2020"]
     let char = ["grape", "king", "peanut", "great kitsune", "tarot"]
 
-    let randomYear = year[Math.floor(Math.random() * year.length)]
-		let randomChar = char[Math.floor(Math.random() * char.length)]
-		
+    const randomizer = (arr: string[]) => {
+      return arr[Math.floor(Math.random() * arr.length)]
+    }
+
+    let randomYear = randomizer(year)
+    let randomChar = randomizer(char)
+
     searchHandler([randomYear], [randomChar]).then((response) => {
       setComics(response as never[] & ComicItemType[])
     })

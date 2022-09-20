@@ -23,7 +23,6 @@ import {
 import Layout from "@/components/base/Layout"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import "@/styles/globals.scss"
-import Script from "next/script"
 
 import * as ga from "../../lib/ga"
 

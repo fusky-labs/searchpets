@@ -10,7 +10,7 @@ import {
 import Link from "next/link"
 import FoxSpin from "../FoxSpin"
 import CharacterItem from "./ComicCharacterItem"
-import ParseRegexId from "@/utils/ParseRegexId"
+import { a11yCharArray, parseRegex } from "@/utils/TextParsers"
 
 export default function ComicItem({
   title,
@@ -24,13 +24,20 @@ export default function ComicItem({
   const [nWidth, setNWidth] = useState<number>()
   const [nHeight, setNHeight] = useState<number>()
 
-  // console.log({ title: title , nw: nWidth, nH: nHeight })
-
   const comicStyleWrapper = !guestItem
     ? styles.wrapper.toString()
     : styles["wrapper-guest"].toString()
 
-  const regexTitle = ParseRegexId(title)
+  const regexTitle = parseRegex(title)
+
+  const copyLinkLabel = `Copy link for ${title}`
+  const favLinkLabel = `Add ${title} to favorites`
+
+  const charLength = characters!.length
+
+  const altText = `Image comic for "${title}", containing ${charLength} characters: ${a11yCharArray(
+    characters
+  )}`
 
   useEffect(() => {
     if (nHeight == undefined || nHeight === 1) {
@@ -63,15 +70,15 @@ export default function ComicItem({
             href={`#${regexTitle}`}
             className={styles["link-btn"]}
             role="button"
-            title="Copy comic link"
-            aria-label="Copy comic link"
+            title={copyLinkLabel}
+            aria-label={copyLinkLabel}
           >
             <FontAwesomeIcon icon={faExternalLink} size="sm" />
           </a>
           <button
             className={styles["bookmark-btn"]}
-            title="Favorite"
-            aria-label="Star button, click to bookmark"
+            title={favLinkLabel}
+            aria-label={favLinkLabel}
           >
             <FontAwesomeIcon icon={faStar} size="sm" />
           </button>
@@ -82,9 +89,7 @@ export default function ComicItem({
         <Image
           src={img}
           loading="lazy"
-          alt={`Image comic for "${title}", containing characters: ${characters?.join(
-            ", "
-          )}`}
+          alt={altText}
           objectFit="contain"
           layout="fill"
           quality={75}
@@ -101,7 +106,7 @@ export default function ComicItem({
       </div>
       <div
         className={styles["info-container"]}
-        aria-label={`This comic contains ${characters?.length} character(s)`}
+        aria-label={`This comic contains ${charLength} character(s)`}
       >
         <div className={styles.subheading}>
           <strong>Characters</strong>
@@ -114,15 +119,5 @@ export default function ComicItem({
         </ul>
       </div>
     </section>
-  )
-}
-
-export function ComicItemLoading() {
-  return (
-    <div className={styles.wrapper}>
-      <div className={styles["loading-container"]}></div>
-      <div className={styles["loading-container"]}></div>
-      <div className={styles["loading-container"]}></div>
-    </div>
   )
 }

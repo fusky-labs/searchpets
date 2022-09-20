@@ -1,24 +1,21 @@
-import type { SetStateAction } from "react"
+declare type CharactersArrayType = {
+  characters_db?: string[]
+}
 
-declare global {
-  type CharacterArrayType = {
-    characters: string[]
-  }
+declare type SearchResponseType = {
+  years: string
+  comics: string[]
+} & CharactersArrayType
 
-  type SearchResponseType = {
-    years: string
-    comics: string[]
-  } & CharacterArrayType
+declare type ComicItemType = {
+  title: string
+  characters: string[]
+  comic_link: string
+  image: string
+  guest: string
+} & CharactersArrayType
 
-  type ComicItemType = {
-    title: string
-    comic_link: string
-    image: string
-    guest: string
-  } & CharacterArrayType
-
-  type DataResponseType = {
-    comicCount: number
-    charCount: number
-  }
+declare type DataResponseType = {
+  comicCount: number
+  charCount: number
 }
