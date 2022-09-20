@@ -1,11 +1,15 @@
-declare type ThemeOverrides = "light" | "dark" | "unset"
+declare enum Theme {
+  light = "light",
+  dark = "dark",
+  unset = "unset"
+}
 
 declare type OptionsCtxTypes = {
-  theme: ThemeOverrides
+  theme: Theme
   highContrast: boolean
   expandComics?: boolean
   animations: boolean | undefined
-  setTheme: (theme: ThemeOverrides) => void
+  setTheme: (theme: Theme) => void
   setExpandComics?: (expandComics: boolean) => void
   setHighContrast: (highContrast: boolean) => void
   setAnimations: (animations: boolean) => void

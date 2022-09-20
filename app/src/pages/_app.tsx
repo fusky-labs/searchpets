@@ -28,8 +28,8 @@ import * as ga from "../../lib/ga"
 
 config.autoAddCss = false
 
-library.add(faGithub)
 library.add(
+  faGithub,
   faFilter,
   faSearch,
   faDisplay,
