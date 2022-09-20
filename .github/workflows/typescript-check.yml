@@ -23,7 +23,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install dependencies on app/
-        run: yarn --cwd ./app install --frozen-lockfile
+        run: yarn --cwd ./app install
 
       - name: Checking types
         run: yarn tsc:lint
