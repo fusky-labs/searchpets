@@ -1,35 +1,40 @@
-import styles from "@/styles/components/SearchDropdown.module.scss"
+import styles from "./SearchDropdown.module.scss"
 
 export default function SearchDropdown() {
   return (
     <div className={styles.wrapper}>
       <span>Filter results</span>
-      <button className={styles["filter-block"]}>
-        <code>character:</code>
-        <code>characters:</code>
-        <code>char:</code>
-        <span>label</span>
-      </button>
-      <button className={styles["filter-block"]}>
-        <code>chapter:</code>
-        <code>chapters:</code>
-        <code>ch:</code>
-        <span>label</span>
-      </button>
-      <button className={styles["filter-block"]}>
-        <code>year:<strong>&lt;number(s)&gt;</strong></code>
-        <code>years:<strong>&lt;number(s)&gt;</strong></code>
-        <code>y:<strong>&lt;number(s)&gt;</strong></code>
-        <span>label</span>
-      </button>
-      <button className={styles["filter-block"]}>
-        <code>isguest:<strong>&lt;yes|no&gt;</strong></code>
-        <span>label</span>
-      </button>
-      <button className={styles["filter-block"]}>
-        <code>"exact match"</code>
-        <span>label</span>
-      </button>
+      <InlayTemplate
+        items={["character:", "characters:", "char:"]}
+        label="Yeet"
+      />
+      <InlayTemplate
+        items={["chapter:", "chapters:", "ch:"]}
+        label="Search by chapters"
+      />
+      <InlayTemplate
+        items={["year:", "years:", "y:"]}
+        label="Search by years"
+      />
+      <InlayTemplate items={['"exact match"']} label="Look for exact matches" />
     </div>
+  )
+}
+
+interface InlayTemplateProps {
+  items: string[]
+  label: string
+}
+
+export function InlayTemplate({ items, label }: InlayTemplateProps) {
+  return (
+    <button className={styles["filter-block"]}>
+      {items!.map((i) => (
+        <code aria-hidden="true" key={i}>
+          {i}
+        </code>
+      ))}
+      <span>{label}</span>
+    </button>
   )
 }

@@ -9,7 +9,7 @@
 .search-box-container {
   @apply w-full lg:w-[50%] xl:w-[60%];
 
-  &:focus-within {
+  &[data-focus="true"] {
     .icon {
       @apply -translate-x-8 opacity-0;
     }
@@ -63,6 +63,10 @@
   @apply dark:bg-purple-800 bg-purple-600 rounded-tr-md rounded-br-md px-5;
 }
 
+#clear-btn-hidden {
+  @apply hidden;
+}
+
 #clear-btn:active {
   @apply bg-red-600;
 }
@@ -72,8 +76,12 @@
 }
 
 #dropdown-handler {
-  @apply relative opacity-0 -translate-y-2 pointer-events-none;
+  @apply relative opacity-100 translate-y-0 pointer-events-auto;
   @apply transition-all duration-200 -z-10;
+
+  &[aria-hidden="true"] {
+    @apply opacity-0 -translate-y-2 pointer-events-none;
+  }
 }
 
 #mobile-nav {

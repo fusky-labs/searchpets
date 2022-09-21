@@ -4,11 +4,13 @@ import Navbar from "./Navbar"
 import BackToTopBtn from "../BackToTopBtn"
 import ModalBase from "../modals/ModalBase"
 import { themeHandler, contrastHandler } from "@/utils/SiteOptions"
+import SidebarMenu, { SidebarMobile } from "./Sidebar"
+import Help from "../modals/Help"
 
 export default function Layout({ children }: LayoutProps) {
   // Modal state
   const [modalOpen, setModalOpen] = useState(false)
-  const ModalValues = { modalOpen, setModalOpen }
+  const ModalValue = { modalOpen, setModalOpen }
 
   // Sidebar state
   const [expand, setExpanded] = useState(false)
@@ -20,11 +22,8 @@ export default function Layout({ children }: LayoutProps) {
     setMarginSize: setMargin
   }
 
-  themeHandler(Theme.unset)
-  contrastHandler(false)
-
   // Options state
-  const [theme, toggleTheme] = useState<Theme>(Theme.unset)
+  const [theme, toggleTheme] = useState<ThemeType>("unset")
   const [contrast, toggleContrast] = useState(false)
   const [animations, toggleAnimations] = useState<boolean>()
   const OptionsValue = {
@@ -36,6 +35,9 @@ export default function Layout({ children }: LayoutProps) {
     setAnimations: toggleAnimations
   }
 
+  themeHandler("unset")
+  contrastHandler(false)
+
   if (typeof window !== "undefined") {
     !modalOpen
       ? (document.body.style.overflowY = "auto")
@@ -44,15 +46,17 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <OptionsContext.Provider value={OptionsValue}>
-      <ModalContext.Provider value={ModalValues}>
+      <ModalContext.Provider value={ModalValue}>
         <ModalBase
           hidden={!modalOpen}
           heading="Query terms"
-          component={<>WIP, must be used with MDX content here</>}
+          component={<Help />}
         />
         <BackToTopBtn />
         <SidebarContext.Provider value={SidebarValues}>
           <Navbar />
+          <SidebarMobile />
+          <SidebarMenu />
           {children}
         </SidebarContext.Provider>
       </ModalContext.Provider>

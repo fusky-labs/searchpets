@@ -1,6 +1,10 @@
 @tailwind base;
 
 @layer base {
+	:not(input[type="text"]) {
+		@apply select-none;
+	}
+
   html {
     @apply scroll-smooth scroll-pt-20;
   }

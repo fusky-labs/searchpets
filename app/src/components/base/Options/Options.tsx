@@ -22,7 +22,7 @@ export default function OptionsMenu() {
 
     document.addEventListener("mousedown", handleDropdown)
     return () => document.removeEventListener("mousedown", handleDropdown)
-  })
+  }, [])
 
   return (
     <div
@@ -46,6 +46,7 @@ export default function OptionsMenu() {
             ? styles["sidebar"].toString()
             : styles["sidebar-hidden"].toString()
         }
+        aria-hidden={!menuOpen ? "true" : undefined}
       >
         <section className={styles.section}>
           <OptionsItem icon={faDisplay} header="Appearance" />

@@ -1,9 +1,8 @@
 import { useContext } from "react"
 import styles from "./Base.module.scss"
 import Head from "next/head"
-import SidebarMenu, { SidebarMobile } from "./Sidebar"
 import { SidebarContext } from "@/utils/Contexts"
-import { isMobile } from "react-device-detect"
+import { useRouter } from "next/router"
 
 export default function Container({
   title,
@@ -11,11 +10,15 @@ export default function Container({
   children,
   wrap
 }: ContainerProps) {
+  const router = useRouter()
+
   const isWrap = !wrap
     ? styles["nowrap-fixed"].toString()
     : styles["wrapper-fixed"].toString()
 
   const { marginSize } = useContext(SidebarContext)
+
+  const url = `https://searchpets.xyz${router.pathname}`
 
   return (
     <>
@@ -24,11 +27,14 @@ export default function Container({
         <meta name="description" content={description} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={url} />
         <meta name="og:title" content={title} />
         <meta name="twitter:description" content={description} />
+        <meta name="twitter:url" content={url} />
+        <link rel="canonical" href={url} />
       </Head>
-      <SidebarMobile />
-      <SidebarMenu />
+
       <div className={isWrap}>
         <div
           id={styles["sidebar-fill"]}

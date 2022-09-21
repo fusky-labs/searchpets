@@ -62,6 +62,7 @@ export function SidebarItem({
     <Link href={link}>
       <a
         className={linkHandler}
+        aria-current={router.pathname !== link ? undefined : "page"}
         aria-label={name}
         data-hide-item-on-collapse={!hideOnCollapse ? null : ""}
       >

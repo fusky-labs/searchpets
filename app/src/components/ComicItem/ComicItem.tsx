@@ -46,7 +46,8 @@ export default function ComicItem({
   }, [nHeight])
 
   return (
-    <section
+    <div
+      role="listitem"
       className={comicStyleWrapper}
       id={regexTitle}
       aria-label={title}
@@ -118,6 +119,6 @@ export default function ComicItem({
           ))}
         </ul>
       </div>
-    </section>
+    </div>
   )
 }

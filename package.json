@@ -1,30 +1,30 @@
 {
-  "name": "searchpets",
-  "author": {
-    "name": "openfurs"
-  },
-  "private": true,
-  "workspaces": [
-    "searchpets-v2-next"
-  ],
-  "scripts": {
-    "reset:next": "rm -rf app/node_modules app/yarn.lock app/package-lock.json && yarn --cwd ./app install",
-    "dev": "concurrently -n tsc,next,python -k \"npm run tsc:watch\" \"npm run dev:next\"  \"npm run dev:server\"",
-    "build": "concurrently -n next,python -c bgBlack,bgBlue.yellow -k \"yarn --cwd ./app build\" \"yarn build:server\"",
-    "dev:server": "cd server && python app.py",
-    "dev:next": "concurrently -n next,tsc -c bgBlack,bgBlue.white -k \"yarn --cwd ./app dev\" \"yarn tsc:watch\"",
-    "build:server": "cd server && python app.py --build",
-    "tsc:watch": "yarn --cwd ./app tsc --preserveWatchOutput --watch --noEmit",
-    "tsc:lint": "yarn --cwd ./app tsc --noEmit",
-    "prepare": "husky install"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/openfurs/searchpets.git"
-  },
-  "devDependencies": {
-    "concurrently": "^7.0.0",
-    "husky": "^8.0.0"
-  },
-  "license": "GPL-2.0"
+	"name": "searchpets",
+	"author": "openfurs",
+	"private": true,
+	"workspaces": [
+		"searchpets-v2-next"
+	],
+	"scripts": {
+		"reset:sp": "sh scripts/cleanup.sh",
+		"dev": "concurrently -n tsc,next -k \"npm run tsc:watch\" \"npm run next:dev\"",
+		"dev:w:server": "concurrently -n tsc,next,python -k \"npm run tsc:watch\" \"npm run next:dev\" \"npm run fastapi:dev\"",
+		"build": "concurrently -n next,python -c bgBlack,bgBlue.yellow -k \"npm run next:build\" \"npm run fastapi:build\"",
+		"next:dev": "npm run --prefix ./app dev",
+		"build:next": "npm run build --prefix ./app",
+		"fastapi:dev": "cd server && python app.py",
+		"fastapi:build": "cd server && python app.py --build",
+		"tsc:watch": "npx --prefix ./app tsc --project ./app --preserveWatchOutput --watch --noEmit",
+		"tsc:lint": "npx --prefix ./app tsc --project ./app --noEmit",
+		"prepare": "husky install"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/openfurs/searchpets.git"
+	},
+	"devDependencies": {
+		"concurrently": "^7.0.0",
+		"husky": "^8.0.0"
+	},
+	"license": "GPL-2.0"
 }

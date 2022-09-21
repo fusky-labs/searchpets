@@ -1,15 +1,17 @@
-declare enum Theme {
-  light = "light",
-  dark = "dark",
-  unset = "unset"
+const enum Theme {
+  L = "light",
+  D = "dark",
+  U = "unset"
 }
 
+declare type ThemeType = `${Theme}`
+
 declare type OptionsCtxTypes = {
-  theme: Theme
+  theme: ThemeType
   highContrast: boolean
   expandComics?: boolean
   animations: boolean | undefined
-  setTheme: (theme: Theme) => void
+  setTheme: (theme: ThemeType) => void
   setExpandComics?: (expandComics: boolean) => void
   setHighContrast: (highContrast: boolean) => void
   setAnimations: (animations: boolean) => void

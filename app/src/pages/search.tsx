@@ -43,14 +43,14 @@ export default function SearchPage() {
 
   return (
     <Container title="Search page" description="Search page description">
-      <div className={styles["info-contents"]}>
+      <div className={styles["info-contents"]} aria-live="polite">
         <h2>
           {comics?.length !== 0
             ? `Returned ${comics!.length} result(s)`
             : "No results found"}
         </h2>
       </div>
-      <div className={styles["comic-contents"]}>
+      <div className={styles["comic-contents"]} role="list">
         {comics?.map((comic: ComicItemType) => (
           <ComicItem
             key={comic.title}
