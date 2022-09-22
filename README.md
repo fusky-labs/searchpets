@@ -17,6 +17,16 @@
   <img src="https://user-images.githubusercontent.com/94678583/188504378-07189cc8-78f1-4020-9878-cae6e4435708.png" alt="Searchpets Dev Demo">
 </p>
 
+## Infrastructure/Tech Stack
+
+The website is written in Next.js with TypeScript;
+with Tailwind CSS. While the back-end is written
+in Python with a lightweight and fast web framework, FastAPI - its 
+database and search functionality is powered by Redis.
+
+The infrastructure is being hosted from Linode and Netlify then
+delivered through the interwebs with Cloudflare.
+
 ## Project structure
 
 - `app` - Next.js app, bootstrapped with Tailwind CSS and Sass
@@ -25,16 +35,6 @@
 - `scripts` - Automated Bash scripts to bulk install Python and Node packages and
   for deployment from the server
 
-## Infrastructure
-
-The front-end is written in Next.js + TypeScript;
-with Tailwind CSS. While the back-end is written
-in Python with a lightweight and fast web framework, FastAPI - the
-database is powered by Redis.
-
-The infrastructure is being hosted from Linode and Netlify then
-delivered through the interwebs with Cloudflare.
-
 ## Running the app locally
 
 ### Prerequisites
@@ -42,7 +42,7 @@ delivered through the interwebs with Cloudflare.
 - Node.js 14 or higher (LTS recommended)
 - Python 3.9 or higher
 - Git Bash or WSL (for Windows only, required to execute Bash scripts)
-- Yarn Package Manager (npm can still be used but we strongly recommend using
+- Yarn (npm can still be used but we strongly recommend using
   yarn!)
 
 ### Installation
