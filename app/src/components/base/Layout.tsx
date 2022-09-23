@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react"
 import { SidebarContext, OptionsContext, ModalContext } from "@/utils/Contexts"
 import Navbar from "./Navbar"
-import BackToTopBtn from "../BackToTopBtn"
+import BackToTopBtn from "./BackToTop/BackToTopBtn"
 import ModalBase from "../modals/ModalBase"
-import { themeHandler, contrastHandler } from "@/utils/SiteOptions"
+import {
+  themeHandler,
+  contrastHandler,
+  animationHandler
+} from "@/utils/SiteOptions"
 import SidebarMenu, { SidebarMobile } from "./Sidebar"
 import Help from "../modals/Help"
 
@@ -37,6 +41,7 @@ export default function Layout({ children }: LayoutProps) {
 
   themeHandler("unset")
   contrastHandler(false)
+  animationHandler()
 
   if (typeof window !== "undefined") {
     !modalOpen
@@ -52,13 +57,13 @@ export default function Layout({ children }: LayoutProps) {
           heading="Query terms"
           component={<Help />}
         />
-        <BackToTopBtn />
         <SidebarContext.Provider value={SidebarValues}>
           <Navbar />
           <SidebarMobile />
           <SidebarMenu />
           {children}
         </SidebarContext.Provider>
+        <BackToTopBtn />
       </ModalContext.Provider>
     </OptionsContext.Provider>
   )

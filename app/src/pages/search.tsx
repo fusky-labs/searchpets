@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react"
+import { useRouter } from "next/router"
 import { ComicItemLoading } from "@/components/ComicItem"
-import Container from "@/components/base/Container"
+import Container from "@/components/Base/Container"
 import dynamic from "next/dynamic"
 import styles from "@/styles/pages/Search.module.scss"
 import { searchHandler } from "../handlers/ApiHandler"
+import { InView } from "react-intersection-observer"
+import SearchInfoItem from "@/components/SearchInfoItem"
 
 const ComicItem = dynamic(() => import("../components/ComicItem"), {
   loading: () => <ComicItemLoading />,
@@ -11,6 +14,8 @@ const ComicItem = dynamic(() => import("../components/ComicItem"), {
 })
 
 export default function SearchPage() {
+  const router = useRouter()
+
   const [comics, setComics] = useState([])
   const [query, setQuery] = useState<string>()
 
@@ -26,12 +31,12 @@ export default function SearchPage() {
       setQuery(queryParse)
     }
 
-    let year = ["2016", "2017", "2018", "2019", "2020"]
-    let char = ["grape", "king", "peanut", "great kitsune", "tarot"]
-
     const randomizer = (arr: string[]) => {
       return arr[Math.floor(Math.random() * arr.length)]
     }
+
+    let year = ["2016", "2017", "2018", "2019", "2020"]
+    let char = ["grape", "king", "peanut", "great kitsune", "tarot"]
 
     let randomYear = randomizer(year)
     let randomChar = randomizer(char)
@@ -43,13 +48,7 @@ export default function SearchPage() {
 
   return (
     <Container title="Search page" description="Search page description">
-      <div className={styles["info-contents"]} aria-live="polite">
-        <h2>
-          {comics?.length !== 0
-            ? `Returned ${comics!.length} result(s)`
-            : "No results found"}
-        </h2>
-      </div>
+      <SearchInfoItem comics={comics?.length} />
       <div className={styles["comic-contents"]} role="list">
         {comics?.map((comic: ComicItemType) => (
           <ComicItem

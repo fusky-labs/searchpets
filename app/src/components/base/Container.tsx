@@ -35,13 +35,13 @@ export default function Container({
         <link rel="canonical" href={url} />
       </Head>
 
-      <div className={isWrap}>
+      <main role="main" className={isWrap}>
         <div
           id={styles["sidebar-fill"]}
           style={{ width: `${marginSize}px` }}
         ></div>
-        <main>{children}</main>
-      </div>
+        <div className={styles.container}>{children}</div>
+      </main>
     </>
   )
 }

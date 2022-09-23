@@ -1,4 +1,4 @@
-import Container from "@/components/base/Container";
+import Container from "@/components/Base/Container";
 
 export default function NotFound() {
   return(

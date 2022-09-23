@@ -8,7 +8,7 @@ import {
   faStar
 } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
-import FoxSpin from "../FoxSpin"
+import FoxSpin from "../Base/FoxSpin/FoxSpin"
 import CharacterItem from "./ComicCharacterItem"
 import { a11yCharArray, parseRegex } from "@/utils/TextParsers"
 

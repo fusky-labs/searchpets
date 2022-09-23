@@ -1,5 +1,5 @@
-import { useContext, useState } from "react"
-import styles from "@/styles/base/Sidebar.module.scss"
+import { useContext } from "react"
+import styles from "./Sidebar.module.scss"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import {
   faCode,

@@ -24,9 +24,11 @@ export default function SearchBox() {
       setHasInput(false)
     }
   }
+
   const resetInput = () => {
     setInputVal("")
   }
+
   const clearStyles = !hasInput
     ? styles["clear-btn-hidden"].toString()
     : styles["clear-btn"].toString()
@@ -40,24 +42,31 @@ export default function SearchBox() {
   const searchRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const unfocusSearch = (e: KeyboardEvent) => {
+    const keyboardSearch = (e: KeyboardEvent) => {
       if (e.key === "Escape") return setSearchFocus(false)
+
+      if (e.ctrlKey) {
+        if (e.key === "/") {
+          setModalOpen(true)
+          setSearchFocus(false)
+        }
+      }
     }
 
     const handleSearch = (e: any) => {
       if (!searchRef.current?.contains(e.target)) {
         setSearchFocus(false)
-      } else {
-        setSearchFocus(true)
+        return
       }
+      setSearchFocus(true)
     }
 
     document.addEventListener("mousedown", handleSearch)
-    document.addEventListener("keydown", unfocusSearch)
+    document.addEventListener("keydown", keyboardSearch)
 
     return () => {
       document.removeEventListener("mousedown", handleSearch)
-      document.removeEventListener("keydown", unfocusSearch)
+      document.removeEventListener("keydown", keyboardSearch)
     }
   }, [])
 
@@ -67,13 +76,14 @@ export default function SearchBox() {
       data-focus={searchFocus ? true : false}
       ref={searchRef}
     >
-      <div className={styles.root}>
+      <div className={styles.root} suppressContentEditableWarning>
         <button id={styles["mobile-nav"]}>
           <FontAwesomeIcon icon={faAngleLeft} />
         </button>
         <div
           className={styles["search-box-wrapper"]}
           role="searchbox"
+          suppressContentEditableWarning
           contentEditable
         >
           <span className={styles.icon}>
@@ -81,7 +91,7 @@ export default function SearchBox() {
           </span>
           <input
             type="text"
-            placeholder="Search"
+            placeholder={!searchFocus ? "Search" : "Press Ctrl+/ for help"}
             value={inputVal}
             onChange={handleInput}
           />

@@ -1,0 +1,39 @@
+:is(.title, .title > h2) {
+  @apply transition-all  duration-[275ms];
+}
+
+.root {
+  @apply shadow-lg relative mb-2 p-0 bg-white dark:bg-neutral-900 overflow-y-hidden rounded-md transition-[height] duration-[275ms];
+
+  .wrapper {
+    @apply opacity-0 transition-opacity;
+  }
+
+  &-expand {
+    @extend .root;
+
+    .wrapper {
+      @apply opacity-100;
+    }
+
+    .title {
+      @apply py-2 px-3 mb-2 m-2 text-black dark:text-white bg-opacity-0 hover:bg-opacity-30 border-b-4 rounded-none rounded-tl-md rounded-tr-md;
+
+      > h2 {
+        @apply text-xl;
+      }
+    }
+  }
+}
+
+.title {
+  @apply cursor-pointer font-bold rounded-md px-5 py-[0.75rem] dark:bg-purple-900 bg-purple-500 text-white border-purple-500;
+
+  > h2 {
+    @apply text-[1.35rem];
+  }
+}
+
+.wrapper {
+  @apply px-5 pb-4;
+}

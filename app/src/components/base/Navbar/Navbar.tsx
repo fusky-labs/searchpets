@@ -1,7 +1,7 @@
 import { useRouter } from "next/router"
 import { NavbarRoot } from "./NavbarRoot"
 import { LogoNav } from "./LogoNav"
-import SearchBox from "./SearchBox"
+import SearchBox from "../SearchBox"
 import Options from "../Options"
 
 export default function Navbar() {

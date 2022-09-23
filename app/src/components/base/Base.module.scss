@@ -12,17 +12,13 @@
 :is(.nowrap-fixed, .wrapper-fixed) {
   &::before {
     @apply content-[""] fixed inset-0 bg-white -z-50;
-
     @apply bg-gradient-to-t from-purple-200 to-neutral-100;
     @apply dark:bg-gradient-to-t dark:from-purple-900 dark:to-neutral-900;
   }
-
-  main {
-    @apply w-screen pr-0 md:pr-5;
-  }
 }
 
-.sub-wrapper {
+.container {
+  @apply w-screen pr-0 md:pr-5;
 }
 
 #sidebar-fill {

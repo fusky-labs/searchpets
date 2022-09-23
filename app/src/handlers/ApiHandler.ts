@@ -8,7 +8,7 @@ export async function searchHandler(
   years: string[],
   characters: string[]
 ): Promise<SearchHandlerTypes> {
-  return fetch("/api/search", {
+  return await fetch("/api/search", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -34,7 +34,7 @@ export async function dataHandler(): Promise<DataHandlerTypes> {
 }
 
 export async function characterHandler(): Promise<CharacterHandlerTypes> {
-  return fetch("/api/characters")
+  return await fetch("/api/characters")
     .then((res) => res.json())
     .then((data: CharactersArrayType) => {
       return data.characters_db

@@ -1,13 +1,15 @@
-import Container from "@/components/base/Container"
+import Container from "@/components/Base/Container"
 import { useEffect, useState } from "react"
 import { characterHandler } from "src/handlers/ApiHandler"
 import { lazy } from "react"
-import FoxSpin from "@/components/FoxSpin"
+import FoxSpin from "@/components/Base/FoxSpin"
 
-const CharacterItem = lazy(() => import("../components/CharacterItem"))
+const CharacterItem = lazy(() => import("@/components/CharacterItem"))
 
 export default function CharactersPage() {
   const [characters, setCharacters] = useState<string[]>([])
+
+  const charNull = characters.length == 0
 
   useEffect(() => {
     characterHandler().then((res) => {
@@ -22,7 +24,7 @@ export default function CharactersPage() {
         <FoxSpin hidden={characters.length == 0 ? false : true} />
       </div>
       <div className="grid grid-cols-3 p-4 gap-3">
-        {characters.length == 0
+        {charNull
           ? null
           : characters
               .sort()

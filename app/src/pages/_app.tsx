@@ -20,7 +20,7 @@ import {
   faCode,
   faScaleBalanced
 } from "@fortawesome/free-solid-svg-icons"
-import Layout from "@/components/base/Layout"
+import Layout from "@/components/Base/Layout"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import "@/styles/globals.scss"
 
