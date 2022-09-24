@@ -1,5 +1,10 @@
-import { useState, useEffect } from "react"
-import { SidebarContext, OptionsContext, ModalContext } from "@/utils/Contexts"
+import { useState } from "react"
+import {
+  SidebarContext,
+  OptionsContext,
+  ModalContext,
+  SearchQueryContext
+} from "@/utils/Contexts"
 import Navbar from "./Navbar"
 import BackToTopBtn from "./BackToTop/BackToTopBtn"
 import ModalBase from "../modals/ModalBase"
@@ -12,11 +17,15 @@ import SidebarMenu, { SidebarMobile } from "./Sidebar"
 import Help from "../modals/Help"
 
 export default function Layout({ children }: LayoutProps) {
-  // Modal state
+  /**
+   * Modal state
+   */
   const [modalOpen, setModalOpen] = useState(false)
   const ModalValue = { modalOpen, setModalOpen }
 
-  // Sidebar state
+  /**
+   * Sidebar state
+   */
   const [expand, setExpanded] = useState(false)
   const [margin, setMargin] = useState("78")
   const SidebarValues = {
@@ -26,7 +35,9 @@ export default function Layout({ children }: LayoutProps) {
     setMarginSize: setMargin
   }
 
-  // Options state
+  /**
+   * Options state
+   */
   const [theme, toggleTheme] = useState<ThemeType>("unset")
   const [contrast, toggleContrast] = useState(false)
   const [animations, toggleAnimations] = useState<boolean>()
@@ -43,6 +54,18 @@ export default function Layout({ children }: LayoutProps) {
   contrastHandler(false)
   animationHandler()
 
+  /**
+   * Search state
+   */
+  type SearchStateType = SearchCtxTypes["searchQuery"]
+
+  const [searchQuery, setSearchQuery] = useState<SearchStateType>([])
+
+  const SearchValues = {
+    searchQuery,
+    setSearchQuery
+  }
+
   if (typeof window !== "undefined") {
     !modalOpen
       ? (document.body.style.overflowY = "auto")
@@ -58,10 +81,12 @@ export default function Layout({ children }: LayoutProps) {
           component={<Help />}
         />
         <SidebarContext.Provider value={SidebarValues}>
-          <Navbar />
-          <SidebarMobile />
-          <SidebarMenu />
-          {children}
+          <SearchQueryContext.Provider value={SearchValues}>
+            <Navbar />
+            <SidebarMobile />
+            <SidebarMenu />
+            {children}
+          </SearchQueryContext.Provider>
         </SidebarContext.Provider>
         <BackToTopBtn />
       </ModalContext.Provider>

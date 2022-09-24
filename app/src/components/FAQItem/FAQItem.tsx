@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useRef } from "react"
 import styles from "./FAQItem.module.scss"
 
 interface FAQItemProps {
@@ -34,7 +34,9 @@ export default function FAQItem({ title, children }: FAQItemProps) {
       >
         <h2 ref={titleRef}>{title}</h2>
       </div>
-      <div className={styles.wrapper} role="details">{children}</div>
+      <div className={styles.wrapper} role="details">
+        {children}
+      </div>
     </article>
   )
 }

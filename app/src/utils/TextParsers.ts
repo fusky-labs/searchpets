@@ -15,18 +15,21 @@ export function parseRegex(input?: string) {
  */
 export function a11yCharArray(input: string[] | undefined) {
   const lastItem = input!.length - 1
-  const appendAdd = input!
+  const newArr = [...input!]
+  newArr.splice(lastItem, lastItem)
+
+  const appendAnd = input!
     .slice(lastItem)
     .toString()
     .replace(input![lastItem], `and ${input![lastItem]}`)
 
-  const newArr = [...input!]
-
-  newArr.splice(lastItem, lastItem)
-
-  if (newArr!.length !== 1) {
-    return `${newArr.join(", ")}, ${appendAdd}`
+  if (input!.length > 2) {
+    return `${newArr.join(", ")}, ${appendAnd}`
   }
 
-  return `${newArr.join(", ")} ${appendAdd}`
+  if (input!.length !== 1) {
+    return `${newArr.join(", ")} ${appendAnd}`
+  }
+
+  return input!.toString()
 }

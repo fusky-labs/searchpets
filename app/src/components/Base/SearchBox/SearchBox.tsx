@@ -9,12 +9,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import SearchDropdown from "./SearchDropdown"
-import { ModalContext } from "@/utils/Contexts"
+import { SearchQueryContext, ModalContext } from "@/utils/Contexts"
 
 export default function SearchBox() {
   const { setModalOpen } = useContext(ModalContext)
+  const { searchQuery, setSearchQuery } = useContext(SearchQueryContext)
 
-  // Handle searchbox input state
+  // Handle searchbox input validation state
   const [inputVal, setInputVal] = useState("")
   const [hasInput, setHasInput] = useState(false)
 
@@ -91,7 +92,7 @@ export default function SearchBox() {
           </span>
           <input
             type="text"
-            placeholder={!searchFocus ? "Search" : "Press Ctrl+/ for help"}
+            placeholder={!searchFocus ? "Search" : "Press Ctrl+Slash for help"}
             value={inputVal}
             onChange={handleInput}
           />
@@ -111,7 +112,21 @@ export default function SearchBox() {
           >
             <FontAwesomeIcon icon={faQuestionCircle} />
           </button>
-          <button id={styles["search-btn"]} aria-label="Search">
+          <button
+            id={styles["search-btn"]}
+            aria-label="Search"
+            onClick={() => {
+              /**
+               * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+               * !!! Listen to query stuff below here !!!
+               * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+               */
+              setSearchQuery([])
+
+              // !!! For debugging !!!
+              console.log(searchQuery)
+            }}
+          >
             <FontAwesomeIcon icon={faSearch} />
           </button>
         </div>

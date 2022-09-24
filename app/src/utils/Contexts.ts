@@ -22,3 +22,8 @@ export const ModalContext = createContext<ModalCtxTypes>({
   modalOpen: false,
   setModalOpen: () => {}
 })
+
+export const SearchQueryContext = createContext<SearchCtxTypes>({
+  searchQuery: [],
+  setSearchQuery: () => {}
+})

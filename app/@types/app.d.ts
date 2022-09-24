@@ -29,6 +29,11 @@ declare type ModalCtxTypes = {
   setModalOpen: (modalOpen: boolean) => void
 }
 
+declare type SearchCtxTypes = {
+  searchQuery: never[] | string[]
+  setSearchQuery: (searchQuery: never[] | string[]) => void
+}
+
 declare interface LayoutProps {
   children?: React.ReactNode
 }

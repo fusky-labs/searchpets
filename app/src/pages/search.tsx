@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { useRouter } from "next/router"
 import Container from "@/components/Base/Container"
 import { ComicItemLoading } from "@/components/ComicItem"
@@ -6,6 +6,7 @@ import dynamic from "next/dynamic"
 import styles from "@/styles/pages/Search.module.scss"
 import { searchHandler } from "../handlers/ApiHandler"
 import SearchInfoItem from "@/components/SearchInfoItem"
+import { SearchQueryContext } from "@/utils/Contexts"
 
 const ComicItem = dynamic(() => import("../components/ComicItem"), {
   loading: () => <ComicItemLoading />,
@@ -15,8 +16,11 @@ const ComicItem = dynamic(() => import("../components/ComicItem"), {
 export default function SearchPage() {
   const router = useRouter()
 
+  // !!! referred from searchQuery from Layout.tsx since it's wrapped with a Provider
+  const { searchQuery } = useContext(SearchQueryContext)
+
   const [comics, setComics] = useState([])
-  const [query, setQuery] = useState<string>()
+  // const [query, setQuery] = useState<string>()
 
   useEffect(() => {
     const comicsParse: string | null = localStorage.getItem("comics")
@@ -26,9 +30,9 @@ export default function SearchPage() {
       setComics(JSON.parse(comicsParse))
     }
 
-    if (queryParse) {
-      setQuery(queryParse)
-    }
+    // if (queryParse) {
+    //   setQuery(queryParse)
+    // }
 
     const randomizer = (arr: string[]) => {
       return arr[Math.floor(Math.random() * arr.length)]
