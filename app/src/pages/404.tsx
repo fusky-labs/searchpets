@@ -1,9 +1,5 @@
-import Container from "@/components/Base/Container";
+import Container from "@/components/Base/Container"
 
 export default function NotFound() {
-  return(
-    <Container wrap>
-      Page not found silly
-    </Container>
-  )
-};
+  return <Container wrap>Page not found silly</Container>
+}

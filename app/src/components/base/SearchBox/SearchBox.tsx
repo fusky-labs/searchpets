@@ -68,7 +68,7 @@ export default function SearchBox() {
       document.removeEventListener("mousedown", handleSearch)
       document.removeEventListener("keydown", keyboardSearch)
     }
-  }, [])
+  }, [setModalOpen])
 
   return (
     <div

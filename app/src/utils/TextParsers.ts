@@ -21,9 +21,8 @@ export function a11yCharArray(input: string[] | undefined) {
     .replace(input![lastItem], `and ${input![lastItem]}`)
 
   const newArr = [...input!]
-  const newLastItem = newArr!.length - 1
 
-  newArr.splice(newLastItem, newLastItem)
+  newArr.splice(lastItem, lastItem)
 
   if (newArr!.length !== 1) {
     return `${newArr.join(", ")}, ${appendAdd}`

@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
-import { ComicItemLoading } from "@/components/ComicItem"
 import Container from "@/components/Base/Container"
+import { ComicItemLoading } from "@/components/ComicItem"
 import dynamic from "next/dynamic"
 import styles from "@/styles/pages/Search.module.scss"
 import { searchHandler } from "../handlers/ApiHandler"
-import { InView } from "react-intersection-observer"
 import SearchInfoItem from "@/components/SearchInfoItem"
 
 const ComicItem = dynamic(() => import("../components/ComicItem"), {

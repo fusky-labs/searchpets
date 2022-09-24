@@ -1,8 +1,7 @@
+import { useEffect, useState, lazy } from "react"
 import Container from "@/components/Base/Container"
-import { useEffect, useState } from "react"
-import { characterHandler } from "src/handlers/ApiHandler"
-import { lazy } from "react"
 import FoxSpin from "@/components/Base/FoxSpin"
+import { characterHandler } from "src/handlers/ApiHandler"
 
 const CharacterItem = lazy(() => import("@/components/CharacterItem"))
 
