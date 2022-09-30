@@ -1,16 +1,28 @@
+.heading {
+  @apply sticky top-0 z-20 bg-inherit px-7 pt-0.5 pb-1 uppercase font-bold text-sm text-neutral-400;
+}
+
+.separator {
+  @apply mb-3;
+}
+
 .sidebar {
-  @apply z-[65] md:hidden block fixed top-0 bottom-0 left-0 w-[330px] pt-3 dark:bg-neutral-900 bg-purple-50 transition-all duration-300;
+  @apply z-[65] md:hidden flex flex-col gap-y-4 fixed top-0 bottom-0 left-0 w-full sm:w-[350px] pt-3 dark:bg-neutral-900 bg-purple-50 transition-all duration-300;
+}
+
+.contents {
+  @apply flex flex-col overflow-y-auto;
 }
 
 .sidebar-hidden {
   @extend .sidebar;
-  @apply -left-full;
+  @apply -left-[75%] sm:-left-[380px] w-[39%];
 
   ~ .backdrop {
-    @apply md:hidden block w-screen h-screen z-[55] opacity-0 pointer-events-none;
+    @apply md:hidden block w-full h-full z-[55] opacity-0 pointer-events-none;
   }
 }
 
 .backdrop {
-  @apply md:hidden block fixed inset-0 z-[55] w-screen h-screen opacity-30 bg-black transition-opacity;
+  @apply md:hidden block fixed inset-0 z-[55] w-full h-full opacity-30 bg-black transition-opacity;
 }

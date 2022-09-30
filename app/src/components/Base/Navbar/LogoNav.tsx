@@ -4,6 +4,7 @@ import Link from "next/link"
 import styles from "@/styles/base/Navbar.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars } from "@fortawesome/free-solid-svg-icons"
+import { clientSide, laptopScreen } from "@/utils/index"
 
 export function LogoNav() {
   const { expanded, setExpanded, setMarginSize } = useContext(SidebarContext)
@@ -11,8 +12,7 @@ export function LogoNav() {
   const handleMargin = () => {
     setExpanded(!expanded)
 
-    if (typeof window !== "undefined") {
-      const laptopScreen = window.matchMedia("(min-width: 1300px)").matches
+    if (clientSide) {
       if (!expanded) {
         if (laptopScreen) {
           return setMarginSize("420")

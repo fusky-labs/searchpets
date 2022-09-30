@@ -64,7 +64,7 @@
 .image-container {
   @apply relative w-full;
 
-	--comic-rel-size: 1;
+  --comic-rel-size: 1;
 
   @media (min-width: 413px) {
     --comic-rel-size: 1.4;
@@ -90,30 +90,30 @@
 }
 
 .subheading {
-  @apply text-xl flex items-center gap-x-1;
+  @apply text-xl flex items-center gap-x-1.5;
 }
 
 .count {
-  @apply bg-opacity-40 dark:bg-opacity-40 px-2 py-0.5 rounded-md text-sm bg-purple-500;
+  @apply bg-opacity-40 dark:bg-opacity-40 px-2.5 py-1 rounded-2xl text-sm bg-purple-500;
 }
 
 .info-container {
   @apply flex flex-col justify-between gap-y-1;
+}
 
-  ul {
-    @apply flex gap-1 flex-wrap;
-  }
+.characters-list {
+  @apply flex gap-2 flex-wrap;
 
   :is(.char-item, .spacing) {
     @apply transition-all duration-150;
   }
 
   .char-item {
-    @apply relative py-1 px-2.5 bg-opacity-25 rounded-md select-none text-sm cursor-pointer;
+    @apply relative py-1 px-3 border bg-opacity-25 rounded-2xl select-none text-sm cursor-pointer;
 
     &:hover {
+      @apply pr-8;
       @apply dark:bg-purple-700 bg-purple-300 #{!important};
-      @apply rounded-tr-none rounded-br-none;
 
       .spacing {
         @apply opacity-100 translate-x-0;
@@ -122,7 +122,7 @@
   }
 
   .spacing {
-    @apply opacity-0 -translate-x-3 z-10 rounded-tr-md rounded-br-md p-[0.44rem] -right-6 top-0 absolute dark:bg-purple-800 bg-purple-400 pointer-events-none;
+    @apply opacity-0 -translate-x-3 z-10 rounded-tr-2xl rounded-br-2xl p-[0.44rem] right-0 top-0 absolute dark:bg-purple-800 bg-purple-400;
   }
 }
 

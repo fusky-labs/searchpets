@@ -1,16 +1,27 @@
 @tailwind base;
 
 @layer base {
-	:not(input[type="text"]) {
-		@apply select-none;
-	}
+  :not(input[type="text"]) {
+    @apply select-none;
+  }
 
   html {
     @apply scroll-smooth scroll-pt-20;
   }
 
   body {
-    @apply overflow-x-hidden dark:bg-neutral-900 dark:text-gray-50 text-black bg-neutral-100;
+    @apply font-open-sans dark:bg-neutral-900 dark:text-gray-50 text-black bg-neutral-100;
+
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      @apply hidden;
+    }
+
+    &::before {
+      @apply content-[""] fixed inset-0 bg-white -z-50;
+      @apply bg-gradient-to-t from-purple-200 to-neutral-100;
+      @apply dark:bg-gradient-to-t dark:from-purple-900 dark:to-neutral-900;
+    }
   }
 
   [theme-override="dark"] {

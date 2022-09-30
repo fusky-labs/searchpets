@@ -1,7 +1,7 @@
 @use "@/styles/mixins" as *;
 
 .nowrap-fixed {
-  @apply mt-[5.65rem] flex justify-between;
+  @apply mt-[5.65rem] flex justify-between overflow-x-hidden;
 }
 
 .wrapper-fixed {
@@ -9,16 +9,8 @@
   @extend .nowrap-fixed;
 }
 
-:is(.nowrap-fixed, .wrapper-fixed) {
-  &::before {
-    @apply content-[""] fixed inset-0 bg-white -z-50;
-    @apply bg-gradient-to-t from-purple-200 to-neutral-100;
-    @apply dark:bg-gradient-to-t dark:from-purple-900 dark:to-neutral-900;
-  }
-}
-
 .container {
-  @apply w-screen pr-0 md:pr-5;
+  @apply w-screen pr-0 md:pr-5 transition-[left] duration-300 relative;
 }
 
 #sidebar-fill {

@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useEffect, useRef } from "react"
 import styles from "./Base.module.scss"
 import Head from "next/head"
 import { SidebarContext } from "@/utils/Contexts"
@@ -16,9 +16,19 @@ export default function Container({
     ? styles["nowrap-fixed"].toString()
     : styles["wrapper-fixed"].toString()
 
-  const { marginSize } = useContext(SidebarContext)
+  const { expanded, marginSize } = useContext(SidebarContext)
 
   const url = `https://searchpets.xyz${router.pathname}`
+
+  const appRootRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!window.matchMedia("(min-width: 768px)").matches) {
+      !expanded
+        ? (appRootRef.current!.style.left = "0%")
+        : (appRootRef.current!.style.left = "30%")
+    }
+  }, [expanded])
 
   return (
     <>
@@ -40,7 +50,9 @@ export default function Container({
           id={styles["sidebar-fill"]}
           style={{ width: `${marginSize}px` }}
         ></div>
-        <div className={styles.container}>{children}</div>
+        <div className={styles.container} ref={appRootRef}>
+          {children}
+        </div>
       </main>
     </>
   )

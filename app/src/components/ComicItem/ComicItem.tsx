@@ -24,7 +24,7 @@ export default function ComicItem({
   const [nWidth, setNWidth] = useState<number>()
   const [nHeight, setNHeight] = useState<number>()
 
-  const comicStyleWrapper = !guestItem
+  const comicStyleWrapper = guestItem
     ? styles.wrapper.toString()
     : styles["wrapper-guest"].toString()
 

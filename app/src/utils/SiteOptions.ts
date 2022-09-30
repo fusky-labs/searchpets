@@ -1,5 +1,7 @@
+import { clientSide } from "./index"
+
 function setAttributes(name: string, attr: any) {
-  if (typeof window !== "undefined") {
+  if (clientSide) {
     document.body.setAttribute(`data-${name}`, attr)
     localStorage.setItem(name, attr)
   }

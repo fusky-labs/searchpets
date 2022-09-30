@@ -14,14 +14,16 @@ export function parseRegex(input?: string) {
  * readers.
  */
 export function a11yCharArray(input: string[] | undefined) {
-  const lastItem = input!.length - 1
+  const arrLastItem = input!.length - 1
+  const inputLast = input![arrLastItem]
+	
   const newArr = [...input!]
-  newArr.splice(lastItem, lastItem)
+  newArr.splice(arrLastItem, arrLastItem)
 
   const appendAnd = input!
-    .slice(lastItem)
+    .slice(arrLastItem)
     .toString()
-    .replace(input![lastItem], `and ${input![lastItem]}`)
+    .replace(inputLast, `and ${inputLast}`)
 
   if (input!.length > 2) {
     return `${newArr.join(", ")}, ${appendAnd}`

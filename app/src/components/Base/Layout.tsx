@@ -15,6 +15,7 @@ import {
 } from "@/utils/SiteOptions"
 import SidebarMenu, { SidebarMobile } from "./Sidebar"
 import Help from "../modals/Help"
+import { clientSide, mobileScreen } from "@/utils/index"
 
 export default function Layout({ children }: LayoutProps) {
   /**
@@ -66,10 +67,16 @@ export default function Layout({ children }: LayoutProps) {
     setSearchQuery
   }
 
-  if (typeof window !== "undefined") {
+  if (clientSide) {
     !modalOpen
       ? (document.body.style.overflowY = "auto")
       : (document.body.style.overflowY = "hidden")
+
+    if (expand) {
+      mobileScreen
+        ? (document.body.style.overflow = "auto")
+        : (document.body.style.overflow = "hidden")
+    }
   }
 
   return (

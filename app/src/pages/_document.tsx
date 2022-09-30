@@ -8,7 +8,7 @@ import Document, {
 } from "next/document"
 import Script from "next/script"
 
-export default class SearchpetsApp extends Document {
+export default class _ extends Document {
   static async getInitialProps(
     ctx: DocumentContext
   ): Promise<DocumentInitialProps> {
