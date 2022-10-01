@@ -37,8 +37,8 @@ def scrape_comic(url, year, index, characters_db):
                 "^https://www\.housepetscomic\.com/character")},
         )
         for character in characters_tag:
-            characters.append(character.text.lower())
-            character_db.add(character.text.lower())
+            characters.append(character.text)
+            character_db.add(character.text)
 
         character_str = ",".join(characters)
 
