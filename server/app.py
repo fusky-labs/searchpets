@@ -16,8 +16,7 @@ parser.add_argument(
     "-b",
     "--build",
     action="store_true",
-    help=
-    "Run the server in production mode, for development, don't provide with any arguments and run the file as is.",
+    help="Run the server in production mode, for development, don't provide with any arguments and run the file as is.",
 )
 args = parser.parse_args()
 

@@ -101,15 +101,15 @@ def main():
         )
 
         for index, link in enumerate(link_tag, start=1):
-                link = link.get("href")
+            link = link.get("href")
 
-                data = scrape_comic(link, year, index, characters_db)
+            data = scrape_comic(link, year, index, characters_db)
 
-                RedisDB.hset(
-                    data["key_name"],
-                    mapping=data["comic"]
-                )
-                characters_db = data["characters"]
+            RedisDB.hset(
+                data["key_name"],
+                mapping=data["comic"]
+            )
+            characters_db = data["characters"]
 
     #   put the character list into redis
     RedisDB.lpush("characters_db", *characters_db)

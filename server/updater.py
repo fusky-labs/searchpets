@@ -17,6 +17,7 @@ from scraper import *
 init(wrap=False)
 stream = AnsiToWin32(sys.stderr).stream
 
+
 def main():
     schema = (
         TextField("title"),
@@ -61,8 +62,8 @@ def main():
 
         print("characters_db length:", len(characters_db))
         index_def = IndexDefinition(prefix=[f"{year}:"],
-                                score=0.5,
-                                score_field="doc_score")
+                                    score=0.5,
+                                    score_field="doc_score")
 
         # grab todays year database hash index
         year_db = RedisDB.ft(year).search(Query("*").paging(0, 500))
@@ -87,7 +88,8 @@ def main():
                 print(
                     f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} Setting up {year} index... {Style.RESET_ALL}"
                 )
-                RedisDB.ft(f"{year}").create_index(schema, definition=index_def)
+                RedisDB.ft(f"{year}").create_index(
+                    schema, definition=index_def)
             except Exception as e:
                 print(
                     f"{Back.RED}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} {year} index already exists {Style.RESET_ALL}"
