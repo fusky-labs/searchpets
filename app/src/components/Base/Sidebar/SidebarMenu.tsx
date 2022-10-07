@@ -29,8 +29,8 @@ export default function Sidebar() {
         <SidebarItem name="Search" link="/search" icon={faSearch} />
         <SidebarItem name="Character List" link="/characters" icon={faPaw} />
         <SidebarItem
-          name="Character List"
-          link="/characters"
+          name="Chapter Arc List"
+          link="/chapters"
           icon={faList}
           disabled
         />

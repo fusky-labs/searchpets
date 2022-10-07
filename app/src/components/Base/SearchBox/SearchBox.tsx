@@ -77,7 +77,7 @@ export default function SearchBox() {
       data-focus={searchFocus ? true : false}
       ref={searchRef}
     >
-      <div className={styles.root} suppressContentEditableWarning>
+      <div className={styles.root} suppressContentEditableWarning tabIndex={1}>
         <button id={styles["mobile-nav"]}>
           <FontAwesomeIcon icon={faAngleLeft} />
         </button>

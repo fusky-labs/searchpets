@@ -44,7 +44,7 @@ export default function SearchPage() {
     let randomYear = randomizer(year)
     let randomChar = randomizer(char)
 
-    searchHandler([randomYear], [randomChar]).then((response) => {
+    searchHandler(year, [randomChar]).then((response) => {
       setComics(response as never[] & ComicItemType[])
     })
   }, [])
@@ -60,7 +60,7 @@ export default function SearchPage() {
             title={comic.title}
             characters={comic.characters}
             link={comic.comic_link}
-            guestItem={comic.guest !== "0" ? true : false}
+            guestItem={comic.guest == "0" ? true : false}
           />
         ))}
       </div>

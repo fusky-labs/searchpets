@@ -22,7 +22,7 @@ export default function CharactersPage() {
       <div className="grid place-items-center">
         <FoxSpin hidden={characters.length == 0 ? false : true} />
       </div>
-      <div className="grid grid-cols-3 p-4 gap-3">
+      <div className="grid grid-cols-3 p-4 gap-3" role="list">
         {charNull
           ? null
           : characters

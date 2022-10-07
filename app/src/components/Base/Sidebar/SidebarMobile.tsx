@@ -47,7 +47,7 @@ export function SidebarMobile() {
           <SidebarItem icon={faPaw} link="/characters" name="Character List" />
           <SidebarItem
             icon={faList}
-            link="/characters"
+            link="/chapters"
             name="Chapter List"
             disabled
           />

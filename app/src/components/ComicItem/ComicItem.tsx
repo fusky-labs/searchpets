@@ -53,6 +53,11 @@ export default function ComicItem({
       aria-label={title}
       style={{ "--comic-height-column": `${nHeight}px` } as React.CSSProperties}
     >
+      <div className="sr-only">
+        {`${title} contains ${charLength} characters: ${a11yCharArray(
+          characters
+        )}`}
+      </div>
       <div className={styles["heading-container"]}>
         <h2 className={styles.heading}>
           <Link href={link} passHref>
