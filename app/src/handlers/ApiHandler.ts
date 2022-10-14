@@ -1,8 +1,11 @@
+const server =
+  process.env.NODE_ENV !== "production"
+    ? "http://localhost:3000"
+    : process.env.SERVER_URL
+
 type SearchHandlerTypes = SearchResponseType | SearchResponseType["comics"]
 type DataHandlerTypes = DataResponseType
-type CharacterHandlerTypes =
-  | CharactersArrayType
-  | CharactersArrayType["characters_db"]
+type CharacterHandlerTypes = CharactersArrayType
 
 export async function searchHandler(
   years: string[],
@@ -25,18 +28,9 @@ export async function searchHandler(
 }
 
 export async function dataHandler(): Promise<DataHandlerTypes> {
-  const server =
-    process.env.NODE_ENV !== "production"
-      ? "http://localhost:3000"
-      : process.env.SERVER_URL
-
   return await fetch(`${server}/api/data`).then((res) => res.json())
 }
 
 export async function characterHandler(): Promise<CharacterHandlerTypes> {
-  return await fetch("/api/characters")
-    .then((res) => res.json())
-    .then((data: CharactersArrayType) => {
-      return data.characters_db
-    })
+  return await fetch(`${server}/api/characters`).then((res) => res.json())
 }

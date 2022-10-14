@@ -30,9 +30,6 @@ export default class _ extends Document {
           <meta name="apple-mobile-web-app-status-bar-style" content="default" />
           <meta name="apple-mobile-web-app-title" content="Searchpets" />
           <meta name="format-detection" content="telephone=no" />
-          <meta name="mobile-web-app-capable" content="yes" />
-          <meta name="msapplication-TileColor" content="#7f5bd5" />
-          <meta name="msapplication-tap-highlight" content="no" />
           <meta name="theme-color" content="#7f5bd5" />
           <link rel="shortcut icon" href="/static/favicon-96x96.png" />
           {/* prettier-ignore */}

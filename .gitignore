@@ -39,8 +39,9 @@ venv
 housepets_db.json
 redis_config.json
 
-# Ignore __pycache__ stuff
+# Ignore Python-specific environments
 **/__pycache__
+**/.idea
 
 # PWA service workers
 **/sw.js
@@ -51,3 +52,4 @@ redis_config.json
 **/worker-*.js.map
 **/fallback-development.js
 **/fallback-*.js
+

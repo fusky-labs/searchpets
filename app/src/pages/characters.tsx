@@ -1,35 +1,31 @@
-import { useEffect, useState, lazy } from "react"
+import { lazy } from "react"
 import Container from "@/components/Base/Container"
-import FoxSpin from "@/components/Base/FoxSpin"
+import { GetStaticProps } from "next"
 import { characterHandler } from "src/handlers/ApiHandler"
 
 const CharacterItem = lazy(() => import("@/components/CharacterItem"))
 
-export default function CharactersPage() {
-  const [characters, setCharacters] = useState<string[]>([])
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await characterHandler().then((res) => {
+    return res
+  })
 
-  const charNull = characters.length == 0
+  return {
+    props: data,
+    revalidate: 120
+  }
+}
 
-  useEffect(() => {
-    characterHandler().then((res) => {
-      setCharacters(res as never[])
-    })
-  }, [])
+export default function CharactersPage({ characters_db }: CharactersArrayType) {
+  const characters = characters_db
 
   return (
     <Container title="Character list" wrap>
-      <h2>Character List</h2>
-      <div className="grid place-items-center">
-        <FoxSpin hidden={characters.length == 0 ? false : true} />
-      </div>
+      <h2>Character List - Count: {characters?.length}</h2>
       <div className="grid grid-cols-3 p-4 gap-3" role="list">
-        {charNull
-          ? null
-          : characters
-              .sort()
-              .map((character) => (
-                <CharacterItem key={character} name={character} />
-              ))}
+        {characters?.sort().map((character) => (
+          <CharacterItem key={character} name={character} />
+        ))}
       </div>
     </Container>
   )
