@@ -36,7 +36,6 @@ node_modules
 venv
 
 # Ignore local Housepets json file
-housepets_db.json
 redis_config.json
 
 # Ignore __pycache__ stuff
@@ -51,3 +50,6 @@ redis_config.json
 **/worker-*.js.map
 **/fallback-development.js
 **/fallback-*.js
+
+# Ignore JetBrain IDE stuff
+**/.idea

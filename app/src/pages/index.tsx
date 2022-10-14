@@ -1,19 +1,25 @@
 import Container from "@/components/Base/Container"
-import { GetServerSideProps } from "next"
+import Link from "next/link"
+import { GetStaticProps } from "next"
 import { dataHandler } from "../handlers/ApiHandler"
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const data = dataHandler().then((res) => {
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await dataHandler().then((res) => {
     return res
   })
-  return { props: data }
+
+  return {
+    props: { data },
+    revalidate: 120
+  }
 }
 
 export default function Home({ comicCount, charCount }: DataResponseType) {
   return (
     <Container>
       <div className="text-center flex flex-col items-center w-full">
-        {charCount} characters and {comicCount} comics
+        <Link href="/characters">{charCount}</Link> characters and {comicCount}
+        comics
         <div>searchbox here</div>
       </div>
     </Container>
