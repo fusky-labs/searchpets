@@ -13,8 +13,8 @@ export async function searchComics(years: string[], characters: string[]) {
 
     let comicsOutput: ComicItemType[] = []
 
-    console.log(years)
-    console.log(characters)
+    // console.log(years)
+    // console.log(characters)
 
     const character_query = characters
       .map((character) => {
@@ -63,7 +63,7 @@ export async function grabData() {
   })
 
   await client.LLEN("characters_db").then((result) => {
-    console.log(result)
+    // console.log(result)
     charCount = result
   })
 

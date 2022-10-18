@@ -11,8 +11,10 @@ import Link from "next/link"
 import FoxSpin from "../Base/FoxSpin"
 import CharacterItem from "./ComicCharacterItem"
 import { a11yCharArray, parseRegex } from "@/utils/TextParsers"
+import rootStyles from "@/styles/pages/Search.module.scss"
 
 export default function ComicItem({
+  comicIndex,
   title,
   img,
   characters,
@@ -48,7 +50,7 @@ export default function ComicItem({
   return (
     <div
       role="listitem"
-      className={comicStyleWrapper}
+      className={`${comicStyleWrapper} ${rootStyles["flow-root-override"]}`}
       id={regexTitle}
       aria-label={title}
       style={{ "--comic-height-column": `${nHeight}px` } as React.CSSProperties}
@@ -58,7 +60,10 @@ export default function ComicItem({
           characters
         )}`}
       </div>
-      <div className={styles["heading-container"]}>
+      <div
+        id={rootStyles["flow-heading-override"]}
+        className={styles["heading-container"]}
+      >
         <h2 className={styles.heading}>
           <Link href={link} passHref>
             <a title="Click for original source">
@@ -99,6 +104,7 @@ export default function ComicItem({
           objectFit="contain"
           layout="fill"
           quality={75}
+          onClick={() => console.log(comicIndex)}
           style={{
             opacity: !isLoaded ? "0" : "1",
             transition: "all ease 420ms"

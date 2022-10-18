@@ -38,11 +38,10 @@ interface HeadingProps {
 function Heading(props: HeadingProps) {
   return (
     <div>
-      Browse through{" "}
+      Browse through {props.comic} comics and{" "}
       <Link href="/characters">
         <a>{props.characters}</a>
       </Link>{" "}
-      characters and {props.comic} comics
     </div>
   )
 }
