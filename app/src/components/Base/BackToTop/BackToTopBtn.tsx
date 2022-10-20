@@ -19,9 +19,7 @@ export default function BackToTopBtn() {
 
   return (
     <button
-      onClick={() => {
-        window.scrollTo(0, 0)
-      }}
+      onClick={() => window.scrollTo(0, 0)}
       className={show}
       aria-label="Back to top"
     >

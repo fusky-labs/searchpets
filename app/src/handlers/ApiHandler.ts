@@ -1,11 +1,11 @@
+type SearchHandlerTypes = SearchResponseType | SearchResponseType["comics"]
+type DataHandlerTypes = DataResponseType
+type CharacterHandlerTypes = CharactersArrayType
+
 const server =
   process.env.NODE_ENV !== "production"
     ? "http://localhost:3000"
     : process.env.SERVER_URL
-
-type SearchHandlerTypes = SearchResponseType | SearchResponseType["comics"]
-type DataHandlerTypes = DataResponseType
-type CharacterHandlerTypes = CharactersArrayType
 
 export async function searchHandler(
   years: string[],

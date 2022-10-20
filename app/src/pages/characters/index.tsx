@@ -16,7 +16,7 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-export default function CharactersPage({ characters_db }: CharactersArrayType) {
+export default function CharacterListPage({ characters_db }: CharactersArrayType) {
   const characters = characters_db
 
   return (
