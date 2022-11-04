@@ -14,12 +14,53 @@ from redis.commands.search.field import TextField
 from redis.commands.search.indexDefinition import IndexDefinition
 from scraper import *
 
+base_url = "https://www.housepetscomic.com"
+user_agent = {
+        "user-agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)"
+                       "AppleWebKit/537.36 (KHTML, like Gecko)"
+                       "Chrome/45.0.2454.101 Safari/537.36"),
+        "referer":base_url,
+    }
+rs = requests.session()
+
 init(wrap=False)
 stream = AnsiToWin32(sys.stderr).stream
 
+def get_comics(ch_link: str):
+    url_set = ch_link
+    gc_url = rs.get(url_set, headers=user_agent, timeout=None)
+    comic_item = BeautifulSoup(gc_url.text, "html.parser").find_all("article", id=re.compile("^post-"))
+
+    first_comic = comic_item[0]
+    comic_link: str = first_comic.find("a")["href"]
+    comic_title: str = first_comic.find(
+        "a", {"rel": "bookmark"}).get_text().strip()
+    comic_date: str = first_comic.find(
+        "span", class_=re.compile("^mh-meta-date")).get_text()
+
+    return {
+        'comic_title': comic_title,
+        'comic_link': comic_link,
+        'comic_date': comic_date,
+    }
+
+
+def grab_chapters_comic():
+    print("Grabbing the first comic for each chapter...")
+    # grab the chapters
+    archive_url = rs.get(f"{base_url}/archive/", headers=user_agent)
+    chapter_dropdown = BeautifulSoup(archive_url.text, "html.parser").find_all("option", class_="level-0")
+
+    for index, chapters in enumerate(chapter_dropdown, start=1):
+        name_parse = re.sub("^(-|\d)(\d\d).\s", "", chapters.get_text())
+        ct_out = {
+            'id': index,
+            'name': name_parse,
+            'link': chapters["value"],
+        }
+        ch_link, ch_name = chapters["value"], name_parse
 
 def main():
-    rs = requests.Session()
     with open("./redis_config.json") as f:
         redis_config = json.load(f)
 
@@ -48,14 +89,6 @@ def main():
         NumericField("index", sortable=True),
     )
 
-    user_agent = {
-        "user-agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)"
-                       "AppleWebKit/537.36 (KHTML, like Gecko)"
-                       "Chrome/45.0.2454.101 Safari/537.36"),
-        "referer":
-        "https://www.housepetscomic.com",
-    }
-
     # generate a list of years from 2008 to todays year
     years = [str(x) for x in range(2008, int(time.strftime("%Y")) + 1)]
 
@@ -67,7 +100,7 @@ def main():
     characters_db = set()
 
     for year in years:
-        # create an index for the comics pecific year
+        # create an index for the comics specific year
         index_def = IndexDefinition(prefix=[f"{year}:"],
                                     score=0.5,
                                     score_field="doc_score")
@@ -101,15 +134,15 @@ def main():
         )
 
         for index, link in enumerate(link_tag, start=1):
-            link = link.get("href")
+                link = link.get("href")
 
-            data = scrape_comic(link, year, index, characters_db)
+                data = scrape_comic(link, year, index, characters_db)
 
-            RedisDB.hset(
-                data["key_name"],
-                mapping=data["comic"]
-            )
-            characters_db = data["characters"]
+                RedisDB.hset(
+                    data["key_name"],
+                    mapping=data["comic"]
+                )
+                characters_db = data["characters"]
 
     #   put the character list into redis
     RedisDB.lpush("characters_db", *characters_db)
