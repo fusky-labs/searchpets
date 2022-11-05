@@ -57,7 +57,7 @@ export default function OptionsMenu() {
               THEME OVERWRITTEN &bull; REVERT TO DEFAULT
             </span> */}
           </OptionsItem>
-          <OptionsItem title="Expand width contents">
+          <OptionsItem title="Results view">
             Fill comic contents for larger displays
           </OptionsItem>
         </section>

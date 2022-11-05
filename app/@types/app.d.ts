@@ -51,6 +51,7 @@ declare interface NavLinkProps {
 }
 
 declare interface ComicItemProps {
+	comicIndex?: number,
   title?: string
   img: string
   link: string

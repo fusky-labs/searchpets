@@ -1,3 +1,19 @@
 .comic-contents {
-  @apply max-w-screen-2xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-7 py-3 md:py-5 px-3 md:px-6 pb-[7.5rem] md:pb-20;
+  @apply grid max-w-screen-2xl mx-auto w-full gap-4 md:gap-7 py-3 md:py-5 px-3 md:px-6 pb-[7.5rem] md:pb-20;
+
+  &[data-items="default"] {
+    @apply grid-cols-1 lg:grid-cols-2;
+  }
+
+  &[data-items="flow"] {
+    @apply grid-cols-1 max-w-[1280px];
+
+		.flow-root-override {
+			@apply pt-1;
+		}
+
+    #flow-heading-override {
+      @apply sticky top-[5rem] bg-neutral-800 z-[1] py-2.5;
+    }
+  }
 }

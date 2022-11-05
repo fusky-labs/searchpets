@@ -70,12 +70,12 @@
     --comic-rel-size: 1.4;
   }
 
-  @media (min-width: 700px) {
-    --comic-rel-size: 2.1 !important;
-  }
-
   @media (min-width: 500px) {
     --comic-rel-size: 1.75;
+  }
+
+  @media (min-width: 700px) {
+    --comic-rel-size: 2.1 !important;
   }
 
   height: calc(var(--comic-height-column) * var(--comic-rel-size));
@@ -90,7 +90,7 @@
 }
 
 .subheading {
-  @apply text-xl flex items-center gap-x-1.5;
+  @apply text-xl flex items-center gap-x-1.5 mb-1;
 }
 
 .count {
@@ -109,20 +109,15 @@
   }
 
   .char-item {
-    @apply relative py-1 px-3 border bg-opacity-25 rounded-2xl select-none text-sm cursor-pointer;
+    @apply relative py-1 pr-8 px-3 border bg-opacity-25 rounded-2xl select-none text-sm cursor-pointer;
 
     &:hover {
-      @apply pr-8;
       @apply dark:bg-purple-700 bg-purple-300 #{!important};
-
-      .spacing {
-        @apply opacity-100 translate-x-0;
-      }
     }
   }
 
   .spacing {
-    @apply opacity-0 -translate-x-3 z-10 rounded-tr-2xl rounded-br-2xl p-[0.44rem] right-0 top-0 absolute dark:bg-purple-800 bg-purple-400;
+    @apply -translate-x-[0.2rem] rounded-tr-2xl rounded-br-2xl p-[0.44rem] right-0 top-0 absolute;
   }
 }
 

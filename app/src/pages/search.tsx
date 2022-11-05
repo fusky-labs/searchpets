@@ -1,12 +1,13 @@
 import { useEffect, useState, useContext } from "react"
 import { useRouter } from "next/router"
-import Container from "@/components/Base/Container"
-import { ComicItemLoading } from "@/components/ComicItem"
 import dynamic from "next/dynamic"
 import styles from "@/styles/pages/Search.module.scss"
-import { searchHandler } from "../handlers/ApiHandler"
-import SearchInfoItem from "@/components/SearchInfoItem"
 import { SearchQueryContext } from "@/utils/Contexts"
+import { searchHandler } from "../handlers/ApiHandler"
+import Container from "@/components/Base/Container"
+import { ComicItemLoading } from "@/components/ComicItem"
+import SearchInfoItem from "@/components/SearchInfoItem"
+import ComicLightbox from "@/components/ComicLightbox"
 
 const ComicItem = dynamic(() => import("../components/ComicItem"), {
   loading: () => <ComicItemLoading />,
@@ -16,11 +17,20 @@ const ComicItem = dynamic(() => import("../components/ComicItem"), {
 export default function SearchPage() {
   const router = useRouter()
 
-  // !!! referred from searchQuery from Layout.tsx since it's wrapped with a Provider
   const { searchQuery } = useContext(SearchQueryContext)
 
   const [comics, setComics] = useState([])
   // const [query, setQuery] = useState<string>()
+
+  type SearchType = Partial<{
+    year: string
+    char: string
+  }>
+
+  const [debugResults, setDebugResults] = useState<SearchType>({
+    year: undefined,
+    char: undefined
+  })
 
   useEffect(() => {
     const comicsParse: string | null = localStorage.getItem("comics")
@@ -38,24 +48,39 @@ export default function SearchPage() {
       return arr[Math.floor(Math.random() * arr.length)]
     }
 
-    let year = ["2016", "2017", "2018", "2019", "2020"]
+    let year = ["2015", "2016", "2017", "2018", "2019", "2020"]
     let char = ["grape", "king", "peanut", "great kitsune", "tarot"]
 
     let randomYear = randomizer(year)
     let randomChar = randomizer(char)
 
-    searchHandler(year, [randomChar]).then((response) => {
+    setDebugResults({
+      year: randomYear,
+      char: randomChar
+    })
+
+    searchHandler([randomYear], [randomChar]).then((response) => {
       setComics(response as never[] & ComicItemType[])
     })
   }, [])
 
   return (
     <Container title="Search page" description="Search page description">
+      {/* <ComicLightbox comicsArray={comics} comicIndex={0} /> */}
       <SearchInfoItem comics={comics?.length} />
-      <div className={styles["comic-contents"]} role="list">
-        {comics?.map((comic: ComicItemType) => (
+      <div className="fixed bottom-7 left-7 bg-neutral-700 px-5 py-4 shadow-md z-[999]">
+        DEBUG: {debugResults.char} - {debugResults.year} &bull; {comics?.length}{" "}
+        returned
+      </div>
+      <div
+        className={styles["comic-contents"]}
+        role="list"
+        data-items="default"
+      >
+        {comics?.map((comic: ComicItemType, index) => (
           <ComicItem
-            key={comic.title}
+            key={index}
+            comicIndex={index}
             img={comic.image}
             title={comic.title}
             characters={comic.characters}

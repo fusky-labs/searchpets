@@ -1,7 +1,7 @@
 @use "@/styles/mixins" as *;
 
 .nowrap-fixed {
-  @apply mt-[5.65rem] flex justify-between overflow-x-hidden;
+  @apply mt-[5.65rem] flex justify-between;
 }
 
 .wrapper-fixed {

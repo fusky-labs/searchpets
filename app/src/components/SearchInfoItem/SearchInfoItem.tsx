@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react"
 import styles from "./SearchInfoItem.module.scss"
 
 interface SearchInfoItemProps {
@@ -7,7 +6,7 @@ interface SearchInfoItemProps {
 
 export default function SearchInfoItem({ comics }: SearchInfoItemProps) {
   return (
-    <div className={styles["info-contents"].toString()} aria-live="polite">
+    <div className={styles["info-contents"]} aria-live="polite">
       <span className={styles["results-text"]}>
         {comics !== 0 ? `Returned ${comics} results` : "No results found"}
       </span>
