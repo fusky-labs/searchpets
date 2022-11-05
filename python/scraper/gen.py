@@ -7,29 +7,41 @@ from concurrent.futures import ThreadPoolExecutor
 import redis
 import requests
 from bs4 import BeautifulSoup
-from colorama import *
+from colorama import Back, Fore, Style, init, AnsiToWin32
 from redis.commands.search.field import NumericField
 from redis.commands.search.field import TagField
 from redis.commands.search.field import TextField
 from redis.commands.search.indexDefinition import IndexDefinition
-from scraper import *
+
+from scraper.scraper import scrape_comic
 
 base_url = "https://www.housepetscomic.com"
 user_agent = {
-        "user-agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)"
-                       "AppleWebKit/537.36 (KHTML, like Gecko)"
-                       "Chrome/45.0.2454.101 Safari/537.36"),
-        "referer":base_url,
-    }
+    "user-agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)"
+                   "AppleWebKit/537.36 (KHTML, like Gecko)"
+                   "Chrome/45.0.2454.101 Safari/537.36"),
+    "referer": base_url,
+}
 rs = requests.session()
 
 init(wrap=False)
 stream = AnsiToWin32(sys.stderr).stream
 
+
+def fetch_url(url: str):
+    return rs.get(url, headers=user_agent, timeout=None)
+
+
+def gen_log(msg: str) -> str:
+    colors = Back.YELLOW + Fore.LIGHTWHITE_EX + Style.BRIGHT
+    return colors + msg + Style.RESET_ALL
+
+
 def get_comics(ch_link: str):
     url_set = ch_link
-    gc_url = rs.get(url_set, headers=user_agent, timeout=None)
-    comic_item = BeautifulSoup(gc_url.text, "html.parser").find_all("article", id=re.compile("^post-"))
+    gc_url = fetch_url(url_set)
+    comic_item = BeautifulSoup(gc_url.text, "html.parser").find_all(
+        "article", id=re.compile("^post-"))
 
     first_comic = comic_item[0]
     comic_link: str = first_comic.find("a")["href"]
@@ -47,9 +59,11 @@ def get_comics(ch_link: str):
 
 def grab_chapters_comic():
     print("Grabbing the first comic for each chapter...")
+
     # grab the chapters
-    archive_url = rs.get(f"{base_url}/archive/", headers=user_agent)
-    chapter_dropdown = BeautifulSoup(archive_url.text, "html.parser").find_all("option", class_="level-0")
+    archive_url = fetch_url(f"{base_url}/archive/")
+    chapter_dropdown = BeautifulSoup(
+        archive_url.text, "html.parser").find_all("option", class_="level-0")
 
     for index, chapters in enumerate(chapter_dropdown, start=1):
         name_parse = re.sub("^(-|\d)(\d\d).\s", "", chapters.get_text())
@@ -59,6 +73,7 @@ def grab_chapters_comic():
             'link': chapters["value"],
         }
         ch_link, ch_name = chapters["value"], name_parse
+
 
 def main():
     with open("./redis_config.json") as f:
@@ -80,6 +95,7 @@ def main():
             password=redis_config["database"]["password"],
             decode_responses=True
         )
+
     schema = (
         TextField("title"),
         TextField("comic_link"),
@@ -89,13 +105,11 @@ def main():
         NumericField("index", sortable=True),
     )
 
-    # generate a list of years from 2008 to todays year
+    # Generate a list of years from 2008 to today's year
     years = [str(x) for x in range(2008, int(time.strftime("%Y")) + 1)]
 
     # housepets_db = {}
-    print(
-        f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} Generating Housepets database... {Style.RESET_ALL}"
-    )
+    gen_log("Generating Housepets database...")
 
     characters_db = set()
 
@@ -106,9 +120,7 @@ def main():
                                     score_field="doc_score")
 
         try:
-            print(
-                f"{Back.YELLOW}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} Setting up {year} index... {Style.RESET_ALL}"
-            )
+            gen_log(f"Setting up {year} index...")
             RedisDB.ft(f"{year}").create_index(schema, definition=index_def)
         except Exception as e:
             print(
@@ -125,24 +137,23 @@ def main():
             timeout=None,
         )
         soup = BeautifulSoup(web.text, "html.parser")
-        link_tag = soup.find_all("a", {
-            "rel": "bookmark",
-            "href": re.compile("^https://")
-        })
+        link_tag = soup.find_all(
+            "a", {"rel": "bookmark", "href": re.compile("^https://")})
+
         print(
             f"Found {Fore.GREEN}{Style.BRIGHT}{len(link_tag)}{Style.RESET_ALL} tags!"
         )
 
         for index, link in enumerate(link_tag, start=1):
-                link = link.get("href")
+            link = link.get("href")
 
-                data = scrape_comic(link, year, index, characters_db)
+            data = scrape_comic(link, year, index, characters_db)
 
-                RedisDB.hset(
-                    data["key_name"],
-                    mapping=data["comic"]
-                )
-                characters_db = data["characters"]
+            RedisDB.hset(
+                data["key_name"],
+                mapping=data["comic"]
+            )
+            characters_db = data["characters"]
 
     #   put the character list into redis
     RedisDB.lpush("characters_db", *characters_db)

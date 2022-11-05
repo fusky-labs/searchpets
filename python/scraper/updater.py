@@ -12,7 +12,7 @@ from concurrent.futures import ThreadPoolExecutor
 import requests
 from bs4 import BeautifulSoup
 from colorama import *
-from scraper import *
+from scraper import scrape_comic
 
 init(wrap=False)
 stream = AnsiToWin32(sys.stderr).stream
