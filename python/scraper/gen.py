@@ -13,7 +13,9 @@ from redis.commands.search.field import TagField
 from redis.commands.search.field import TextField
 from redis.commands.search.indexDefinition import IndexDefinition
 
-from scraper.scraper import scrape_comic
+from scraper import scrape_comic
+
+import json
 
 base_url = "https://www.housepetscomic.com"
 user_agent = {
@@ -38,6 +40,7 @@ def gen_log(msg: str) -> str:
 
 
 def get_comics(ch_link: str):
+    # TODO: fix the comic grabbing the last comic from a chapter and not the first
     url_set = ch_link
     gc_url = fetch_url(url_set)
     comic_item = BeautifulSoup(gc_url.text, "html.parser").find_all(
@@ -45,13 +48,10 @@ def get_comics(ch_link: str):
 
     first_comic = comic_item[0]
     comic_link: str = first_comic.find("a")["href"]
-    comic_title: str = first_comic.find(
-        "a", {"rel": "bookmark"}).get_text().strip()
     comic_date: str = first_comic.find(
         "span", class_=re.compile("^mh-meta-date")).get_text()
 
     return {
-        'comic_title': comic_title,
         'comic_link': comic_link,
         'comic_date': comic_date,
     }
@@ -59,20 +59,25 @@ def get_comics(ch_link: str):
 
 def grab_chapters_comic():
     print("Grabbing the first comic for each chapter...")
+    first_chapter_comics = dict()
 
     # grab the chapters
     archive_url = fetch_url(f"{base_url}/archive/")
     chapter_dropdown = BeautifulSoup(
         archive_url.text, "html.parser").find_all("option", class_="level-0")
 
-    for index, chapters in enumerate(chapter_dropdown, start=1):
+    for chapters in chapter_dropdown:
         name_parse = re.sub("^(-|\d)(\d\d).\s", "", chapters.get_text())
-        ct_out = {
-            'id': index,
-            'name': name_parse,
-            'link': chapters["value"],
-        }
         ch_link, ch_name = chapters["value"], name_parse
+        first_comic = get_comics(ch_link)
+        first_comic.update({"ch_name":ch_name})
+
+        print({first_comic['comic_link'].split("/")[-2]:first_comic})
+        first_chapter_comics.update({
+            # uses the link to grab the comic tittle
+            first_comic['comic_link'].split("/")[-2]:first_comic 
+        })
+    return first_chapter_comics
 
 
 def main():
@@ -104,7 +109,10 @@ def main():
         NumericField("guest"),
         NumericField("index", sortable=True),
     )
-
+    # generates a dict that has the start comic for every chapter
+    gen_log("Grabbing chapters and first comics")
+    chapter_data = grab_chapters_comic()
+    chapter = ""
     # Generate a list of years from 2008 to today's year
     years = [str(x) for x in range(2008, int(time.strftime("%Y")) + 1)]
 
@@ -148,7 +156,6 @@ def main():
             link = link.get("href")
 
             data = scrape_comic(link, year, index, characters_db)
-
             RedisDB.hset(
                 data["key_name"],
                 mapping=data["comic"]
