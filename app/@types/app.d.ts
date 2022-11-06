@@ -41,7 +41,7 @@ declare interface LayoutProps {
 declare interface ContainerProps extends LayoutProps {
   title?: string
   description?: string
-  wrap?: boolean | undefined
+  wrap?: boolean
 }
 
 declare interface NavLinkProps {

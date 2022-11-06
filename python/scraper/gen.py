@@ -92,6 +92,7 @@ def grab_chapters_comic():
             # uses the link to grab the comic tittle
             first_comic['comic_link'].split("/")[-2]:first_comic 
         })
+				
     return first_chapter_comics
 
 

@@ -37,7 +37,8 @@ export async function searchComics(years: string[], characters: string[]) {
               characters: (doc.value.characters as string).split(","),
               comic_link: doc.value.comic_link as string,
               guest: doc.value.guest as string,
-              image: doc.value.image as string
+              image: doc.value.image as string,
+              chapters: doc.value.chapters as string
             }
             comicsOutput.push(comic)
           })

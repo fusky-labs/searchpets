@@ -1,21 +1,22 @@
-declare type CharactersArrayType = {
+declare interface ICharactersArray {
   characters_db?: string[]
 }
 
-declare type SearchResponseType = {
+declare interface ISearchResponse extends ICharactersArray {
   years: string
   comics: string[]
-} & CharactersArrayType
+}
 
-declare type ComicItemType = {
+declare interface ComicItemType extends ICharactersArray {
   title: string
   characters: string[]
   comic_link: string
   image: string
   guest: string
-} & CharactersArrayType
+	chapters: string
+}
 
-declare type DataResponseType = {
+declare interface IDataResponse {
   comicCount: number
   charCount: number
 }

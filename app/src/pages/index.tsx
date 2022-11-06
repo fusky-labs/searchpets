@@ -11,7 +11,7 @@ export const getStaticProps: GetStaticProps = async () => {
   return { props: data, revalidate: 120 }
 }
 
-export default function Home({ comicCount, charCount }: DataResponseType) {
+export default function Home({ comicCount, charCount }: IDataResponse) {
   const title = "Searchpets! v2 - Under construction"
 	const description = `Browse over ${comicCount} comics and ${charCount} characters from the Housepets! catalog`
 

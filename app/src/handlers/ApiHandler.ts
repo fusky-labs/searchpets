@@ -1,6 +1,6 @@
-type SearchHandlerTypes = SearchResponseType | SearchResponseType["comics"]
-type DataHandlerTypes = DataResponseType
-type CharacterHandlerTypes = CharactersArrayType
+type SearchHandlerTypes = ISearchResponse | ISearchResponse["comics"]
+type DataHandlerTypes = IDataResponse
+type CharacterHandlerTypes = ICharactersArray
 
 const server =
   process.env.NODE_ENV !== "production"
@@ -22,7 +22,7 @@ export async function searchHandler(
     })
   })
     .then((res) => res.json())
-    .then((res: SearchResponseType) => {
+    .then((res: ISearchResponse) => {
       return res.comics
     })
 }
