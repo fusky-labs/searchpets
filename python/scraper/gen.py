@@ -40,6 +40,7 @@ def gen_log(msg: str) -> str:
 
 
 def get_comics(ch_link: str, pages_amount: int=1):
+    # grab the first comic of a chapter
     if pages_amount != 1:
         url_set = f"{ch_link}page/{pages_amount}/"
     else:
@@ -60,6 +61,8 @@ def get_comics(ch_link: str, pages_amount: int=1):
 
 
 def grab_chapters_comic():
+    # grabs the first comic for each chapter
+
     print("Grabbing the first comic for each chapter...")
     first_chapter_comics = dict()
 
@@ -180,8 +183,9 @@ def main():
             )
             characters_db = data["characters"]
 
-    #   put the character list into redis
+    # put the character list and the list of chapters into redis
     RedisDB.lpush("characters_db", *characters_db)
+    RedisDB.lpush("chapter_db", *chapter_data.keys())
 
 
 with ThreadPoolExecutor(max_workers=50) as executor:
