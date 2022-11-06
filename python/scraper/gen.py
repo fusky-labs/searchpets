@@ -39,14 +39,16 @@ def gen_log(msg: str) -> str:
     return colors + msg + Style.RESET_ALL
 
 
-def get_comics(ch_link: str):
-    # TODO: fix the comic grabbing the last comic from a chapter and not the first
-    url_set = ch_link
+def get_comics(ch_link: str, pages_amount: int=1):
+    if pages_amount != 1:
+        url_set = f"{ch_link}page/{pages_amount}/"
+    else:
+        url_set = ch_link
     gc_url = fetch_url(url_set)
     comic_item = BeautifulSoup(gc_url.text, "html.parser").find_all(
         "article", id=re.compile("^post-"))
 
-    first_comic = comic_item[0]
+    first_comic = comic_item[-1]
     comic_link: str = first_comic.find("a")["href"]
     comic_date: str = first_comic.find(
         "span", class_=re.compile("^mh-meta-date")).get_text()
@@ -69,7 +71,17 @@ def grab_chapters_comic():
     for chapters in chapter_dropdown:
         name_parse = re.sub("^(-|\d)(\d\d).\s", "", chapters.get_text())
         ch_link, ch_name = chapters["value"], name_parse
-        first_comic = get_comics(ch_link)
+        
+        chapter_url = rs.get(ch_link, headers=user_agent)
+        print(ch_link)
+        chapter_soup = BeautifulSoup(chapter_url.text, "html.parser")
+        # print(chapter_soup)
+        pagination = chapter_soup.find("div", class_=re.compile("^mh-loop-pagination"))
+        pag_total = 1
+        if pagination != None: # if there is more than 1 page, get the amount of pages
+            pag_total = int(pagination.find_all("a", class_="page-numbers")[-2].get_text())
+
+        first_comic = get_comics(ch_link, pag_total) # grab the first comic from the chapter
         first_comic.update({"ch_name":ch_name})
 
         print({first_comic['comic_link'].split("/")[-2]:first_comic})
@@ -105,6 +117,7 @@ def main():
         TextField("title"),
         TextField("comic_link"),
         TagField("characters"),
+        TagField("chapter"),
         TextField("image"),
         NumericField("guest"),
         NumericField("index", sortable=True),
@@ -156,9 +169,14 @@ def main():
             link = link.get("href")
 
             data = scrape_comic(link, year, index, characters_db)
+            # grabs the link title from the keyname and check if that link tittle
+            # is a start of a new chapter. idk why but this comment sounds like a quote lol
+            if data["key_name"].split(":")[1] in chapter_data.keys():
+                chapter = chapter_data[data["key_name"].split(":")[1]]["ch_name"]
+            print(chapter)
             RedisDB.hset(
                 data["key_name"],
-                mapping=data["comic"]
+                mapping=data["comic"] | {"chapter":chapter} # add in the chapter tag
             )
             characters_db = data["characters"]
 
