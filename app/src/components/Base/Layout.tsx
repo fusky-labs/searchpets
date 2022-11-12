@@ -1,102 +1,44 @@
-import { useState } from "react"
-import {
-  SidebarContext,
-  OptionsContext,
-  ModalContext,
-  SearchQueryContext
-} from "@/utils/Contexts"
-import Navbar from "./Navbar"
-import BackToTopBtn from "./BackToTop/BackToTopBtn"
-import ModalBase from "../modals/ModalBase"
-import {
-  themeHandler,
-  contrastHandler,
-  animationHandler
-} from "@/utils/SiteOptions"
-import SidebarMenu, { SidebarMobile } from "./Sidebar"
-import Help from "../modals/Help"
-import { clientSide, mobileScreen } from "@/utils/index"
+import { useState } from "react";
+import { NavbarContext } from "../../contexts";
+import Options from "../Options";
+import Sidebar from "../Sidebar";
 
-export default function Layout({ children }: LayoutProps) {
-  /**
-   * Modal state
-   */
-  const [modalOpen, setModalOpen] = useState(false)
-  const ModalValue = { modalOpen, setModalOpen }
+export interface LayoutProps {
+  children?: React.ReactNode;
+}
 
-  /**
-   * Sidebar state
-   */
-  const [expand, setExpanded] = useState(false)
-  const [margin, setMargin] = useState("78")
-  const SidebarValues = {
-    expanded: expand,
-    setExpanded,
-    marginSize: margin,
-    setMarginSize: setMargin
-  }
+export function Layout({ children }: LayoutProps) {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [optionsMenuOpen, setOptionsMenuOpen] = useState(false);
 
-  /**
-   * Options state
-   */
-  const [theme, toggleTheme] = useState<ThemeType>("unset")
-  const [contrast, toggleContrast] = useState(false)
-  const [animations, toggleAnimations] = useState<boolean>()
-  const OptionsValue = {
-    theme,
-    setTheme: toggleTheme,
-    highContrast: contrast,
-    setHighContrast: toggleContrast,
-    animations,
-    setAnimations: toggleAnimations
-  }
-
-  themeHandler("unset")
-  contrastHandler(false)
-  animationHandler()
-
-  /**
-   * Search state
-   */
-  type SearchStateType = SearchCtxTypes["searchQuery"]
-
-  const [searchQuery, setSearchQuery] = useState<SearchStateType>([])
-
-  const SearchValues = {
-    searchQuery,
-    setSearchQuery
-  }
-
-  if (clientSide) {
-    !modalOpen
-      ? (document.body.style.overflowY = "auto")
-      : (document.body.style.overflowY = "hidden")
-
-    if (expand) {
-      mobileScreen
-        ? (document.body.style.overflow = "auto")
-        : (document.body.style.overflow = "hidden")
-    }
-  }
+  const NavbarProviderValues = {
+    sidebarOpen,
+    setSidebarOpen,
+    optionsMenuOpen,
+    setOptionsMenuOpen,
+  };
 
   return (
-    <OptionsContext.Provider value={OptionsValue}>
-      <ModalContext.Provider value={ModalValue}>
-        <ModalBase
-          hidden={!modalOpen}
-          heading="Query terms"
-          component={<Help />}
-        />
-        <SidebarContext.Provider value={SidebarValues}>
-          <SearchQueryContext.Provider value={SearchValues}>
-            <Navbar />
-            <SidebarMobile />
-            <SidebarMenu />
-            {children}
-          </SearchQueryContext.Provider>
-        </SidebarContext.Provider>
-        <BackToTopBtn />
-      </ModalContext.Provider>
-    </OptionsContext.Provider>
-  )
+    <NavbarContext.Provider value={NavbarProviderValues}>
+      <div id="__header">
+        <header className="mx-auto max-w-screen-2xl px-10 flex justify-between items-center">
+          <div>
+            <button
+              onClick={() => setSidebarOpen(true)}
+              className="p-2 bg-red-300"
+            >
+              Open me uwu
+            </button>
+            <span id="logo">searchpets</span>
+            <Sidebar />
+          </div>
+          <div>
+            <button>Settings</button>
+            <Options />
+          </div>
+        </header>
+      </div>
+      {children}
+    </NavbarContext.Provider>
+  );
 }
