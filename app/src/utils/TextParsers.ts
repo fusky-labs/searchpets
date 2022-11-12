@@ -13,10 +13,10 @@ export function parseRegex(input?: string) {
  * in the inputted array. Used for image alt texts for screen
  * readers.
  */
-export function a11yCharArray(input: string[] | undefined) {
+export function a11yCharArray(input?: string[]) {
   const arrLastItem = input!.length - 1
   const inputLast = input![arrLastItem]
-	
+
   const newArr = [...input!]
   newArr.splice(arrLastItem, arrLastItem)
 
@@ -25,13 +25,8 @@ export function a11yCharArray(input: string[] | undefined) {
     .toString()
     .replace(inputLast, `and ${inputLast}`)
 
-  if (input!.length > 2) {
-    return `${newArr.join(", ")}, ${appendAnd}`
-  }
-
-  if (input!.length !== 1) {
-    return `${newArr.join(", ")} ${appendAnd}`
-  }
+  if (input!.length > 2) return `${newArr.join(", ")}, ${appendAnd}`
+  if (input!.length !== 1) return `${newArr.join(", ")} ${appendAnd}`
 
   return input!.toString()
 }
