@@ -1,17 +1,16 @@
-type SearchHandlerTypes = ISearchResponse | ISearchResponse["comics"]
-type DataHandlerTypes = IDataResponse
-type CharacterHandlerTypes = ICharactersArray
+
 
 const server =
   process.env.NODE_ENV !== "production"
     ? "http://localhost:3000"
     : process.env.SERVER_URL
 
-export async function searchHandler(
+export async function searchHandlers(
   years: string[],
   characters: string[]
-): Promise<SearchHandlerTypes> {
-  return await fetch("/api/search", {
+): Promise<SearchHandler> {
+  console.log
+  return await fetch(`${server}/api/search`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -22,15 +21,15 @@ export async function searchHandler(
     })
   })
     .then((res) => res.json())
-    .then((res: ISearchResponse) => {
+    .then((res: SearchResponse) => {
       return res.comics
     })
 }
 
-export async function dataHandler(): Promise<DataHandlerTypes> {
+export async function dataHandlers(): Promise<DataHandler> {
   return await fetch(`${server}/api/data`).then((res) => res.json())
 }
 
-export async function characterHandler(): Promise<CharacterHandlerTypes> {
+export async function characterHandlers(): Promise<CharacterHandler> {
   return await fetch(`${server}/api/characters`).then((res) => res.json())
 }

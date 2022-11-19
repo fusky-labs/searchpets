@@ -5,7 +5,9 @@ const client = createClient({
 })
 
 export async function searchComics(years: string[], characters: string[]) {
-  client.connect()
+  if (await !client.isReady) {
+    await client.connect()
+  }
 
   try {
     years = Array.isArray(years) ? years : [years]
@@ -17,16 +19,14 @@ export async function searchComics(years: string[], characters: string[]) {
     // console.log(characters)
 
     const character_query = characters
-      .map((character) => {
-        return `@characters:{${character}}`
-      })
+      .map((character) => `@characters:{${character}}`)
       .join(" ")
 
-    console.log(character_query)
+    // console.log(character_query)
 
     for (const year of years) {
-      console.log(year)
-      console.log("this needs to run after the above")
+      // console.log(year)
+      // console.log("this needs to run after the above")
 
       await client.ft
         .search(year, character_query, { LIMIT: { from: 0, size: 500 } })
@@ -44,17 +44,16 @@ export async function searchComics(years: string[], characters: string[]) {
           })
         })
     }
-
-    client.disconnect()
+   client.quit()
     return { comics: comicsOutput }
   } catch {
-    client.disconnect()
+    client.quit()
     return { comics: "ERROR: Search failed!" }
   }
 }
 
 export async function grabData() {
-  client.connect()
+  // client.connect()
   let comicCount = 0
   let charCount = 0
 
@@ -68,17 +67,17 @@ export async function grabData() {
     charCount = result
   })
 
-  client.disconnect()
+  client.quit()
   return { comicCount: comicCount, charCount: charCount }
 }
 
 export async function grabCharacters() {
-  client.connect()
+  await client.connect()
 
   let characters: string[] | undefined
 
   await client.LRANGE("characters_db", 0, -1).then((result) => {
-    client.disconnect()
+    client.quit()
     characters = result
   })
 
