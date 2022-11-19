@@ -1,5 +1,5 @@
-import Container from "@/components/Base/Container"
+import { PageContainer } from "@/components/Base"
 
 export default function NotFound() {
-  return <Container wrap>Page not found silly</Container>
+  return <PageContainer title="404" description="...">Page not found silly</PageContainer>
 }

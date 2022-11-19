@@ -16,18 +16,11 @@ module.exports = async (phase) => {
 		runtimeCaching
 	});
 
-	const withMDX = require("@next/mdx")({
-		extension: /\.mdx?$/,
-		options: {
-			providerImportSource: "@mdx-js/react"
-		}
-	})
-
 	const nextConfig = {
 		reactStrictMode: true,
 		swcMinify: true,
 		compress: true,
-    compiler: {
+		compiler: {
 			removeConsole: process.env.NODE_ENV !== "development"
 		},
 		images: {
@@ -40,9 +33,6 @@ module.exports = async (phase) => {
 
 	return withPlugins(
 		[
-			withMDX({
-				pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"]
-			}),
 			withPWA
 		],
 		nextConfig
