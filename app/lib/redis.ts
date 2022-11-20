@@ -44,16 +44,16 @@ export async function searchComics(years: string[], characters: string[]) {
           })
         })
     }
-   client.quit()
     return { comics: comicsOutput }
   } catch {
-    client.quit()
     return { comics: "ERROR: Search failed!" }
   }
 }
 
 export async function grabData() {
-  // client.connect()
+  if (await !client.isReady) {
+    await client.connect()
+  }
   let comicCount = 0
   let charCount = 0
 
@@ -67,19 +67,18 @@ export async function grabData() {
     charCount = result
   })
 
-  client.quit()
   return { comicCount: comicCount, charCount: charCount }
 }
 
-export async function grabCharacters() {
-  await client.connect()
+export async function grabChars() {
+  if (await !client.isReady) {
+    await client.connect()
+  }
 
   let characters: string[] | undefined
 
   await client.LRANGE("characters_db", 0, -1).then((result) => {
-    client.quit()
     characters = result
   })
-
   return { characters_db: characters }
 }
