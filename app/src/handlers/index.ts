@@ -34,7 +34,7 @@ export async function fetchSomeStuff(url: string, methods?: "POST" | "GET") {
   })
 
   if (!response.ok) {
-    throw new Error(`Status ${respose.status}: Something went wrong while fetching the data`)
+    throw new Error(`Status ${response.status}: Something went wrong while fetching the data`)
   }
 
   return await response.json()
