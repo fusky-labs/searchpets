@@ -1,8 +1,0 @@
-requests
-beautifulsoup4
-waitress
-colorama
-yapf
-fastapi
-uvicorn
-redis
