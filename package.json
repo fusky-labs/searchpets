@@ -1,0 +1,14 @@
+{
+	"private": true,
+	"license": "GPL-v2",
+	"workspaces": [
+		"packages/*",
+		"shared/*"
+	],
+	"devDependencies": {
+		"husky": "^8.0.0"
+	},
+	"scripts": {
+		"prepare": "husky install"
+	}
+}
