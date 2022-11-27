@@ -1,0 +1,3 @@
+[build]
+base="packages/app/"
+base="packages/app/.next/"
