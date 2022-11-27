@@ -23,10 +23,7 @@ parser.add_argument("-P",
                     required=True)
 
 args = parser.parse_args()
-host = args.host
-port = args.port
-username = args.username
-password = args.password
+host, port, username, password = args.host, args.port, args.username, args.password
 
 if password is None:
     redis_url = f"redis://{username}@{host}:{port}"

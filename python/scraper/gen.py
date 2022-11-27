@@ -14,8 +14,7 @@ from redis.commands.search.indexDefinition import IndexDefinition
 
 from scraper import scrape_comic
 from scraper import grab_chapters_comic
-from utils import fetch_url
-from utils import gen_log
+from utils import fetch_url, gen_log, connect_redis
 from utils import base_url
 
 init(wrap=False)
@@ -23,26 +22,7 @@ stream = AnsiToWin32(sys.stderr).stream
 
 
 def main():
-    with open("./redis_config.json") as f:
-        redis_config = json.load(f)
-
-    print("Connecting to redis...")
-    if redis_config["database"]["password"] is None:
-        RedisDB = redis.StrictRedis(
-            host=redis_config["database"]["host"],
-            port=int(redis_config["database"]["port"]),
-            username=redis_config["database"]["username"],
-            decode_responses=True
-        )
-    else:
-        RedisDB = redis.StrictRedis(
-            host=redis_config["database"]["host"],
-            port=int(redis_config["database"]["port"]),
-            username=redis_config["database"]["username"],
-            password=redis_config["database"]["password"],
-            decode_responses=True
-        )
-
+    RedisDB = connect_redis("./redis_config.json")
     schema = (
         TextField("title"),
         TextField("comic_link"),
@@ -73,6 +53,8 @@ def main():
         try:
             gen_log(f"Setting up {year} index...")
             RedisDB.ft(f"{year}").create_index(schema, definition=index_def)
+        
+        # What does this do lol, you didn't even access the exception at all lmao
         except Exception as e:
             print(
                 f"{Back.RED}{Fore.LIGHTWHITE_EX}{Style.BRIGHT} {year} index already exists {Style.RESET_ALL}"
