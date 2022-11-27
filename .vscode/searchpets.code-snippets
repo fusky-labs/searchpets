@@ -1,9 +1,0 @@
-{
-  "Import styles": {
-    "scope": "typescriptreact",
-    "prefix": "importstyles",
-    "body": [
-      "import styles from \"@/styles/$0.module.scss\""
-    ],
-  }
-}
