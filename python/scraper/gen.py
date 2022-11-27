@@ -7,7 +7,6 @@ from concurrent.futures import ThreadPoolExecutor
 import redis
 from bs4 import BeautifulSoup
 from colorama import Back, Fore, Style, init, AnsiToWin32
-from redis.commands.search.query import Query
 from redis.commands.search.field import NumericField
 from redis.commands.search.field import TagField
 from redis.commands.search.field import TextField
@@ -57,13 +56,15 @@ def main():
     gen_log("Grabbing chapters and first comics")
     chapter_data = grab_chapters_comic()
     chapter = ""
+    # Generate a list of years from 2008 to today's year
+    years = [str(x) for x in range(2008, int(time.strftime("%Y")) + 1)]
+
     # housepets_db = {}
     gen_log("Generating Housepets database...")
 
     characters_db = set()
 
-    while True:
-        year = year = time.strftime("%Y")
+    for year in years:
         # create an index for the comics specific year
         index_def = IndexDefinition(prefix=[f"{year}:"],
                                     score=0.5,
@@ -89,29 +90,27 @@ def main():
         print(
             f"Found {Fore.GREEN}{Style.BRIGHT}{len(link_tag)}{Style.RESET_ALL} tags!"
         )
-        
-        # grab the length of the current database year index
-        index_length = len(RedisDB.ft(year).search(Query("*").paging(0, 500)))
-        if index_length > link_tag:
-            for index, link in enumerate(link_tag, start=1):
-                link = link.get("href")
 
-                data = scrape_comic(link, year, index, characters_db)
-                # grabs the link title from the keyname and check if that link title
-                if data["key_name"].split(":")[1] in chapter_data.keys():
-                    chapter = chapter_data[data["key_name"].split(":")[1]]["ch_name"]
+        for index, link in enumerate(link_tag, start=1):
+            link = link.get("href")
 
-                    print(chapter)
-                RedisDB.hset(
-                    data["key_name"],
-                    # add in the chapter tag
-                    mapping=data["comic"] | {"chapter": chapter}
-                )
-                characters_db = data["characters"]
+            data = scrape_comic(link, year, index, characters_db)
+            # grabs the link title from the keyname and check if that link title
+            # is a start of a new chapter. idk why but this comment sounds like a quote lol
+            if data["key_name"].split(":")[1] in chapter_data.keys():
+                chapter = chapter_data[data["key_name"].split(":")[1]]["ch_name"]
 
-            # put the character list and the list of chapters into redis
-            RedisDB.lpush("characters_db", *characters_db)
-            RedisDB.lpush("chapter_db", *chapter_data.keys())
+                print(chapter)
+            RedisDB.hset(
+                data["key_name"],
+                # add in the chapter tag
+                mapping=data["comic"] | {"chapter": chapter}
+            )
+            characters_db = data["characters"]
+
+    # put the character list and the list of chapters into redis
+    RedisDB.lpush("characters_db", *characters_db)
+    RedisDB.lpush("chapter_db", *chapter_data.keys())
 
 
 with ThreadPoolExecutor(max_workers=50) as executor:
