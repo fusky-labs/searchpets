@@ -2,8 +2,8 @@
 	"private": true,
 	"license": "GPL-v2",
 	"workspaces": [
-		"packages/*",
-		"shared/*"
+		"apps/*",
+		"packages/*"
 	],
 	"devDependencies": {
 		"concurrently": "^7.6.0",
