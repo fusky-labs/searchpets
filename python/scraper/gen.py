@@ -76,7 +76,10 @@ def main():
         for index, link in enumerate(link_tag, start=1):
             link = link.get("href")
 
-            data = scrape_comic(link, year, index, characters_db)
+            data = scrape_comic(link, year, index)
+
+            for character in data["comic"]["characters"].split(","):
+                characters_db.add(character)
             # grabs the link title from the keyname and check if that link title
             # is a start of a new chapter. idk why but this comment sounds like a quote lol
             if data["key_name"].split(":")[1] in chapter_data.keys():
@@ -88,7 +91,6 @@ def main():
                 # add in the chapter tag
                 mapping=data["comic"] | {"chapter": chapter}
             )
-            characters_db = data["characters"]
 
     # put the character list and the list of chapters into redis
     RedisDB.lpush("characters_db", *characters_db)
