@@ -5,11 +5,15 @@
 		"apps/*",
 		"packages/*"
 	],
+	"scripts": {
+		"prepare": "husky install",
+		"dev": "yarn workspaces run dev",
+		"build": "yarn workspaces run build",
+		"lint": "yarn workspaces run lint",
+		"start": "yarn workspaces run start"
+	},
 	"devDependencies": {
 		"concurrently": "^7.6.0",
 		"husky": "^8.0.0"
-	},
-	"scripts": {
-		"prepare": "husky install"
 	}
 }

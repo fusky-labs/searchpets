@@ -13,7 +13,7 @@ from redis.commands.search.field import TextField
 from redis.commands.search.indexDefinition import IndexDefinition
 
 from scraper import scrape_comic
-from scraper import grab_chapters_comic
+from scraper import get_comic_chapters
 from utils import fetch_url, gen_log, connect_redis
 from utils import base_url
 
@@ -34,7 +34,7 @@ def main():
     )
     # generates a dict that has the start comic for every chapter
     gen_log("Grabbing chapters and first comics")
-    chapter_data = grab_chapters_comic()
+    chapter_data = get_comic_chapters()
     chapter = ""
     # Generate a list of years from 2008 to today's year
     years = [str(x) for x in range(2008, int(time.strftime("%Y")) + 1)]
