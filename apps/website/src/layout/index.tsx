@@ -1,3 +1,5 @@
+import Navbar from "../components/Navbar"
+
 interface LayoutProps {
   children?: React.ReactNode
 }
@@ -5,9 +7,8 @@ interface LayoutProps {
 export default function Layout(props: LayoutProps) {
   return (
     <>
-      <header>Header compoennt</header>
+      <Navbar />
       {props.children}
-      <footer>Footer compoennt</footer>
     </>
   )
 }

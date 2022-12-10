@@ -33,12 +33,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-__pycache__
-redis_config.json
-public
 .next
 
 # Python venv stuff
+__pycache__
+redis_config.json
+
 **/Include
 **/Lib
 **/Scripts

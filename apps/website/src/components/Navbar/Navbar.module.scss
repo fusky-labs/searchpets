@@ -1,0 +1,23 @@
+.fixed-nav {
+  @apply my-6 fixed top-0 left-0 right-0 px-10 flex items-center justify-between;
+}
+
+.nav-row {
+  @apply flex items-center;
+}
+
+.nav-list {
+  @apply flex gap-x-3;
+}
+
+.logo {
+  @apply text-3xl italic font-bold font-inter pr-6;
+}
+
+.nav-list-item {
+  @apply px-5 py-3 rounded-md bg-purple-300 flex gap-x-2.5 items-center;
+}
+
+.menu-actions {
+  @apply flex items-center gap-x-4;
+}
