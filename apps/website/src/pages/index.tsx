@@ -1,6 +1,9 @@
+import Container from "../components/Container";
 
 export default function Home() {
   return (
-		<div>woot</div>
+    <Container t="Home" d="">
+      Content WIP
+    </Container>
   )
 }
