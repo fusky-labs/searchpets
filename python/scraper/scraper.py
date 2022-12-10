@@ -69,15 +69,7 @@ def get_comic_chapters():
     return first_chapter_comics
 
 
-def scrape_comic(url, year, index, characters_db):
-    character_db = characters_db
-    user_agent = {
-        "user-agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)"
-                       "AppleWebKit/537.36 (KHTML, like Gecko)"
-                       "Chrome/45.0.2454.101 Safari/537.36"),
-        "referer":
-        "https://www.housepetscomic.com",
-    }
+def scrape_comic(url: str, year: str, index, character_db):
     link_page = fetch_url(url)
 
     comic_soup = BeautifulSoup(link_page.text, "html.parser")
@@ -89,7 +81,7 @@ def scrape_comic(url, year, index, characters_db):
     link_title = url.split("/")[-2]
     print(link_title)
 
-    guest = 0  # if this variable get's changed that means we have encountered a
+    guest = 0  # if this variable get's changed that means we have encountered a guest
     character_str = "guest"
     if "https://www.housepetscomic.com/character" in link_page.text:
 
