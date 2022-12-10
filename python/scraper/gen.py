@@ -4,7 +4,6 @@ import sys
 import time
 from concurrent.futures import ThreadPoolExecutor
 
-import redis
 from bs4 import BeautifulSoup
 from colorama import Back, Fore, Style, init, AnsiToWin32
 from redis.commands.search.field import NumericField
@@ -12,8 +11,7 @@ from redis.commands.search.field import TagField
 from redis.commands.search.field import TextField
 from redis.commands.search.indexDefinition import IndexDefinition
 
-from scraper import scrape_comic
-from scraper import get_comic_chapters
+from scraper import scrape_comic, get_comic_chapters
 from utils import fetch_url, gen_log, connect_redis
 from utils import base_url
 
@@ -80,12 +78,13 @@ def main():
 
             for character in data["comic"]["characters"].split(","):
                 characters_db.add(character)
+            
             # grabs the link title from the keyname and check if that link title
             # is a start of a new chapter. idk why but this comment sounds like a quote lol
             if data["key_name"].split(":")[1] in chapter_data.keys():
                 chapter = chapter_data[data["key_name"].split(":")[1]]["ch_name"]
-
                 print(chapter)
+
             RedisDB.hset(
                 data["key_name"],
                 # add in the chapter tag

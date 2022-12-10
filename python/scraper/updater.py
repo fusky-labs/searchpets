@@ -4,7 +4,6 @@ import sys
 import time
 from concurrent.futures import ThreadPoolExecutor
 
-import redis
 from bs4 import BeautifulSoup
 from colorama import Back, Fore, Style, init, AnsiToWin32
 from redis.commands.search.query import Query
@@ -13,8 +12,7 @@ from redis.commands.search.field import TagField
 from redis.commands.search.field import TextField
 from redis.commands.search.indexDefinition import IndexDefinition
 
-from scraper import scrape_comic
-from scraper import grab_chapters_comic
+from scraper import scrape_comic, get_comic_chapters
 from utils import fetch_url, gen_log, connect_redis
 from utils import base_url
 
@@ -34,16 +32,16 @@ def main():
         NumericField("index", sortable=True),
     )
     # generates a dict that has the start comic for every chapter
-    gen_log("Grabbing chapters and first comics")
-    chapter_data = grab_chapters_comic()
-    chapter = ""
+    
     # housepets_db = {}
     gen_log("Generating Housepets database...")
 
     characters_db = set()
 
     while True:
+        time.sleep(5)
         year = year = time.strftime("%Y")
+
         # create an index for the comics specific year
         index_def = IndexDefinition(prefix=[f"{year}:"],
                                     score=0.5,
@@ -60,6 +58,7 @@ def main():
         print(
             f"Searching in year {Fore.GREEN}{Style.BRIGHT}{year}{Style.RESET_ALL}"
         )
+        index_comic_data = RedisDB.ft(year).search(Query("*").paging(0, 500))
 
         web = fetch_url(f"{base_url}/archive/?archive_year={year}")
         soup = BeautifulSoup(web.text, "html.parser")
@@ -69,25 +68,34 @@ def main():
         print(
             f"Found {Fore.GREEN}{Style.BRIGHT}{len(link_tag)}{Style.RESET_ALL} tags!"
         )
-        
-        # grab the length of the current database year index
-        index_length = len(RedisDB.ft(year).search(Query("*").paging(0, 500)))
-        if index_length > link_tag:
-            for index, link in enumerate(link_tag, start=1):
-                link = link.get("href")
+        print(index_comic_data.total, len(link_tag))
+        if index_comic_data.total < len(link_tag):
+            gen_log("Grabbing chapters and first comics")
+            chapter_data = get_comic_chapters()
+            # grab the latest chapter by checking the latest comic
+            for comic in index_comic_data.docs:
+                if int(comic.index) == index_comic_data.total:
+                    chapter = comic.chapter
+                    break
 
-                data = scrape_comic(link, year, index, characters_db)
-                # grabs the link title from the keyname and check if that link title
-                if data["key_name"].split(":")[1] in chapter_data.keys():
-                    chapter = chapter_data[data["key_name"].split(":")[1]]["ch_name"]
+            index = len(link_tag)
+            link = link_tag[-1].get("href") # grab the current comic from HP
 
-                    print(chapter)
-                RedisDB.hset(
-                    data["key_name"],
-                    # add in the chapter tag
-                    mapping=data["comic"] | {"chapter": chapter}
-                )
-                characters_db = data["characters"]
+            data = scrape_comic(link, year, index)
+
+            for character in data["comic"]["characters"].split(","):
+                characters_db.add(character)
+            
+            # grabs the link title from the keyname and check if that link title
+            if data["key_name"].split(":")[1] in chapter_data.keys():
+                chapter = chapter_data[data["key_name"].split(":")[1]]["ch_name"]
+                print(chapter)
+
+            RedisDB.hset(
+                data["key_name"],
+                # add in the chapter tag
+                mapping=data["comic"] | {"chapter": chapter}
+            )
 
             # put the character list and the list of chapters into redis
             RedisDB.lpush("characters_db", *characters_db)
