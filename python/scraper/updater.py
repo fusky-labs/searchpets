@@ -40,7 +40,7 @@ def main():
 
     while True:
         time.sleep(5)
-        year = year = time.strftime("%Y")
+        year = time.strftime("%Y")
 
         # create an index for the comics specific year
         index_def = IndexDefinition(prefix=[f"{year}:"],
