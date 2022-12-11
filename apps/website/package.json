@@ -26,6 +26,7 @@
 	},
 	"devDependencies": {
 		"autoprefixer": "^10.4.13",
+		"framer-motion": "^7.6.19",
 		"postcss": "^8.4.19",
 		"redis": "^4.5.1",
 		"sass": "^1.56.1",
