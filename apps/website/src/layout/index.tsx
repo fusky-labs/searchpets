@@ -1,8 +1,7 @@
 import dynamic from "next/dynamic"
+import { Navbar } from "@/components/Base"
 
-const Navbar = dynamic(() =>
-  import("../components/Base").then((base) => base.Navbar)
-)
+// @ts-ignore
 const Footer = dynamic(() =>
   import("../components/Base").then((base) => base.Footer)
 )
