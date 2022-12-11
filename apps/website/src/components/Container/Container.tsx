@@ -1,5 +1,6 @@
 import Head from "next/head"
 import { useRouter } from "next/router"
+import { BackToTop } from "../Buttons/BackToTop"
 
 interface ContainerProps {
   children?: React.ReactNode
@@ -27,7 +28,8 @@ export default function Container(props: ContainerProps) {
         <meta name="twitter:card" content="summary" />
         <link rel="canonical" href={SITE_URL} />
       </Head>
-      <main className="pt-20">{props.children}</main>
+			<BackToTop />
+      <main className="pt-[6.125rem]">{props.children}</main>
     </>
   )
 }

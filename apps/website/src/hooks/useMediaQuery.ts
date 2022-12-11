@@ -1,18 +1,42 @@
 import { useEffect, useState } from "react"
 
-export default function useMediaQuery(query: string) {
-	const [matches, setMatches] = useState(false)
+export default function useMediaQuery(query: string): boolean {
+	const getMatches = (query: string): boolean => {
+		if (typeof window !== 'undefined') {
+			return window.matchMedia(query).matches
+		}
+
+		return false
+	}
+
+	const [matches, setMatches] = useState<boolean>(getMatches(query))
+
+	function handleChange() {
+		setMatches(getMatches(query))
+	}
 
 	useEffect(() => {
-		const media = window.matchMedia(query)
+		const matchMedia = window.matchMedia(query)
+		
+		// Triggered at the first client-side load and if query changes
+		handleChange()
 
-		if (media.matches !== matches) setMatches(media.matches)
+		// Listen matchMedia
+		if (matchMedia.addListener) {
+			matchMedia.addListener(handleChange)
+		} else {
+			matchMedia.addEventListener('change', handleChange)
+		}
 
-		const listener = () => setMatches(media.matches)
-
-		media.addListener(listener)
-		return () => media.removeListener(listener)
-	}, [matches, query])
+		return () => {
+			if (matchMedia.removeListener) {
+				matchMedia.removeListener(handleChange)
+			} else {
+				matchMedia.removeEventListener('change', handleChange)
+			}
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [query])
 
 	return matches
 }
