@@ -14,7 +14,7 @@ export default function useScrollScreen({ value }: ScrollScreenProps) {
 
 		window.addEventListener("scroll", handleScroll)
 		return () => window.removeEventListener("scroll", handleScroll)
-	}, [])
+	}, [value])
 
 	return scroll
 }
