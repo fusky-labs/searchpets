@@ -1,3 +1,4 @@
+import { useState } from "react"
 import Link from "next/link"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
@@ -5,14 +6,16 @@ import {
   faGear,
   faList,
   faMagnifyingGlass,
-  faPaw,
-  faSun
+  faPaw
 } from "@fortawesome/free-solid-svg-icons"
 import styles from "./Navbar.module.scss"
 import { NavItem } from "./NavItem"
 import { Button } from "../../Buttons"
+import { Dropdown } from "../Dropdown"
 
 export function Navbar() {
+  const [show, setShow] = useState(false)
+
   const nav = [
     { name: "Search", link: "/", icon: faMagnifyingGlass },
     { name: "Character List", link: "/characters", icon: faPaw },
@@ -39,12 +42,10 @@ export function Navbar() {
         </nav>
       </div>
       <div className={styles["menu-actions"]}>
-        <Button transparent aria-label="Themes">
-          <FontAwesomeIcon icon={faSun} size="lg" />
+        <Button transparent aria-label="Site settings" onClick={() => setShow(!show)}>
+          <FontAwesomeIcon icon={faGear} fixedWidth />
         </Button>
-        <Button transparent aria-label="Site settings">
-          <FontAwesomeIcon icon={faGear} size="lg" />
-        </Button>
+        <Dropdown dropdownShown={show} />
       </div>
     </header>
   )

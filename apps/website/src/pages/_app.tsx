@@ -7,6 +7,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css"
 config.autoAddCss = false
 
 import { SWRConfig } from "swr"
+import { MotionConfig } from "framer-motion"
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -18,12 +19,14 @@ export default function App({ Component, pageProps }: AppProps) {
         value={{
           onError: (error, key) => {
             if (error.status !== 403 && error.status !== 404) {
-							console.error(error, key)
+              console.error(error, key)
             }
           }
         }}
       >
-        <Component {...pageProps} />
+        <MotionConfig reducedMotion="user">
+          <Component {...pageProps} />
+        </MotionConfig>
       </SWRConfig>
     </Layout>
   )

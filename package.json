@@ -1,9 +1,8 @@
 {
 	"private": true,
-	"license": "GPL-v2",
+	"license": "GPL-2.0",
 	"workspaces": [
-		"apps/*",
-		"packages/*"
+		"apps/*"
 	],
 	"scripts": {
 		"prepare": "husky install",

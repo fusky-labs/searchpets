@@ -6,7 +6,7 @@ const Footer = dynamic(() =>
   import("../components/Base").then((base) => base.Footer)
 )
 
-export default function Layout(props: ChildrenNode) {
+export default function Layout(props: ChildrenSlot) {
   return (
     <>
       <Navbar />
