@@ -1,9 +1,8 @@
 import Link from "next/link"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
-	faBars,
+  faBars,
   faGear,
-  faInfoCircle,
   faList,
   faMagnifyingGlass,
   faPaw,
@@ -11,14 +10,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 import styles from "./Navbar.module.scss"
 import { NavItem } from "./NavItem"
-import Button from "../Button"
+import { Button } from "../../Buttons"
 
-export default function Navbar() {
+export function Navbar() {
   const nav = [
     { name: "Search", link: "/", icon: faMagnifyingGlass },
     { name: "Character List", link: "/characters", icon: faPaw },
-    { name: "Chapter List", link: "/chapters", icon: faList },
-    { name: "About", link: "/about", icon: faInfoCircle }
+    { name: "Chapter List", link: "/chapters", icon: faList }
   ]
 
   return (
