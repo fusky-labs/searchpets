@@ -14,7 +14,7 @@ from redis.commands.search.indexDefinition import IndexDefinition
 
 from scraper import scrape_comic, get_comic_chapters
 from utils import fetch_url, gen_log, connect_redis
-from utils import base_url
+from utils import BASE_URL
 
 init(wrap=False)
 stream = AnsiToWin32(sys.stderr).stream
@@ -60,7 +60,7 @@ def main():
         )
         index_comic_data = RedisDB.ft(year).search(Query("*").paging(0, 500))
 
-        web = fetch_url(f"{base_url}/archive/?archive_year={year}")
+        web = fetch_url(f"{BASE_URL}/archive/?archive_year={year}")
         soup = BeautifulSoup(web.text, "html.parser")
         link_tag = soup.find_all(
             "a", {"rel": "bookmark", "href": re.compile("^https://")})

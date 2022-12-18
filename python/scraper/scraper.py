@@ -3,7 +3,7 @@ import requests
 import re
 
 from utils import fetch_url
-from utils import base_url
+from utils import BASE_URL
 
 
 def get_comic_strip(ch_link: str, pages_amount: int = 1):
@@ -34,7 +34,7 @@ def get_comic_chapters():
     first_chapter_comics = dict()
 
     # grab the chapters
-    archive_url = fetch_url(f"{base_url}/archive/")
+    archive_url = fetch_url(f"{BASE_URL}/archive/")
     chapter_dropdown = BeautifulSoup(
         archive_url.text, "html.parser").find_all("option", class_="level-0")
 
