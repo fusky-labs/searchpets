@@ -6,7 +6,7 @@ interface ClickableUI {
 	"aria-label"?: string
 }
 
-interface ClickableUI<T = undefined> extends ChildrenSlot {
+interface ClickableUI<T = HTMLElement> extends ChildrenSlot {
 	className?: string
 	onClick?: React.MouseEventHandler<T>
 	/** This is for a button component, link components don't apply */
