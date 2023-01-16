@@ -1,8 +1,15 @@
 import { defineStore } from "pinia";
 
-export const useSearchStore = defineStore("search", () => {
-  const years = ref([]);
-  const characters = ref([]);
+interface SearchStore<S = (string[] | never[])> {
+  years: S
+  characters: S
+}
 
-  return { years, characters };
+export const useSearchStore = defineStore("search", () => {
+  state: (): SearchStore => {
+    return {
+      years: [],
+      characters: []
+    }
+  }
 });
