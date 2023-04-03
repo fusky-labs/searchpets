@@ -1,18 +1,24 @@
 {
-	"private": true,
-	"license": "GPL-2.0",
-	"workspaces": [
-		"apps/*"
-	],
-	"scripts": {
-		"prepare": "husky install",
-		"dev": "yarn workspaces run dev",
-		"build": "yarn workspaces run build",
-		"lint": "yarn workspaces run lint",
-		"start": "yarn workspaces run start"
-	},
-	"devDependencies": {
-		"concurrently": "^7.6.0",
-		"husky": "^8.0.0"
-	}
+  "name": "searchpets",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxt/content": "^2.5.2",
+    "@nuxtjs/color-mode": "^3.2.0",
+    "autoprefixer": "^10.4.14",
+    "nuxt": "^3.3.3",
+    "postcss": "^8.4.21",
+    "sass": "^1.60.0",
+    "tailwindcss": "^3.3.1"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.4.7",
+    "pinia": "^2.0.33"
+  }
 }

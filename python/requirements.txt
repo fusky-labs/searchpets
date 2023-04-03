@@ -1,5 +1,0 @@
-# Global requirements.txt file
-requests
-bs4
-redis
-colorama

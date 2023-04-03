@@ -20,7 +20,7 @@
 
 ## 🏗️ Infrastructure/Tech Stack
 
-The website is written in Next.js with TypeScript; with Tailwind CSS, and the database
+The website is written in Nuxt 3, with Tailwind CSS, and the database
 and search functionality is powered by Redis. While the back-end is written in Python
 to update latest comics from the [official website](https://www.housepetscomic.com).
 
@@ -31,27 +31,10 @@ interwebs with CloudFlare.
 
 ### 📚 Prerequisites
 
-- Node.js 14 or higher (LTS recommended)
-- Python 3.9 or higher
-- Git Bash or WSL (for Windows only, required to execute Bash scripts)
+- Node.js 16 or higher (LTS recommended)
+- Python 3.10 or higher
 - Yarn (npm can still be used but we strongly recommend using
   yarn!)
-
-### 💿 Installation
-
-The installation was complicated and will be automated via Bash script.
-To install all the required Node and Python libraries, execute the `setup.sh`
-file.
-
-```console
-sh scripts/setup.sh
-```
-
-Once all the libraries have been installed, it will execute `gen.py` to
-generate a JSON file containing Housepets! data. (This will take a while!)
-
-Once it's finished, simply run `yarn dev` or `npm run dev` to
-concurrently start both Node and Python servers.
 
 ## ⚠️ Disclaimer
 
