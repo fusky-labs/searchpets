@@ -1,15 +1,15 @@
-import { defineStore } from "pinia";
+import { defineStore } from "pinia"
 
-interface SearchStore<S = (string[] | never[])> {
-  years: S
-  characters: S
+interface SearchStore {
+  years: string[] | never[]
+  characters: string[] | never[]
 }
 
 export const useSearchStore = defineStore("search", () => {
-  state: (): SearchStore => {
+  (): SearchStore => {
     return {
       years: [],
       characters: []
     }
   }
-});
+})
