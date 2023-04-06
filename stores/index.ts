@@ -5,11 +5,12 @@ interface SearchStore {
   characters: string[] | never[]
 }
 
-export const useSearchStore = defineStore("search", () => {
-  (): SearchStore => {
+export const useSearchStore = defineStore("search", {
+  state: (): SearchStore => {
     return {
       years: [],
       characters: []
     }
-  }
+  },
+  getters: {}
 })
