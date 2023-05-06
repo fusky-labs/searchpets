@@ -1,7 +1,12 @@
-import requests
-from bs4 import BeautifulSoup
 import re
-
+import requests
+import json
+import redis
+from redis.commands.search.field import NumericField
+from redis.commands.search.field import TagField
+from redis.commands.search.field import TextField
+from redis.commands.search.indexDefinition import IndexDefinition
+from bs4 import BeautifulSoup
 
 class Housepets:
     def __init__(self):
@@ -100,3 +105,22 @@ class Housepets:
                 first_comic[48:-1]: name_parse
             })
         return first_chapter_comics
+
+schema = (
+    TextField("title"),
+    TextField("comic_link"),
+    TagField("characters"),
+    TagField("chapter"),
+    TextField("image"),
+    NumericField("guest"),
+    NumericField("index", sortable=True),
+)
+
+with open("./redis_config.json") as f:
+    redis_config = json.load(f)
+    RedisDB = redis.StrictRedis(
+        host=redis_config["host"],
+        port=redis_config["port"],
+        username=redis_config["username"],
+        password=redis_config["password"]
+    )
