@@ -11,8 +11,8 @@ usePageMeta({
   <article
     class="flex flex-col items-center my-20 text-center prose-p:font-open-sans font-inter gap-y-5"
   >
-    <img
-      src="sp-logo.png"
+    <NuxtImg
+      src="./sp-logo.png"
       role="presentation"
       decoding="async"
       loading="lazy"
