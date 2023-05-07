@@ -17,9 +17,15 @@ usePageMeta({
       decoding="async"
       loading="lazy"
       class="md:w-[15vw] w-[12rem] rounded-2xl"
+      quality="80"
+      fetchpriority="high"
+      preload
     />
     <h2 class="text-4xl font-bold">Under construction</h2>
     <p>{{ label }}</p>
-    <p>© 2023 OpenFurs - an open source project licensed under GPL-2.0</p>
+    <p>
+      © 2023 OpenFurs - <i>Searchpets!</i> is an open source project licensed
+      under GPL-2.0
+    </p>
   </article>
 </template>
