@@ -5,7 +5,7 @@ from funcs import Housepets, schema, RedisDB
 
 hp = Housepets()
 year = time.strftime("%Y")
-latest_comics = hp.get_comics(year)
+latest_comics = hp.get_comic_chrono(year)
 try:
     year_db = RedisDB.ft(year).search(Query("*").paging(0, 500))
 except Exception:
