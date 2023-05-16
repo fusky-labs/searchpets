@@ -1,11 +1,11 @@
 <template>
-  <NuxtLayout>
-    <NuxtPage />
-  </NuxtLayout>
+  <div>
+    <TheBaseNavbar />
+    <main>
+      <NuxtPage />
+    </main>
+    <TheBaseFooter />
+  </div>
 </template>
 
-<style>
-body {
-  @apply dark:bg-violet-950 dark:text-violet-100;
-}
-</style>
+<style></style>
