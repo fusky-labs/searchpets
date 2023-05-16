@@ -6,7 +6,7 @@
     "--experimental"
   ],
   "[python]": {
-    "editor.defaultFormatter": "ms-vsliveshare.vsliveshare"
+    "editor.defaultFormatter": "ms-python.autopep8"
   },
   "python.formatting.provider": "none"
 }

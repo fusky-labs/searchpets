@@ -1,9 +1,3 @@
-"""
-
-DO NOT USE; ONLY FOR CROSS REFERENCE
-
-"""
-
 import re
 import requests
 import json

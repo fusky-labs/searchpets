@@ -22,6 +22,7 @@ parser.add_argument("-P",
                     help="The port of the redis database",
                     required=True)
 args = parser.parse_args()
+
 with open("redis_config.json", "w") as f:
     json.dump({
         "username": args.username,
