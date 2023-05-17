@@ -1,6 +1,6 @@
 <script setup lang="ts">
 usePageMeta({
-  title: "Searchpets is under construction",
+  title: "Home",
   description: "A new and better Searchpets is currently in the works!"
 })
 </script>

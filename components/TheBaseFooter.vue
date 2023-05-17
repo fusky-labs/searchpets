@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const currentYear = new Date().getFullYear()
-const copyright = `© 2023-${currentYear} OpenFurs`
+const copyright = `© 2022-${currentYear} OpenFurs`
 </script>
 
 <template>
