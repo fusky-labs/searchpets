@@ -2,6 +2,7 @@ import re
 import requests
 import json
 import redis
+from redis.commands.search.query import Query
 from redis.commands.search.field import NumericField
 from redis.commands.search.field import TagField
 from redis.commands.search.field import TextField
@@ -65,6 +66,13 @@ class Housepets:
             "characters": characters
         }
 
+    def get_chapter_dropdown(self):
+        """
+        Retrieves the chapter dropdown from the web page
+        """
+        chapter_dropdown = self.soup_req(f"{self.hp_url}/archive").find_all("option", class_="level-0")
+        return chapter_dropdown
+
     def get_chapter_entries(self):
         """
         grabs every chapters and their first comic
@@ -73,8 +81,7 @@ class Housepets:
 
         first_chapter_comics = dict()
 
-        chapter_dropdown = self.soup_req(
-            f"{self.hp_url}/archive").find_all("option", class_="level-0")
+        chapter_dropdown = self.get_chapter_dropdown()
 
         print(f"going trough {len(chapter_dropdown)} chaoters")
 
@@ -107,6 +114,27 @@ class Housepets:
                 first_comic_link[SLICE_URLL:-1]: name_parse
             })
         return first_chapter_comics
+
+    def get_latest_chapter(self):
+        chapter_dropdown = self.get_chapter_dropdown()
+        latest_chapter = re.sub("^(-|\d)(\d\d).\s", "", chapter_dropdown[-1].get_text())
+        return latest_chapter
+
+    def create_index(self, index_name):
+        index_def = IndexDefinition(prefix=[f"{index_name}:"],
+                                    score=0.5,
+                                    score_field="doc_score")
+        try:
+            RedisDB.ft(f"{index_name}").create_index(schema, definition=index_def)
+        except redis.exceptions.ResponseError:
+            print(f"{index_name} index already exists")
+
+    def get_year_index(self, index_name):
+        try:
+            index_keys = RedisDB.ft(index_name).search(Query("*").paging(0, 500))
+        except redis.exceptions.ResponseError:
+            return None
+        return index_keys
 
 
 schema = (

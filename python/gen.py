@@ -1,5 +1,5 @@
-from datetime import datetime
 from redis.commands.search.indexDefinition import IndexDefinition
+import redis
 from housepets import Housepets, schema, RedisDB
 from constants import current_year, initial_year
 
@@ -10,17 +10,10 @@ def main():
 
     characters = set()
 
-    for year in range(initial_year, current_year):
-        index_def = IndexDefinition(prefix=[f"{year}:"],
-                                    score=0.5,
-                                    score_field="doc_score")
-
-        try:
-            RedisDB.ft(f"{year}").create_index(schema, definition=index_def)
-        except Exception as e:
-            print(f"{year} index already exists")
-
+    for year in range(initial_year, current_year+1):
+        hp.create_index(year)
         print(year)
+
         comics = hp.get_comic_chrono(year)
         print(f"Going through {len(comics)}")
 
@@ -35,8 +28,7 @@ def main():
             if comic_link_title in chapter_entries:
                 current_chapter = chapter_entries[comic_link_title].lower()
 
-            for character in comic_characters:
-                characters.add(character)
+            characters.update(comic_characters)
 
             RedisDB.hset(
                 comic_key,
