@@ -1,6 +1,4 @@
-from redis.commands.search.indexDefinition import IndexDefinition
-import redis
-from housepets import Housepets, schema, RedisDB
+from housepets import Housepets, RedisDB
 from constants import current_year, initial_year
 
 
