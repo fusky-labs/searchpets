@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { useComicModalStore } from "~/stores"
+const comicModalStore = useComicModalStore()
+
 usePageMeta({
   title: "Search",
   description: "lol"
@@ -6,11 +9,16 @@ usePageMeta({
 </script>
 
 <template>
-  <div id="search-options">lol</div>
+  <Teleport to="body">
+    <ComicDetails />
+  </Teleport>
+  <div id="search-options">search options</div>
   <section id="comic-list-renderer" class="list-render-grid not-expanded">
-    <LazyComicItem
-      v-for="_ in Array(21)"
-      :character-count="Math.floor(Math.random() * 12)"
+    <ComicItem
+      v-for="(_, index) in Array(15)"
+      :key="index"
+      :data-item-index="index"
+      @click="comicModalStore.toggleModal()"
     />
   </section>
 </template>

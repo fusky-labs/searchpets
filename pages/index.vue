@@ -7,6 +7,6 @@ usePageMeta({
 
 <template>
   <div>
-    xd
+    placeholder content
   </div>
 </template>
