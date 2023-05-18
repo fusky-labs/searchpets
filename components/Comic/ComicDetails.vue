@@ -34,25 +34,25 @@ const placeholders = {
       <div
         class="sticky top-0 flex items-center justify-between px-6 py-4 bg-white z-[2]"
       >
-        <h2 class="text-2xl font-semibold whitespace-nowrap text-ellipsis">
-          <span class="">{{ placeholders.title }}</span>
-        </h2>
+        <h2 class="text-xl font-semibold">Comic Details</h2>
         <div class="inline-flex gap-x-1">
           <BaseButton ghost aria-label="Favorite button">
             <StarIcon :size="19" />
           </BaseButton>
-          <BaseButton
-            ghost
-            aria-label="Close button"
-            @click="comicModalStore.toggleModal()"
-          >
-            <XIcon :size="19" />
-          </BaseButton>
+          <BaseTooltipWrapper>
+            <BaseButton
+              ghost
+              aria-label="Close button"
+              @click="comicModalStore.toggleModal()"
+            >
+              <XIcon :size="19" />
+            </BaseButton>
+          </BaseTooltipWrapper>
         </div>
       </div>
       <!--Contents-->
       <div
-        class="flex flex-col lg:flex-row overflow-y-scroll max-h-[90dvh] lg:max-h-[80dvh]"
+        class="flex flex-col-reverse lg:flex-row overflow-y-scroll max-h-[90dvh] lg:max-h-[80dvh]"
       >
         <div id="img-responsive" class="w-full px-5 mb-5 select-none">
           <NuxtImg
@@ -64,24 +64,31 @@ const placeholders = {
             draggable="false"
           />
         </div>
-        <div
+        <aside
           id="details-pane"
           class="sticky top-0 flex-shrink-0 w-full lg:w-1/3 lg:h-screen bg-neutral-200"
         >
-          <div class="sticky top-0 flex flex-col p-6 pr-5 gap-y-3">
-            <div class="flex flex-col gap-x-2">
+          <div class="sticky top-0 grid place-items-start p-6 pr-5 gap-y-2.5">
+            <div class="grid gap-y-2.5">
+              <span class="text-sm font-semibold uppercase opacity-60"
+                >Characters</span
+              >
+              <ol id="character-chip-lists" class="flex flex-wrap gap-2">
+                <ComicDetailsChip name="Melanie Martinez" />
+                <ComicDetailsChip name="Kuroji" />
+                <ComicDetailsChip name="Maxie Pads" />
+                <ComicDetailsChip name="Jisoo" />
+                <ComicDetailsChip name="Jungook" />
+                <ComicDetailsChip name="Ozzy" />
+              </ol>
+            </div>
+            <div class="grid gap-x-2.5">
               <span class="text-sm font-semibold uppercase opacity-60"
                 >chapter</span
               >
               <span>Yes Babies</span>
             </div>
-            <div class="grid">
-              <span class="text-sm font-semibold uppercase opacity-60"
-                >Characters</span
-              >
-              <ol id="character-chip-lists" class="flex flex-wrap"></ol>
-            </div>
-            <div class="flex flex-col gap-x-2">
+            <div class="grid gap-x-2.5">
               <span class="text-sm font-semibold uppercase opacity-60"
                 >Date</span
               >
@@ -96,7 +103,7 @@ const placeholders = {
               Link to comic
             </BaseLink>
           </div>
-        </div>
+        </aside>
       </div>
     </div>
   </div>

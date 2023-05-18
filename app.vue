@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia"
 import { useComicModalStore } from "~/stores"
+
 const comicModalStore = useComicModalStore()
 const { isModalOpen } = storeToRefs(comicModalStore)
 
@@ -33,4 +34,5 @@ onMounted(() => {
     </main>
     <TheBaseFooter />
   </div>
+  <LazyComicDetails />
 </template>

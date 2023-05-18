@@ -9,9 +9,6 @@ usePageMeta({
 </script>
 
 <template>
-  <Teleport to="body">
-    <ComicDetails />
-  </Teleport>
   <div id="search-options">search options</div>
   <section id="comic-list-renderer" class="list-render-grid not-expanded">
     <ComicItem
