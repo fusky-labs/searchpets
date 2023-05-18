@@ -5,7 +5,7 @@ const isMenuOpen = ref(false)
 const isScrolledDown = ref(false)
 
 onMounted(() => {
-  const scrollArea = document.querySelector("[data-io-scroll-area]")
+  const scrollArea = document.querySelector("[data-scroll-area]")
 
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -30,12 +30,14 @@ onMounted(() => {
       Skip to main content
     </a>
     <!-- Menus  -->
-    <div class="absolute top-0 left-0 flex items-center py-5 pl-8 gap-x-5">
+    <div
+      class="relative top-0 left-0 flex flex-row-reverse items-center justify-between w-full px-2 py-0 lg:pl-8 lg:flex-row lg:justify-normal lg:py-5 lg:absolute gap-x-5"
+    >
       <div class="relative">
         <BaseButton ghost aria-label="Menu button">
           <MenuIcon />
         </BaseButton>
-        <div class="absolute menu-container" aria-hidden="true"></div>
+        <div class="absolute menu-container" aria-hidden="true" />
       </div>
       <NuxtLink to="/search" class="text-3xl italic font-bold select-none">
         Searchpets!
@@ -46,7 +48,7 @@ onMounted(() => {
       <BaseSearchbox />
     </div>
     <!-- Settings stuff -->
-    <div class="absolute top-0 right-0 py-5 pr-8">
+    <div class="absolute top-0 right-0 hidden py-5 pr-8 lg:block">
       <BaseButton aria-label="Settings button">
         <SettingsIcon />
       </BaseButton>

@@ -27,13 +27,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
-    <TheBaseNavbar />
-    <div data-io-scroll-area class="h-24"></div>
-    <main id="main-content">
-      <NuxtPage />
-    </main>
-    <TheBaseFooter />
-  </div>
-  <LazyComicDetailsModal />
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>

@@ -22,7 +22,7 @@ usePageMeta({
 
 <style lang="scss">
 #comic-list-renderer {
-  @apply px-12 grid mx-auto gap-4;
+  @apply px-4 md:px-8 lg:px-12 grid mx-auto gap-4;
 }
 
 .not-expanded {
