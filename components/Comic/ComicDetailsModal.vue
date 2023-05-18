@@ -10,7 +10,7 @@ const { isModalOpen } = storeToRefs(comicModalStore)
 
 const placeholders = {
   title: "Moppet Babies",
-  img: "https://www.housepetscomic.com/wp-content/uploads/2020/12/2020-12-25-tidings-of-comfort-and-joy.png",
+  img: "https://www.housepetscomic.com/wp-content/uploads/2016/07/2016-07-07-making-an-adjustment.png",
   date: new Date("2016-03-18").toLocaleDateString("en-US", {
     month: "long",
     day: "numeric",
@@ -25,6 +25,7 @@ const placeholders = {
     class="fixed inset-0 z-[5] grid place-items-center"
     :class="{ 'modal-active': isModalOpen }"
     :aria-hidden="!isModalOpen"
+    tabindex="-1"
   >
     <div
       id="modal-contents"
@@ -111,7 +112,7 @@ const placeholders = {
 
 <style lang="scss" scoped>
 #comic-details-modal {
-  @apply pointer-events-auto duration-500 backdrop-blur-[2px];
+  @apply pointer-events-auto duration-500 backdrop-blur-sm;
 
   &:not(.modal-active) {
     @apply pointer-events-none backdrop-blur-0;
@@ -127,7 +128,7 @@ const placeholders = {
 
   &::before {
     content: "";
-    @apply fixed inset-0 bg-black bg-opacity-70 transition-colors duration-500;
+    @apply fixed inset-0 bg-black bg-opacity-70 transition-colors duration-300;
   }
 }
 

@@ -29,10 +29,11 @@ onMounted(() => {
 <template>
   <div>
     <TheBaseNavbar />
-    <main>
+    <div data-io-scroll-area class="h-24"></div>
+    <main id="main-content">
       <NuxtPage />
     </main>
     <TheBaseFooter />
   </div>
-  <LazyComicDetails />
+  <LazyComicDetailsModal />
 </template>

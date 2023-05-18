@@ -5,10 +5,10 @@ withDefaults(defineProps<{ text?: string }>(), {
 </script>
 
 <template>
-  <div id="bui-tooltip-wrapper" class="relative">
+  <div class="biroui-tooltip-wrapper">
     <slot />
     <div role="tooltip" class="absolute bottom-0 left-0">
-      <slot id="bui-tooltip" name="custom-tooltip">
+      <slot name="tooltip">
         <span class="contents">{{ text }}</span>
       </slot>
     </div>
@@ -16,7 +16,8 @@ withDefaults(defineProps<{ text?: string }>(), {
 </template>
 
 <style lang="scss" scoped>
-#bui-tooltip-wrapper {
+.biroui-tooltip-wrapper {
+  @apply relative;
   * ~ [role="tooltip"] {
     @apply opacity-0 pointer-events-none transition-[opacity,transform];
   }

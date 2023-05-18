@@ -3,7 +3,7 @@ import { SearchIcon } from "lucide-vue-next"
 </script>
 
 <template>
-  <div id="bui-searchbox-for-sp" class="relative">
+  <div id="biroui-searchbox" class="relative">
     <div
       id="search-input-wrapper"
       class="relative overflow-hidden border border-blue-500 rounded-md"
