@@ -6,8 +6,6 @@ def main():
     hp = Housepets()
     chapter_entries = hp.get_chapter_entries()
 
-    characters = set()
-
     for year in range(initial_year, current_year+1):
         hp.create_index(year)
         print(year)
@@ -26,16 +24,13 @@ def main():
             if comic_link_title in chapter_entries:
                 current_chapter = chapter_entries[comic_link_title].lower()
 
-            characters.update(comic_characters)
+            if comic_characters: RedisDB.sadd("characters_db", *comic_characters)
 
             RedisDB.hset(
                 comic_key,
                 mapping=comic_data["comic"] | {"chapter": current_chapter}
             )
-
-    RedisDB.lpush("characters_db", *characters)
-    RedisDB.lpush("chapter_db", *chapter_entries.keys())
-
+        RedisDB.sadd("chapter_db", *chapter_entries.values())
 
 if __name__ == "__main__":
     main()
