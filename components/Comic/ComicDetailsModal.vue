@@ -4,9 +4,9 @@ import { XIcon, LinkIcon, StarIcon } from "lucide-vue-next"
 import { storeToRefs } from "pinia"
 import { useModalStore } from "~/stores"
 
-const comicModalStore = useModalStore()
+const modalStore = useModalStore()
 
-const { isComicModalOpen } = storeToRefs(comicModalStore)
+const { isComicModalOpen } = storeToRefs(modalStore)
 
 const placeholders = {
   title: "Moppet Babies",
@@ -17,6 +17,7 @@ const placeholders = {
     year: "numeric"
   })
 }
+
 </script>
 
 <template>
@@ -28,7 +29,9 @@ const placeholders = {
     <div
       class="sticky top-0 flex items-center gap-x-2.5 px-6 py-4 bg-white z-[2]"
     >
-      <span class="w-full text-xl font-semibold whitespace-nowrap text-ellipsis">Comic Title Placeholder</span>
+      <span class="w-full text-xl font-semibold whitespace-nowrap text-ellipsis"
+        >Comic Title Placeholder</span
+      >
       <div class="inline-flex gap-x-1">
         <BaseButton ghost aria-label="Favorite button">
           <StarIcon :size="19" />
@@ -37,7 +40,7 @@ const placeholders = {
           <BaseButton
             ghost
             aria-label="Close button"
-            @click="comicModalStore.toggleComicModal()"
+            @click="modalStore.toggleComicModal()"
           >
             <XIcon :size="19" />
           </BaseButton>
@@ -51,12 +54,14 @@ const placeholders = {
       <!-- Responsive Image -->
       <div id="img-responsive" class="w-full px-5 mb-5 select-none">
         <NuxtImg
+          format="webp"
           :src="placeholders.img"
           class="w-full"
           role="presentation"
-          loading="lazy"
-          decoding="async"
           draggable="false"
+          quality="80"
+          loading="lazy"
+          fetchpriority="high"
         />
       </div>
       <!-- Details -->
@@ -97,6 +102,12 @@ const placeholders = {
               Link to comic
             </BaseLink>
           </div>
+          <!-- DevOnly -->
+          <DevOnly>
+            <div class="col-span-2 grid gap-y-1.5">
+              <span>Debug Information</span>
+            </div>
+          </DevOnly>
         </div>
       </aside>
     </div>
