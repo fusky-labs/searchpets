@@ -29,9 +29,8 @@ const isoDate = parseDate.toISOString()
 
 <template>
   <div
-    id="comic-item"
-    class="flex flex-col px-5 py-4 border rounded-md shadow-lg border-neutral-400"
     aria-labelledby="comic-title"
+    class="flex flex-col px-5 py-4 border rounded-md shadow-lg border-neutral-400"
   >
     <div class="flex items-center justify-between">
       <h2 class="text-xl" id="comic-title">{{ title }}</h2>
