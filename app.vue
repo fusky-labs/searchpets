@@ -27,12 +27,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
-    <TheBaseNavbar />
-    <main>
-      <NuxtPage />
-    </main>
-    <TheBaseFooter />
-  </div>
-  <LazyComicDetails />
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>

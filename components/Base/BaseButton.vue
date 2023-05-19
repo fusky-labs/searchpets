@@ -9,9 +9,9 @@ const props = defineProps<{
 <template>
   <button
     :class="[
-      props.reset ? '' : 'bui-styled',
-      props.ghost ? 'bui-type-ghost' : '',
-      props.icon ? 'has-icon' : ''
+      props.reset ? '' : 'biroui-button',
+      props.ghost ? 'biroui-button-ghost' : '',
+      props.icon ? 'biroui-has-icon' : ''
     ]"
   >
     <slot />
@@ -19,19 +19,19 @@ const props = defineProps<{
 </template>
 
 <style lang="scss">
-.bui-styled {
+.biroui-button {
   @apply rounded-md border border-blue-600 bg-blue-200 hover:bg-blue-300 transition-colors;
 
-  &:not(.has-icon) {
+  &:not(.biroui-has-icon) {
     @apply px-3 py-2.5;
   }
 
-  &.has-icon {
+  &.biroui-has-icon {
     @apply p-2.5;
   }
 }
 
-.bui-type-ghost {
+.biroui-button-ghost {
   @apply bg-transparent border-transparent hover:bg-blue-300;
 }
 </style>
