@@ -9,7 +9,7 @@ usePageMeta({
 </script>
 
 <template>
-  <div id="search-options">search options</div>
+  <section id="search-options">search options</section>
   <section id="comic-list-renderer" class="list-render-grid not-expanded">
     <ComicItem
       v-for="(_, index) in Array(15)"

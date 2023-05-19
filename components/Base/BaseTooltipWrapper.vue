@@ -5,9 +5,9 @@ withDefaults(defineProps<{ text?: string }>(), {
 </script>
 
 <template>
-  <div class="biroui-tooltip-wrapper">
+  <div biroui-tooltip-wrapper>
     <slot />
-    <div role="tooltip" class="absolute bottom-0 left-0">
+    <div biroui-tooltip role="tooltip">
       <slot name="tooltip">
         <span class="contents">{{ text }}</span>
       </slot>
@@ -15,15 +15,20 @@ withDefaults(defineProps<{ text?: string }>(), {
   </div>
 </template>
 
-<style lang="scss" scoped>
-.biroui-tooltip-wrapper {
+<style lang="scss">
+[biroui-tooltip-wrapper] {
   @apply relative;
-  * ~ [role="tooltip"] {
-    @apply opacity-0 pointer-events-none transition-[opacity,transform];
+
+  * ~ [biroui-tooltip] {
+    @apply opacity-0 pointer-events-none transition-[opacity,transform] z-10 bg-white p-3.5 rounded-lg shadow-lg;
   }
 
-  *:hover ~ [role="tooltip"] {
+  *:hover ~ [biroui-tooltip] {
     @apply opacity-100;
   }
+}
+
+[biroui-tooltip] {
+  position: absolute;
 }
 </style>

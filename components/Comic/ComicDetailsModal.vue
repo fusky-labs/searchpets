@@ -11,19 +11,14 @@ const { isComicModalOpen } = storeToRefs(modalStore)
 const placeholders = {
   title: "Moppet Babies",
   img: "https://www.housepetscomic.com/wp-content/uploads/2016/07/2016-07-07-making-an-adjustment.png",
-  date: new Date("2016-03-18").toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric"
-  })
+  date: "2016-03-18"
 }
-
 </script>
 
 <template>
   <ModalWrapper
     :modal-active="isComicModalOpen"
-    modal-class="absolute top-0 overflow-hidden rounded-md lg:top-unset"
+    modal-class="absolute inset-0 overflow-hidden rounded-none lg:rounded-md lg:inset-unset"
   >
     <!--Title bar-->
     <div
@@ -52,7 +47,7 @@ const placeholders = {
       class="flex flex-col lg:flex-row overflow-y-scroll max-h-[90dvh] lg:max-h-[80dvh]"
     >
       <!-- Responsive Image -->
-      <div id="img-responsive" class="w-full px-5 mb-5 select-none">
+      <div id="img-responsive" class="relative w-full px-5 mb-5 select-none">
         <NuxtImg
           format="webp"
           :src="placeholders.img"
@@ -67,16 +62,18 @@ const placeholders = {
       <!-- Details -->
       <aside
         id="details-pane"
-        class="sticky top-0 flex-shrink-0 w-full lg:w-1/3 lg:h-screen bg-neutral-200"
+        class="sticky top-0 flex-shrink-0 w-full overflow-x-hidden lg:w-1/3 lg:h-[90%]"
       >
-        <div class="sticky top-0 grid place-items-start p-6 pr-5 gap-3.5">
+        <div
+          class="sticky top-0 grid place-items-start grid-cols-2 p-6 pr-5 gap-3.5"
+        >
           <div class="grid gap-y-1.5">
-            <span class="text-sm font-semibold uppercase opacity-60">Date</span>
-            <time>{{ placeholders.date }}</time>
+            <span class="text-sm font-semibold uppercase opacity-60">DATE</span>
+            <ComicDate :date="placeholders.date" />
           </div>
           <div class="grid gap-y-1.5">
             <span class="text-sm font-semibold uppercase opacity-60"
-              >chapter</span
+              >CHAPTER</span
             >
             <span>Yes Babies</span>
           </div>
@@ -85,9 +82,9 @@ const placeholders = {
               >Characters</span
             >
             <ul class="flex flex-wrap gap-2">
-              <ComicDetailsChip name="Maxie Pads" />
+              <ComicDetailsChip name="Fox" />
+              <ComicDetailsChip name="Mungo" />
               <ComicDetailsChip name="Melanie Martinez" />
-              <ComicDetailsChip name="Kuroji" />
             </ul>
           </div>
           <div

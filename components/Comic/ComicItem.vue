@@ -46,12 +46,11 @@ const isoDate = parseDate.toISOString()
       decoding="async"
       draggable="false"
     />
-    <div class="grid grid-flow-col">
-      <span> {{ characterCount }} characters </span>
+    <div class="flex justify-between">
+      <ComicDate :date="props.date" />
       <span>
         {{ chapter }}
       </span>
-      <time :datetime="isoDate">{{ formattedDate }}</time>
     </div>
   </div>
 </template>
