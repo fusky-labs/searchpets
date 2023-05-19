@@ -14,7 +14,8 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: {
-        lang: "en"
+        lang: "en",
+        dir: "ltr"
       },
       link: [
         { rel: "shortcut icon", href: "./sp-logo.png", fetchpriority: "high" }
