@@ -7,6 +7,7 @@ export default defineNuxtConfig({
         autoImports: ["defineStore", ["defineStore", "definePiniaStore"]]
       }
     ],
+    "@nuxt/content",
     "@nuxt/image-edge",
     "@nuxtjs/color-mode"
   ],
@@ -39,16 +40,20 @@ export default defineNuxtConfig({
       ]
     }
   },
-  typescript: {
-    shim: false,
-    strict: true
+  routeRules: {
+    "/about": { static: true }
   },
   webpack: {
     optimizeCSS: true
   },
-
+  nitro: {
+    prerender: {
+      routes: ["/sitemap.xml"]
+    }
+  },
   image: {
     domains: [
+      "housepetscomic.com",
       "www.housepetscomic.com",
       "housepetscomic.fandom.com",
       "res.cloudinary.com"
@@ -62,5 +67,9 @@ export default defineNuxtConfig({
       tailwindcss: {},
       autoprefixer: {}
     }
+  },
+  typescript: {
+    shim: false,
+    strict: true
   }
 })

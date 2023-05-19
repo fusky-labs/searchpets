@@ -1,19 +1,17 @@
 <script setup lang="ts">
-const props = withDefaults(
-  defineProps<{ modalActive?: boolean; modalClass?: string }>(),
-  {
-    modalActive: false
-  }
-)
+const props = defineProps<{
+  modalActive?: boolean
+  modalClass?: string
+}>()
 
-const renderContent = ref(false)
+const renderModalContent = ref(false)
 
 watch(
-  () => toRef(props.modalActive),
+  (): any => toRef(props.modalActive),
   () => {
     !props.modalActive
-      ? setTimeout(() => (renderContent.value = false), 300)
-      : (renderContent.value = true)
+      ? setTimeout(() => (renderModalContent.value = false), 300)
+      : (renderModalContent.value = true)
   }
 )
 </script>
@@ -21,7 +19,7 @@ watch(
 <template>
   <div class="biroui-modal-container" :class="{ 'biroui-active': modalActive }">
     <div data-biroui-modal-content :class="modalClass">
-      <slot v-if="renderContent" />
+      <slot v-if="renderModalContent" />
     </div>
   </div>
 </template>
