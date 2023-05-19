@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useComicModalStore } from "~/stores"
-const comicModalStore = useComicModalStore()
+import { useModalStore } from "~/stores"
+const comicModalStore = useModalStore()
 
 usePageMeta({
   title: "Search",
@@ -15,7 +15,7 @@ usePageMeta({
       v-for="(_, index) in Array(15)"
       :key="index"
       :data-item-index="index"
-      @click="comicModalStore.toggleModal()"
+      @click="comicModalStore.toggleComicModal()"
     />
   </section>
 </template>

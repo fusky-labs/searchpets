@@ -2,11 +2,11 @@
 import { XIcon, LinkIcon, StarIcon } from "lucide-vue-next"
 
 import { storeToRefs } from "pinia"
-import { useComicModalStore } from "~/stores"
+import { useModalStore } from "~/stores"
 
-const comicModalStore = useComicModalStore()
+const comicModalStore = useModalStore()
 
-const { isModalOpen } = storeToRefs(comicModalStore)
+const { isComicModalOpen } = storeToRefs(comicModalStore)
 
 const placeholders = {
   title: "Moppet Babies",
@@ -21,7 +21,7 @@ const placeholders = {
 
 <template>
   <ModalWrapper
-    :modal-active="isModalOpen"
+    :modal-active="isComicModalOpen"
     modal-class="absolute top-0 overflow-hidden rounded-md lg:top-unset"
   >
     <!--Title bar-->
@@ -37,7 +37,7 @@ const placeholders = {
           <BaseButton
             ghost
             aria-label="Close button"
-            @click="comicModalStore.toggleModal()"
+            @click="comicModalStore.toggleComicModal()"
           >
             <XIcon :size="19" />
           </BaseButton>

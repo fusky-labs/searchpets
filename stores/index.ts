@@ -1,14 +1,18 @@
 import { defineStore } from "pinia"
 
-export const useComicModalStore = defineStore("comicModal", {
-  state: () => {
+export const useModalStore = defineStore("modalStates", {
+  state: (): { [modalState: string]: boolean } => {
     return {
-      isModalOpen: false
+      isComicModalOpen: false,
+      isDialogOpen: false
     }
   },
   actions: {
-    toggleModal() {
-      this.isModalOpen = !this.isModalOpen
+    toggleComicModal() {
+      this.isComicModalOpen = !this.isComicModalOpen
+    },
+    toggleDialog() {
+      this.isDialogOpen = !this.isDialogOpen
     }
   }
 })
