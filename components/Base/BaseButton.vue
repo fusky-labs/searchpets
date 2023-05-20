@@ -4,6 +4,10 @@ const props = defineProps<{
   icon?: boolean
   ghost?: boolean
 }>()
+
+const baseButtonRef = ref<HTMLButtonElement | null>(null)
+
+defineExpose({ baseButtonRef })
 </script>
 
 <template>
@@ -13,6 +17,7 @@ const props = defineProps<{
       props.ghost ? 'biroui-button-ghost' : '',
       props.icon ? 'biroui-has-icon' : ''
     ]"
+    ref="baseButtonRef"
   >
     <slot />
   </button>

@@ -31,3 +31,9 @@ onMounted(() => {
     <NuxtPage />
   </NuxtLayout>
 </template>
+
+<style>
+.lucide {
+  @apply pointer-events-none;
+}
+</style>

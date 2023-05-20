@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { SettingsIcon, MenuIcon } from "lucide-vue-next"
 
-const isMenuOpen = ref(false)
 const isScrolledDown = ref(false)
 
 onMounted(() => {
-  const scrollArea = document.querySelector("[data-scroll-area]")
+  const scrollArea: HTMLDivElement | null =
+    document.querySelector("[data-scroll-area]")
 
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -14,6 +14,28 @@ onMounted(() => {
   })
 
   io.observe(scrollArea!)
+})
+
+const toggleContainerRef = ref<HTMLDivElement>()
+const menuBtnRef = ref()
+const isMenuOpen = ref(false)
+
+onMounted(() => {
+  const menuBtn: HTMLButtonElement = menuBtnRef.value.baseButtonRef
+
+  window.onkeydown = (e) => {
+    const escKey = e.key === "Escape"
+    if (escKey) isMenuOpen.value = false
+  }
+
+  window.onclick = (e) => {
+    const isModalContents =
+      e.target == menuBtn ||
+      e.target === toggleContainerRef.value!.lastElementChild
+
+    if (!isMenuOpen.value) return
+    if (!isModalContents) isMenuOpen.value = false
+  }
 })
 </script>
 
@@ -33,13 +55,33 @@ onMounted(() => {
     <div
       class="relative top-0 left-0 flex flex-row-reverse items-center justify-between w-full px-2 py-0 lg:pl-8 lg:flex-row lg:justify-normal lg:py-4 lg:absolute gap-x-5"
     >
-      <div class="relative">
-        <BaseButton ghost aria-label="Menu button">
+      <!-- !isolate -->
+      <div class="relative" ref="toggleContainerRef">
+        <BaseButton
+          ghost
+          aria-label="Menu button"
+          ref="menuBtnRef"
+          @click="isMenuOpen = !isMenuOpen"
+        >
           <MenuIcon />
         </BaseButton>
-        <div class="absolute menu-container" aria-hidden="true" />
+        <div
+          class="absolute top-14 p-6 bg-white shadow-lg border rounded-md menu-container transition-[opacity,transform] duration-200"
+          :aria-hidden="!isMenuOpen ? true : undefined"
+          :class="[
+            !isMenuOpen
+              ? 'opacity-0 pointer-events-none -translate-y-1'
+              : 'opacity-100'
+          ]"
+        >
+          this my status
+        </div>
       </div>
-      <NuxtLink to="/search" class="text-[1.75rem] italic font-bold select-none">
+      <!-- !isolate -->
+      <NuxtLink
+        to="/search"
+        class="text-[1.75rem] italic font-bold select-none"
+      >
         Searchpets!
       </NuxtLink>
     </div>

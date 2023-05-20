@@ -56,6 +56,7 @@ export default defineNuxtConfig({
       "housepetscomic.com",
       "www.housepetscomic.com",
       "housepetscomic.fandom.com",
+      "weasyl.com",
       "res.cloudinary.com"
     ],
     cloudinary: {
