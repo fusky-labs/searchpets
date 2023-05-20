@@ -23,11 +23,6 @@ const isMenuOpen = ref(false)
 onMounted(() => {
   const menuBtn: HTMLButtonElement = menuBtnRef.value.baseButtonRef
 
-  window.onkeydown = (e) => {
-    const escKey = e.key === "Escape"
-    if (escKey) isMenuOpen.value = false
-  }
-
   window.onclick = (e) => {
     const isModalContents =
       e.target == menuBtn ||
