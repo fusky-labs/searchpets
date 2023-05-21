@@ -21,6 +21,15 @@ const props = withDefaults(defineProps<ComicItemProps>(), {
   isFavorite: false
 })
 
+const emit = defineEmits<{
+  (e: "expandToModal", payLoad?: object): void
+}>()
+
+const handleImgClick = () => emit("expandToModal")
+
+const loadImgNotifier = () => {
+  console.log(`${props.title} is loaded`)
+}
 </script>
 
 <template>
@@ -34,14 +43,20 @@ const props = withDefaults(defineProps<ComicItemProps>(), {
         <StarIcon :size="18" />
       </BaseButton>
     </div>
-    <NuxtImg
-      :src="props.img"
-      class="object-contain aspect-[4/3]"
-      role="presentation"
-      loading="lazy"
-      decoding="async"
-      draggable="false"
-    />
+    <div class="aspect-[16/12]">
+      <NuxtImg
+        @click="handleImgClick"
+        :src="props.img"
+        class="object-contain aspect-[4/3] cursor-zoom-in"
+        role="presentation"
+        loading="lazy"
+        decoding="async"
+        draggable="false"
+        :quality="80"
+        @load="loadImgNotifier"
+      />
+    </div>
+
     <div class="flex justify-between">
       <ComicDate :date="props.date" />
       <span>

@@ -5,7 +5,9 @@ import {
   ChevronsRightLeftIcon
 } from "lucide-vue-next"
 import { useModalStore } from "~/stores"
-const comicModalStore = useModalStore()
+import { spMockData } from "~/constants"
+
+// const comicModalStore = useModalStore()
 
 usePageMeta({
   title: "Search",
@@ -13,6 +15,10 @@ usePageMeta({
 })
 
 const isExpanded = ref(false)
+
+const getModalInfo = (index: number) => {
+  console.log(`clicked on index ${index}`)
+}
 </script>
 
 <template>
@@ -30,30 +36,62 @@ const isExpanded = ref(false)
         <ChevronsRightLeftIcon :size="20" v-else />
         <span>{{ !isExpanded ? "Expand" : "Collapse" }}</span>
       </BaseButton>
-      <Dropdown>
+      <Dropdown menu-dir="right">
         <BaseButton ghost class="flex items-center !py-1.5 !px-4 gap-x-2">
           <ListFilterIcon :size="20" />
           <span>Sort</span>
         </BaseButton>
         <template #contents>
-          lol
+          <ul class="flex flex-col">
+            <li class="">
+              <BaseButton
+                reset
+                class="w-full px-4 py-2 text-left hover:bg-blue-300"
+                >Ascending</BaseButton
+              >
+            </li>
+            <li class="">
+              <BaseButton
+                reset
+                class="w-full px-4 py-2 text-left hover:bg-blue-300"
+                >Desending</BaseButton
+              >
+            </li>
+            <li class="">
+              <BaseButton
+                reset
+                class="w-full px-4 py-2 text-left hover:bg-blue-300"
+                >Favs</BaseButton
+              >
+            </li>
+            <li class="">
+              <BaseButton
+                reset
+                class="w-full px-4 py-2 text-left hover:bg-blue-300"
+                >NotFavs</BaseButton
+              >
+            </li>
+          </ul>
         </template>
       </Dropdown>
     </section>
     <!-- Comic Lists -->
     <section id="comic-list-renderer" class="list-render-grid">
       <ComicItem
-        v-for="(_, index) in Array(15)"
+        v-for="(item, index) in spMockData"
         :key="index"
-        @click="comicModalStore.toggleComicModal()"
+        :title="item.title"
+        :img="item.image"
+        @expandToModal="getModalInfo(index)"
       />
     </section>
   </div>
 </template>
+<!-- @click="comicModalStore.toggleComicModal()" -->
 
 <style lang="scss">
 #comic-list-renderer {
-  @apply px-4 md:px-8 lg:px-12 grid mx-auto gap-4;
+  @apply px-4 md:px-8 lg:px-12 grid mx-auto gap-4 w-full;
 }
 
 .not-expanded {
@@ -66,5 +104,9 @@ const isExpanded = ref(false)
 
 :is(.not-expanded, .is-expanded) .list-render-grid {
   @apply grid-cols-1 lg:grid-cols-2;
+}
+
+.is-expanded .list-render-grid {
+  @apply 2xl:grid-cols-3;
 }
 </style>
