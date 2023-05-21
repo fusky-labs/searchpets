@@ -21,10 +21,6 @@ const props = withDefaults(defineProps<ComicItemProps>(), {
   isFavorite: false
 })
 
-const parseDate = new Date(props.date)
-
-const formattedDate = parseDate.toLocaleDateString()
-const isoDate = parseDate.toISOString()
 </script>
 
 <template>

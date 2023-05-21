@@ -1,8 +1,9 @@
 <template>
+  <div data-scroll-area />
   <div id="searchpets">
-    <div data-scroll-area />
     <TheBaseNavbar />
-    <main id="main-content">
+    <BackToTop />
+    <main id="main-content" class="flex justify-center">
       <slot />
     </main>
     <TheBaseFooter />

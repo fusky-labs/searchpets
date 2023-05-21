@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 defineProps<{ statusCode?: number; message?: string }>()
 </script>
 

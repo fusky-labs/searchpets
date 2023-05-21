@@ -1,23 +1,54 @@
 <script setup lang="ts">
+import {
+  ListFilterIcon,
+  ChevronsLeftRightIcon,
+  ChevronsRightLeftIcon
+} from "lucide-vue-next"
 import { useModalStore } from "~/stores"
 const comicModalStore = useModalStore()
 
 usePageMeta({
   title: "Search",
-  description: "lol"
+  description: "X"
 })
+
+const isExpanded = ref(false)
 </script>
 
 <template>
-  <section id="search-options">search options</section>
-  <section id="comic-list-renderer" class="list-render-grid not-expanded">
-    <ComicItem
-      v-for="(_, index) in Array(15)"
-      :key="index"
-      :data-item-index="index"
-      @click="comicModalStore.toggleComicModal()"
-    />
-  </section>
+  <div
+    class="grid w-full transition-[max-width] duration-300 gap-y-4"
+    :class="[!isExpanded ? 'not-expanded' : 'is-expanded']"
+  >
+    <section id="search-options" class="flex px-12 gap-x-0.5 justify-end">
+      <BaseButton
+        ghost
+        class="hidden items-center !py-1.5 !px-4 gap-x-2 xl:flex"
+        @click="isExpanded = !isExpanded"
+      >
+        <ChevronsLeftRightIcon :size="20" v-if="!isExpanded" />
+        <ChevronsRightLeftIcon :size="20" v-else />
+        <span>{{ !isExpanded ? "Expand" : "Collapse" }}</span>
+      </BaseButton>
+      <Dropdown>
+        <BaseButton ghost class="flex items-center !py-1.5 !px-4 gap-x-2">
+          <ListFilterIcon :size="20" />
+          <span>Sort</span>
+        </BaseButton>
+        <template #contents>
+          lol
+        </template>
+      </Dropdown>
+    </section>
+    <!-- Comic Lists -->
+    <section id="comic-list-renderer" class="list-render-grid">
+      <ComicItem
+        v-for="(_, index) in Array(15)"
+        :key="index"
+        @click="comicModalStore.toggleComicModal()"
+      />
+    </section>
+  </div>
 </template>
 
 <style lang="scss">
@@ -29,12 +60,11 @@ usePageMeta({
   @apply max-w-screen-xl 2xl:max-w-screen-2xl;
 }
 
-.list-render-grid {
-  &.not-expanded {
-    @apply grid-cols-1 lg:grid-cols-2;
-  }
-  &.is-expanded {
-    @apply grid-cols-1 lg:grid-cols-2 xl:grid-cols-3;
-  }
+.is-expanded {
+  @apply max-w-full;
+}
+
+:is(.not-expanded, .is-expanded) .list-render-grid {
+  @apply grid-cols-1 lg:grid-cols-2;
 }
 </style>

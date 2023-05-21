@@ -10,7 +10,7 @@ const copyright = `© 2022-${currentYear} OpenFurs`
     <p>
       <strong>NOTE:&nbsp;</strong
       ><span class="name-emphasis">Searchpets!</span>
-      is an open source project created by Kuroji Fusky and maxthecomputerfox,
+      is an open source project created by maxthecomputerfox and Kuroji Fusky,
       two passionate developers from Southeast Asia; licensed under GNU General
       Public License v2.0. SP does not own any of the contents used on this
       website and has no direct affiliation with

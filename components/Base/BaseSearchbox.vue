@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import { SearchIcon } from "lucide-vue-next"
 </script>
 

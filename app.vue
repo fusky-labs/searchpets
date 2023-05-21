@@ -3,26 +3,24 @@ import { storeToRefs } from "pinia"
 import { useModalStore } from "~/stores"
 
 const comicModalStore = useModalStore()
-const { isComicModalOpen } = storeToRefs(comicModalStore)
+const { isComicModalOpen: modalState } = storeToRefs(comicModalStore)
 
 onMounted(() => {
-  const $htmlEl = document.documentElement
+  const htmlStyle = document.documentElement.style
 
-  $htmlEl.style.overflowY = "auto"
+  htmlStyle.overflowY = "auto"
 
-  watch(isComicModalOpen, () => {
-    !isComicModalOpen.value
-      ? ($htmlEl.style.overflowY = "auto")
-      : ($htmlEl.style.overflowY = "hidden")
+  watch(modalState, () => {
+    !modalState.value
+      ? (htmlStyle.overflowY = "auto")
+      : (htmlStyle.overflowY = "hidden")
   })
 
-  window.onkeydown = (e) => {
-    if (isComicModalOpen.value) {
-      if (e.key === "Escape") {
-        isComicModalOpen.value = false
-      }
+  window.addEventListener("keydown", (e) => {
+    if (modalState.value && e.key === "Escape") {
+      modalState.value = false
     }
-  }
+  })
 })
 </script>
 

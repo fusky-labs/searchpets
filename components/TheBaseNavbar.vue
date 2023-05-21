@@ -1,42 +1,20 @@
 <script setup lang="ts">
-import { SettingsIcon, MenuIcon } from "lucide-vue-next"
+import { SettingsIcon, MenuIcon, CatIcon } from "lucide-vue-next"
 
 const isScrolledDown = ref(false)
 
 onMounted(() => {
-  const scrollArea: HTMLDivElement | null =
-    document.querySelector("[data-scroll-area]")
+  const io = new IntersectionObserver(
+    ([e]) => (isScrolledDown.value = !e.isIntersecting)
+  )
 
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      isScrolledDown.value = !entry.isIntersecting
-    })
-  })
-
-  io.observe(scrollArea!)
-})
-
-const toggleContainerRef = ref<HTMLDivElement>()
-const menuBtnRef = ref()
-const isMenuOpen = ref(false)
-
-onMounted(() => {
-  const menuBtn: HTMLButtonElement = menuBtnRef.value.baseButtonRef
-
-  window.onclick = (e) => {
-    const isModalContents =
-      e.target == menuBtn ||
-      e.target === toggleContainerRef.value!.lastElementChild
-
-    if (!isMenuOpen.value) return
-    if (!isModalContents) isMenuOpen.value = false
-  }
+  io.observe(document.querySelector("[data-scroll-area]")!)
 })
 </script>
 
 <template>
   <header
-    class="fixed inset-0 flex justify-center px-8 py-4 transition-shadow bg-white bottom-unset"
+    class="fixed inset-0 flex justify-center px-8 py-4 transition-shadow bg-white bottom-unset z-[5]"
     :class="[isScrolledDown ? 'shadow-lg' : 'shadow-none']"
   >
     <!-- Skip to main content -->
@@ -50,29 +28,36 @@ onMounted(() => {
     <div
       class="relative top-0 left-0 flex flex-row-reverse items-center justify-between w-full px-2 py-0 lg:pl-8 lg:flex-row lg:justify-normal lg:py-4 lg:absolute gap-x-5"
     >
-      <!-- !isolate -->
-      <div class="relative" ref="toggleContainerRef">
-        <BaseButton
-          ghost
-          aria-label="Menu button"
-          ref="menuBtnRef"
-          @click="isMenuOpen = !isMenuOpen"
-        >
+      <Dropdown>
+        <BaseButton ghost aria-label="Menu button">
           <MenuIcon />
         </BaseButton>
-        <div
-          class="absolute top-14 p-6 bg-white shadow-lg border rounded-md menu-container transition-[opacity,transform] duration-200"
-          :aria-hidden="!isMenuOpen ? true : undefined"
-          :class="[
-            !isMenuOpen
-              ? 'opacity-0 pointer-events-none -translate-y-1'
-              : 'opacity-100'
-          ]"
-        >
-          this my status
-        </div>
-      </div>
-      <!-- !isolate -->
+        <template #contents>
+          <div class="grid">
+            <NuxtLink
+              to="/characters"
+              class="px-4 py-2.5 hover:bg-blue-100 flex items-center gap-x-3"
+            >
+              <CatIcon :size="20" />
+              <span>Characters</span>
+            </NuxtLink>
+            <NuxtLink
+              to="/chapters"
+              class="px-4 py-2.5 hover:bg-blue-100 flex items-center gap-x-3"
+            >
+              <CatIcon :size="20" />
+              <span>Chapter Arcs</span>
+            </NuxtLink>
+            <NuxtLink
+              to="/about"
+              class="px-4 py-2.5 hover:bg-blue-100 flex items-center gap-x-3"
+            >
+              <CatIcon :size="20" />
+              <span>About <em>Searchpets!</em></span>
+            </NuxtLink>
+          </div>
+        </template>
+      </Dropdown>
       <NuxtLink
         to="/search"
         class="text-[1.75rem] italic font-bold select-none"
