@@ -43,6 +43,7 @@ export default defineNuxtConfig({
   routeRules: {
     "/about": { static: true }
   },
+  srcDir: "src/",
   webpack: {
     optimizeCSS: true
   },
