@@ -7,7 +7,7 @@ import {
 import { useModalStore } from "~/stores"
 import { spMockData } from "~/constants"
 
-// const comicModalStore = useModalStore()
+const lol = useModalStore()
 
 usePageMeta({
   title: "Search",
@@ -15,10 +15,6 @@ usePageMeta({
 })
 
 const isExpanded = ref(false)
-
-const getModalInfo = (index: number) => {
-  console.log(`clicked on index ${index}`)
-}
 </script>
 
 <template>
@@ -36,7 +32,7 @@ const getModalInfo = (index: number) => {
         <ChevronsRightLeftIcon :size="20" v-else />
         <span>{{ !isExpanded ? "Expand" : "Collapse" }}</span>
       </BaseButton>
-      <Dropdown menu-dir="right">
+      <Dropdown menu-dir="right" :offset="3">
         <BaseButton ghost class="flex items-center !py-1.5 !px-4 gap-x-2">
           <ListFilterIcon :size="20" />
           <span>Sort</span>
@@ -82,12 +78,11 @@ const getModalInfo = (index: number) => {
         :key="index"
         :title="item.title"
         :img="item.image"
-        @expandToModal="getModalInfo(index)"
+        @expandToModal="lol.updateComicModal(index)"
       />
     </section>
   </div>
 </template>
-<!-- @click="comicModalStore.toggleComicModal()" -->
 
 <style lang="scss">
 #comic-list-renderer {

@@ -6,7 +6,15 @@ import { useModalStore } from "~/stores"
 
 const modalStore = useModalStore()
 
-const { isComicModalOpen } = storeToRefs(modalStore)
+const {
+  isComicModalOpen,
+  characters,
+  title,
+  comic_link,
+  image,
+  comicIndex,
+  query
+} = storeToRefs(modalStore)
 
 const placeholders = {
   title: "Moppet Babies",
@@ -18,14 +26,15 @@ const placeholders = {
 <template>
   <ModalWrapper
     :modal-active="isComicModalOpen"
-    modal-class="absolute inset-0 overflow-hidden rounded-none lg:rounded-md lg:inset-unset"
+    modal-class="absolute inset-0 w-10/12 overflow-hidden rounded-none lg:rounded-md lg:inset-unset"
   >
     <!--Title bar-->
     <div
       class="sticky top-0 flex items-center gap-x-2.5 px-6 py-4 bg-white z-[2]"
     >
-      <span class="w-full text-xl font-semibold whitespace-nowrap text-ellipsis"
-        >Comic Title Placeholder</span
+      <span
+        class="w-full text-xl font-semibold whitespace-nowrap text-ellipsis"
+        >{{ title }}</span
       >
       <div class="inline-flex gap-x-1">
         <BaseButton ghost aria-label="Favorite button">
@@ -50,7 +59,7 @@ const placeholders = {
       <div id="img-responsive" class="relative w-full px-5 mb-5 select-none">
         <NuxtImg
           format="webp"
-          :src="placeholders.img"
+          :src="image"
           class="w-full"
           role="presentation"
           draggable="false"
@@ -75,23 +84,21 @@ const placeholders = {
             <span class="text-sm font-semibold uppercase opacity-60"
               >CHAPTER</span
             >
-            <span>Yes Babies</span>
+            <span>Placeholder</span>
           </div>
           <div class="col-span-2 grid gap-y-1.5">
             <span class="text-sm font-semibold uppercase opacity-60"
               >Characters</span
             >
             <ul class="flex flex-wrap gap-2">
-              <ComicDetailsChip name="Fox" />
-              <ComicDetailsChip name="Mungo" />
-              <ComicDetailsChip name="Melanie Martinez" />
+              <ComicDetailsChip :name="hehe" v-for="hehe in characters" />
             </ul>
           </div>
           <div
             class="col-span-2 w-full border-t grid gap-y-1.5 border-t-neutral-500"
           >
             <BaseLink
-              to="https://www.youtube.com/"
+              :to="comic_link"
               external
               class="inline-flex items-center py-3 gap-x-2 w-max"
             >
@@ -102,7 +109,13 @@ const placeholders = {
           <!-- DevOnly -->
           <DevOnly>
             <div class="col-span-2 grid gap-y-1.5">
-              <span>Debug Information</span>
+              <span class="text-sm font-semibold uppercase opacity-60"
+                >DEBUG INFORMATION</span
+              >
+              <span>Previous comic computed</span>
+              <code class="bg-neutral-200">{{ query[comicIndex - 1] || "undefined" }}</code>
+              <span>Next comic computed</span>
+              <code class="bg-neutral-200">{{ query[comicIndex + 1] || "undefined" }}</code>
             </div>
           </DevOnly>
         </div>

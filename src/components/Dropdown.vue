@@ -4,13 +4,20 @@ const props = defineProps<{
   offset?: number
 }>()
 
-const containerRef = ref<HTMLButtonElement>()
+const containerRef = ref<HTMLElement>()
 const isMenuOpen = ref(false)
 
 onMounted(() => {
-  const buttonElSlot = containerRef.value?.children[0] as HTMLButtonElement
+  const buttonElSlot = containerRef.value?.children[0] as HTMLElement
+
+  if (buttonElSlot.tagName !== "BUTTON") {
+    throw new Error(
+      "[Dropdown] Non button element detected! It must be a button element"
+    )
+  }
 
   buttonElSlot.addEventListener("click", () => {
+    console.log(buttonElSlot)
     isMenuOpen.value = !isMenuOpen.value
   })
 

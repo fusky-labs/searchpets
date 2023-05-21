@@ -25,8 +25,6 @@ const emit = defineEmits<{
   (e: "expandToModal", payLoad?: object): void
 }>()
 
-const handleImgClick = () => emit("expandToModal")
-
 const loadImgNotifier = () => {
   console.log(`${props.title} is loaded`)
 }
@@ -45,7 +43,6 @@ const loadImgNotifier = () => {
     </div>
     <div class="aspect-[16/12]">
       <NuxtImg
-        @click="handleImgClick"
         :src="props.img"
         class="object-contain aspect-[4/3] cursor-zoom-in"
         role="presentation"
@@ -53,6 +50,7 @@ const loadImgNotifier = () => {
         decoding="async"
         draggable="false"
         :quality="80"
+        @click="emit('expandToModal')"
         @load="loadImgNotifier"
       />
     </div>
