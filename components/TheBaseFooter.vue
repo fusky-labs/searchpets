@@ -8,8 +8,7 @@ const copyright = `© 2022-${currentYear} OpenFurs`
 <template>
   <footer class="grid px-12 gap-y-4 py-9">
     <p>
-      <strong>NOTE:&nbsp;</strong
-      ><span class="name-emphasis">Searchpets!</span>
+      <strong>NOTE:&nbsp;</strong><span class="name-emphasis">Searchpets!</span>
       is an open source project created by maxthecomputerfox and Kuroji Fusky,
       two passionate developers from Southeast Asia; licensed under GNU General
       Public License v2.0. SP does not own any of the contents used on this

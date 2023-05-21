@@ -1,7 +1,7 @@
-import { createClient } from 'redis'
+import { createClient } from "redis"
 
 const Client = createClient({
-    url: process.env.REDIS_URL
+  url: process.env.REDIS_URL
 })
 
 export default Client

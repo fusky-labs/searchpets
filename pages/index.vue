@@ -6,7 +6,5 @@ usePageMeta({
 </script>
 
 <template>
-  <div>
-    placeholder content
-  </div>
+  <div>placeholder content</div>
 </template>

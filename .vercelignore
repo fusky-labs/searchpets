@@ -1,3 +1,4 @@
+.husky
 *.py
 .vscode
 .github

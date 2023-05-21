@@ -5,8 +5,5 @@
     "120",
     "--experimental"
   ],
-  "[python]": {
-    "editor.defaultFormatter": "ms-vsliveshare.vsliveshare"
-  },
   "python.formatting.provider": "none"
 }
