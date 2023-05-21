@@ -1,6 +1,6 @@
 <script setup lang="ts">
-defineProps<{
-  dir?: "left" | "right"
+const props = defineProps<{
+  menuDir?: "left" | "right"
   offset?: number
 }>()
 
@@ -28,12 +28,14 @@ onMounted(() => {
     <slot />
     <div
       biroui-dropdown-container-slot
-      class="w-max absolute top-14 bg-white shadow-lg border rounded-md menu-container transition-[opacity,transform] duration-200"
+      class="w-max absolute bg-white shadow-lg border rounded-md menu-container transition-[opacity,transform] duration-200"
+      :style="`top: calc(1rem * ${props.offset})`"
       :aria-hidden="!isMenuOpen ? true : undefined"
       :class="[
         !isMenuOpen
           ? 'opacity-0 pointer-events-none -translate-y-1'
-          : 'opacity-100'
+          : 'opacity-100',
+        props.menuDir !== 'right' ? 'left-0' : 'right-0'
       ]"
     >
       <slot name="contents">
