@@ -1,7 +1,9 @@
 import { createClient } from "redis"
 
+const config = useRuntimeConfig()
+
 const Client = createClient({
-  url: process.env.REDIS_URL
+  url: config.REDIS_URL
 })
 
 export default Client

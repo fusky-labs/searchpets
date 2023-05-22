@@ -9,12 +9,13 @@ import { SearchIcon } from "lucide-vue-next"
       class="relative overflow-hidden border border-blue-500 rounded-md"
     >
       <input
-        type="search"
+        type="text"
         placeholder="Search"
         class="py-2.5 px-4 w-[40vw] rounded-md"
         spellcheck="false"
         autocapitalize="false"
         autocomplete="false"
+        role="searchbox"
       />
       <BaseButton
         reset

@@ -1,16 +1,24 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
+const __c_id = process.env.CLARITY_ID || "undefined"
+const CLARITY_INJECT = `
+  (function(c,l,a,r,i,t,y){
+  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "${__c_id}");
+`
+
 export default defineNuxtConfig({
   modules: [
-    [
-      "@pinia/nuxt",
-      {
-        autoImports: ["defineStore", ["defineStore", "definePiniaStore"]]
-      }
-    ],
+    "@pinia/nuxt",
     "@nuxt/content",
     "@nuxt/image-edge",
     "@nuxtjs/color-mode"
   ],
+  pinia: {
+    autoImports: ["defineStore", ["defineStore", "definePiniaStore"]]
+  },
   css: ["~/assets/css/main.scss"],
   app: {
     head: {
@@ -26,16 +34,9 @@ export default defineNuxtConfig({
         { property: "og:site_name", content: "Searchpets!" }
       ],
       script: [
-        // prettier-ignore
         {
           type: "text/javascript",
-          innerHTML: `
-            (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "${process.env.CLARITY_ID || 'undefined'}");
-          `
+          innerHTML: CLARITY_INJECT
         }
       ]
     }
@@ -51,6 +52,9 @@ export default defineNuxtConfig({
     prerender: {
       routes: ["/sitemap.xml"]
     }
+  },
+  runtimeConfig: {
+    REDIS_URL: process.env.REDIS_URL
   },
   image: {
     domains: [

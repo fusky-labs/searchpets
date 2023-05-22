@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { XIcon, LinkIcon, StarIcon } from "lucide-vue-next"
+import {
+  XIcon,
+  LinkIcon,
+  StarIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon
+} from "lucide-vue-next"
 
 import { storeToRefs } from "pinia"
 import { useModalStore } from "~/stores"
@@ -56,7 +62,30 @@ const placeholders = {
       class="flex flex-col lg:flex-row overflow-y-scroll max-h-[90dvh] lg:max-h-[80dvh]"
     >
       <!-- Responsive Image -->
-      <div id="img-responsive" class="relative w-full px-5 mb-5 select-none">
+      <div
+        id="img-responsive"
+        class="relative flex items-center w-full px-5 mb-5 select-none"
+      >
+        <div class="contents">
+          <BaseButton
+            ghost
+            class="absolute left-2 top-[calc(100%/2.25)]"
+            aria-label="Go to previous comic"
+            v-if="storedQuery[comicIndex - 1]"
+            @click="modalStore.updateComicModal(comicIndex - 1)"
+          >
+            <ChevronLeftIcon />
+          </BaseButton>
+          <BaseButton
+            ghost
+            class="absolute right-2 top-[calc(100%/2.25)]"
+            aria-label="Go to next comic"
+            @click="modalStore.updateComicModal(comicIndex + 1)"
+            v-if="storedQuery[comicIndex + 1]"
+          >
+            <ChevronRightIcon />
+          </BaseButton>
+        </div>
         <NuxtImg
           format="webp"
           :src="image"

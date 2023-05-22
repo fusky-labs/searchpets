@@ -17,7 +17,7 @@ watch(
 </script>
 
 <template>
-  <div class="biroui-modal-container" :class="{ 'biroui-active': modalActive }">
+  <div biroui-modal-container :class="{ 'biroui-active': modalActive }">
     <div biroui-modal-content :class="modalClass">
       <slot v-if="renderModalContent" />
     </div>
@@ -25,18 +25,18 @@ watch(
 </template>
 
 <style lang="scss">
-.biroui-modal-container {
+[biroui-modal-container] {
   @apply fixed inset-0 z-[5] grid place-items-center;
 
   &:not(.biroui-active) {
-    @apply pointer-events-none backdrop-blur-0;
+    @apply pointer-events-none backdrop-blur-0 #{!important};
 
     [biroui-modal-content] {
-      @apply opacity-0 -translate-y-8;
+      @apply opacity-0 -translate-y-8 ;
     }
 
     &::before {
-      @apply bg-transparent;
+      @apply bg-transparent ;
     }
   }
 

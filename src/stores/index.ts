@@ -1,20 +1,22 @@
 import { defineStore } from "pinia"
 import { spMockData } from "~/constants"
 
+type PrependArrayNever<T> = T[] | never[]
+
 interface ComicInfo {
   title: string
   comic_link: string
   image: string
-  characters: string[] | never[]
+  characters: PrependArrayNever<string>
 }
 
 interface ModalStore extends ComicInfo {
   isComicModalOpen: boolean
-  storedQuery: ComicInfo[] | never[]
   comicIndex: number
+  storedQuery: PrependArrayNever<ComicInfo>
 }
 
-export const useModalStore = defineStore("modalStates", {
+export const useModalStore = defineStore("comicModal", {
   state: (): ModalStore => {
     return {
       storedQuery: spMockData,
@@ -31,15 +33,14 @@ export const useModalStore = defineStore("modalStates", {
       this.isComicModalOpen = !this.isComicModalOpen
     },
     updateComicModal(index: number) {
+      if (!this.isComicModalOpen) this.isComicModalOpen = true
+
       this.comicIndex = index
+
       this.title = this.storedQuery[index].title
       this.comic_link = this.storedQuery[index].comic_link
       this.characters = this.storedQuery[index].characters
       this.image = this.storedQuery[index].image
-
-      if (!this.isComicModalOpen) this.isComicModalOpen = true
-
-      console.log(this.storedQuery[index])
     }
   }
 })

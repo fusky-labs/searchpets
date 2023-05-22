@@ -1,5 +1,5 @@
 <script setup lang="ts">
-withDefaults(defineProps<{ name: string }>(), {
+const props = withDefaults(defineProps<{ name: string }>(), {
   name: "Grape"
 })
 </script>
@@ -9,7 +9,10 @@ withDefaults(defineProps<{ name: string }>(), {
     class="px-3 py-1 text-sm border rounded-full border-neutral-300 bg-neutral-200 hover:bg-neutral-300 hover:border-neutral-400"
     aria-labelledby="chip-name"
   >
-    <div class="flex items-center gap-x-2">
+    <NuxtLink
+      :to="`/character/${props.name.toLowerCase()}`"
+      class="flex items-center gap-x-2"
+    >
       <NuxtImg
         src="https://images.discotech.me/artists/None/be9e4bdb-9ba0-4858-904a-bfde1f13d718.jpg?auto=format%2Ccompress&w=200"
         class="object-cover w-6 rounded-full aspect-square"
@@ -18,6 +21,6 @@ withDefaults(defineProps<{ name: string }>(), {
         decoding="async"
       />
       <span id="chip-name">{{ name }}</span>
-    </div>
+    </NuxtLink>
   </li>
 </template>

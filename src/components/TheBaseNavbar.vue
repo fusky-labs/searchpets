@@ -38,7 +38,7 @@ onMounted(() => {
               to="/characters"
               class="px-4 py-2.5 hover:bg-blue-100 flex items-center gap-x-3"
             >
-              <CatIcon :size="20" />
+              <CatIcon :size="19" />
               <span>Characters</span>
             </NuxtLink>
             <NuxtLink
@@ -60,9 +60,18 @@ onMounted(() => {
       </Dropdown>
       <NuxtLink
         to="/search"
-        class="text-[1.75rem] italic font-bold select-none"
+        class="text-[1.65rem] font-bold select-none flex items-center gap-x-4"
       >
-        Searchpets!
+        <NuxtImg
+          src="sp-logo.png"
+          alt="Searchpets logo"
+          class="rounded-md aspect-square"
+          preload
+          width="44"
+          height="44"
+          fetchpriority="high"
+        />
+        <span> Searchpets! </span>
       </NuxtLink>
     </div>
     <!-- Searchbox -->
