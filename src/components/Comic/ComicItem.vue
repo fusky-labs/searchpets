@@ -49,6 +49,7 @@ const loadImgNotifier = () => {
         loading="lazy"
         decoding="async"
         draggable="false"
+        sizes="sm:500px md:675px lg:800px"
         :quality="80"
         @click="emit('expandToModal')"
         @load="loadImgNotifier"

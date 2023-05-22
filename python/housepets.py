@@ -10,6 +10,16 @@ from bs4.element import Tag
 
 from constants import schema
 
+with open("./redis_config.json") as f:
+    redis_config = json.load(f)
+    RedisDB = redis.StrictRedis(
+        host=redis_config["host"],
+        port=redis_config["port"],
+        username=redis_config["username"],
+        password=redis_config["password"],
+        decode_responses=True
+    )
+
 
 class Housepets:
     def __init__(self):
@@ -146,14 +156,3 @@ class Housepets:
             return None
 
         return index_keys
-
-
-with open("./redis_config.json") as f:
-    redis_config = json.load(f)
-    RedisDB = redis.StrictRedis(
-        host=redis_config["host"],
-        port=redis_config["port"],
-        username=redis_config["username"],
-        password=redis_config["password"],
-        decode_responses=True
-    )

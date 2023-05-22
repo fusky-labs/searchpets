@@ -10,14 +10,14 @@ interface ComicInfo {
 
 interface ModalStore extends ComicInfo {
   isComicModalOpen: boolean
-  query: ComicInfo[] | never[]
+  storedQuery: ComicInfo[] | never[]
   comicIndex: number
 }
 
 export const useModalStore = defineStore("modalStates", {
   state: (): ModalStore => {
     return {
-      query: spMockData,
+      storedQuery: spMockData,
       isComicModalOpen: false,
       title: "",
       comic_link: "",
@@ -32,14 +32,14 @@ export const useModalStore = defineStore("modalStates", {
     },
     updateComicModal(index: number) {
       this.comicIndex = index
-      this.title = this.query[index].title
-      this.comic_link = this.query[index].comic_link
-      this.characters = this.query[index].characters
-      this.image = this.query[index].image
+      this.title = this.storedQuery[index].title
+      this.comic_link = this.storedQuery[index].comic_link
+      this.characters = this.storedQuery[index].characters
+      this.image = this.storedQuery[index].image
 
       if (!this.isComicModalOpen) this.isComicModalOpen = true
 
-      console.log(this.query[index])
+      console.log(this.storedQuery[index])
     }
   }
 })

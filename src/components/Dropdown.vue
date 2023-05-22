@@ -17,24 +17,35 @@ onMounted(() => {
   }
 
   buttonElSlot.addEventListener("click", () => {
-    console.log(buttonElSlot)
     isMenuOpen.value = !isMenuOpen.value
   })
 
   window.addEventListener("click", ({ target }) => {
     const offsetTarget = (target as HTMLElement).offsetParent
+    const wrapperContainerTarget = !!offsetTarget?.attributes.getNamedItem(
+      "biroui-dropdown-slot"
+    )
+
+    const wrapperRootTarget =
+      !!offsetTarget?.attributes.getNamedItem("biroui-dropdown")
+
+    const spanTarget = (target as HTMLElement).tagName === "SPAN"
+    const buttonTarget = (target as HTMLElement).tagName === "BUTTON"
+
+    const dropdownClicked =
+      spanTarget || buttonTarget || wrapperContainerTarget || wrapperRootTarget
 
     if (!isMenuOpen.value) return
-    console.log("Target:", target, "\nOffset:", offsetTarget)
+    if (!dropdownClicked) isMenuOpen.value = false
   })
 })
 </script>
 
 <template>
-  <div class="biroui-dropdown" ref="containerRef">
+  <div biroui-dropdown ref="containerRef">
     <slot />
     <div
-      biroui-dropdown-container-slot
+      biroui-dropdown-slot
       class="w-max absolute bg-white shadow-lg border rounded-md menu-container transition-[opacity,transform] duration-200"
       :style="`top: calc(1rem * ${props.offset})`"
       :aria-hidden="!isMenuOpen ? true : undefined"
@@ -53,7 +64,7 @@ onMounted(() => {
 </template>
 
 <style>
-.biroui-dropdown {
+[biroui-dropdown] {
   @apply relative;
 }
 </style>

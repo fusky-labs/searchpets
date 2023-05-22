@@ -13,7 +13,7 @@ const {
   comic_link,
   image,
   comicIndex,
-  query
+  storedQuery
 } = storeToRefs(modalStore)
 
 const placeholders = {
@@ -26,7 +26,7 @@ const placeholders = {
 <template>
   <ModalWrapper
     :modal-active="isComicModalOpen"
-    modal-class="absolute inset-0 w-10/12 overflow-hidden rounded-none lg:rounded-md lg:inset-unset"
+    modal-class="absolute inset-0 overflow-hidden rounded-none lg:w-10/12 lg:rounded-md lg:inset-unset"
   >
     <!--Title bar-->
     <div
@@ -61,6 +61,7 @@ const placeholders = {
           format="webp"
           :src="image"
           class="w-full"
+          sizes="sm:500px md:675px lg:800px"
           role="presentation"
           draggable="false"
           quality="80"
@@ -113,9 +114,13 @@ const placeholders = {
                 >DEBUG INFORMATION</span
               >
               <span>Previous comic computed</span>
-              <code class="bg-neutral-200">{{ query[comicIndex - 1] || "undefined" }}</code>
+              <code class="bg-neutral-200">{{
+                storedQuery[comicIndex - 1] || "undefined"
+              }}</code>
               <span>Next comic computed</span>
-              <code class="bg-neutral-200">{{ query[comicIndex + 1] || "undefined" }}</code>
+              <code class="bg-neutral-200">{{
+                storedQuery[comicIndex + 1] || "undefined"
+              }}</code>
             </div>
           </DevOnly>
         </div>

@@ -18,7 +18,7 @@ watch(
 
 <template>
   <div class="biroui-modal-container" :class="{ 'biroui-active': modalActive }">
-    <div data-biroui-modal-content :class="modalClass">
+    <div biroui-modal-content :class="modalClass">
       <slot v-if="renderModalContent" />
     </div>
   </div>
@@ -31,7 +31,7 @@ watch(
   &:not(.biroui-active) {
     @apply pointer-events-none backdrop-blur-0;
 
-    [data-biroui-modal-content] {
+    [biroui-modal-content] {
       @apply opacity-0 -translate-y-8;
     }
 
@@ -46,7 +46,7 @@ watch(
   }
 }
 
-[data-biroui-modal-content] {
+[biroui-modal-content] {
   @apply opacity-100 translate-y-0 transition-[opacity,transform] duration-300 bg-white;
 }
 </style>

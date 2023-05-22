@@ -8,13 +8,12 @@ import { useModalStore } from "~/stores"
 import { spMockData } from "~/constants"
 
 const lol = useModalStore()
+const isExpanded = ref(false)
 
 usePageMeta({
   title: "Search",
-  description: "X"
+  description: "Search comics from Housepets lol"
 })
-
-const isExpanded = ref(false)
 </script>
 
 <template>
@@ -72,7 +71,7 @@ const isExpanded = ref(false)
       </Dropdown>
     </section>
     <!-- Comic Lists -->
-    <section id="comic-list-renderer" class="list-render-grid">
+    <section id="comic-list-container" class="list-render-grid">
       <ComicItem
         v-for="(item, index) in spMockData"
         :key="index"
@@ -85,8 +84,12 @@ const isExpanded = ref(false)
 </template>
 
 <style lang="scss">
-#comic-list-renderer {
+#comic-list-container {
   @apply px-4 md:px-8 lg:px-12 grid mx-auto gap-4 w-full;
+}
+
+:is(.not-expanded, .is-expanded) .list-render-grid {
+  @apply grid-cols-1 lg:grid-cols-2;
 }
 
 .not-expanded {
@@ -95,13 +98,9 @@ const isExpanded = ref(false)
 
 .is-expanded {
   @apply max-w-full;
-}
 
-:is(.not-expanded, .is-expanded) .list-render-grid {
-  @apply grid-cols-1 lg:grid-cols-2;
-}
-
-.is-expanded .list-render-grid {
-  @apply 2xl:grid-cols-3;
+  .list-render-grid {
+    @apply 2xl:grid-cols-3;
+  }
 }
 </style>
