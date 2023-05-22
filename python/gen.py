@@ -22,15 +22,15 @@ def main():
 
             comic_link_title = comic_key.split(":")[1]
             if comic_link_title in chapter_entries:
-                current_chapter = chapter_entries[comic_link_title].lower()
+                current_chapter = chapter_entries[comic_link_title]
 
-            if comic_characters: RedisDB.sadd("characters_db", *comic_characters)
+            if comic_characters: RedisDB.sadd("characters_list", *comic_characters)
 
             RedisDB.hset(
                 comic_key,
                 mapping=comic_data["comic"] | {"chapter": current_chapter}
             )
-        RedisDB.sadd("chapter_db", *chapter_entries.values())
+        RedisDB.sadd("chapter_list", *chapter_entries.values())
 
 if __name__ == "__main__":
     main()

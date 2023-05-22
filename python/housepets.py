@@ -65,7 +65,7 @@ class Housepets:
         ]
 
         if characters:
-            character_str = ",".join(characters).lower()
+            character_str = ",".join(characters)
 
         return {
             "key_name": f"{year}:{link_tag}",
