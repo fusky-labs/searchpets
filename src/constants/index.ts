@@ -1,7 +1,7 @@
 export const spMockData = [
   {
     title: "Fatherly Concern",
-    comic_link:
+    comicLink:
       "https://www.housepetscomic.com/comic/2019/01/14/fatherly-concern/",
     characters: ["grape", "maxwell"],
     image:
@@ -9,7 +9,7 @@ export const spMockData = [
   },
   {
     title: "What’s The Story, Wishbone?",
-    comic_link:
+    comicLink:
       "https://www.housepetscomic.com/comic/2019/01/16/whats-the-story-wishbone/",
     characters: ["fido", "grape", "maxwell", "peanut", "sabrina"],
     image:
@@ -17,7 +17,7 @@ export const spMockData = [
   },
   {
     title: "The Pit Of Despair",
-    comic_link:
+    comicLink:
       "https://www.housepetscomic.com/comic/2019/02/01/the-pit-of-despair/",
     characters: ["grape", "kitten maxwell", "maxwell"],
     image:
@@ -25,7 +25,7 @@ export const spMockData = [
   },
   {
     title: "Best Ending",
-    comic_link: "https://www.housepetscomic.com/comic/2019/02/11/best-ending/",
+    comicLink: "https://www.housepetscomic.com/comic/2019/02/11/best-ending/",
     characters: [
       "coyote",
       "grape",
@@ -39,7 +39,7 @@ export const spMockData = [
   },
   {
     title: "Scrumptuous Presumption",
-    comic_link:
+    comicLink:
       "https://www.housepetscomic.com/comic/2019/02/13/scrumptuous-presumption/",
     characters: ["grape", "maxwell", "peanut", "sabrina"],
     image:
@@ -47,7 +47,7 @@ export const spMockData = [
   },
   {
     title: "Another Memories Title",
-    comic_link:
+    comicLink:
       "https://www.housepetscomic.com/comic/2019/02/15/another-memories-title/",
     characters: ["grape", "kitten maxwell", "maxwell", "rufus", "sabrina"],
     image:
@@ -55,7 +55,7 @@ export const spMockData = [
   },
   {
     title: "Letters From Home",
-    comic_link:
+    comicLink:
       "https://www.housepetscomic.com/comic/2019/02/20/letters-from-home/",
     characters: ["grape", "maxwell"],
     image:
@@ -63,7 +63,7 @@ export const spMockData = [
   },
   {
     title: "Puppies From Heaven",
-    comic_link:
+    comicLink:
       "https://www.housepetscomic.com/comic/2019/02/22/puppies-from-heaven/",
     characters: ["grape", "maxwell", "rufus"],
     image:
@@ -71,7 +71,7 @@ export const spMockData = [
   },
   {
     title: "Ghosts Of The Past",
-    comic_link:
+    comicLink:
       "https://www.housepetscomic.com/comic/2019/02/25/ghosts-of-the-past/",
     characters: ["grape", "maxwell", "rufus"],
     image:
@@ -79,7 +79,7 @@ export const spMockData = [
   },
   {
     title: "Love Across Space And Time",
-    comic_link:
+    comicLink:
       "https://www.housepetscomic.com/comic/2019/02/27/love-across-space-and-time/",
     characters: ["grape", "maxwell", "rufus", "sabercat"],
     image:
@@ -87,7 +87,7 @@ export const spMockData = [
   },
   {
     title: "Dramatic Retelling",
-    comic_link:
+    comicLink:
       "https://www.housepetscomic.com/comic/2019/03/01/dramatic-retelling/",
     characters: [
       "dallas",
@@ -104,7 +104,7 @@ export const spMockData = [
   },
   {
     title: "Scheduling Conflict",
-    comic_link:
+    comicLink:
       "https://www.housepetscomic.com/comic/2019/03/08/scheduling-conflict/",
     characters: ["grape", "maxwell", "peanut", "tarot"],
     image:
@@ -112,7 +112,7 @@ export const spMockData = [
   },
   {
     title: "Not A Problem",
-    comic_link:
+    comicLink:
       "https://www.housepetscomic.com/comic/2019/03/11/not-a-problem/",
     characters: ["grape", "maxwell", "peanut", "tarot"],
     image:
@@ -120,7 +120,7 @@ export const spMockData = [
   },
   {
     title: "Full Frontal Honesty",
-    comic_link:
+    comicLink:
       "https://www.housepetscomic.com/comic/2019/03/13/full-frontal-honesty/",
     characters: ["grape", "maxwell", "mungo"],
     image:
@@ -128,7 +128,7 @@ export const spMockData = [
   },
   {
     title: "A Few Of My Favorite Things",
-    comic_link:
+    comicLink:
       "https://www.housepetscomic.com/comic/2019/03/15/a-few-of-my-favorite-things/",
     characters: ["grape", "peanut", "tarot"],
     image:
@@ -136,7 +136,7 @@ export const spMockData = [
   },
   {
     title: "Make Like Your Name",
-    comic_link:
+    comicLink:
       "https://www.housepetscomic.com/comic/2019/03/20/make-like-your-name/",
     characters: ["grape", "maxwell", "peanut", "tarot"],
     image:
@@ -144,7 +144,7 @@ export const spMockData = [
   },
   {
     title: "Nants Ingonyama Bagithi Baba",
-    comic_link:
+    comicLink:
       "https://www.housepetscomic.com/comic/2019/03/22/nants-ingonyama-bagithi-baba/",
     characters: ["grape", "maxwell", "peanut", "tarot"],
     image:
@@ -152,7 +152,7 @@ export const spMockData = [
   },
   {
     title: "Straight From The Sauce",
-    comic_link:
+    comicLink:
       "https://www.housepetscomic.com/comic/2019/03/27/straight-from-the-sauce/",
     characters: ["grape", "maxwell"],
     image:
@@ -160,7 +160,7 @@ export const spMockData = [
   },
   {
     title: "Genius At Work",
-    comic_link:
+    comicLink:
       "https://www.housepetscomic.com/comic/2019/04/24/genius-at-work/",
     characters: ["grape", "peanut"],
     image:
@@ -168,14 +168,14 @@ export const spMockData = [
   },
   {
     title: "Super Genius",
-    comic_link: "https://www.housepetscomic.com/comic/2019/04/26/super-genius/",
+    comicLink: "https://www.housepetscomic.com/comic/2019/04/26/super-genius/",
     characters: ["grape", "spot (superdog)"],
     image:
       "https://www.housepetscomic.com/wp-content/uploads/2019/04/2019-04-26-super-genius.png"
   },
   {
     title: "Crazy Cat",
-    comic_link: "https://www.housepetscomic.com/comic/2019/07/12/crazy-cat/",
+    comicLink: "https://www.housepetscomic.com/comic/2019/07/12/crazy-cat/",
     characters: ["grape", "maxwell"],
     image:
       "https://www.housepetscomic.com/wp-content/uploads/2019/07/2019-07-12-crazy-cat.png"
