@@ -48,8 +48,10 @@ class Housepets:
         """
 
         url = comic_tag["href"]
-        year = url.split("/")[4]
-        link_tag = url.split("/")[7]
+        parsed_url = url.split("/")
+        year = parsed_url[4]
+        link_tag = parsed_url[7]
+        comic_date = "-".join(parsed_url[6:3:-1])
         comic_soup = self._soup_req(url)
         comic_image = comic_soup.find("img", {
             "title": True,
@@ -73,6 +75,7 @@ class Housepets:
                 "title": comic_tag["title"],
                 "comic_link": url,
                 "characters": character_str,
+                "date": comic_date,
                 "image": comic_image["src"],
                 "index": index
             },
