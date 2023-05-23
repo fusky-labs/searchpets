@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia"
-import { useModalStore } from "~/stores"
+import { useComicModalStore } from "~/stores"
 
-const comicModalStore = useModalStore()
-const { isComicModalOpen: modalState } = storeToRefs(comicModalStore)
+const comicStore = useComicModalStore()
+const { isComicModalOpen: modalState } = storeToRefs(comicStore)
 
 onMounted(() => {
   const htmlStyle = document.documentElement.style

@@ -41,16 +41,15 @@ const loadImgNotifier = () => {
         <StarIcon :size="18" />
       </BaseButton>
     </div>
-    <div class="aspect-[1] h-[50rem]">
+    <div class="aspect-[1] h-[32.5rem] grid place-items-center">
       <NuxtImg
         :src="props.img"
-        class="object-contain cursor-zoom-in"
+        class="object-contain h-full cursor-zoom-in"
         role="presentation"
         loading="lazy"
         decoding="async"
         draggable="false"
         sizes="sm:500px md:675px lg:800px"
-        :quality="80"
         @click="emit('expandToModal')"
         @load="loadImgNotifier"
       />

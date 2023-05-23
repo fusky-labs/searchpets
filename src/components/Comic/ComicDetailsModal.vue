@@ -6,11 +6,10 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon
 } from "lucide-vue-next"
-
 import { storeToRefs } from "pinia"
-import { useModalStore } from "~/stores"
+import { useComicModalStore } from "~/stores"
 
-const modalStore = useModalStore()
+const comicStore = useComicModalStore()
 
 const {
   isComicModalOpen,
@@ -20,7 +19,7 @@ const {
   image,
   comicIndex,
   storedQuery
-} = storeToRefs(modalStore)
+} = storeToRefs(comicStore)
 
 const placeholders = {
   title: "Moppet Babies",
@@ -57,7 +56,7 @@ const placeholders = {
           <BaseButton
             ghost
             aria-label="Close button"
-            @click="modalStore.toggleComicModal()"
+            @click="comicStore.toggleComicModal()"
           >
             <XIcon :size="19" />
           </BaseButton>
@@ -78,7 +77,7 @@ const placeholders = {
             class="fixed left-2 top-[calc(100%/2.1)]"
             aria-label="Go to previous comic"
             v-if="storedQuery[comicIndex - 1]"
-            @click="modalStore.updateComicModal(comicIndex - 1)"
+            @click="comicStore.updateComicModal(comicIndex - 1)"
           >
             <ChevronLeftIcon />
           </BaseButton>
@@ -86,7 +85,7 @@ const placeholders = {
             ghost
             class="fixed right-2 lg:right-1/3 top-[calc(100%/2.1)]"
             aria-label="Go to next comic"
-            @click="modalStore.updateComicModal(comicIndex + 1)"
+            @click="comicStore.updateComicModal(comicIndex + 1)"
             v-if="storedQuery[comicIndex + 1]"
           >
             <ChevronRightIcon />

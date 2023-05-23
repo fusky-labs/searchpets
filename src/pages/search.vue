@@ -4,10 +4,10 @@ import {
   ChevronsLeftRightIcon,
   ChevronsRightLeftIcon
 } from "lucide-vue-next"
-import { useModalStore } from "~/stores"
+import { useComicModalStore } from "~/stores"
 import { spMockData } from "~/constants"
 
-const lol = useModalStore()
+const comicStore = useComicModalStore()
 const isExpanded = ref(false)
 
 usePageMeta({
@@ -77,7 +77,7 @@ usePageMeta({
         :key="index"
         :title="item.title"
         :img="item.image"
-        @expandToModal="lol.updateComicModal(index)"
+        @expandToModal="comicStore.updateComicModal(index)"
       />
     </section>
   </div>

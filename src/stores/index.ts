@@ -16,7 +16,7 @@ interface ModalStore extends ComicInfo {
   storedQuery: PrependArrayNever<ComicInfo>
 }
 
-export const useModalStore = defineStore("comicModal", {
+export const useComicModalStore = defineStore("comicModal", {
   state: (): ModalStore => {
     return {
       storedQuery: spMockData,
