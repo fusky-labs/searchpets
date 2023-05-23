@@ -16,7 +16,7 @@ const {
   isComicModalOpen,
   characters,
   title,
-  comic_link,
+  comicLink,
   image,
   comicIndex,
   storedQuery
@@ -32,7 +32,8 @@ const placeholders = {
 <template>
   <ModalWrapper
     :modal-active="isComicModalOpen"
-    modal-class="absolute inset-0 overflow-hidden rounded-none lg:w-10/12 lg:rounded-md lg:inset-unset"
+    style="--h-lg-limiter: 80dvh; --m-lg-limiter: 90dvh"
+    modal-class="absolute inset-0 overflow-hidden rounded-none lg:w-10/12 lg:rounded-md lg:inset-unset min-h-[var(--h-lg-limiter)]"
   >
     <!--Title bar-->
     <div
@@ -42,7 +43,13 @@ const placeholders = {
         class="w-full text-xl font-semibold whitespace-nowrap text-ellipsis"
         >{{ title }}</span
       >
-      <div class="inline-flex gap-x-1">
+      <div class="flex items-center gap-x-1.5">
+        <BaseTooltipWrapper text="Your mom">
+          <BaseButton ghost aria-label="Close button">
+            <XIcon :size="19" />
+          </BaseButton>
+        </BaseTooltipWrapper>
+        <hr class="h-8 border-l border-l-neutral-300" />
         <BaseButton ghost aria-label="Favorite button">
           <StarIcon :size="19" />
         </BaseButton>
@@ -59,17 +66,16 @@ const placeholders = {
     </div>
     <!--Contents-->
     <div
-      class="flex flex-col lg:flex-row overflow-y-scroll max-h-[90dvh] lg:max-h-[80dvh]"
+      class="flex flex-col lg:flex-row overflow-y-scroll max-h-[var(--m-lg-limiter)] lg:max-h-[var(--h-lg-limiter)]"
     >
       <!-- Responsive Image -->
       <div
-        id="img-responsive"
-        class="relative flex items-center w-full px-5 mb-5 select-none"
+        class="relative flex items-start w-full px-5 mb-5 select-none max-h-[var(--h-lg-limiter)]"
       >
         <div class="contents">
           <BaseButton
             ghost
-            class="absolute left-2 top-[calc(100%/2.25)]"
+            class="fixed left-2 top-[calc(100%/2.1)]"
             aria-label="Go to previous comic"
             v-if="storedQuery[comicIndex - 1]"
             @click="modalStore.updateComicModal(comicIndex - 1)"
@@ -78,7 +84,7 @@ const placeholders = {
           </BaseButton>
           <BaseButton
             ghost
-            class="absolute right-2 top-[calc(100%/2.25)]"
+            class="fixed right-2 lg:right-1/3 top-[calc(100%/2.1)]"
             aria-label="Go to next comic"
             @click="modalStore.updateComicModal(comicIndex + 1)"
             v-if="storedQuery[comicIndex + 1]"
@@ -128,7 +134,7 @@ const placeholders = {
             class="col-span-2 w-full border-t grid gap-y-1.5 border-t-neutral-500"
           >
             <BaseLink
-              :to="comic_link"
+              :to="comicLink"
               external
               class="inline-flex items-center py-3 gap-x-2 w-max"
             >
@@ -137,7 +143,7 @@ const placeholders = {
             </BaseLink>
           </div>
           <!-- DevOnly -->
-          <DevOnly>
+          <!-- <DevOnly>
             <div class="col-span-2 grid gap-y-1.5">
               <span class="text-sm font-semibold uppercase opacity-60"
                 >DEBUG INFORMATION</span
@@ -151,7 +157,7 @@ const placeholders = {
                 storedQuery[comicIndex + 1] || "undefined"
               }}</code>
             </div>
-          </DevOnly>
+          </DevOnly> -->
         </div>
       </aside>
     </div>

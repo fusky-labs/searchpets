@@ -65,7 +65,7 @@ onMounted(() => {
         <NuxtImg
           src="sp-logo.png"
           alt="Searchpets logo"
-          class="rounded-md aspect-square"
+          class="transition-all rounded-md aspect-square"
           preload
           width="44"
           height="44"
@@ -86,3 +86,9 @@ onMounted(() => {
     </div>
   </header>
 </template>
+
+<style>
+.router-link-active > img {
+  @apply border-2 p-0.5 border-blue-500;
+}
+</style>

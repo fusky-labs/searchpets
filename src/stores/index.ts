@@ -5,7 +5,7 @@ type PrependArrayNever<T> = T[] | never[]
 
 interface ComicInfo {
   title: string
-  comic_link: string
+  comicLink: string
   image: string
   characters: PrependArrayNever<string>
 }
@@ -22,7 +22,7 @@ export const useModalStore = defineStore("comicModal", {
       storedQuery: spMockData,
       isComicModalOpen: false,
       title: "",
-      comic_link: "",
+      comicLink: "",
       image: "",
       characters: [],
       comicIndex: 0
@@ -38,7 +38,7 @@ export const useModalStore = defineStore("comicModal", {
       this.comicIndex = index
 
       this.title = this.storedQuery[index].title
-      this.comic_link = this.storedQuery[index].comic_link
+      this.comicLink = this.storedQuery[index].comicLink
       this.characters = this.storedQuery[index].characters
       this.image = this.storedQuery[index].image
     }
