@@ -4,6 +4,10 @@ const props = defineProps<{
   modalClass?: string
 }>()
 
+const emit = defineEmits<{
+  (e: "dismissModal", payload?: object): void
+}>()
+
 const renderModalContent = ref(false)
 
 watch(
@@ -17,7 +21,11 @@ watch(
 </script>
 
 <template>
-  <div biroui-modal-container :class="{ 'biroui-active': modalActive }">
+  <div
+    biroui-modal-container
+    :class="{ 'biroui-active': modalActive }"
+    role="dialog"
+  >
     <div biroui-modal-content :class="modalClass">
       <slot v-if="renderModalContent" />
     </div>
@@ -32,11 +40,11 @@ watch(
     @apply pointer-events-none backdrop-blur-0 #{!important};
 
     [biroui-modal-content] {
-      @apply opacity-0 -translate-y-8 ;
+      @apply opacity-0 -translate-y-8;
     }
 
     &::before {
-      @apply bg-transparent ;
+      @apply bg-transparent;
     }
   }
 

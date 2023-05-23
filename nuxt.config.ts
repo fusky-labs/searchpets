@@ -54,7 +54,10 @@ export default defineNuxtConfig({
     }
   },
   runtimeConfig: {
-    REDIS_URL: process.env.REDIS_URL
+    REDIS_URL: process.env.REDIS_URL,
+    public: {
+      COMMIT_SHA: process.env.NUXT_PUBLIC_COMMIT_SHA
+    }
   },
   image: {
     domains: [

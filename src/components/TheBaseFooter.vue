@@ -3,6 +3,8 @@ import { GithubIcon } from "lucide-vue-next"
 
 const currentYear = new Date().getFullYear()
 const copyright = `© 2022-${currentYear} OpenFurs`
+
+const config = useRuntimeConfig()
 </script>
 
 <template>
@@ -28,7 +30,7 @@ const copyright = `© 2022-${currentYear} OpenFurs`
     </p>
     <div class="flex gap-x-2.5 flex-wrap">
       <span id="copyright">{{ copyright }}</span>
-      <span>Release 2.3.0-COMMITHASH</span>
+      <span>Release 2.3.0-{{ config.public.COMMIT_SHA }}</span>
       <BaseLink
         to="https://github.com/openfurs/searchpets"
         external

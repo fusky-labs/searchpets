@@ -26,6 +26,23 @@ const placeholders = {
   img: "https://www.housepetscomic.com/wp-content/uploads/2016/07/2016-07-07-making-an-adjustment.png",
   date: "2016-03-18"
 }
+
+onMounted(() => {
+  const handleArrowKeys = ({ key }: KeyboardEvent) => {
+    if (key === "ArrowLeft") {
+      comicStore.updateComicModal(comicIndex.value - 1)
+    }
+    if (key === "ArrowRight") {
+      comicStore.updateComicModal(comicIndex.value + 1)
+    }
+  }
+
+  watch(isComicModalOpen, () => {
+    !isComicModalOpen.value
+      ? window.removeEventListener("keydown", handleArrowKeys)
+      : window.addEventListener("keydown", handleArrowKeys)
+  })
+})
 </script>
 
 <template>
@@ -39,7 +56,7 @@ const placeholders = {
       class="sticky top-0 flex items-center gap-x-2.5 px-6 py-4 bg-white z-[2]"
     >
       <span
-        class="w-full text-xl font-semibold whitespace-nowrap text-ellipsis"
+        class="w-full text-xl font-semibold"
         >{{ title }}</span
       >
       <div class="flex items-center gap-x-1.5">
@@ -85,8 +102,8 @@ const placeholders = {
             ghost
             class="fixed right-2 lg:right-1/3 top-[calc(100%/2.1)]"
             aria-label="Go to next comic"
-            @click="comicStore.updateComicModal(comicIndex + 1)"
             v-if="storedQuery[comicIndex + 1]"
+            @click="comicStore.updateComicModal(comicIndex + 1)"
           >
             <ChevronRightIcon />
           </BaseButton>
@@ -125,8 +142,8 @@ const placeholders = {
             <span class="text-sm font-semibold uppercase opacity-60"
               >Characters</span
             >
-            <ul class="flex flex-wrap gap-2">
-              <ComicDetailsChip :name="hehe" v-for="hehe in characters" />
+            <ul class="flex flex-wrap gap-2" tabindex="0">
+              <ComicDetailsChip :name="char" v-for="char in characters" />
             </ul>
           </div>
           <div

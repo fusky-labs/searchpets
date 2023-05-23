@@ -6,8 +6,8 @@ const props = withDefaults(defineProps<{ name: string }>(), {
 
 <template>
   <li
+    :aria-label="props.name"
     class="px-3 py-1 text-sm border rounded-full border-neutral-300 bg-neutral-200 hover:bg-neutral-300 hover:border-neutral-400"
-    aria-labelledby="chip-name"
   >
     <NuxtLink
       :to="`/character/${props.name.toLowerCase()}`"
