@@ -43,16 +43,18 @@ onMounted(() => {
     <div class="sticky top-0 flex items-center gap-x-2.5 px-6 py-4 z-[2]">
       <span class="w-full text-xl font-semibold">{{ title }}</span>
       <div class="flex items-center gap-x-1.5">
-        <BaseTooltipWrapper text="Close panel">
+        <BaseTooltipWrapper text="Collapse info panel" :left="-3.75">
           <BaseButton ghost aria-label="Close button">
             <PanelRightCloseIcon :size="19" />
           </BaseButton>
         </BaseTooltipWrapper>
         <hr class="h-8 border-l border-l-neutral-300" />
-        <BaseButton ghost aria-label="Favorite button">
-          <StarIcon :size="19" />
-        </BaseButton>
-        <BaseTooltipWrapper>
+        <BaseTooltipWrapper text="Favorite" :left="-1.5">
+          <BaseButton ghost aria-label="Favorite button">
+            <StarIcon :size="19" />
+          </BaseButton>
+        </BaseTooltipWrapper>
+        <BaseTooltipWrapper :right="0.1">
           <BaseButton
             ghost
             aria-label="Close button"
@@ -60,6 +62,10 @@ onMounted(() => {
           >
             <XIcon :size="19" />
           </BaseButton>
+          <template #tooltip>
+            <strong> Protip: </strong>
+            Press <kbd>ESC</kbd> to close this modal.
+          </template>
         </BaseTooltipWrapper>
       </div>
     </div>

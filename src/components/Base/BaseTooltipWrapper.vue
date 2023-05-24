@@ -1,13 +1,25 @@
 <script setup lang="ts">
-withDefaults(defineProps<{ text?: string }>(), {
+interface TooltipInt {
+  text?: string
+  right?: number
+  left?: number
+}
+
+withDefaults(defineProps<TooltipInt>(), {
   text: "Tooltip"
 })
 </script>
 
 <template>
-  <div biroui-tooltip-wrapper>
+  <div class="biroui-tooltip-wrapper">
     <slot />
-    <div biroui-tooltip role="tooltip">
+    <div
+      role="tooltip"
+      :style="[
+        right ? `right: calc(1rem * ${right})` : '',
+        left ? `left: calc(1rem * ${left})` : ''
+      ]"
+    >
       <slot name="tooltip">
         <span class="contents">{{ text }}</span>
       </slot>
@@ -16,19 +28,19 @@ withDefaults(defineProps<{ text?: string }>(), {
 </template>
 
 <style lang="scss">
-[biroui-tooltip-wrapper] {
+.biroui-tooltip-wrapper {
   @apply relative;
 
-  * ~ [biroui-tooltip] {
-    @apply opacity-0 pointer-events-none transition-[opacity,transform] z-10 bg-white p-3.5 rounded-lg shadow-lg;
+  * ~ [role="tooltip"] {
+    @apply opacity-0 pointer-events-none transition-[opacity,transform] delay-200  z-10 bg-[var(--sp-background)] p-3.5 rounded-lg shadow-lg w-max;
   }
 
-  *:hover ~ [biroui-tooltip] {
+  *:hover ~ [role="tooltip"] {
     @apply opacity-100;
   }
 }
 
-[biroui-tooltip] {
-  position: absolute;
+[role="tooltip"] {
+  @apply absolute lg:block hidden;
 }
 </style>

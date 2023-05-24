@@ -69,6 +69,7 @@ onMounted(() => {
           preload
           width="44"
           height="44"
+          format="webp"
           fetchpriority="high"
         />
         <span> Searchpets! </span>

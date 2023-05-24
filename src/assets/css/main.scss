@@ -30,15 +30,15 @@
     --sp--light-bg: hsl(var(--h), 77%, 96%);
     --sp--light-h1: hsl(var(--h), 77%, 93%);
     --sp--light-h2: hsl(var(--h), 77%, 85%);
-    --sp--light-h3: hsl(var(--h), 77%, 66%);
-    --sp--light-h4: hsl(var(--h), 77%, 58%);
+    --sp--light-h3: hsl(var(--h), 88%, 66%);
+    --sp--light-h4: hsl(var(--h), 88%, 58%);
     --sp--light-text: hsl(var(--h), 9%, 11%);
 
     --sp--dark-bg: hsl(var(--h), 33%, 10%);
     --sp--dark-h1: hsl(var(--h), 60%, 16%);
     --sp--dark-h2: hsl(var(--h), 60%, 24%);
-    --sp--dark-h3: hsl(var(--h), 60%, 48%);
-    --sp--dark-h4: hsl(var(--h), 60%, 52%);
+    --sp--dark-h3: hsl(var(--h), 70%, 48%);
+    --sp--dark-h4: hsl(var(--h), 70%, 52%);
     --sp--dark-text: hsl(var(--h), 9%, 92%);
   }
 }
@@ -81,5 +81,5 @@
 }
 
 body {
-  @apply text-[var(--sp-text)] bg-[var(--sp-background)];
+  @apply text-[var(--sp-text)] bg-[var(--sp-background)] font-medium;
 }
