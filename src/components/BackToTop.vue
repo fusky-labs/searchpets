@@ -18,7 +18,7 @@ const scrollToTop = () => window.scrollTo(0, 0)
 <template>
   <BaseButton
     reset
-    class="z-[5] transition-[transform,opacity,background] duration-300 fixed flex items-center px-6 py-4 text-white bg-blue-600 hover:bg-blue-700 rounded-md bottom-8 right-12 gap-x-2"
+    class="z-[5] transition-[transform,opacity,background] duration-300 fixed flex items-center px-6 py-4 text-white bg-[var(--sp-button-active)] hover:bg-[var(--sp-button-active--hover)] rounded-md bottom-8 right-12 gap-x-2"
     :class="[
       !isScrolledDown
         ? 'opacity-0 pointer-events-none translate-y-2'

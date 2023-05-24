@@ -1,7 +1,7 @@
 import re
 import requests
 import json
-import redis
+from redis import StrictRedis
 from redis.commands.search.query import Query
 
 from redis.commands.search.indexDefinition import IndexDefinition
@@ -12,7 +12,7 @@ from constants import schema
 
 with open("./redis_config.json") as f:
     redis_config = json.load(f)
-    RedisDB = redis.StrictRedis(
+    RedisDB = StrictRedis(
         host=redis_config["host"],
         port=redis_config["port"],
         username=redis_config["username"],

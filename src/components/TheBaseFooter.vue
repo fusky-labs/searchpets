@@ -5,6 +5,9 @@ const currentYear = new Date().getFullYear()
 const copyright = `© 2022-${currentYear} OpenFurs`
 
 const config = useRuntimeConfig()
+const commitSha = config.public.COMMIT_SHA.slice(0, 8)
+const ghUrl = "https://github.com/openfurs/searchpets"
+const commitUrl = `${ghUrl}/commit/${commitSha}`
 </script>
 
 <template>
@@ -30,12 +33,11 @@ const config = useRuntimeConfig()
     </p>
     <div class="flex gap-x-2.5 flex-wrap">
       <span id="copyright">{{ copyright }}</span>
-      <span>Release 2.3.0-{{ config.public.COMMIT_SHA }}</span>
-      <BaseLink
-        to="https://github.com/openfurs/searchpets"
-        external
-        class="inline-flex items-center gap-x-2"
+      <span
+        >{{ "Release 2.3.0" }}
+        <BaseLink :to="commitUrl" external>{{ commitSha }}</BaseLink></span
       >
+      <BaseLink :to="ghUrl" external class="inline-flex items-center gap-x-2">
         <GithubIcon :size="20" />
         View source on GitHub
       </BaseLink>

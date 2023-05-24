@@ -8,10 +8,10 @@ const emit = defineEmits<{
   (e: "dismissModal", payload?: object): void
 }>()
 
-const renderModalContent = ref(false)
+const renderModalContent = ref<boolean>(false)
 
 watch(
-  (): any => toRef(props.modalActive),
+  (): Ref<boolean> => toRef(props.modalActive),
   () => {
     !props.modalActive
       ? setTimeout(() => (renderModalContent.value = false), 300)
@@ -40,7 +40,7 @@ watch(
     @apply pointer-events-none backdrop-blur-0 #{!important};
 
     [biroui-modal-content] {
-      @apply opacity-0 -translate-y-8;
+      @apply opacity-0 -translate-y-8 ;
     }
 
     &::before {
@@ -55,6 +55,6 @@ watch(
 }
 
 [biroui-modal-content] {
-  @apply opacity-100 translate-y-0 transition-[opacity,transform] duration-300 bg-white;
+  @apply opacity-100 translate-y-0 transition-[opacity,transform] duration-300 bg-[var(--sp-modal-window)];
 }
 </style>

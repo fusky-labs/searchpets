@@ -46,9 +46,8 @@ onMounted(() => {
     <slot />
     <div
       biroui-dropdown-slot
-      class="w-max absolute bg-white shadow-lg border rounded-md menu-container transition-[opacity,transform] duration-200"
-      :style="`top: calc(1rem * ${props.offset})`"
-      :aria-hidden="!isMenuOpen ? true : undefined"
+      class="w-max absolute bg-white shadow-lg border rounded-md menu-container transition-[opacity,transform] duration-200 z-[2]"
+      :style="`top: calc(1rem * ${props.offset ?? 3})`"
       :class="[
         !isMenuOpen
           ? 'opacity-0 pointer-events-none -translate-y-1'

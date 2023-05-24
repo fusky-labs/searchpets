@@ -1,34 +1,22 @@
 <script setup lang="ts">
 import {
   XIcon,
-  LinkIcon,
   StarIcon,
   ChevronLeftIcon,
-  ChevronRightIcon
+  ChevronRightIcon,
+  PanelRightCloseIcon
 } from "lucide-vue-next"
 import { storeToRefs } from "pinia"
 import { useComicModalStore } from "~/stores"
 
 const comicStore = useComicModalStore()
 
-const {
-  isComicModalOpen,
-  characters,
-  title,
-  comicLink,
-  image,
-  comicIndex,
-  storedQuery
-} = storeToRefs(comicStore)
-
-const placeholders = {
-  title: "Moppet Babies",
-  img: "https://www.housepetscomic.com/wp-content/uploads/2016/07/2016-07-07-making-an-adjustment.png",
-  date: "2016-03-18"
-}
+const { isComicModalOpen, title, image, comicIndex, storedQuery } =
+  storeToRefs(comicStore)
 
 onMounted(() => {
   const handleArrowKeys = ({ key }: KeyboardEvent) => {
+    // TODO add limit when index goes out of bounds
     if (key === "ArrowLeft") {
       comicStore.updateComicModal(comicIndex.value - 1)
     }
@@ -52,17 +40,12 @@ onMounted(() => {
     modal-class="absolute inset-0 overflow-hidden rounded-none lg:w-10/12 lg:rounded-md lg:inset-unset min-h-[var(--h-lg-limiter)]"
   >
     <!--Title bar-->
-    <div
-      class="sticky top-0 flex items-center gap-x-2.5 px-6 py-4 bg-white z-[2]"
-    >
-      <span
-        class="w-full text-xl font-semibold"
-        >{{ title }}</span
-      >
+    <div class="sticky top-0 flex items-center gap-x-2.5 px-6 py-4 z-[2]">
+      <span class="w-full text-xl font-semibold">{{ title }}</span>
       <div class="flex items-center gap-x-1.5">
-        <BaseTooltipWrapper text="Your mom">
+        <BaseTooltipWrapper text="Close panel">
           <BaseButton ghost aria-label="Close button">
-            <XIcon :size="19" />
+            <PanelRightCloseIcon :size="19" />
           </BaseButton>
         </BaseTooltipWrapper>
         <hr class="h-8 border-l border-l-neutral-300" />
@@ -82,7 +65,7 @@ onMounted(() => {
     </div>
     <!--Contents-->
     <div
-      class="flex flex-col lg:flex-row overflow-y-scroll max-h-[var(--m-lg-limiter)] lg:max-h-[var(--h-lg-limiter)]"
+      class="flex flex-col lg:flex-row overflow-y-auto max-h-[var(--m-lg-limiter)] lg:max-h-[var(--h-lg-limiter)]"
     >
       <!-- Responsive Image -->
       <div
@@ -125,56 +108,7 @@ onMounted(() => {
         id="details-pane"
         class="sticky top-0 flex-shrink-0 w-full overflow-x-hidden lg:w-1/3 lg:h-[90%]"
       >
-        <div
-          class="sticky top-0 grid place-items-start grid-cols-2 p-6 pr-5 gap-3.5"
-        >
-          <div class="grid gap-y-1.5">
-            <span class="text-sm font-semibold uppercase opacity-60">DATE</span>
-            <ComicDate :date="placeholders.date" />
-          </div>
-          <div class="grid gap-y-1.5">
-            <span class="text-sm font-semibold uppercase opacity-60"
-              >CHAPTER</span
-            >
-            <span>Placeholder</span>
-          </div>
-          <div class="col-span-2 grid gap-y-1.5">
-            <span class="text-sm font-semibold uppercase opacity-60"
-              >Characters</span
-            >
-            <ul class="flex flex-wrap gap-2" tabindex="0">
-              <ComicDetailsChip :name="char" v-for="char in characters" />
-            </ul>
-          </div>
-          <div
-            class="col-span-2 w-full border-t grid gap-y-1.5 border-t-neutral-500"
-          >
-            <BaseLink
-              :to="comicLink"
-              external
-              class="inline-flex items-center py-3 gap-x-2 w-max"
-            >
-              <LinkIcon :size="19" />
-              Link to comic
-            </BaseLink>
-          </div>
-          <!-- DevOnly -->
-          <!-- <DevOnly>
-            <div class="col-span-2 grid gap-y-1.5">
-              <span class="text-sm font-semibold uppercase opacity-60"
-                >DEBUG INFORMATION</span
-              >
-              <span>Previous comic computed</span>
-              <code class="bg-neutral-200">{{
-                storedQuery[comicIndex - 1] || "undefined"
-              }}</code>
-              <span>Next comic computed</span>
-              <code class="bg-neutral-200">{{
-                storedQuery[comicIndex + 1] || "undefined"
-              }}</code>
-            </div>
-          </DevOnly> -->
-        </div>
+        <ComicDetailsInfo />
       </aside>
     </div>
   </ModalWrapper>

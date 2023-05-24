@@ -8,3 +8,78 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: light dark;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+
+    @media (prefers-reduced-motion) {
+      scroll-behavior: auto;
+    }
+  }
+
+  #__nuxt {
+    min-height: 100dvh;
+  }
+
+  :root {
+    --h: 230;
+
+    --sp--light-bg: hsl(var(--h), 77%, 96%);
+    --sp--light-h1: hsl(var(--h), 77%, 93%);
+    --sp--light-h2: hsl(var(--h), 77%, 85%);
+    --sp--light-h3: hsl(var(--h), 77%, 66%);
+    --sp--light-h4: hsl(var(--h), 77%, 58%);
+    --sp--light-text: hsl(var(--h), 9%, 11%);
+
+    --sp--dark-bg: hsl(var(--h), 33%, 10%);
+    --sp--dark-h1: hsl(var(--h), 60%, 16%);
+    --sp--dark-h2: hsl(var(--h), 60%, 24%);
+    --sp--dark-h3: hsl(var(--h), 60%, 48%);
+    --sp--dark-h4: hsl(var(--h), 60%, 52%);
+    --sp--dark-text: hsl(var(--h), 9%, 92%);
+  }
+}
+
+.light-mode {
+  --sp-text: var(--sp--light-text);
+  --sp-background: var(--sp--light-bg);
+
+  --sp-comic-item: var(--sp--light-h1);
+  --sp-ci-border: var(--sp--light-h3);
+  --sp-nav-border: var(--sp--light-h4);
+
+  --sp-modal-window: var(--sp--light-bg);
+  --sp-modal-highlight: var(--sp--light-h1);
+
+  --sp-button: var(--sp--light-h2);
+  --sp-button--hover: var(--sp--light-h3);
+  --sp-button-ghost--hover: var(--sp--light-h2);
+  --sp-button-border: var(--sp--light-h3);
+  --sp-button-active: var(--sp--light-h4);
+  --sp-button-active--hover: var(--sp--light-h3);
+}
+.dark-mode {
+  --sp-text: var(--sp--dark-text);
+  --sp-background: var(--sp--dark-bg);
+
+  --sp-comic-item: var(--sp--dark-h1);
+  --sp-ci-border: #0000;
+  --sp-nav-border: var(--sp--dark-h4);
+
+  --sp-modal-window: var(--sp--dark-bg);
+  --sp-modal-highlight: var(--sp--dark-h1);
+
+  --sp-button: var(--sp--dark-h2);
+  --sp-button--hover: var(--sp--dark-h3);
+  --sp-button-ghost--hover: var(--sp--dark-h2);
+  --sp-button-border: var(--sp--dark-h3);
+  --sp-button-active: var(--sp--dark-h4);
+  --sp-button-active--hover: var(--sp--dark-h3);
+}
+
+body {
+  @apply text-[var(--sp-text)] bg-[var(--sp-background)];
+}

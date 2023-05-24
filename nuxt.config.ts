@@ -20,6 +20,12 @@ export default defineNuxtConfig({
     autoImports: ["defineStore", ["defineStore", "definePiniaStore"]]
   },
   css: ["~/assets/css/main.scss"],
+  components: [
+    {
+      path: "~/components",
+      global: true
+    }
+  ],
   app: {
     head: {
       htmlAttrs: {
@@ -56,7 +62,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     REDIS_URL: process.env.REDIS_URL,
     public: {
-      COMMIT_SHA: process.env.NUXT_PUBLIC_COMMIT_SHA
+      COMMIT_SHA: process.env.NUXT_ENV_VERCEL_GIT_COMMIT_SHA
     }
   },
   image: {

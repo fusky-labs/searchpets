@@ -25,7 +25,7 @@ defineExpose({ baseButtonRef })
 
 <style lang="scss">
 .biroui-button {
-  @apply rounded-md border border-blue-600 bg-blue-200 hover:bg-blue-300 transition-colors;
+  @apply rounded-md border border-[var(--sp-button-border)] bg-[var(--sp-button)] hover:bg-[var(--sp-button--hover)] transition-colors;
 
   &:not(.biroui-has-icon) {
     @apply px-3 py-2.5;
@@ -37,6 +37,6 @@ defineExpose({ baseButtonRef })
 }
 
 .biroui-button-ghost {
-  @apply bg-transparent border-transparent hover:bg-blue-300;
+  @apply bg-transparent border-transparent hover:bg-[var(--sp-button-ghost--hover)];
 }
 </style>

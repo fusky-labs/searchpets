@@ -1,5 +1,4 @@
 // @ts-check
-const pluginBaseStyles = require("tailwindcss/plugin")
 const defaultTheme = require("tailwindcss/defaultTheme")
 
 /** @type {import('tailwindcss').Config} */
@@ -10,7 +9,8 @@ module.exports = {
     "./src/pages/**/*.vue",
     "./src/plugins/**/*.{js,ts}",
     "./nuxt.config.{js,ts}",
-    "./app.vue"
+    "./app.vue",
+    "./error.vue"
   ],
   theme: {
     extend: {
@@ -26,24 +26,5 @@ module.exports = {
       }
     }
   },
-  plugins: [
-    require("@tailwindcss/typography"),
-    pluginBaseStyles(({ addBase, theme }) => {
-      addBase({
-        "html": {
-          "overflowX": "hidden",
-          "scrollBehavior": "smooth",
-          "@media (prefers-reduced-motion)": {
-            scrollBehavior: "auto"
-          }
-        },
-        "body": {
-          fontFamily: theme("fontFamily.open-sans")
-        },
-        "#__nuxt": {
-          minHeight: "100vh"
-        }
-      })
-    })
-  ]
+  plugins: [require("@tailwindcss/typography")]
 }

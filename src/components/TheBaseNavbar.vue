@@ -14,13 +14,13 @@ onMounted(() => {
 
 <template>
   <header
-    class="fixed inset-0 flex justify-center px-8 py-4 transition-shadow bg-white bottom-unset z-[5]"
+    class="fixed inset-0 flex justify-center px-8 py-4 transition-shadow bg-[var(--sp-background)] bottom-unset z-[5]"
     :class="[isScrolledDown ? 'shadow-lg' : 'shadow-none']"
   >
     <!-- Skip to main content -->
     <a
       href="#main-content"
-      class="absolute top-0 left-0 px-5 py-3.5 focus:translate-y-0 -translate-y-full transition-transform duration-500"
+      class="absolute top-0 left-0 px-5 py-3.5 focus:translate-y-0 -translate-y-full transition-transform duration-300 z-[1000] bg-[var(--sp-button-active)]"
     >
       Skip to main content
     </a>
@@ -36,7 +36,7 @@ onMounted(() => {
           <div class="grid">
             <NuxtLink
               to="/characters"
-              class="px-4 py-2.5 hover:bg-blue-100 flex items-center gap-x-3"
+              class="px-4 py-2.5 hover:bg-blue-100 flex items-center gap-x-2"
             >
               <CatIcon :size="19" />
               <span>Characters</span>
@@ -89,6 +89,6 @@ onMounted(() => {
 
 <style>
 .router-link-active > img {
-  @apply border-2 p-0.5 border-blue-500;
+  @apply border-2 p-0.5 border-[var(--sp-nav-border)];
 }
 </style>

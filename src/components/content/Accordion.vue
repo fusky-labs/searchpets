@@ -5,6 +5,8 @@ defineProps<{ title: string }>()
 <template>
   <div id="faq-item">
     <h3>{{ title }}</h3>
-    <ContentSlot :use="$slots.default" />
+    <div data-content-slot>
+      <ContentSlot :use="$slots.default" />
+    </div>
   </div>
 </template>

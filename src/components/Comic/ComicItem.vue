@@ -32,8 +32,8 @@ const loadImgNotifier = () => {
 
 <template>
   <div
-    aria-labelledby="comic-title"
-    class="flex flex-col px-5 py-4 border rounded-md shadow-lg border-neutral-400"
+    :aria-label="props.title"
+    class="flex flex-col px-5 py-4 border rounded-md shadow-lg border-[var(--sp-ci-border)] bg-[var(--sp-comic-item)]"
   >
     <div class="flex items-center justify-between">
       <h2 class="text-xl" id="comic-title">{{ title }}</h2>
