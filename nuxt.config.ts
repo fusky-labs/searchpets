@@ -19,6 +19,7 @@ export default defineNuxtConfig({
   pinia: {
     autoImports: ["defineStore", ["defineStore", "definePiniaStore"]]
   },
+  plugins: [{ src: "~/plugins/vercel.ts", mode: "client" }],
   css: ["~/assets/css/main.scss"],
   components: [
     {
