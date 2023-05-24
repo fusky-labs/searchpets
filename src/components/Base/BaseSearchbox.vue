@@ -6,12 +6,12 @@ import { SearchIcon } from "lucide-vue-next"
   <div id="biroui-searchbox" class="relative hidden lg:block">
     <div
       id="search-input-wrapper"
-      class="relative overflow-hidden border border-blue-500 rounded-md"
+      class="relative overflow-hidden border border-[var(--sp-nav-border)] rounded-md bg-[var(--sp-input-bg)]"
     >
       <input
         type="text"
         placeholder="Search"
-        class="py-2.5 px-4 w-[40vw] rounded-md"
+        class="py-2.5 px-4 w-[40vw] rounded-md bg-transparent"
         spellcheck="false"
         autocapitalize="false"
         autocomplete="false"

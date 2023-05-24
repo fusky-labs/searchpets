@@ -41,6 +41,6 @@ withDefaults(defineProps<TooltipInt>(), {
 }
 
 [role="tooltip"] {
-  @apply absolute lg:block hidden;
+  @apply absolute lg:block hidden border border-[var(--sp-tooltip-border)] translate-y-1.5;
 }
 </style>

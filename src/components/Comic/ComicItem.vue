@@ -24,10 +24,6 @@ const props = withDefaults(defineProps<ComicItemProps>(), {
 const emit = defineEmits<{
   (e: "expandToModal", payLoad?: object): void
 }>()
-
-const loadImgNotifier = () => {
-  console.log(`${props.title} is loaded`)
-}
 </script>
 
 <template>
@@ -52,7 +48,6 @@ const loadImgNotifier = () => {
         format="webp"
         sizes="sm:500px md:675px lg:800px"
         @click="emit('expandToModal')"
-        @load="loadImgNotifier"
       />
     </div>
 

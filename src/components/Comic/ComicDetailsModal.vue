@@ -16,12 +16,15 @@ const { isComicModalOpen, title, image, comicIndex, storedQuery } =
 
 onMounted(() => {
   const handleArrowKeys = ({ key }: KeyboardEvent) => {
-    // TODO add limit when index goes out of bounds
     if (key === "ArrowLeft") {
-      comicStore.updateComicModal(comicIndex.value - 1)
+      if (!(comicIndex.value < 1)) {
+        comicStore.updateComicModal(comicIndex.value - 1)
+      }
     }
     if (key === "ArrowRight") {
-      comicStore.updateComicModal(comicIndex.value + 1)
+      if (!(comicIndex.value + 1 >= storedQuery.value.length)) {
+        comicStore.updateComicModal(comicIndex.value + 1)
+      }
     }
   }
 
