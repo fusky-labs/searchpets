@@ -9,6 +9,19 @@ const CLARITY_INJECT = `
   })(window, document, "clarity", "script", "${__c_id}");
 `
 
+const KEYWORDS = [
+  "housepets",
+  "comic",
+  "furry",
+  "webcomic",
+  "sasha",
+  "peanut",
+  "grape",
+  "wiki",
+  "rick",
+  "griffin"
+]
+
 export default defineNuxtConfig({
   modules: [
     "@pinia/nuxt",
@@ -38,7 +51,8 @@ export default defineNuxtConfig({
       ],
       meta: [
         { "http-equiv": "X-UA-Compatible", "content": "IE=edge;chrome=1" },
-        { property: "og:site_name", content: "Searchpets!" }
+        { property: "og:site_name", content: "Searchpets!" },
+        { name: "keywords", content: KEYWORDS.join(",") }
       ],
       script: [
         {
