@@ -15,7 +15,7 @@ export function usePageMeta({ title, description }: PageMetaProps) {
 
   useSeoMeta({
     title: _TITLE,
-    description: description,
+    description,
     ogTitle: title,
     ogDescription: description,
     ogType: "website",

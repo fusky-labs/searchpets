@@ -112,8 +112,7 @@ export const spMockData = [
   },
   {
     title: "Not A Problem",
-    comicLink:
-      "https://www.housepetscomic.com/comic/2019/03/11/not-a-problem/",
+    comicLink: "https://www.housepetscomic.com/comic/2019/03/11/not-a-problem/",
     characters: ["grape", "maxwell", "peanut", "tarot"],
     image:
       "https://www.housepetscomic.com/wp-content/uploads/2019/03/2019-03-11-not-a-problem.png"

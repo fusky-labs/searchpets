@@ -26,8 +26,8 @@ export default defineEventHandler(async (event) => {
 
     const characterQuery = characters
       ? characters
-        .map((character: string) => `@characters:{${character}}`)
-        .join(" ")
+          .map((character: string) => `@characters:{${character}}`)
+          .join(" ")
       : ""
     const chapterQuery = chapters ? `@chapter:(${chapters.join(" | ")})` : ""
 
@@ -36,25 +36,21 @@ export default defineEventHandler(async (event) => {
 
     await console.log(`${characterQuery} ${chapterQuery}`)
     for (const year of years) {
-      const comics = await Client.ft.search(
-        year,
-        fullQuery,
-        {
-          LIMIT: { from: 0, size: 500 },
-          SORTBY: { BY: "index" }
-        }
-      )
+      const comics = await Client.ft.search(year, fullQuery, {
+        LIMIT: { from: 0, size: 500 },
+        SORTBY: { BY: "index" }
+      })
 
       const comicsList = comics.documents.map(
         (comic) =>
-        ({
-          title: comic.value.title,
-          comicLink: comic.value.comic_link,
-          image: comic.value.image,
-          chapter: comic.value.chapter,
-          date: comic.value.date,
-          characters: (comic.value.characters as string).split(",")
-        } as ComicItem)
+          ({
+            title: comic.value.title,
+            comicLink: comic.value.comic_link,
+            image: comic.value.image,
+            chapter: comic.value.chapter,
+            date: comic.value.date,
+            characters: (comic.value.characters as string).split(",")
+          } as ComicItem)
       )
       comicsOutput.push(...comicsList)
     }
