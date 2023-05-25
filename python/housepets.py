@@ -2,6 +2,7 @@ import re
 import requests
 import json
 from redis import StrictRedis
+from redis.exceptions import ResponseError
 from redis.commands.search.query import Query
 
 from redis.commands.search.indexDefinition import IndexDefinition
@@ -149,13 +150,13 @@ class Housepets:
 
         try:
             RedisDB.ft(f"{index_name}").create_index(schema, definition=index_def)
-        except redis.exceptions.ResponseError:
+        except ResponseError:
             print(f"{index_name} index already exists")
 
     def get_year_index(self, index_name: str):
         try:
             index_keys = RedisDB.ft(index_name).search(Query("*").paging(0, 500))
-        except redis.exceptions.ResponseError:
+        except ResponseError:
             return None
 
         return index_keys
