@@ -32,7 +32,7 @@ export default defineEventHandler(async (event) => {
     const chapterQuery = chapters ? `@chapter:(${chapters.join(" | ")})` : ""
 
     const fullQuery =
-      characters && chapters ? `${characterQuery} ${chapterQuery}` : "*"
+      characters || chapters ? `${characterQuery} ${chapterQuery}` : "*"
 
     await console.log(`${characterQuery} ${chapterQuery}`)
     for (const year of years) {
