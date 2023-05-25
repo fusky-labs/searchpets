@@ -3,12 +3,12 @@ import Client from "~/utils/redis"
 function toArrayIfNotArray(value: any){
   // turns any element, except undefined, to an array with only a single value
   return Array.isArray(value) || !value ? value : [value]
-};
+}
 
 export default defineEventHandler(async (event) => {
   await Client.connect()
   let { years, characters, chapters } = await readBody(event)
-  let comicsOutput: object[] = []
+  const comicsOutput: object[] = []
 
   try {
     years = toArrayIfNotArray(years)
