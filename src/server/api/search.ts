@@ -1,24 +1,35 @@
 import Client from "~/utils/redis"
 
-function toArrayIfNotArray(value: any){
+function toArrayIfNotArray(value: unknown) {
   // turns any element, except undefined, to an array with only a single value
   return Array.isArray(value) || !value ? value : [value]
+}
+
+interface ComicItem {
+  title: string
+  comicLink: string
+  date: string
+  image: string
+  chapter: string
+  characters: string[]
 }
 
 export default defineEventHandler(async (event) => {
   await Client.connect()
   let { years, characters, chapters } = await readBody(event)
-  const comicsOutput: object[] = []
+  const comicsOutput: ComicItem[] = []
 
   try {
     years = toArrayIfNotArray(years)
     characters = toArrayIfNotArray(characters)
     chapters = toArrayIfNotArray(chapters)
 
-    const characterQuery = characters ? characters
-      .map((character: string) => `@characters:{${character}}`)
-      .join(" ") : '*'
-    const chapterQuery = chapters ? `@chapter:(${chapters.join(" | ")})` : ''
+    const characterQuery = characters
+      ? characters
+          .map((character: string) => `@characters:{${character}}`)
+          .join(" ")
+      : "*"
+    const chapterQuery = chapters ? `@chapter:(${chapters.join(" | ")})` : ""
 
     for (const year of years) {
       const comics = await Client.ft.search(
@@ -26,21 +37,22 @@ export default defineEventHandler(async (event) => {
         `${characterQuery} ${chapterQuery}`,
         {
           LIMIT: { from: 0, size: 500 },
-          SORTBY: { BY: "index"}
+          SORTBY: { BY: "index" }
         }
       )
 
-      const comics_list = comics.documents.map((comic) => (
-        {
-          title: comic.value.title as string,
-          comic_link: comic.value.comic_link as string,
-          image: comic.value.image as string,
-          chapter: comic.value.chapter as string,
-          date: comic.value.date as string,
-          characters: (comic.value.characters as string).split(",")
-        }
-      ))
-      comicsOutput.push(...comics_list)
+      const comicsList = comics.documents.map(
+        (comic) =>
+          ({
+            title: comic.value.title,
+            comicLink: comic.value.comic_link,
+            image: comic.value.image,
+            chapter: comic.value.chapter,
+            date: comic.value.date,
+            characters: (comic.value.characters as string).split(",")
+          } as ComicItem)
+      )
+      comicsOutput.push(...comicsList)
     }
   } catch (e) {
     console.log(e)
