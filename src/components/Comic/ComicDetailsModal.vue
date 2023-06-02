@@ -41,6 +41,7 @@ onMounted(() => {
     :modal-active="isComicModalOpen"
     style="--h-lg-limiter: 80dvh; --m-lg-limiter: 90dvh"
     modal-class="absolute inset-0 overflow-hidden rounded-none lg:w-10/12 lg:rounded-md lg:inset-unset min-h-[var(--h-lg-limiter)]"
+    :data-state-debug="`{&quot;comicIndex&quot;:${comicIndex}}`"
   >
     <!--Title bar-->
     <div class="sticky top-0 flex items-center gap-x-2.5 px-6 py-4 z-[2]">

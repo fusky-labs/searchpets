@@ -17,7 +17,7 @@ const { storedQuery, characters, comicLink, comicIndex } =
         <SearchIcon :size="16" />
         <span class="text-sm font-semibold uppercase">FROM SEARCH RESULTS</span>
       </div>
-      <div>{{ comicIndex+1 }} of {{ storedQuery.length }}</div>
+      <div>{{ comicIndex + 1 }} of {{ storedQuery.length }}</div>
     </div>
     <div class="grid gap-y-1.5">
       <span class="text-sm font-semibold uppercase opacity-60">DATE</span>

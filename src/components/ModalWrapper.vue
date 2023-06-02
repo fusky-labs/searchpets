@@ -40,7 +40,7 @@ watch(
     @apply pointer-events-none backdrop-blur-0 #{!important};
 
     [biroui-modal-content] {
-      @apply opacity-0 -translate-y-8 ;
+      @apply opacity-0 -translate-y-8;
     }
 
     &::before {

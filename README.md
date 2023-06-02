@@ -17,23 +17,28 @@
 </p>
 
 ## Infrastructure
+
 The website is written in Nuxt 3, and the database
 and search functionality is powered by Redis. While the back-end is written in Python
 to update latest comics from the [official website](https://www.housepetscomic.com).
 Searchpets! is hosted from Linode and Netlify and delivered through the
 interwebs with CloudFlare.
 
-##  Running the app locally
+## Running the app locally
+
 ### Prerequisites
+
 - Node.js 18 or higher (LTS recommended)
 - Python 3.10 or higher
 - Yarn (npm can still be used but we strongly recommend using
   yarn!)
 
 ## Disclaimer
+
 _Searchpets!_ is an open source fan project. SP does not own any of the
 contents used on this website and has no direct affiliation with the entire
 _Housepets!_ web comic or all of Rick Griffin's intellectual property.
 
 ## License
+
 GPL-2.0

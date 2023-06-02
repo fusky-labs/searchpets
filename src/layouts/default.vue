@@ -1,5 +1,8 @@
 <template>
-  <div data-scroll-area />
+  <Teleport to="body">
+    <div data-scroll-area style="height: 6rem; pointer-events: none" />
+    <LazyNuxtLoadingIndicator />
+  </Teleport>
   <div id="searchpets">
     <TheBaseNavbar />
     <BackToTop />
@@ -8,11 +11,9 @@
     </main>
     <TheBaseFooter />
   </div>
-  <LazyComicDetailsModal />
+  <ClientOnly>
+    <Teleport to="html > body">
+      <LazyComicDetailsModal />
+    </Teleport>
+  </ClientOnly>
 </template>
-
-<style>
-[data-scroll-area] {
-  @apply h-24 pointer-events-none;
-}
-</style>
