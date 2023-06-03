@@ -15,7 +15,8 @@ interface ComicItem {
 }
 
 export default defineEventHandler(async (event) => {
-  await Client.connect()
+  if (!Client.isOpen) Client.connect()
+
   let { years, characters, chapters } = await readBody(event)
   const comicsOutput: ComicItem[] = []
 
@@ -57,7 +58,6 @@ export default defineEventHandler(async (event) => {
   } catch (e) {
     console.log(e)
   }
-  await Client.quit()
 
   return comicsOutput
 })

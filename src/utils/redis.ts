@@ -6,4 +6,6 @@ const Client = createClient({
   url: config.REDIS_URL
 })
 
+Client.connect()
+
 export default Client
