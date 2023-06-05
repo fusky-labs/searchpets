@@ -5,8 +5,9 @@ export default defineEventHandler(async (event) => {
 
   const { slug } = getQuery(event)
 
-  const characters = slug ? 
-    Client.hGet("characters_list", slug.toString()) : Client.hGetAll("characters_list")
-  
+  const characters = slug
+    ? Client.hGet("characters_list", slug.toString())
+    : Client.hGetAll("characters_list")
+
   return characters
 })
