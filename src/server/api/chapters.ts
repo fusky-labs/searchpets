@@ -1,13 +1,13 @@
-import Client from "~/utils/redis"
+import client from "~/utils/redis"
 
 export default defineEventHandler(async (event) => {
-  if (!Client.isOpen) Client.connect()
+  if (!client.isOpen) client.connect()
 
   const { slug } = getQuery(event)
 
   const chapters = slug
-    ? Client.hGet("chapter_list", slug.toString())
-    : Client.hGetAll("chapter_list")
+    ? client.hGet("chapter_list", slug.toString())
+    : client.hGetAll("chapter_list")
 
   return chapters
 })

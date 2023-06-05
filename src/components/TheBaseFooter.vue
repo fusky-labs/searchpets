@@ -35,7 +35,9 @@ const commitUrl = `${ghUrl}/commit/${commitSha}`
       <span id="copyright">{{ copyright }}</span>
       <span
         >{{ "Release 2.3.0" }}
-        <BaseLink :to="commitUrl" external>{{ commitSha }}</BaseLink></span
+        <BaseLink :to="commitUrl" external v-if="commitSha">{{ commitSha }}</BaseLink>
+        <span v-else>dev</span>
+        </span
       >
       <BaseLink :to="ghUrl" external class="inline-flex items-center gap-x-2">
         <GithubIcon :size="20" />

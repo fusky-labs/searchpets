@@ -9,7 +9,7 @@ const characters = Object.keys(data?.value ?? {})
     <div class="row">
       <div v-for="character in characters">
         <NuxtLink :to="`/characters/${character}`">
-          {{ data?.[character] }}
+          {{ (data as any)?.[character] }}
         </NuxtLink>
       </div>
     </div>

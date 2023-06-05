@@ -1,4 +1,4 @@
-from housepets import Housepets, RedisDB
+from housepets import Housepets, housepets_db
 from constants import current_year
 
 hp = Housepets()
@@ -17,13 +17,13 @@ def main():
         latest_chapter = hp.get_latest_chapter()
         comic = hp.get_comic_metadata(latest_comics[-1], index=year_db.total)
 
-        RedisDB.hset(
+        housepets_db.hset(
             comic["key_name"],
             mapping=comic["comic"] | {"chapter": latest_chapter}
         )
 
-        hp.setSlugs("characters_list", comic["comic"]["characters"])
-        hp.setSlugs("chapter_list", [latest_chapter])
+        hp.set_slugs("characters_list", comic["comic"]["characters"])
+        hp.set_slugs("chapter_list", [latest_chapter])
 
 
 if __name__ == "__main__":

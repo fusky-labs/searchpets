@@ -1,4 +1,4 @@
-import Client from "~/utils/redis"
+import client from "~/utils/redis"
 
 function toArrayIfNotArray(value: unknown) {
   // turns any element, except undefined, to an array with only a single value
@@ -15,7 +15,7 @@ interface ComicItem {
 }
 
 export default defineEventHandler(async (event) => {
-  if (!Client.isOpen) Client.connect()
+  if (!client.isOpen) client.connect()
 
   let { years, characters, chapters } = await readBody(event)
   const comicsOutput: ComicItem[] = []
@@ -37,7 +37,7 @@ export default defineEventHandler(async (event) => {
 
     await console.log(`${characterQuery} ${chapterQuery}`)
     for (const year of years) {
-      const comics = await Client.ft.search(year, fullQuery, {
+      const comics = await client.ft.search(year, fullQuery, {
         LIMIT: { from: 0, size: 500 },
         SORTBY: { BY: "index" }
       })

@@ -1,4 +1,4 @@
-from housepets import Housepets, RedisDB
+from housepets import Housepets, housepets_db
 from constants import current_year, initial_year
 
 
@@ -25,14 +25,14 @@ def main():
                 current_chapter = chapter_entries[comic_link_title]
 
             if comic_characters:
-                hp.setSlugs("characters_list", comic_characters)
+                hp.set_slugs("characters_list", comic_characters)
 
-            RedisDB.hset(
+            housepets_db.hset(
                 comic_key,
                 mapping=comic_data["comic"] | {"chapter": current_chapter}
             )
 
-        hp.setSlugs("chapter_list", list(chapter_entries.values()))
+        hp.set_slugs("chapter_list", list(chapter_entries.values()))
 
 
 if __name__ == "__main__":

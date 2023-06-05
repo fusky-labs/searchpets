@@ -14,7 +14,7 @@ from constants import schema
 
 with open("./redis_config.json") as f:
     redis_config = json.load(f)
-    RedisDB = StrictRedis(
+    housepets_db = StrictRedis(
         host=redis_config["host"],
         port=redis_config["port"],
         username=redis_config["username"],
@@ -25,7 +25,6 @@ with open("./redis_config.json") as f:
 
 class Housepets:
     def __init__(self):
-        pass
         self.hp_url = "https://housepetscomic.com"
 
     def _soup_req(self, url: str):
@@ -150,13 +149,13 @@ class Housepets:
                                     score_field="doc_score")
 
         try:
-            RedisDB.ft(f"{index_name}").create_index(schema, definition=index_def)
+            housepets_db.ft(f"{index_name}").create_index(schema, definition=index_def)
         except ResponseError:
             print(f"{index_name} index already exists")
 
     def get_year_index(self, index_name: str):
         try:
-            index_keys = RedisDB.ft(index_name).search(Query("*").paging(0, 500))
+            index_keys = housepets_db.ft(index_name).search(Query("*").paging(0, 500))
         except ResponseError:
             return None
 
@@ -176,4 +175,4 @@ class Housepets:
             slugify(x.replace("?", "0")): x for x in chars
         }
 
-        RedisDB.hset(key, mapping=slug_dict)
+        housepets_db.hset(key, mapping=slug_dict)

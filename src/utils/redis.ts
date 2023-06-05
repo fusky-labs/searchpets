@@ -2,10 +2,10 @@ import { createClient } from "redis"
 
 const config = useRuntimeConfig()
 
-const Client = createClient({
+const client = createClient({
   url: config.REDIS_URL
 })
 
-Client.connect()
+client.connect()
 
-export default Client
+export default client
