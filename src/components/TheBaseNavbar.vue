@@ -17,13 +17,6 @@ onMounted(() => {
     class="fixed inset-0 flex justify-center px-8 py-4 transition-shadow bg-[var(--sp-background)] bottom-unset z-[5]"
     :class="[isScrolledDown ? 'shadow-lg' : 'shadow-none']"
   >
-    <!-- Skip to main content -->
-    <a
-      href="#main-content"
-      class="absolute top-0 left-0 px-5 py-3.5 focus:translate-y-0 -translate-y-full transition-transform duration-300 z-[1000] bg-[var(--sp-button-active)]"
-    >
-      Skip to main content
-    </a>
     <!-- Menus  -->
     <div
       class="relative top-0 left-0 flex flex-row-reverse items-center justify-between w-full px-2 py-0 lg:pl-8 lg:flex-row lg:justify-normal lg:py-4 lg:absolute gap-x-5"
@@ -36,21 +29,21 @@ onMounted(() => {
           <div class="grid">
             <NuxtLink
               to="/characters"
-              class="px-4 py-2.5 hover:bg-blue-100 flex items-center gap-x-2"
+              class="px-4 py-2.5 flex items-center gap-x-3 hover:bg-[var(--sp-button--hover)]"
             >
               <CatIcon :size="19" />
-              <span>Characters</span>
+              Characters
             </NuxtLink>
             <NuxtLink
               to="/chapters"
-              class="px-4 py-2.5 hover:bg-blue-100 flex items-center gap-x-3"
+              class="px-4 py-2.5 flex items-center gap-x-3 hover:bg-[var(--sp-button--hover)]"
             >
               <CatIcon :size="20" />
-              <span>Chapter Arcs</span>
+              Chapter Arcs
             </NuxtLink>
             <NuxtLink
               to="/about"
-              class="px-4 py-2.5 hover:bg-blue-100 flex items-center gap-x-3"
+              class="px-4 py-2.5 flex items-center gap-x-3 hover:bg-[var(--sp-button--hover)]"
             >
               <CatIcon :size="20" />
               <span>About <em>Searchpets!</em></span>
@@ -72,7 +65,7 @@ onMounted(() => {
           format="webp"
           fetchpriority="high"
         />
-        <span> Searchpets! </span>
+        <span>{{ "Searchpets!" }}</span>
       </NuxtLink>
     </div>
     <!-- Searchbox -->

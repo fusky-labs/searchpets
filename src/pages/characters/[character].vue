@@ -1,5 +1,10 @@
 <script setup lang="ts">
 let { character } = useRoute().params
+
+usePageMeta({
+  title: character as string,
+  description: `Looking through ${character}`
+})
 </script>
 
 <template>

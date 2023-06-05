@@ -1,16 +1,21 @@
 <script setup lang="ts">
-const props = withDefaults(defineProps<{ name: string }>(), {
+import { useComicModalStore } from "~/stores"
+
+const c = useComicModalStore()
+
+withDefaults(defineProps<{ name: string }>(), {
   name: "Grape"
 })
 </script>
 
 <template>
   <li
-    :aria-label="props.name"
+    :aria-label="name"
     class="px-3 py-1 text-sm border rounded-full border-neutral-300 bg-neutral-200 hover:bg-neutral-300 hover:border-neutral-400"
+    @click="c.toggleComicModal()"
   >
     <NuxtLink
-      :to="`/character/${props.name.toLowerCase()}`"
+      :to="`/characters/${name.toLowerCase()}`"
       class="flex items-center gap-x-2"
     >
       <NuxtImg

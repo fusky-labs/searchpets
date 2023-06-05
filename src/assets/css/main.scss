@@ -87,3 +87,9 @@
 body {
   @apply text-[var(--sp-text)] bg-[var(--sp-background)] font-medium;
 }
+
+@layer components {
+  .bui-card-item {
+    @apply border-[var(--sp-ci-border)] bg-[var(--sp-comic-item)];
+  }
+}

@@ -2,7 +2,7 @@
 import { GithubIcon } from "lucide-vue-next"
 
 const currentYear = new Date().getFullYear()
-const copyright = `© 2022-${currentYear} OpenFurs`
+const copyright = `© 2022-${currentYear} Foosky Labs`
 
 const config = useRuntimeConfig()
 const commitSha = config.public.COMMIT_SHA.slice(0, 8)
@@ -11,39 +11,44 @@ const commitUrl = `${ghUrl}/commit/${commitSha}`
 </script>
 
 <template>
-  <footer class="grid px-12 gap-y-4 py-9">
+  <footer
+    class="grid px-12 gap-y-4 py-9 text-center place-items-center max-w-screen-2xl mx-auto"
+  >
     <p>
-      <strong>NOTE:&nbsp;</strong><span class="name-emphasis">Searchpets!</span>
-      is an open source project created by maxthecomputerfox and Kuroji Fusky,
-      two passionate developers from Southeast Asia; licensed under GNU General
-      Public License v2.0. SP does not own any of the contents used on this
-      website and has no direct affiliation with
+      <span class="name-emphasis">Searchpets!</span>
+      is an open source fan project created by
+      <BaseLink to="https://github.com/openfurs" external>Foosky Labs</BaseLink>,
+      a group created by maxthecomputerfox and Kuroji Fusky, two passionate
+      developers from Southeast Asia; licensed under GNU General Public License
+      v2.0. Searchpets! does not own all of the contents used on this website
+      and has no direct affiliation with
       <span class="name-emphasis">Housepets!</span> or all of Rick Griffin's
       intellectual property.
     </p>
     <p>
-      Character chapter metadata taken
+      Character and chapter metadata taken
       <BaseLink to="https://www.housepetscomic.com" external
         >from the official site</BaseLink
       >
       and the
       <BaseLink to="https://housepetscomic.fandom.com" external
-        >Housepets! wiki</BaseLink
+        >Housepets! Fandom wiki</BaseLink
       >.
     </p>
-    <div class="flex gap-x-2.5 flex-wrap">
+    <p class="flex gap-x-4 flex-wrap">
       <span id="copyright">{{ copyright }}</span>
       <span
-        >{{ "Release 2.3.0" }}
-        <BaseLink :to="commitUrl" external v-if="commitSha">{{ commitSha }}</BaseLink>
+        >{{ "Version 2.1.0" }}
+        <BaseLink :to="commitUrl" external v-if="commitSha">{{
+          commitSha
+        }}</BaseLink>
         <span v-else>dev</span>
-        </span
-      >
+      </span>
       <BaseLink :to="ghUrl" external class="inline-flex items-center gap-x-2">
         <GithubIcon :size="20" />
         View source on GitHub
       </BaseLink>
-    </div>
+    </p>
   </footer>
 </template>
 
