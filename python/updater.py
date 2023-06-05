@@ -16,14 +16,14 @@ def main():
 
         latest_chapter = hp.get_latest_chapter()
         comic = hp.get_comic_metadata(latest_comics[-1], index=year_db.total)
-        
+
         RedisDB.hset(
             comic["key_name"],
             mapping=comic["comic"] | {"chapter": latest_chapter}
         )
 
-        RedisDB.sadd("characters_db", *comic["comic"]["characters"])
-        RedisDB.sadd("chapter_db", latest_chapter)
+        hp.setSlugs("characters_list", comic["comic"]["characters"])
+        hp.setSlugs("chapter_list", [latest_chapter])
 
 
 if __name__ == "__main__":

@@ -1,6 +1,7 @@
 import re
 import requests
 import json
+from slugify import slugify
 from redis import StrictRedis
 from redis.exceptions import ResponseError
 from redis.commands.search.query import Query
@@ -102,7 +103,7 @@ class Housepets:
 
         chapter_dropdown = self.get_chapter_dropdown()
 
-        print(f"going trough {len(chapter_dropdown)} chaoters")
+        print(f"going trough {len(chapter_dropdown)} chapters")
 
         for chapters in chapter_dropdown:
             name_parse = re.sub("^(-|\d)(\d\d).\s", "", chapters.get_text())
@@ -160,3 +161,19 @@ class Housepets:
             return None
 
         return index_keys
+
+    def set_slugs(self, key: str, chars: list[str]):
+        """
+        creates a hash/dict on redis to store data
+        for things like characters and chapters to create
+        pages using slugs
+        """
+
+        slug_dict = {
+            # replaced "?" to "0" since "?" is taken
+            # as a query starter in Nuxt, this is just
+            # a proto for now, may change later
+            slugify(x.replace("?", "0")): x for x in chars
+        }
+
+        RedisDB.hset(key, mapping=slug_dict)
