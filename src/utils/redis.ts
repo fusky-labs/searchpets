@@ -8,4 +8,10 @@ const client = createClient({
 
 client.connect()
 
+export const checkSocketOpen = () => {
+  if (!client.isOpen) {
+    client.connect()
+  }
+}
+
 export default client

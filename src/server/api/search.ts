@@ -1,4 +1,4 @@
-import client from "~/utils/redis"
+import client, { checkSocketOpen } from "~/utils/redis"
 
 function toArrayIfNotArray(value: unknown) {
   // turns any element, except undefined, to an array with only a single value
@@ -15,7 +15,7 @@ interface ComicItem {
 }
 
 export default defineEventHandler(async (event) => {
-  if (!client.isOpen) client.connect()
+  checkSocketOpen()
 
   let { years, characters, chapters } = await readBody(event)
   const comicsOutput: ComicItem[] = []

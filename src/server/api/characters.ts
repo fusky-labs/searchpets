@@ -1,7 +1,7 @@
-import client from "~/utils/redis"
+import client, { checkSocketOpen } from "~/utils/redis"
 
 export default defineEventHandler(async (event) => {
-  if (!client.isOpen) client.connect()
+  checkSocketOpen()
 
   const { slug } = getQuery(event)
 
