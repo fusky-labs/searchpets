@@ -6,7 +6,7 @@ const copyright = `© 2022-${currentYear} Foosky Labs`
 
 const config = useRuntimeConfig()
 const commitSha = config.public.COMMIT_SHA.slice(0, 8)
-const ghUrl = "https://github.com/openfurs/searchpets"
+const ghUrl = "https://github.com/foosky-labs/searchpets"
 const commitUrl = `${ghUrl}/commit/${commitSha}`
 </script>
 
@@ -17,7 +17,7 @@ const commitUrl = `${ghUrl}/commit/${commitSha}`
     <p>
       <span class="name-emphasis">Searchpets!</span>
       is an open source fan project created by
-      <BaseLink to="https://github.com/openfurs" external>Foosky Labs</BaseLink>,
+      <BaseLink to="https://github.com/foosky-labs" external>Foosky Labs</BaseLink>,
       a group created by maxthecomputerfox and Kuroji Fusky, two passionate
       developers from Southeast Asia; licensed under GNU General Public License
       v2.0. Searchpets! does not own all of the contents used on this website

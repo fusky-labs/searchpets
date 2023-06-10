@@ -7,10 +7,10 @@
   <img src="https://user-images.githubusercontent.com/94678583/192121601-8083d9a5-a607-4201-8db1-d15369e240b7.png" alt="Searchpets Dev Demo">
 </p>
 <p align="center">
-  <img src="https://img.shields.io/github/license/openfurs/searchpets?style=flat" alt="GPL 2.0 License" />
-  <img src="https://img.shields.io/github/issues/openfurs/searchpets?style=flat" alt="Searchpets' open issues" />
-  <img src="https://img.shields.io/github/last-commit/openfurs/searchpets" />
-  <img src="https://img.shields.io/github/contributors/openfurs/searchpets" />
+  <img src="https://img.shields.io/github/license/foosky-labs/searchpets?style=flat" alt="GPL 2.0 License" />
+  <img src="https://img.shields.io/github/issues/foosky-labs/searchpets?style=flat" alt="Searchpets' open issues" />
+  <img src="https://img.shields.io/github/last-commit/foosky-labs/searchpets" />
+  <img src="https://img.shields.io/github/contributors/foosky-labs/searchpets" />
 </p>
 <p align="center">
 <em>Searchpets!</em> is comic search engine for querying characters, texts from comics, and chapter arcs from the entire <em>Housepets!</em> catalog! Written in Python and TypeScript - it was taken inspiration from this <a href="https://www.housepetscomic.com/forums/viewtopic.php?f=13&t=5434&p=938783&hilit=search+engine#p938783">forum post</a>.
