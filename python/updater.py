@@ -3,27 +3,31 @@ from constants import current_year
 
 hp = Housepets()
 
+
 def main():
     latest_comics = hp.get_comic_chrono(current_year)
 
-    year_db = hp.get_year_index(current_year)
-    if year_db is None:
-        hp.create_index(current_year)
+    # grabs the slugs for the 2 last comics from housepets
+    two_latest_comics = [comics["href"].split("/")[-2] for comics in latest_comics[-2:]]
+
+    if housepets_db.exists(f"comics:{two_latest_comics[1]}"):
+        print("no new updates")
         return
 
-    if len(latest_comics) > year_db.total:
-        print("adding comics to redis")
+    print("adding new comic to redis")
 
-        latest_chapter = hp.get_latest_chapter()
-        comic = hp.get_comic_metadata(latest_comics[-1], index=year_db.total)
+    latest_chapter = hp.get_latest_chapter()
+    latest_index = int(housepets_db.hget(f"comics:{two_latest_comics[0]}", "index")) + 1
 
-        housepets_db.hset(
-            comic["key_name"],
-            mapping=comic["comic"] | {"chapter": latest_chapter}
-        )
+    comic = hp.get_comic_metadata(latest_comics[-1], index=latest_index)
 
-        hp.set_slugs("characters_list", comic["comic"]["characters"])
-        hp.set_slugs("chapter_list", [latest_chapter])
+    housepets_db.hset(
+        comic["key_name"],
+        mapping=comic["comic"] | {"chapter": latest_chapter, "year": current_year}
+    )
+
+    hp.set_char_slugs("characters", comic["comic"]["characters"])
+    hp.set_char_slugs("chapters", [latest_chapter])
 
 
 if __name__ == "__main__":

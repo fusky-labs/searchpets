@@ -11,7 +11,14 @@ schema = (
     TextField("comic_link"),
     TagField("characters"),
     TextField("chapter"),
+    TextField("year"),
     TextField("date"),
     TextField("image"),
     NumericField("index", sortable=True),
+)
+
+char_schema = (
+    TextField("name"),
+    TextField("slug"),
+    NumericField("amount"),
 )

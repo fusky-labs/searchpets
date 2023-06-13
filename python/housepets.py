@@ -10,8 +10,6 @@ from redis.commands.search.indexDefinition import IndexDefinition
 from bs4 import BeautifulSoup
 from bs4.element import Tag
 
-from constants import schema
-
 with open("./redis_config.json") as f:
     redis_config = json.load(f)
     housepets_db = StrictRedis(
@@ -50,7 +48,6 @@ class Housepets:
 
         url = comic_tag["href"]
         parsed_url = url.split("/")
-        year = parsed_url[4]
         link_tag = parsed_url[7]
         comic_date = "-".join(parsed_url[6:3:-1])
         comic_soup = self._soup_req(url)
@@ -71,7 +68,7 @@ class Housepets:
             character_str = ",".join(characters)
 
         return {
-            "key_name": f"{year}:{link_tag}",
+            "key_name": f"comics:{link_tag}",
             "comic": {
                 "title": comic_tag["title"],
                 "comic_link": url,
@@ -135,11 +132,11 @@ class Housepets:
 
     def get_latest_chapter(self):
         chapter_dropdown = self.get_chapter_dropdown()
-        latest_chapter = re.sub("^(-|\d)(\d\d).\s", "", chapter_dropdown[-1].get_text())
+        latest_chapter = re.sub("^(-|\d)(\d\d).\s", "", chapter_dropdown[-4].get_text())
 
         return latest_chapter
 
-    def create_index(self, index_name: str):
+    def create_index(self, index_name: str, schema: tuple):
         """
         creates an index with a prefix with the name inserted
         from index_name
@@ -161,18 +158,29 @@ class Housepets:
 
         return index_keys
 
-    def set_slugs(self, key: str, chars: list[str]):
+    def set_char_slugs(self, index_name: str, chars: list[str]):
         """
-        creates a hash/dict on redis to store data
-        for things like characters and chapters to create
-        pages using slugs
+        generates data in an index where each key is a slug
+        where it holds the original character/chapter name 
+        and the amount of comics that characater/chapter have
         """
 
-        slug_dict = {
-            # replaced "?" to "0" since "?" is taken
-            # as a query starter in Nuxt, this is just
-            # a proto for now, may change later
-            slugify(x.replace("?", "0")): x for x in chars
-        }
+        char: str
+        for char in chars:
+            # replaced "?" to "0" since ? is rendered as
+            # a query starter instead of route data in nuxt
+            slug = slugify(char.replace('?', '0'))
+            char_key = f"{index_name}:{slug}"
 
-        housepets_db.hset(key, mapping=slug_dict)
+            if housepets_db.exists(char_key):
+                housepets_db.hincrby(char_key, "amount", 1)
+                continue
+
+            housepets_db.hset(
+                char_key,
+                mapping={
+                    "name": char,
+                    "slug": slug,
+                    "amount": 1
+                }
+            )
