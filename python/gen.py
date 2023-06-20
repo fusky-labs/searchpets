@@ -1,9 +1,10 @@
 from housepets import Housepets, housepets_db
 from constants import current_year, initial_year, schema, char_schema
+import argparse
 
 
-def main():
-    hp = Housepets()
+def main(use_cache: bool):
+    hp = Housepets(use_cache)
 
     hp.create_index("characters", char_schema)
     hp.create_index("chapters", char_schema)
@@ -25,8 +26,8 @@ def main():
             comic_data = hp.get_comic_metadata(comic, comic_index)
             comic_index += 1
 
-            comic_key = comic_data["key_name"]
-            comic_characters = comic_data["characters"]
+            comic_key = comic_data.get("key_name")
+            comic_characters = comic_data.get("characters")
 
             print(f"{comic_key} : {comic_data['comic']['comic_link']}")
 
@@ -38,11 +39,13 @@ def main():
                 hp.set_char_slugs("characters", comic_characters)
             hp.set_char_slugs("chapters", [current_chapter])
 
-            housepets_db.hset(
-                comic_key,
-                mapping=comic_data["comic"] | {"chapter": current_chapter, "year": year}
-            )
+            comic_data.get("comic").update({"chapter": current_chapter, "year": year})
+            hp.set_comic(comic_data)
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-uc", "--usecache", action="store_true")
+    args = parser.parse_args()
+
+    main(args.usecache)

@@ -22,18 +22,43 @@ with open("./redis_config.json") as f:
 
 
 class Housepets:
-    def __init__(self):
+    def __init__(self, use_cache=False):
         self.hp_url = "https://housepetscomic.com"
+        self.cache = dict()
+        self.use_cache = use_cache
+
+        if use_cache:
+            self.cache = self.load_cache()
+
+    def __del__(self):
+        if not self.use_cache:
+            print("Saving to cache")
+            self.save_cache(self.cache)
 
     def _soup_req(self, url: str):
         req = requests.get(url, timeout=None)
         return BeautifulSoup(req.text, "html.parser")
+
+    def load_cache(self):
+        try:
+            with open("hp_cache.json", "r") as f:
+                return json.load(f)
+        except FileNotFoundError:
+            self.use_cache = False
+            return {}
+
+    def save_cache(self, cache):
+        with open("hp_cache.json", "w") as f:
+            json.dump(cache, f)
 
     def get_comic_chrono(self, year: int):
         """
         grab a list of Beautifulsoup tag elements of comics from the archive list
         of a year
         """
+        if self.use_cache:
+            return self.cache.get(str(year))
+
         url = f"{self.hp_url}/archive/?archive_year={year}"
         page_soup = self._soup_req(url)
         comics = page_soup.find_all(
@@ -41,10 +66,12 @@ class Housepets:
 
         return comics
 
-    def get_comic_metadata(self, comic_tag: Tag, index: int):
+    def get_comic_metadata(self, comic_tag: Tag | dict, index: int):
         """
         grab data from a Beautifulsoup tag element for a HP comic
         """
+        if isinstance(comic_tag, dict):
+            return comic_tag
 
         url = comic_tag["href"]
         parsed_url = url.split("/")
@@ -93,6 +120,10 @@ class Housepets:
         """
         grabs every chapters and their first comic
         """
+
+        if self.use_cache:
+            return self.cache.get("chapters")
+
         print("grabbing chapters and their first comic")
 
         first_chapter_comics = dict()
@@ -128,6 +159,8 @@ class Housepets:
                 first_comic_link[SLICE_URL:-1]: name_parse
             })
 
+        self.cache["chapters"] = first_chapter_comics
+
         return first_chapter_comics
 
     def get_latest_chapter(self):
@@ -149,14 +182,6 @@ class Housepets:
             housepets_db.ft(f"{index_name}").create_index(schema, definition=index_def)
         except ResponseError:
             print(f"{index_name} index already exists")
-
-    def get_year_index(self, index_name: str):
-        try:
-            index_keys = housepets_db.ft(index_name).search(Query("*").paging(0, 500))
-        except ResponseError:
-            return None
-
-        return index_keys
 
     def set_char_slugs(self, index_name: str, chars: list[str]):
         """
@@ -184,3 +209,16 @@ class Housepets:
                     "amount": 1
                 }
             )
+    
+    def set_comic(self, comic_data: dict):
+        """
+        Set's a comic to the reids database
+        """
+        year = comic_data["comic"]["year"]
+
+        self.cache.setdefault(year, [])
+
+        if not self.use_cache:
+            self.cache[year].append(comic_data)
+
+        housepets_db.hset(comic_data["key_name"], mapping=comic_data["comic"])

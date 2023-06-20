@@ -9,3 +9,4 @@ venv
 __pycache__
 dist
 redis_config.json
+hp_cache.json

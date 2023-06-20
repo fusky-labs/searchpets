@@ -20,11 +20,9 @@ def main():
     latest_index = int(housepets_db.hget(f"comics:{two_latest_comics[0]}", "index")) + 1
 
     comic = hp.get_comic_metadata(latest_comics[-1], index=latest_index)
+    comic.get("comic").update({"chapter": latest_chapter, "year": current_year})
 
-    housepets_db.hset(
-        comic["key_name"],
-        mapping=comic["comic"] | {"chapter": latest_chapter, "year": current_year}
-    )
+    hp.set_comic(comic)
 
     hp.set_char_slugs("characters", comic["comic"]["characters"])
     hp.set_char_slugs("chapters", [latest_chapter])
