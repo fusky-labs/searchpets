@@ -3,8 +3,12 @@ from constants import current_year, initial_year, schema, char_schema
 import argparse
 
 
-def main(use_cache: bool):
-    hp = Housepets(use_cache)
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-uc", "--usecache", action="store_true")
+    args = parser.parse_args()
+
+    hp = Housepets(args.usecache)
 
     hp.create_index("characters", char_schema)
     hp.create_index("chapters", char_schema)
@@ -31,9 +35,8 @@ def main(use_cache: bool):
 
             print(f"{comic_key} : {comic_data['comic']['comic_link']}")
 
-            comic_link_title = comic_key.split(":")[1]
-            if comic_link_title in chapter_entries:
-                current_chapter = chapter_entries[comic_link_title]
+            comic_link_title = comic_data['comic']['comic_link']
+            current_chapter = chapter_entries.get(comic_link_title, "Ricks posts")
 
             if comic_characters:
                 hp.set_char_slugs("characters", comic_characters)
@@ -44,8 +47,4 @@ def main(use_cache: bool):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-uc", "--usecache", action="store_true")
-    args = parser.parse_args()
-
-    main(args.usecache)
+    main()

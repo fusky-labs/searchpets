@@ -25,6 +25,7 @@ class Housepets:
     def __init__(self, use_cache=False):
         self.hp_url = "https://housepetscomic.com"
         self.cache = dict()
+        self.cache_filename = "hp_cache.json"
         self.use_cache = use_cache
 
         if use_cache:
@@ -124,7 +125,7 @@ class Housepets:
         if self.use_cache:
             return self.cache.get("chapters")
 
-        print("grabbing chapters and their first comic")
+        print("grabbing chapters and their comics, this may take some time")
 
         first_chapter_comics = dict()
 
@@ -146,18 +147,22 @@ class Housepets:
                     "a", class_="page-numbers")[-2].get_text())
 
             # grabs the first comic from the last page and grabs the first comic
-            last_article = self._soup_req(f"{ch_link}/page/{pag_total}/")
-            last_article = last_article.find_all("article", id=re.compile("^post-"))[-1]
+            for page in range(1, pag_total+1):
+                article_page = self._soup_req(f"{ch_link}page/{page}/")
 
-            first_comic_link = last_article.find("a")["href"]
+                articles = article_page.find_all("article", id=re.compile("^post-"))
 
-            print(f"{first_comic_link} : {name_parse}")
+                for article in articles:
 
-            SLICE_URL: int = 48
+                    comic_link = article.find("a")["href"]
 
-            first_chapter_comics.update({
-                first_comic_link[SLICE_URL:-1]: name_parse
-            })
+                    print(f"{comic_link} : {name_parse}")
+
+                    SLICE_URL: int = 48
+
+                    first_chapter_comics.update({
+                        comic_link: name_parse
+                    })
 
         self.cache["chapters"] = first_chapter_comics
 
@@ -209,7 +214,7 @@ class Housepets:
                     "amount": 1
                 }
             )
-    
+
     def set_comic(self, comic_data: dict):
         """
         Set's a comic to the reids database

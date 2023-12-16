@@ -10,7 +10,7 @@ schema = (
     TextField("title"),
     TextField("comic_link"),
     TagField("characters"),
-    TextField("chapter"),
+    TagField("chapter"),
     TextField("year"),
     TextField("date"),
     TextField("image"),
