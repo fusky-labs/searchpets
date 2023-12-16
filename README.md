@@ -18,17 +18,17 @@
 
 ## Infrastructure
 
-The website is written in Nuxt 3, and the database
+The website is written in Next.js, and the database
 and search functionality is powered by Redis. While the back-end is written in Python
 to update latest comics from the [official website](https://www.housepetscomic.com).
 Searchpets! is hosted from Linode and Netlify and delivered through the
-interwebs with CloudFlare.
+interwebs with Cloudflare.
 
 ## Running the app locally
 
 ### Prerequisites
 
-- Node.js 18 or higher (LTS recommended)
+- Node.js 20 or higher (LTS recommended)
 - Python 3.10 or higher
 - Yarn (npm can still be used but we strongly recommend using
   yarn!)

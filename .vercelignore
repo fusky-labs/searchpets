@@ -1,6 +1,0 @@
-.husky
-*.py
-.vscode
-.github
-mypy.ini
-requirements.txt
