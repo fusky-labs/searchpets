@@ -1,0 +1,7 @@
+node_modules
+venv
+.env
+.output
+.nuxt
+.vscode
+__pycache__

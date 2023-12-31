@@ -3,3 +3,4 @@ beautifulsoup4
 redis
 mypy
 python-slugify
+python-dotenv
